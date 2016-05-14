@@ -80,6 +80,7 @@ f = open("message_template_nocomments.msg", "r+")
 a = parse(f.read())
 f.close()
 template = """class %s(message.baseMessage):
+    name = "%s"
     id = %s
     freq = %s
     trusted = %s
@@ -90,7 +91,7 @@ template = """class %s(message.baseMessage):
     structure = {
 %s
     }
-registerMessage(\"%s\", %s)
+registerMessage(%s)
 
 """
 result = ""
@@ -102,7 +103,7 @@ for message in a:
         frequency = ["High","Medium","Low","Fixed"].index(message[0][1])
         id = message[0][2]
         if id[0:2] == "0x":
-            id = int("0x11",16)
+            id = int(id,16)
         else:
             id = int(id)
         trusted = True if message[0][3] == "Trusted" else False
@@ -128,7 +129,7 @@ for message in a:
                     structures = structures + "            [\"%s\", \"%s\"],\n"%(x[0][0],x[0][1])
             structures = structures[:-2]+"\n"
             structures = structures + "        ],\n"
-        result = result + template%(messageName,id,frequency,"True" if trusted else "False","True" if zerocoded else "False",blocks,structures[:-2],messageName,messageName)
+        result = result + template%(messageName,messageName,id,frequency,"True" if trusted else "False","True" if zerocoded else "False",blocks,structures[:-2],messageName)
 
 f = open("result.py","w+")
 f.write(result)

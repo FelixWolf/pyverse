@@ -1,4 +1,5 @@
 class TestMessage(message.baseMessage):
+    name = "TestMessage"
     id = 1
     freq = 2
     trusted = False
@@ -17,10 +18,11 @@ class TestMessage(message.baseMessage):
             ["Test2", "U32"]
         ]
     }
-registerMessage("TestMessage", TestMessage)
+registerMessage(TestMessage)
 
 class PacketAck(message.baseMessage):
-    id = 17
+    name = "PacketAck"
+    id = 4294967291
     freq = 3
     trusted = False
     zero_coded = False
@@ -32,10 +34,11 @@ class PacketAck(message.baseMessage):
             ["ID", "U32"]
         ]
     }
-registerMessage("PacketAck", PacketAck)
+registerMessage(PacketAck)
 
 class OpenCircuit(message.baseMessage):
-    id = 17
+    name = "OpenCircuit"
+    id = 4294967292
     freq = 3
     trusted = False
     zero_coded = False
@@ -48,10 +51,11 @@ class OpenCircuit(message.baseMessage):
             ["Port", "IPPORT"]
         ]
     }
-registerMessage("OpenCircuit", OpenCircuit)
+registerMessage(OpenCircuit)
 
 class CloseCircuit(message.baseMessage):
-    id = 17
+    name = "CloseCircuit"
+    id = 4294967293
     freq = 3
     trusted = False
     zero_coded = False
@@ -61,9 +65,10 @@ class CloseCircuit(message.baseMessage):
     structure = {
 
     }
-registerMessage("CloseCircuit", CloseCircuit)
+registerMessage(CloseCircuit)
 
 class StartPingCheck(message.baseMessage):
+    name = "StartPingCheck"
     id = 1
     freq = 0
     trusted = False
@@ -77,9 +82,10 @@ class StartPingCheck(message.baseMessage):
             ["OldestUnacked", "U32"]
         ]
     }
-registerMessage("StartPingCheck", StartPingCheck)
+registerMessage(StartPingCheck)
 
 class CompletePingCheck(message.baseMessage):
+    name = "CompletePingCheck"
     id = 2
     freq = 0
     trusted = False
@@ -92,9 +98,10 @@ class CompletePingCheck(message.baseMessage):
             ["PingID", "U8"]
         ]
     }
-registerMessage("CompletePingCheck", CompletePingCheck)
+registerMessage(CompletePingCheck)
 
 class AddCircuitCode(message.baseMessage):
+    name = "AddCircuitCode"
     id = 2
     freq = 2
     trusted = True
@@ -109,9 +116,10 @@ class AddCircuitCode(message.baseMessage):
             ["AgentID", "LLUUID"]
         ]
     }
-registerMessage("AddCircuitCode", AddCircuitCode)
+registerMessage(AddCircuitCode)
 
 class UseCircuitCode(message.baseMessage):
+    name = "UseCircuitCode"
     id = 3
     freq = 2
     trusted = False
@@ -126,9 +134,10 @@ class UseCircuitCode(message.baseMessage):
             ["ID", "LLUUID"]
         ]
     }
-registerMessage("UseCircuitCode", UseCircuitCode)
+registerMessage(UseCircuitCode)
 
 class NeighborList(message.baseMessage):
+    name = "NeighborList"
     id = 3
     freq = 0
     trusted = True
@@ -147,9 +156,10 @@ class NeighborList(message.baseMessage):
             ["SimAccess", "U8"]
         ]
     }
-registerMessage("NeighborList", NeighborList)
+registerMessage(NeighborList)
 
 class AvatarTextureUpdate(message.baseMessage):
+    name = "AvatarTextureUpdate"
     id = 4
     freq = 2
     trusted = True
@@ -173,9 +183,10 @@ class AvatarTextureUpdate(message.baseMessage):
             ["TextureID", "LLUUID"]
         ]
     }
-registerMessage("AvatarTextureUpdate", AvatarTextureUpdate)
+registerMessage(AvatarTextureUpdate)
 
 class SimulatorMapUpdate(message.baseMessage):
+    name = "SimulatorMapUpdate"
     id = 5
     freq = 2
     trusted = True
@@ -188,9 +199,10 @@ class SimulatorMapUpdate(message.baseMessage):
             ["Flags", "U32"]
         ]
     }
-registerMessage("SimulatorMapUpdate", SimulatorMapUpdate)
+registerMessage(SimulatorMapUpdate)
 
 class SimulatorSetMap(message.baseMessage):
+    name = "SimulatorSetMap"
     id = 6
     freq = 2
     trusted = True
@@ -205,9 +217,10 @@ class SimulatorSetMap(message.baseMessage):
             ["MapImage", "LLUUID"]
         ]
     }
-registerMessage("SimulatorSetMap", SimulatorSetMap)
+registerMessage(SimulatorSetMap)
 
 class SubscribeLoad(message.baseMessage):
+    name = "SubscribeLoad"
     id = 7
     freq = 2
     trusted = True
@@ -218,9 +231,10 @@ class SubscribeLoad(message.baseMessage):
     structure = {
 
     }
-registerMessage("SubscribeLoad", SubscribeLoad)
+registerMessage(SubscribeLoad)
 
 class UnsubscribeLoad(message.baseMessage):
+    name = "UnsubscribeLoad"
     id = 8
     freq = 2
     trusted = True
@@ -231,9 +245,10 @@ class UnsubscribeLoad(message.baseMessage):
     structure = {
 
     }
-registerMessage("UnsubscribeLoad", UnsubscribeLoad)
+registerMessage(UnsubscribeLoad)
 
 class SimulatorReady(message.baseMessage):
+    name = "SimulatorReady"
     id = 9
     freq = 2
     trusted = True
@@ -256,9 +271,10 @@ class SimulatorReady(message.baseMessage):
             ["TelehubPos", "LLVector3"]
         ]
     }
-registerMessage("SimulatorReady", SimulatorReady)
+registerMessage(SimulatorReady)
 
 class TelehubInfo(message.baseMessage):
+    name = "TelehubInfo"
     id = 10
     freq = 2
     trusted = True
@@ -278,9 +294,10 @@ class TelehubInfo(message.baseMessage):
             ["SpawnPointPos", "LLVector3"]
         ]
     }
-registerMessage("TelehubInfo", TelehubInfo)
+registerMessage(TelehubInfo)
 
 class SimulatorPresentAtLocation(message.baseMessage):
+    name = "SimulatorPresentAtLocation"
     id = 11
     freq = 2
     trusted = True
@@ -315,9 +332,10 @@ class SimulatorPresentAtLocation(message.baseMessage):
             ["TelehubPos", "LLVector3"]
         ]
     }
-registerMessage("SimulatorPresentAtLocation", SimulatorPresentAtLocation)
+registerMessage(SimulatorPresentAtLocation)
 
 class SimulatorLoad(message.baseMessage):
+    name = "SimulatorLoad"
     id = 12
     freq = 2
     trusted = True
@@ -338,9 +356,10 @@ class SimulatorLoad(message.baseMessage):
             ["Y", "U8"]
         ]
     }
-registerMessage("SimulatorLoad", SimulatorLoad)
+registerMessage(SimulatorLoad)
 
 class SimulatorShutdownRequest(message.baseMessage):
+    name = "SimulatorShutdownRequest"
     id = 13
     freq = 2
     trusted = True
@@ -351,9 +370,10 @@ class SimulatorShutdownRequest(message.baseMessage):
     structure = {
 
     }
-registerMessage("SimulatorShutdownRequest", SimulatorShutdownRequest)
+registerMessage(SimulatorShutdownRequest)
 
 class RegionPresenceRequestByRegionID(message.baseMessage):
+    name = "RegionPresenceRequestByRegionID"
     id = 14
     freq = 2
     trusted = True
@@ -366,9 +386,10 @@ class RegionPresenceRequestByRegionID(message.baseMessage):
             ["RegionID", "LLUUID"]
         ]
     }
-registerMessage("RegionPresenceRequestByRegionID", RegionPresenceRequestByRegionID)
+registerMessage(RegionPresenceRequestByRegionID)
 
 class RegionPresenceRequestByHandle(message.baseMessage):
+    name = "RegionPresenceRequestByHandle"
     id = 15
     freq = 2
     trusted = True
@@ -381,9 +402,10 @@ class RegionPresenceRequestByHandle(message.baseMessage):
             ["RegionHandle", "U64"]
         ]
     }
-registerMessage("RegionPresenceRequestByHandle", RegionPresenceRequestByHandle)
+registerMessage(RegionPresenceRequestByHandle)
 
 class RegionPresenceResponse(message.baseMessage):
+    name = "RegionPresenceResponse"
     id = 16
     freq = 2
     trusted = True
@@ -402,9 +424,10 @@ class RegionPresenceResponse(message.baseMessage):
             ["Message", "Variable1"]
         ]
     }
-registerMessage("RegionPresenceResponse", RegionPresenceResponse)
+registerMessage(RegionPresenceResponse)
 
 class UpdateSimulator(message.baseMessage):
+    name = "UpdateSimulator"
     id = 17
     freq = 2
     trusted = True
@@ -420,9 +443,10 @@ class UpdateSimulator(message.baseMessage):
             ["SimAccess", "U8"]
         ]
     }
-registerMessage("UpdateSimulator", UpdateSimulator)
+registerMessage(UpdateSimulator)
 
 class LogDwellTime(message.baseMessage):
+    name = "LogDwellTime"
     id = 18
     freq = 2
     trusted = True
@@ -442,9 +466,10 @@ class LogDwellTime(message.baseMessage):
             ["AvgViewerFPS", "U8"]
         ]
     }
-registerMessage("LogDwellTime", LogDwellTime)
+registerMessage(LogDwellTime)
 
 class FeatureDisabled(message.baseMessage):
+    name = "FeatureDisabled"
     id = 19
     freq = 2
     trusted = True
@@ -459,9 +484,10 @@ class FeatureDisabled(message.baseMessage):
             ["TransactionID", "LLUUID"]
         ]
     }
-registerMessage("FeatureDisabled", FeatureDisabled)
+registerMessage(FeatureDisabled)
 
 class LogFailedMoneyTransaction(message.baseMessage):
+    name = "LogFailedMoneyTransaction"
     id = 20
     freq = 2
     trusted = True
@@ -484,9 +510,10 @@ class LogFailedMoneyTransaction(message.baseMessage):
             ["FailureType", "U8"]
         ]
     }
-registerMessage("LogFailedMoneyTransaction", LogFailedMoneyTransaction)
+registerMessage(LogFailedMoneyTransaction)
 
 class UserReportInternal(message.baseMessage):
+    name = "UserReportInternal"
     id = 21
     freq = 2
     trusted = True
@@ -515,9 +542,10 @@ class UserReportInternal(message.baseMessage):
             ["VersionString", "Variable1"]
         ]
     }
-registerMessage("UserReportInternal", UserReportInternal)
+registerMessage(UserReportInternal)
 
 class SetSimStatusInDatabase(message.baseMessage):
+    name = "SetSimStatusInDatabase"
     id = 22
     freq = 2
     trusted = True
@@ -537,9 +565,10 @@ class SetSimStatusInDatabase(message.baseMessage):
             ["Status", "Variable1"]
         ]
     }
-registerMessage("SetSimStatusInDatabase", SetSimStatusInDatabase)
+registerMessage(SetSimStatusInDatabase)
 
 class SetSimPresenceInDatabase(message.baseMessage):
+    name = "SetSimPresenceInDatabase"
     id = 23
     freq = 2
     trusted = True
@@ -559,9 +588,10 @@ class SetSimPresenceInDatabase(message.baseMessage):
             ["Status", "Variable1"]
         ]
     }
-registerMessage("SetSimPresenceInDatabase", SetSimPresenceInDatabase)
+registerMessage(SetSimPresenceInDatabase)
 
 class EconomyDataRequest(message.baseMessage):
+    name = "EconomyDataRequest"
     id = 24
     freq = 2
     trusted = False
@@ -572,9 +602,10 @@ class EconomyDataRequest(message.baseMessage):
     structure = {
 
     }
-registerMessage("EconomyDataRequest", EconomyDataRequest)
+registerMessage(EconomyDataRequest)
 
 class EconomyData(message.baseMessage):
+    name = "EconomyData"
     id = 25
     freq = 2
     trusted = True
@@ -603,9 +634,10 @@ class EconomyData(message.baseMessage):
             ["PriceGroupCreate", "S32"]
         ]
     }
-registerMessage("EconomyData", EconomyData)
+registerMessage(EconomyData)
 
 class AvatarPickerRequest(message.baseMessage):
+    name = "AvatarPickerRequest"
     id = 26
     freq = 2
     trusted = False
@@ -624,9 +656,10 @@ class AvatarPickerRequest(message.baseMessage):
             ["Name", "Variable1"]
         ]
     }
-registerMessage("AvatarPickerRequest", AvatarPickerRequest)
+registerMessage(AvatarPickerRequest)
 
 class AvatarPickerRequestBackend(message.baseMessage):
+    name = "AvatarPickerRequestBackend"
     id = 27
     freq = 2
     trusted = True
@@ -646,9 +679,10 @@ class AvatarPickerRequestBackend(message.baseMessage):
             ["Name", "Variable1"]
         ]
     }
-registerMessage("AvatarPickerRequestBackend", AvatarPickerRequestBackend)
+registerMessage(AvatarPickerRequestBackend)
 
 class AvatarPickerReply(message.baseMessage):
+    name = "AvatarPickerReply"
     id = 28
     freq = 2
     trusted = True
@@ -668,9 +702,10 @@ class AvatarPickerReply(message.baseMessage):
             ["LastName", "Variable1"]
         ]
     }
-registerMessage("AvatarPickerReply", AvatarPickerReply)
+registerMessage(AvatarPickerReply)
 
 class PlacesQuery(message.baseMessage):
+    name = "PlacesQuery"
     id = 29
     freq = 2
     trusted = False
@@ -696,9 +731,10 @@ class PlacesQuery(message.baseMessage):
             ["SimName", "Variable1"]
         ]
     }
-registerMessage("PlacesQuery", PlacesQuery)
+registerMessage(PlacesQuery)
 
 class PlacesReply(message.baseMessage):
+    name = "PlacesReply"
     id = 30
     freq = 2
     trusted = True
@@ -732,9 +768,10 @@ class PlacesReply(message.baseMessage):
             ["Price", "S32"]
         ]
     }
-registerMessage("PlacesReply", PlacesReply)
+registerMessage(PlacesReply)
 
 class DirFindQuery(message.baseMessage):
+    name = "DirFindQuery"
     id = 31
     freq = 2
     trusted = False
@@ -755,9 +792,10 @@ class DirFindQuery(message.baseMessage):
             ["QueryStart", "S32"]
         ]
     }
-registerMessage("DirFindQuery", DirFindQuery)
+registerMessage(DirFindQuery)
 
 class DirFindQueryBackend(message.baseMessage):
+    name = "DirFindQueryBackend"
     id = 32
     freq = 2
     trusted = True
@@ -779,9 +817,10 @@ class DirFindQueryBackend(message.baseMessage):
             ["Godlike", "BOOL"]
         ]
     }
-registerMessage("DirFindQueryBackend", DirFindQueryBackend)
+registerMessage(DirFindQueryBackend)
 
 class DirPlacesQuery(message.baseMessage):
+    name = "DirPlacesQuery"
     id = 33
     freq = 2
     trusted = False
@@ -804,9 +843,10 @@ class DirPlacesQuery(message.baseMessage):
             ["QueryStart", "S32"]
         ]
     }
-registerMessage("DirPlacesQuery", DirPlacesQuery)
+registerMessage(DirPlacesQuery)
 
 class DirPlacesQueryBackend(message.baseMessage):
+    name = "DirPlacesQueryBackend"
     id = 34
     freq = 2
     trusted = True
@@ -830,9 +870,10 @@ class DirPlacesQueryBackend(message.baseMessage):
             ["QueryStart", "S32"]
         ]
     }
-registerMessage("DirPlacesQueryBackend", DirPlacesQueryBackend)
+registerMessage(DirPlacesQueryBackend)
 
 class DirPlacesReply(message.baseMessage):
+    name = "DirPlacesReply"
     id = 35
     freq = 2
     trusted = True
@@ -861,9 +902,10 @@ class DirPlacesReply(message.baseMessage):
             ["Status", "U32"]
         ]
     }
-registerMessage("DirPlacesReply", DirPlacesReply)
+registerMessage(DirPlacesReply)
 
 class DirPeopleReply(message.baseMessage):
+    name = "DirPeopleReply"
     id = 36
     freq = 2
     trusted = True
@@ -889,9 +931,10 @@ class DirPeopleReply(message.baseMessage):
             ["Reputation", "S32"]
         ]
     }
-registerMessage("DirPeopleReply", DirPeopleReply)
+registerMessage(DirPeopleReply)
 
 class DirEventsReply(message.baseMessage):
+    name = "DirEventsReply"
     id = 37
     freq = 2
     trusted = True
@@ -921,9 +964,10 @@ class DirEventsReply(message.baseMessage):
             ["Status", "U32"]
         ]
     }
-registerMessage("DirEventsReply", DirEventsReply)
+registerMessage(DirEventsReply)
 
 class DirGroupsReply(message.baseMessage):
+    name = "DirGroupsReply"
     id = 38
     freq = 2
     trusted = True
@@ -947,9 +991,10 @@ class DirGroupsReply(message.baseMessage):
             ["SearchOrder", "F32"]
         ]
     }
-registerMessage("DirGroupsReply", DirGroupsReply)
+registerMessage(DirGroupsReply)
 
 class DirClassifiedQuery(message.baseMessage):
+    name = "DirClassifiedQuery"
     id = 39
     freq = 2
     trusted = False
@@ -971,9 +1016,10 @@ class DirClassifiedQuery(message.baseMessage):
             ["QueryStart", "S32"]
         ]
     }
-registerMessage("DirClassifiedQuery", DirClassifiedQuery)
+registerMessage(DirClassifiedQuery)
 
 class DirClassifiedQueryBackend(message.baseMessage):
+    name = "DirClassifiedQueryBackend"
     id = 40
     freq = 2
     trusted = True
@@ -996,9 +1042,10 @@ class DirClassifiedQueryBackend(message.baseMessage):
             ["QueryStart", "S32"]
         ]
     }
-registerMessage("DirClassifiedQueryBackend", DirClassifiedQueryBackend)
+registerMessage(DirClassifiedQueryBackend)
 
 class DirClassifiedReply(message.baseMessage):
+    name = "DirClassifiedReply"
     id = 41
     freq = 2
     trusted = True
@@ -1028,9 +1075,10 @@ class DirClassifiedReply(message.baseMessage):
             ["Status", "U32"]
         ]
     }
-registerMessage("DirClassifiedReply", DirClassifiedReply)
+registerMessage(DirClassifiedReply)
 
 class AvatarClassifiedReply(message.baseMessage):
+    name = "AvatarClassifiedReply"
     id = 42
     freq = 2
     trusted = True
@@ -1049,9 +1097,10 @@ class AvatarClassifiedReply(message.baseMessage):
             ["Name", "Variable1"]
         ]
     }
-registerMessage("AvatarClassifiedReply", AvatarClassifiedReply)
+registerMessage(AvatarClassifiedReply)
 
 class ClassifiedInfoRequest(message.baseMessage):
+    name = "ClassifiedInfoRequest"
     id = 43
     freq = 2
     trusted = False
@@ -1069,9 +1118,10 @@ class ClassifiedInfoRequest(message.baseMessage):
             ["ClassifiedID", "LLUUID"]
         ]
     }
-registerMessage("ClassifiedInfoRequest", ClassifiedInfoRequest)
+registerMessage(ClassifiedInfoRequest)
 
 class ClassifiedInfoReply(message.baseMessage):
+    name = "ClassifiedInfoReply"
     id = 44
     freq = 2
     trusted = True
@@ -1102,9 +1152,10 @@ class ClassifiedInfoReply(message.baseMessage):
             ["PriceForListing", "S32"]
         ]
     }
-registerMessage("ClassifiedInfoReply", ClassifiedInfoReply)
+registerMessage(ClassifiedInfoReply)
 
 class ClassifiedInfoUpdate(message.baseMessage):
+    name = "ClassifiedInfoUpdate"
     id = 45
     freq = 2
     trusted = False
@@ -1131,9 +1182,10 @@ class ClassifiedInfoUpdate(message.baseMessage):
             ["PriceForListing", "S32"]
         ]
     }
-registerMessage("ClassifiedInfoUpdate", ClassifiedInfoUpdate)
+registerMessage(ClassifiedInfoUpdate)
 
 class ClassifiedDelete(message.baseMessage):
+    name = "ClassifiedDelete"
     id = 46
     freq = 2
     trusted = False
@@ -1151,9 +1203,10 @@ class ClassifiedDelete(message.baseMessage):
             ["ClassifiedID", "LLUUID"]
         ]
     }
-registerMessage("ClassifiedDelete", ClassifiedDelete)
+registerMessage(ClassifiedDelete)
 
 class ClassifiedGodDelete(message.baseMessage):
+    name = "ClassifiedGodDelete"
     id = 47
     freq = 2
     trusted = False
@@ -1172,9 +1225,10 @@ class ClassifiedGodDelete(message.baseMessage):
             ["QueryID", "LLUUID"]
         ]
     }
-registerMessage("ClassifiedGodDelete", ClassifiedGodDelete)
+registerMessage(ClassifiedGodDelete)
 
 class DirLandQuery(message.baseMessage):
+    name = "DirLandQuery"
     id = 48
     freq = 2
     trusted = False
@@ -1197,9 +1251,10 @@ class DirLandQuery(message.baseMessage):
             ["QueryStart", "S32"]
         ]
     }
-registerMessage("DirLandQuery", DirLandQuery)
+registerMessage(DirLandQuery)
 
 class DirLandQueryBackend(message.baseMessage):
+    name = "DirLandQueryBackend"
     id = 49
     freq = 2
     trusted = True
@@ -1223,9 +1278,10 @@ class DirLandQueryBackend(message.baseMessage):
             ["Godlike", "BOOL"]
         ]
     }
-registerMessage("DirLandQueryBackend", DirLandQueryBackend)
+registerMessage(DirLandQueryBackend)
 
 class DirLandReply(message.baseMessage):
+    name = "DirLandReply"
     id = 50
     freq = 2
     trusted = True
@@ -1251,9 +1307,10 @@ class DirLandReply(message.baseMessage):
             ["ActualArea", "S32"]
         ]
     }
-registerMessage("DirLandReply", DirLandReply)
+registerMessage(DirLandReply)
 
 class DirPopularQuery(message.baseMessage):
+    name = "DirPopularQuery"
     id = 51
     freq = 2
     trusted = False
@@ -1272,9 +1329,10 @@ class DirPopularQuery(message.baseMessage):
             ["QueryFlags", "U32"]
         ]
     }
-registerMessage("DirPopularQuery", DirPopularQuery)
+registerMessage(DirPopularQuery)
 
 class DirPopularQueryBackend(message.baseMessage):
+    name = "DirPopularQueryBackend"
     id = 52
     freq = 2
     trusted = True
@@ -1294,9 +1352,10 @@ class DirPopularQueryBackend(message.baseMessage):
             ["Godlike", "BOOL"]
         ]
     }
-registerMessage("DirPopularQueryBackend", DirPopularQueryBackend)
+registerMessage(DirPopularQueryBackend)
 
 class DirPopularReply(message.baseMessage):
+    name = "DirPopularReply"
     id = 53
     freq = 2
     trusted = True
@@ -1319,9 +1378,10 @@ class DirPopularReply(message.baseMessage):
             ["Dwell", "F32"]
         ]
     }
-registerMessage("DirPopularReply", DirPopularReply)
+registerMessage(DirPopularReply)
 
 class ParcelInfoRequest(message.baseMessage):
+    name = "ParcelInfoRequest"
     id = 54
     freq = 2
     trusted = False
@@ -1339,9 +1399,10 @@ class ParcelInfoRequest(message.baseMessage):
             ["ParcelID", "LLUUID"]
         ]
     }
-registerMessage("ParcelInfoRequest", ParcelInfoRequest)
+registerMessage(ParcelInfoRequest)
 
 class ParcelInfoReply(message.baseMessage):
+    name = "ParcelInfoReply"
     id = 55
     freq = 2
     trusted = True
@@ -1372,9 +1433,10 @@ class ParcelInfoReply(message.baseMessage):
             ["AuctionID", "S32"]
         ]
     }
-registerMessage("ParcelInfoReply", ParcelInfoReply)
+registerMessage(ParcelInfoReply)
 
 class ParcelObjectOwnersRequest(message.baseMessage):
+    name = "ParcelObjectOwnersRequest"
     id = 56
     freq = 2
     trusted = False
@@ -1392,9 +1454,10 @@ class ParcelObjectOwnersRequest(message.baseMessage):
             ["LocalID", "S32"]
         ]
     }
-registerMessage("ParcelObjectOwnersRequest", ParcelObjectOwnersRequest)
+registerMessage(ParcelObjectOwnersRequest)
 
 class ParcelObjectOwnersReply(message.baseMessage):
+    name = "ParcelObjectOwnersReply"
     id = 57
     freq = 2
     trusted = True
@@ -1410,9 +1473,10 @@ class ParcelObjectOwnersReply(message.baseMessage):
             ["OnlineStatus", "BOOL"]
         ]
     }
-registerMessage("ParcelObjectOwnersReply", ParcelObjectOwnersReply)
+registerMessage(ParcelObjectOwnersReply)
 
 class GroupNoticesListRequest(message.baseMessage):
+    name = "GroupNoticesListRequest"
     id = 58
     freq = 2
     trusted = False
@@ -1430,9 +1494,10 @@ class GroupNoticesListRequest(message.baseMessage):
             ["GroupID", "LLUUID"]
         ]
     }
-registerMessage("GroupNoticesListRequest", GroupNoticesListRequest)
+registerMessage(GroupNoticesListRequest)
 
 class GroupNoticesListReply(message.baseMessage):
+    name = "GroupNoticesListReply"
     id = 59
     freq = 2
     trusted = True
@@ -1455,9 +1520,10 @@ class GroupNoticesListReply(message.baseMessage):
             ["AssetType", "U8"]
         ]
     }
-registerMessage("GroupNoticesListReply", GroupNoticesListReply)
+registerMessage(GroupNoticesListReply)
 
 class GroupNoticeRequest(message.baseMessage):
+    name = "GroupNoticeRequest"
     id = 60
     freq = 2
     trusted = False
@@ -1475,9 +1541,10 @@ class GroupNoticeRequest(message.baseMessage):
             ["GroupNoticeID", "LLUUID"]
         ]
     }
-registerMessage("GroupNoticeRequest", GroupNoticeRequest)
+registerMessage(GroupNoticeRequest)
 
 class GroupNoticeAdd(message.baseMessage):
+    name = "GroupNoticeAdd"
     id = 61
     freq = 2
     trusted = True
@@ -1499,9 +1566,10 @@ class GroupNoticeAdd(message.baseMessage):
             ["BinaryBucket", "Variable2"]
         ]
     }
-registerMessage("GroupNoticeAdd", GroupNoticeAdd)
+registerMessage(GroupNoticeAdd)
 
 class TeleportRequest(message.baseMessage):
+    name = "TeleportRequest"
     id = 62
     freq = 2
     trusted = False
@@ -1521,9 +1589,10 @@ class TeleportRequest(message.baseMessage):
             ["LookAt", "LLVector3"]
         ]
     }
-registerMessage("TeleportRequest", TeleportRequest)
+registerMessage(TeleportRequest)
 
 class TeleportLocationRequest(message.baseMessage):
+    name = "TeleportLocationRequest"
     id = 63
     freq = 2
     trusted = False
@@ -1543,9 +1612,10 @@ class TeleportLocationRequest(message.baseMessage):
             ["LookAt", "LLVector3"]
         ]
     }
-registerMessage("TeleportLocationRequest", TeleportLocationRequest)
+registerMessage(TeleportLocationRequest)
 
 class TeleportLocal(message.baseMessage):
+    name = "TeleportLocal"
     id = 64
     freq = 2
     trusted = True
@@ -1562,9 +1632,10 @@ class TeleportLocal(message.baseMessage):
             ["TeleportFlags", "U32"]
         ]
     }
-registerMessage("TeleportLocal", TeleportLocal)
+registerMessage(TeleportLocal)
 
 class TeleportLandmarkRequest(message.baseMessage):
+    name = "TeleportLandmarkRequest"
     id = 65
     freq = 2
     trusted = False
@@ -1579,9 +1650,10 @@ class TeleportLandmarkRequest(message.baseMessage):
             ["LandmarkID", "LLUUID"]
         ]
     }
-registerMessage("TeleportLandmarkRequest", TeleportLandmarkRequest)
+registerMessage(TeleportLandmarkRequest)
 
 class TeleportProgress(message.baseMessage):
+    name = "TeleportProgress"
     id = 66
     freq = 2
     trusted = True
@@ -1599,9 +1671,10 @@ class TeleportProgress(message.baseMessage):
             ["Message", "Variable1"]
         ]
     }
-registerMessage("TeleportProgress", TeleportProgress)
+registerMessage(TeleportProgress)
 
 class DataHomeLocationRequest(message.baseMessage):
+    name = "DataHomeLocationRequest"
     id = 67
     freq = 2
     trusted = True
@@ -1619,9 +1692,10 @@ class DataHomeLocationRequest(message.baseMessage):
             ["AgentEffectiveMaturity", "U32"]
         ]
     }
-registerMessage("DataHomeLocationRequest", DataHomeLocationRequest)
+registerMessage(DataHomeLocationRequest)
 
 class DataHomeLocationReply(message.baseMessage):
+    name = "DataHomeLocationReply"
     id = 68
     freq = 2
     trusted = True
@@ -1637,9 +1711,10 @@ class DataHomeLocationReply(message.baseMessage):
             ["LookAt", "LLVector3"]
         ]
     }
-registerMessage("DataHomeLocationReply", DataHomeLocationReply)
+registerMessage(DataHomeLocationReply)
 
 class TeleportFinish(message.baseMessage):
+    name = "TeleportFinish"
     id = 69
     freq = 2
     trusted = True
@@ -1659,9 +1734,10 @@ class TeleportFinish(message.baseMessage):
             ["TeleportFlags", "U32"]
         ]
     }
-registerMessage("TeleportFinish", TeleportFinish)
+registerMessage(TeleportFinish)
 
 class StartLure(message.baseMessage):
+    name = "StartLure"
     id = 70
     freq = 2
     trusted = False
@@ -1684,9 +1760,10 @@ class StartLure(message.baseMessage):
             ["TargetID", "LLUUID"]
         ]
     }
-registerMessage("StartLure", StartLure)
+registerMessage(StartLure)
 
 class TeleportLureRequest(message.baseMessage):
+    name = "TeleportLureRequest"
     id = 71
     freq = 2
     trusted = False
@@ -1702,9 +1779,10 @@ class TeleportLureRequest(message.baseMessage):
             ["TeleportFlags", "U32"]
         ]
     }
-registerMessage("TeleportLureRequest", TeleportLureRequest)
+registerMessage(TeleportLureRequest)
 
 class TeleportCancel(message.baseMessage):
+    name = "TeleportCancel"
     id = 72
     freq = 2
     trusted = False
@@ -1718,9 +1796,10 @@ class TeleportCancel(message.baseMessage):
             ["SessionID", "LLUUID"]
         ]
     }
-registerMessage("TeleportCancel", TeleportCancel)
+registerMessage(TeleportCancel)
 
 class TeleportStart(message.baseMessage):
+    name = "TeleportStart"
     id = 73
     freq = 2
     trusted = True
@@ -1733,9 +1812,10 @@ class TeleportStart(message.baseMessage):
             ["TeleportFlags", "U32"]
         ]
     }
-registerMessage("TeleportStart", TeleportStart)
+registerMessage(TeleportStart)
 
 class TeleportFailed(message.baseMessage):
+    name = "TeleportFailed"
     id = 74
     freq = 2
     trusted = True
@@ -1754,9 +1834,10 @@ class TeleportFailed(message.baseMessage):
             ["ExtraParams", "Variable1"]
         ]
     }
-registerMessage("TeleportFailed", TeleportFailed)
+registerMessage(TeleportFailed)
 
 class Undo(message.baseMessage):
+    name = "Undo"
     id = 75
     freq = 2
     trusted = False
@@ -1775,9 +1856,10 @@ class Undo(message.baseMessage):
             ["ObjectID", "LLUUID"]
         ]
     }
-registerMessage("Undo", Undo)
+registerMessage(Undo)
 
 class Redo(message.baseMessage):
+    name = "Redo"
     id = 76
     freq = 2
     trusted = False
@@ -1796,9 +1878,10 @@ class Redo(message.baseMessage):
             ["ObjectID", "LLUUID"]
         ]
     }
-registerMessage("Redo", Redo)
+registerMessage(Redo)
 
 class UndoLand(message.baseMessage):
+    name = "UndoLand"
     id = 77
     freq = 2
     trusted = False
@@ -1812,9 +1895,10 @@ class UndoLand(message.baseMessage):
             ["SessionID", "LLUUID"]
         ]
     }
-registerMessage("UndoLand", UndoLand)
+registerMessage(UndoLand)
 
 class AgentPause(message.baseMessage):
+    name = "AgentPause"
     id = 78
     freq = 2
     trusted = False
@@ -1829,9 +1913,10 @@ class AgentPause(message.baseMessage):
             ["SerialNum", "U32"]
         ]
     }
-registerMessage("AgentPause", AgentPause)
+registerMessage(AgentPause)
 
 class AgentResume(message.baseMessage):
+    name = "AgentResume"
     id = 79
     freq = 2
     trusted = False
@@ -1846,9 +1931,10 @@ class AgentResume(message.baseMessage):
             ["SerialNum", "U32"]
         ]
     }
-registerMessage("AgentResume", AgentResume)
+registerMessage(AgentResume)
 
 class AgentUpdate(message.baseMessage):
+    name = "AgentUpdate"
     id = 4
     freq = 0
     trusted = False
@@ -1872,9 +1958,10 @@ class AgentUpdate(message.baseMessage):
             ["Flags", "U8"]
         ]
     }
-registerMessage("AgentUpdate", AgentUpdate)
+registerMessage(AgentUpdate)
 
 class ChatFromViewer(message.baseMessage):
+    name = "ChatFromViewer"
     id = 80
     freq = 2
     trusted = False
@@ -1894,9 +1981,10 @@ class ChatFromViewer(message.baseMessage):
             ["Channel", "S32"]
         ]
     }
-registerMessage("ChatFromViewer", ChatFromViewer)
+registerMessage(ChatFromViewer)
 
 class AgentThrottle(message.baseMessage):
+    name = "AgentThrottle"
     id = 81
     freq = 2
     trusted = False
@@ -1916,9 +2004,10 @@ class AgentThrottle(message.baseMessage):
             ["Throttles", "Variable1"]
         ]
     }
-registerMessage("AgentThrottle", AgentThrottle)
+registerMessage(AgentThrottle)
 
 class AgentFOV(message.baseMessage):
+    name = "AgentFOV"
     id = 82
     freq = 2
     trusted = False
@@ -1938,9 +2027,10 @@ class AgentFOV(message.baseMessage):
             ["VerticalAngle", "F32"]
         ]
     }
-registerMessage("AgentFOV", AgentFOV)
+registerMessage(AgentFOV)
 
 class AgentHeightWidth(message.baseMessage):
+    name = "AgentHeightWidth"
     id = 83
     freq = 2
     trusted = False
@@ -1961,9 +2051,10 @@ class AgentHeightWidth(message.baseMessage):
             ["Width", "U16"]
         ]
     }
-registerMessage("AgentHeightWidth", AgentHeightWidth)
+registerMessage(AgentHeightWidth)
 
 class AgentSetAppearance(message.baseMessage):
+    name = "AgentSetAppearance"
     id = 84
     freq = 2
     trusted = False
@@ -1992,9 +2083,10 @@ class AgentSetAppearance(message.baseMessage):
             ["ParamValue", "U8"]
         ]
     }
-registerMessage("AgentSetAppearance", AgentSetAppearance)
+registerMessage(AgentSetAppearance)
 
 class AgentAnimation(message.baseMessage):
+    name = "AgentAnimation"
     id = 5
     freq = 0
     trusted = False
@@ -2017,9 +2109,10 @@ class AgentAnimation(message.baseMessage):
             ["TypeData", "Variable1"]
         ]
     }
-registerMessage("AgentAnimation", AgentAnimation)
+registerMessage(AgentAnimation)
 
 class AgentRequestSit(message.baseMessage):
+    name = "AgentRequestSit"
     id = 6
     freq = 0
     trusted = False
@@ -2038,9 +2131,10 @@ class AgentRequestSit(message.baseMessage):
             ["Offset", "LLVector3"]
         ]
     }
-registerMessage("AgentRequestSit", AgentRequestSit)
+registerMessage(AgentRequestSit)
 
 class AgentSit(message.baseMessage):
+    name = "AgentSit"
     id = 7
     freq = 0
     trusted = False
@@ -2054,9 +2148,10 @@ class AgentSit(message.baseMessage):
             ["SessionID", "LLUUID"]
         ]
     }
-registerMessage("AgentSit", AgentSit)
+registerMessage(AgentSit)
 
 class AgentQuitCopy(message.baseMessage):
+    name = "AgentQuitCopy"
     id = 85
     freq = 2
     trusted = False
@@ -2074,9 +2169,10 @@ class AgentQuitCopy(message.baseMessage):
             ["ViewerCircuitCode", "U32"]
         ]
     }
-registerMessage("AgentQuitCopy", AgentQuitCopy)
+registerMessage(AgentQuitCopy)
 
 class RequestImage(message.baseMessage):
+    name = "RequestImage"
     id = 8
     freq = 0
     trusted = False
@@ -2098,9 +2194,10 @@ class RequestImage(message.baseMessage):
             ["Type", "U8"]
         ]
     }
-registerMessage("RequestImage", RequestImage)
+registerMessage(RequestImage)
 
 class ImageNotInDatabase(message.baseMessage):
+    name = "ImageNotInDatabase"
     id = 86
     freq = 2
     trusted = True
@@ -2113,9 +2210,10 @@ class ImageNotInDatabase(message.baseMessage):
             ["ID", "LLUUID"]
         ]
     }
-registerMessage("ImageNotInDatabase", ImageNotInDatabase)
+registerMessage(ImageNotInDatabase)
 
 class RebakeAvatarTextures(message.baseMessage):
+    name = "RebakeAvatarTextures"
     id = 87
     freq = 2
     trusted = True
@@ -2128,9 +2226,10 @@ class RebakeAvatarTextures(message.baseMessage):
             ["TextureID", "LLUUID"]
         ]
     }
-registerMessage("RebakeAvatarTextures", RebakeAvatarTextures)
+registerMessage(RebakeAvatarTextures)
 
 class SetAlwaysRun(message.baseMessage):
+    name = "SetAlwaysRun"
     id = 88
     freq = 2
     trusted = False
@@ -2145,9 +2244,10 @@ class SetAlwaysRun(message.baseMessage):
             ["AlwaysRun", "BOOL"]
         ]
     }
-registerMessage("SetAlwaysRun", SetAlwaysRun)
+registerMessage(SetAlwaysRun)
 
 class ObjectAdd(message.baseMessage):
+    name = "ObjectAdd"
     id = 1
     freq = 1
     trusted = False
@@ -2194,9 +2294,10 @@ class ObjectAdd(message.baseMessage):
             ["State", "U8"]
         ]
     }
-registerMessage("ObjectAdd", ObjectAdd)
+registerMessage(ObjectAdd)
 
 class ObjectDelete(message.baseMessage):
+    name = "ObjectDelete"
     id = 89
     freq = 2
     trusted = False
@@ -2215,9 +2316,10 @@ class ObjectDelete(message.baseMessage):
             ["ObjectLocalID", "U32"]
         ]
     }
-registerMessage("ObjectDelete", ObjectDelete)
+registerMessage(ObjectDelete)
 
 class ObjectDuplicate(message.baseMessage):
+    name = "ObjectDuplicate"
     id = 90
     freq = 2
     trusted = False
@@ -2241,9 +2343,10 @@ class ObjectDuplicate(message.baseMessage):
             ["ObjectLocalID", "U32"]
         ]
     }
-registerMessage("ObjectDuplicate", ObjectDuplicate)
+registerMessage(ObjectDuplicate)
 
 class ObjectDuplicateOnRay(message.baseMessage):
+    name = "ObjectDuplicateOnRay"
     id = 91
     freq = 2
     trusted = False
@@ -2270,9 +2373,10 @@ class ObjectDuplicateOnRay(message.baseMessage):
             ["ObjectLocalID", "U32"]
         ]
     }
-registerMessage("ObjectDuplicateOnRay", ObjectDuplicateOnRay)
+registerMessage(ObjectDuplicateOnRay)
 
 class MultipleObjectUpdate(message.baseMessage):
+    name = "MultipleObjectUpdate"
     id = 2
     freq = 1
     trusted = False
@@ -2292,9 +2396,10 @@ class MultipleObjectUpdate(message.baseMessage):
             ["Data", "Variable1"]
         ]
     }
-registerMessage("MultipleObjectUpdate", MultipleObjectUpdate)
+registerMessage(MultipleObjectUpdate)
 
 class RequestMultipleObjects(message.baseMessage):
+    name = "RequestMultipleObjects"
     id = 3
     freq = 1
     trusted = False
@@ -2313,9 +2418,10 @@ class RequestMultipleObjects(message.baseMessage):
             ["ID", "U32"]
         ]
     }
-registerMessage("RequestMultipleObjects", RequestMultipleObjects)
+registerMessage(RequestMultipleObjects)
 
 class ObjectPosition(message.baseMessage):
+    name = "ObjectPosition"
     id = 4
     freq = 1
     trusted = False
@@ -2334,9 +2440,10 @@ class ObjectPosition(message.baseMessage):
             ["Position", "LLVector3"]
         ]
     }
-registerMessage("ObjectPosition", ObjectPosition)
+registerMessage(ObjectPosition)
 
 class ObjectScale(message.baseMessage):
+    name = "ObjectScale"
     id = 92
     freq = 2
     trusted = False
@@ -2355,9 +2462,10 @@ class ObjectScale(message.baseMessage):
             ["Scale", "LLVector3"]
         ]
     }
-registerMessage("ObjectScale", ObjectScale)
+registerMessage(ObjectScale)
 
 class ObjectRotation(message.baseMessage):
+    name = "ObjectRotation"
     id = 93
     freq = 2
     trusted = False
@@ -2376,9 +2484,10 @@ class ObjectRotation(message.baseMessage):
             ["Rotation", "LLQuaternion"]
         ]
     }
-registerMessage("ObjectRotation", ObjectRotation)
+registerMessage(ObjectRotation)
 
 class ObjectFlagUpdate(message.baseMessage):
+    name = "ObjectFlagUpdate"
     id = 94
     freq = 2
     trusted = False
@@ -2405,9 +2514,10 @@ class ObjectFlagUpdate(message.baseMessage):
             ["GravityMultiplier", "F32"]
         ]
     }
-registerMessage("ObjectFlagUpdate", ObjectFlagUpdate)
+registerMessage(ObjectFlagUpdate)
 
 class ObjectClickAction(message.baseMessage):
+    name = "ObjectClickAction"
     id = 95
     freq = 2
     trusted = False
@@ -2426,9 +2536,10 @@ class ObjectClickAction(message.baseMessage):
             ["ClickAction", "U8"]
         ]
     }
-registerMessage("ObjectClickAction", ObjectClickAction)
+registerMessage(ObjectClickAction)
 
 class ObjectImage(message.baseMessage):
+    name = "ObjectImage"
     id = 96
     freq = 2
     trusted = False
@@ -2448,9 +2559,10 @@ class ObjectImage(message.baseMessage):
             ["TextureEntry", "Variable2"]
         ]
     }
-registerMessage("ObjectImage", ObjectImage)
+registerMessage(ObjectImage)
 
 class ObjectMaterial(message.baseMessage):
+    name = "ObjectMaterial"
     id = 97
     freq = 2
     trusted = False
@@ -2469,9 +2581,10 @@ class ObjectMaterial(message.baseMessage):
             ["Material", "U8"]
         ]
     }
-registerMessage("ObjectMaterial", ObjectMaterial)
+registerMessage(ObjectMaterial)
 
 class ObjectShape(message.baseMessage):
+    name = "ObjectShape"
     id = 98
     freq = 2
     trusted = False
@@ -2507,9 +2620,10 @@ class ObjectShape(message.baseMessage):
             ["ProfileHollow", "U16"]
         ]
     }
-registerMessage("ObjectShape", ObjectShape)
+registerMessage(ObjectShape)
 
 class ObjectExtraParams(message.baseMessage):
+    name = "ObjectExtraParams"
     id = 99
     freq = 2
     trusted = False
@@ -2531,9 +2645,10 @@ class ObjectExtraParams(message.baseMessage):
             ["ParamData", "Variable1"]
         ]
     }
-registerMessage("ObjectExtraParams", ObjectExtraParams)
+registerMessage(ObjectExtraParams)
 
 class ObjectOwner(message.baseMessage):
+    name = "ObjectOwner"
     id = 100
     freq = 2
     trusted = False
@@ -2557,9 +2672,10 @@ class ObjectOwner(message.baseMessage):
             ["ObjectLocalID", "U32"]
         ]
     }
-registerMessage("ObjectOwner", ObjectOwner)
+registerMessage(ObjectOwner)
 
 class ObjectGroup(message.baseMessage):
+    name = "ObjectGroup"
     id = 101
     freq = 2
     trusted = False
@@ -2578,9 +2694,10 @@ class ObjectGroup(message.baseMessage):
             ["ObjectLocalID", "U32"]
         ]
     }
-registerMessage("ObjectGroup", ObjectGroup)
+registerMessage(ObjectGroup)
 
 class ObjectBuy(message.baseMessage):
+    name = "ObjectBuy"
     id = 102
     freq = 2
     trusted = False
@@ -2602,9 +2719,10 @@ class ObjectBuy(message.baseMessage):
             ["SalePrice", "S32"]
         ]
     }
-registerMessage("ObjectBuy", ObjectBuy)
+registerMessage(ObjectBuy)
 
 class BuyObjectInventory(message.baseMessage):
+    name = "BuyObjectInventory"
     id = 103
     freq = 2
     trusted = False
@@ -2624,9 +2742,10 @@ class BuyObjectInventory(message.baseMessage):
             ["FolderID", "LLUUID"]
         ]
     }
-registerMessage("BuyObjectInventory", BuyObjectInventory)
+registerMessage(BuyObjectInventory)
 
 class DerezContainer(message.baseMessage):
+    name = "DerezContainer"
     id = 104
     freq = 2
     trusted = True
@@ -2640,9 +2759,10 @@ class DerezContainer(message.baseMessage):
             ["Delete", "BOOL"]
         ]
     }
-registerMessage("DerezContainer", DerezContainer)
+registerMessage(DerezContainer)
 
 class ObjectPermissions(message.baseMessage):
+    name = "ObjectPermissions"
     id = 105
     freq = 2
     trusted = False
@@ -2667,9 +2787,10 @@ class ObjectPermissions(message.baseMessage):
             ["Mask", "U32"]
         ]
     }
-registerMessage("ObjectPermissions", ObjectPermissions)
+registerMessage(ObjectPermissions)
 
 class ObjectSaleInfo(message.baseMessage):
+    name = "ObjectSaleInfo"
     id = 106
     freq = 2
     trusted = False
@@ -2689,9 +2810,10 @@ class ObjectSaleInfo(message.baseMessage):
             ["SalePrice", "S32"]
         ]
     }
-registerMessage("ObjectSaleInfo", ObjectSaleInfo)
+registerMessage(ObjectSaleInfo)
 
 class ObjectName(message.baseMessage):
+    name = "ObjectName"
     id = 107
     freq = 2
     trusted = False
@@ -2710,9 +2832,10 @@ class ObjectName(message.baseMessage):
             ["Name", "Variable1"]
         ]
     }
-registerMessage("ObjectName", ObjectName)
+registerMessage(ObjectName)
 
 class ObjectDescription(message.baseMessage):
+    name = "ObjectDescription"
     id = 108
     freq = 2
     trusted = False
@@ -2731,9 +2854,10 @@ class ObjectDescription(message.baseMessage):
             ["Description", "Variable1"]
         ]
     }
-registerMessage("ObjectDescription", ObjectDescription)
+registerMessage(ObjectDescription)
 
 class ObjectCategory(message.baseMessage):
+    name = "ObjectCategory"
     id = 109
     freq = 2
     trusted = False
@@ -2752,9 +2876,10 @@ class ObjectCategory(message.baseMessage):
             ["Category", "U32"]
         ]
     }
-registerMessage("ObjectCategory", ObjectCategory)
+registerMessage(ObjectCategory)
 
 class ObjectSelect(message.baseMessage):
+    name = "ObjectSelect"
     id = 110
     freq = 2
     trusted = False
@@ -2772,9 +2897,10 @@ class ObjectSelect(message.baseMessage):
             ["ObjectLocalID", "U32"]
         ]
     }
-registerMessage("ObjectSelect", ObjectSelect)
+registerMessage(ObjectSelect)
 
 class ObjectDeselect(message.baseMessage):
+    name = "ObjectDeselect"
     id = 111
     freq = 2
     trusted = False
@@ -2792,9 +2918,10 @@ class ObjectDeselect(message.baseMessage):
             ["ObjectLocalID", "U32"]
         ]
     }
-registerMessage("ObjectDeselect", ObjectDeselect)
+registerMessage(ObjectDeselect)
 
 class ObjectAttach(message.baseMessage):
+    name = "ObjectAttach"
     id = 112
     freq = 2
     trusted = False
@@ -2814,9 +2941,10 @@ class ObjectAttach(message.baseMessage):
             ["Rotation", "LLQuaternion"]
         ]
     }
-registerMessage("ObjectAttach", ObjectAttach)
+registerMessage(ObjectAttach)
 
 class ObjectDetach(message.baseMessage):
+    name = "ObjectDetach"
     id = 113
     freq = 2
     trusted = False
@@ -2834,9 +2962,10 @@ class ObjectDetach(message.baseMessage):
             ["ObjectLocalID", "U32"]
         ]
     }
-registerMessage("ObjectDetach", ObjectDetach)
+registerMessage(ObjectDetach)
 
 class ObjectDrop(message.baseMessage):
+    name = "ObjectDrop"
     id = 114
     freq = 2
     trusted = False
@@ -2854,9 +2983,10 @@ class ObjectDrop(message.baseMessage):
             ["ObjectLocalID", "U32"]
         ]
     }
-registerMessage("ObjectDrop", ObjectDrop)
+registerMessage(ObjectDrop)
 
 class ObjectLink(message.baseMessage):
+    name = "ObjectLink"
     id = 115
     freq = 2
     trusted = False
@@ -2874,9 +3004,10 @@ class ObjectLink(message.baseMessage):
             ["ObjectLocalID", "U32"]
         ]
     }
-registerMessage("ObjectLink", ObjectLink)
+registerMessage(ObjectLink)
 
 class ObjectDelink(message.baseMessage):
+    name = "ObjectDelink"
     id = 116
     freq = 2
     trusted = False
@@ -2894,9 +3025,10 @@ class ObjectDelink(message.baseMessage):
             ["ObjectLocalID", "U32"]
         ]
     }
-registerMessage("ObjectDelink", ObjectDelink)
+registerMessage(ObjectDelink)
 
 class ObjectGrab(message.baseMessage):
+    name = "ObjectGrab"
     id = 117
     freq = 2
     trusted = False
@@ -2924,9 +3056,10 @@ class ObjectGrab(message.baseMessage):
             ["Binormal", "LLVector3"]
         ]
     }
-registerMessage("ObjectGrab", ObjectGrab)
+registerMessage(ObjectGrab)
 
 class ObjectGrabUpdate(message.baseMessage):
+    name = "ObjectGrabUpdate"
     id = 118
     freq = 2
     trusted = False
@@ -2956,9 +3089,10 @@ class ObjectGrabUpdate(message.baseMessage):
             ["Binormal", "LLVector3"]
         ]
     }
-registerMessage("ObjectGrabUpdate", ObjectGrabUpdate)
+registerMessage(ObjectGrabUpdate)
 
 class ObjectDeGrab(message.baseMessage):
+    name = "ObjectDeGrab"
     id = 119
     freq = 2
     trusted = False
@@ -2985,9 +3119,10 @@ class ObjectDeGrab(message.baseMessage):
             ["Binormal", "LLVector3"]
         ]
     }
-registerMessage("ObjectDeGrab", ObjectDeGrab)
+registerMessage(ObjectDeGrab)
 
 class ObjectSpinStart(message.baseMessage):
+    name = "ObjectSpinStart"
     id = 120
     freq = 2
     trusted = False
@@ -3005,9 +3140,10 @@ class ObjectSpinStart(message.baseMessage):
             ["ObjectID", "LLUUID"]
         ]
     }
-registerMessage("ObjectSpinStart", ObjectSpinStart)
+registerMessage(ObjectSpinStart)
 
 class ObjectSpinUpdate(message.baseMessage):
+    name = "ObjectSpinUpdate"
     id = 121
     freq = 2
     trusted = False
@@ -3026,9 +3162,10 @@ class ObjectSpinUpdate(message.baseMessage):
             ["Rotation", "LLQuaternion"]
         ]
     }
-registerMessage("ObjectSpinUpdate", ObjectSpinUpdate)
+registerMessage(ObjectSpinUpdate)
 
 class ObjectSpinStop(message.baseMessage):
+    name = "ObjectSpinStop"
     id = 122
     freq = 2
     trusted = False
@@ -3046,9 +3183,10 @@ class ObjectSpinStop(message.baseMessage):
             ["ObjectID", "LLUUID"]
         ]
     }
-registerMessage("ObjectSpinStop", ObjectSpinStop)
+registerMessage(ObjectSpinStop)
 
 class ObjectExportSelected(message.baseMessage):
+    name = "ObjectExportSelected"
     id = 123
     freq = 2
     trusted = False
@@ -3067,9 +3205,10 @@ class ObjectExportSelected(message.baseMessage):
             ["ObjectID", "LLUUID"]
         ]
     }
-registerMessage("ObjectExportSelected", ObjectExportSelected)
+registerMessage(ObjectExportSelected)
 
 class ModifyLand(message.baseMessage):
+    name = "ModifyLand"
     id = 124
     freq = 2
     trusted = False
@@ -3102,9 +3241,10 @@ class ModifyLand(message.baseMessage):
             ["BrushSize", "F32"]
         ]
     }
-registerMessage("ModifyLand", ModifyLand)
+registerMessage(ModifyLand)
 
 class VelocityInterpolateOn(message.baseMessage):
+    name = "VelocityInterpolateOn"
     id = 125
     freq = 2
     trusted = False
@@ -3118,9 +3258,10 @@ class VelocityInterpolateOn(message.baseMessage):
             ["SessionID", "LLUUID"]
         ]
     }
-registerMessage("VelocityInterpolateOn", VelocityInterpolateOn)
+registerMessage(VelocityInterpolateOn)
 
 class VelocityInterpolateOff(message.baseMessage):
+    name = "VelocityInterpolateOff"
     id = 126
     freq = 2
     trusted = False
@@ -3134,9 +3275,10 @@ class VelocityInterpolateOff(message.baseMessage):
             ["SessionID", "LLUUID"]
         ]
     }
-registerMessage("VelocityInterpolateOff", VelocityInterpolateOff)
+registerMessage(VelocityInterpolateOff)
 
 class StateSave(message.baseMessage):
+    name = "StateSave"
     id = 127
     freq = 2
     trusted = False
@@ -3154,9 +3296,10 @@ class StateSave(message.baseMessage):
             ["Filename", "Variable1"]
         ]
     }
-registerMessage("StateSave", StateSave)
+registerMessage(StateSave)
 
 class ReportAutosaveCrash(message.baseMessage):
+    name = "ReportAutosaveCrash"
     id = 128
     freq = 2
     trusted = False
@@ -3170,9 +3313,10 @@ class ReportAutosaveCrash(message.baseMessage):
             ["Status", "S32"]
         ]
     }
-registerMessage("ReportAutosaveCrash", ReportAutosaveCrash)
+registerMessage(ReportAutosaveCrash)
 
 class SimWideDeletes(message.baseMessage):
+    name = "SimWideDeletes"
     id = 129
     freq = 2
     trusted = False
@@ -3191,9 +3335,10 @@ class SimWideDeletes(message.baseMessage):
             ["Flags", "U32"]
         ]
     }
-registerMessage("SimWideDeletes", SimWideDeletes)
+registerMessage(SimWideDeletes)
 
 class RequestObjectPropertiesFamily(message.baseMessage):
+    name = "RequestObjectPropertiesFamily"
     id = 5
     freq = 1
     trusted = False
@@ -3212,9 +3357,10 @@ class RequestObjectPropertiesFamily(message.baseMessage):
             ["ObjectID", "LLUUID"]
         ]
     }
-registerMessage("RequestObjectPropertiesFamily", RequestObjectPropertiesFamily)
+registerMessage(RequestObjectPropertiesFamily)
 
 class TrackAgent(message.baseMessage):
+    name = "TrackAgent"
     id = 130
     freq = 2
     trusted = False
@@ -3232,9 +3378,10 @@ class TrackAgent(message.baseMessage):
             ["PreyID", "LLUUID"]
         ]
     }
-registerMessage("TrackAgent", TrackAgent)
+registerMessage(TrackAgent)
 
 class ViewerStats(message.baseMessage):
+    name = "ViewerStats"
     id = 131
     freq = 2
     trusted = False
@@ -3288,9 +3435,10 @@ class ViewerStats(message.baseMessage):
             ["Value", "F64"]
         ]
     }
-registerMessage("ViewerStats", ViewerStats)
+registerMessage(ViewerStats)
 
 class ScriptAnswerYes(message.baseMessage):
+    name = "ScriptAnswerYes"
     id = 132
     freq = 2
     trusted = False
@@ -3310,9 +3458,10 @@ class ScriptAnswerYes(message.baseMessage):
             ["Questions", "S32"]
         ]
     }
-registerMessage("ScriptAnswerYes", ScriptAnswerYes)
+registerMessage(ScriptAnswerYes)
 
 class UserReport(message.baseMessage):
+    name = "UserReport"
     id = 133
     freq = 2
     trusted = False
@@ -3341,9 +3490,10 @@ class UserReport(message.baseMessage):
             ["VersionString", "Variable1"]
         ]
     }
-registerMessage("UserReport", UserReport)
+registerMessage(UserReport)
 
 class AlertMessage(message.baseMessage):
+    name = "AlertMessage"
     id = 134
     freq = 2
     trusted = True
@@ -3361,9 +3511,10 @@ class AlertMessage(message.baseMessage):
             ["ExtraParams", "Variable1"]
         ]
     }
-registerMessage("AlertMessage", AlertMessage)
+registerMessage(AlertMessage)
 
 class AgentAlertMessage(message.baseMessage):
+    name = "AgentAlertMessage"
     id = 135
     freq = 2
     trusted = True
@@ -3381,9 +3532,10 @@ class AgentAlertMessage(message.baseMessage):
             ["Message", "Variable1"]
         ]
     }
-registerMessage("AgentAlertMessage", AgentAlertMessage)
+registerMessage(AgentAlertMessage)
 
 class MeanCollisionAlert(message.baseMessage):
+    name = "MeanCollisionAlert"
     id = 136
     freq = 2
     trusted = True
@@ -3400,9 +3552,10 @@ class MeanCollisionAlert(message.baseMessage):
             ["Type", "U8"]
         ]
     }
-registerMessage("MeanCollisionAlert", MeanCollisionAlert)
+registerMessage(MeanCollisionAlert)
 
 class ViewerFrozenMessage(message.baseMessage):
+    name = "ViewerFrozenMessage"
     id = 137
     freq = 2
     trusted = True
@@ -3415,9 +3568,10 @@ class ViewerFrozenMessage(message.baseMessage):
             ["Data", "BOOL"]
         ]
     }
-registerMessage("ViewerFrozenMessage", ViewerFrozenMessage)
+registerMessage(ViewerFrozenMessage)
 
 class HealthMessage(message.baseMessage):
+    name = "HealthMessage"
     id = 138
     freq = 2
     trusted = True
@@ -3430,9 +3584,10 @@ class HealthMessage(message.baseMessage):
             ["Health", "F32"]
         ]
     }
-registerMessage("HealthMessage", HealthMessage)
+registerMessage(HealthMessage)
 
 class ChatFromSimulator(message.baseMessage):
+    name = "ChatFromSimulator"
     id = 139
     freq = 2
     trusted = True
@@ -3452,9 +3607,10 @@ class ChatFromSimulator(message.baseMessage):
             ["Message", "Variable2"]
         ]
     }
-registerMessage("ChatFromSimulator", ChatFromSimulator)
+registerMessage(ChatFromSimulator)
 
 class SimStats(message.baseMessage):
+    name = "SimStats"
     id = 140
     freq = 2
     trusted = True
@@ -3483,9 +3639,10 @@ class SimStats(message.baseMessage):
             ["RegionFlagsExtended", "U64"]
         ]
     }
-registerMessage("SimStats", SimStats)
+registerMessage(SimStats)
 
 class RequestRegionInfo(message.baseMessage):
+    name = "RequestRegionInfo"
     id = 141
     freq = 2
     trusted = False
@@ -3499,9 +3656,10 @@ class RequestRegionInfo(message.baseMessage):
             ["SessionID", "LLUUID"]
         ]
     }
-registerMessage("RequestRegionInfo", RequestRegionInfo)
+registerMessage(RequestRegionInfo)
 
 class RegionInfo(message.baseMessage):
+    name = "RegionInfo"
     id = 142
     freq = 2
     trusted = False
@@ -3546,9 +3704,10 @@ class RegionInfo(message.baseMessage):
             ["RegionFlagsExtended", "U64"]
         ]
     }
-registerMessage("RegionInfo", RegionInfo)
+registerMessage(RegionInfo)
 
 class GodUpdateRegionInfo(message.baseMessage):
+    name = "GodUpdateRegionInfo"
     id = 143
     freq = 2
     trusted = False
@@ -3577,9 +3736,10 @@ class GodUpdateRegionInfo(message.baseMessage):
             ["RegionFlagsExtended", "U64"]
         ]
     }
-registerMessage("GodUpdateRegionInfo", GodUpdateRegionInfo)
+registerMessage(GodUpdateRegionInfo)
 
 class NearestLandingRegionRequest(message.baseMessage):
+    name = "NearestLandingRegionRequest"
     id = 144
     freq = 2
     trusted = True
@@ -3592,9 +3752,10 @@ class NearestLandingRegionRequest(message.baseMessage):
             ["RegionHandle", "U64"]
         ]
     }
-registerMessage("NearestLandingRegionRequest", NearestLandingRegionRequest)
+registerMessage(NearestLandingRegionRequest)
 
 class NearestLandingRegionReply(message.baseMessage):
+    name = "NearestLandingRegionReply"
     id = 145
     freq = 2
     trusted = True
@@ -3607,9 +3768,10 @@ class NearestLandingRegionReply(message.baseMessage):
             ["RegionHandle", "U64"]
         ]
     }
-registerMessage("NearestLandingRegionReply", NearestLandingRegionReply)
+registerMessage(NearestLandingRegionReply)
 
 class NearestLandingRegionUpdated(message.baseMessage):
+    name = "NearestLandingRegionUpdated"
     id = 146
     freq = 2
     trusted = True
@@ -3622,9 +3784,10 @@ class NearestLandingRegionUpdated(message.baseMessage):
             ["RegionHandle", "U64"]
         ]
     }
-registerMessage("NearestLandingRegionUpdated", NearestLandingRegionUpdated)
+registerMessage(NearestLandingRegionUpdated)
 
 class TeleportLandingStatusChanged(message.baseMessage):
+    name = "TeleportLandingStatusChanged"
     id = 147
     freq = 2
     trusted = True
@@ -3637,9 +3800,10 @@ class TeleportLandingStatusChanged(message.baseMessage):
             ["RegionHandle", "U64"]
         ]
     }
-registerMessage("TeleportLandingStatusChanged", TeleportLandingStatusChanged)
+registerMessage(TeleportLandingStatusChanged)
 
 class RegionHandshake(message.baseMessage):
+    name = "RegionHandshake"
     id = 148
     freq = 2
     trusted = True
@@ -3692,9 +3856,10 @@ class RegionHandshake(message.baseMessage):
             ["RegionProtocols", "U64"]
         ]
     }
-registerMessage("RegionHandshake", RegionHandshake)
+registerMessage(RegionHandshake)
 
 class RegionHandshakeReply(message.baseMessage):
+    name = "RegionHandshakeReply"
     id = 149
     freq = 2
     trusted = False
@@ -3712,9 +3877,10 @@ class RegionHandshakeReply(message.baseMessage):
             ["Flags", "U32"]
         ]
     }
-registerMessage("RegionHandshakeReply", RegionHandshakeReply)
+registerMessage(RegionHandshakeReply)
 
 class CoarseLocationUpdate(message.baseMessage):
+    name = "CoarseLocationUpdate"
     id = 6
     freq = 1
     trusted = True
@@ -3738,9 +3904,10 @@ class CoarseLocationUpdate(message.baseMessage):
             ["AgentID", "LLUUID"]
         ]
     }
-registerMessage("CoarseLocationUpdate", CoarseLocationUpdate)
+registerMessage(CoarseLocationUpdate)
 
 class ImageData(message.baseMessage):
+    name = "ImageData"
     id = 9
     freq = 0
     trusted = True
@@ -3760,9 +3927,10 @@ class ImageData(message.baseMessage):
             ["Data", "Variable2"]
         ]
     }
-registerMessage("ImageData", ImageData)
+registerMessage(ImageData)
 
 class ImagePacket(message.baseMessage):
+    name = "ImagePacket"
     id = 10
     freq = 0
     trusted = True
@@ -3780,9 +3948,10 @@ class ImagePacket(message.baseMessage):
             ["Data", "Variable2"]
         ]
     }
-registerMessage("ImagePacket", ImagePacket)
+registerMessage(ImagePacket)
 
 class LayerData(message.baseMessage):
+    name = "LayerData"
     id = 11
     freq = 0
     trusted = True
@@ -3799,9 +3968,10 @@ class LayerData(message.baseMessage):
             ["Data", "Variable2"]
         ]
     }
-registerMessage("LayerData", LayerData)
+registerMessage(LayerData)
 
 class ObjectUpdate(message.baseMessage):
+    name = "ObjectUpdate"
     id = 12
     freq = 0
     trusted = True
@@ -3864,9 +4034,10 @@ class ObjectUpdate(message.baseMessage):
             ["JointAxisOrAnchor", "LLVector3"]
         ]
     }
-registerMessage("ObjectUpdate", ObjectUpdate)
+registerMessage(ObjectUpdate)
 
 class ObjectUpdateCompressed(message.baseMessage):
+    name = "ObjectUpdateCompressed"
     id = 13
     freq = 0
     trusted = True
@@ -3885,9 +4056,10 @@ class ObjectUpdateCompressed(message.baseMessage):
             ["Data", "Variable2"]
         ]
     }
-registerMessage("ObjectUpdateCompressed", ObjectUpdateCompressed)
+registerMessage(ObjectUpdateCompressed)
 
 class ObjectUpdateCached(message.baseMessage):
+    name = "ObjectUpdateCached"
     id = 14
     freq = 0
     trusted = True
@@ -3907,9 +4079,10 @@ class ObjectUpdateCached(message.baseMessage):
             ["UpdateFlags", "U32"]
         ]
     }
-registerMessage("ObjectUpdateCached", ObjectUpdateCached)
+registerMessage(ObjectUpdateCached)
 
 class ImprovedTerseObjectUpdate(message.baseMessage):
+    name = "ImprovedTerseObjectUpdate"
     id = 15
     freq = 0
     trusted = True
@@ -3928,9 +4101,10 @@ class ImprovedTerseObjectUpdate(message.baseMessage):
             ["TextureEntry", "Variable2"]
         ]
     }
-registerMessage("ImprovedTerseObjectUpdate", ImprovedTerseObjectUpdate)
+registerMessage(ImprovedTerseObjectUpdate)
 
 class KillObject(message.baseMessage):
+    name = "KillObject"
     id = 16
     freq = 0
     trusted = True
@@ -3943,9 +4117,10 @@ class KillObject(message.baseMessage):
             ["ID", "U32"]
         ]
     }
-registerMessage("KillObject", KillObject)
+registerMessage(KillObject)
 
 class CrossedRegion(message.baseMessage):
+    name = "CrossedRegion"
     id = 7
     freq = 1
     trusted = True
@@ -3971,9 +4146,10 @@ class CrossedRegion(message.baseMessage):
             ["LookAt", "LLVector3"]
         ]
     }
-registerMessage("CrossedRegion", CrossedRegion)
+registerMessage(CrossedRegion)
 
 class SimulatorViewerTimeMessage(message.baseMessage):
+    name = "SimulatorViewerTimeMessage"
     id = 150
     freq = 2
     trusted = True
@@ -3991,9 +4167,10 @@ class SimulatorViewerTimeMessage(message.baseMessage):
             ["SunAngVelocity", "LLVector3"]
         ]
     }
-registerMessage("SimulatorViewerTimeMessage", SimulatorViewerTimeMessage)
+registerMessage(SimulatorViewerTimeMessage)
 
 class EnableSimulator(message.baseMessage):
+    name = "EnableSimulator"
     id = 151
     freq = 2
     trusted = True
@@ -4008,9 +4185,10 @@ class EnableSimulator(message.baseMessage):
             ["Port", "IPPORT"]
         ]
     }
-registerMessage("EnableSimulator", EnableSimulator)
+registerMessage(EnableSimulator)
 
 class DisableSimulator(message.baseMessage):
+    name = "DisableSimulator"
     id = 152
     freq = 2
     trusted = True
@@ -4021,9 +4199,10 @@ class DisableSimulator(message.baseMessage):
     structure = {
 
     }
-registerMessage("DisableSimulator", DisableSimulator)
+registerMessage(DisableSimulator)
 
 class ConfirmEnableSimulator(message.baseMessage):
+    name = "ConfirmEnableSimulator"
     id = 8
     freq = 1
     trusted = True
@@ -4037,9 +4216,10 @@ class ConfirmEnableSimulator(message.baseMessage):
             ["SessionID", "LLUUID"]
         ]
     }
-registerMessage("ConfirmEnableSimulator", ConfirmEnableSimulator)
+registerMessage(ConfirmEnableSimulator)
 
 class TransferRequest(message.baseMessage):
+    name = "TransferRequest"
     id = 153
     freq = 2
     trusted = False
@@ -4056,9 +4236,10 @@ class TransferRequest(message.baseMessage):
             ["Params", "Variable2"]
         ]
     }
-registerMessage("TransferRequest", TransferRequest)
+registerMessage(TransferRequest)
 
 class TransferInfo(message.baseMessage):
+    name = "TransferInfo"
     id = 154
     freq = 2
     trusted = False
@@ -4076,9 +4257,10 @@ class TransferInfo(message.baseMessage):
             ["Params", "Variable2"]
         ]
     }
-registerMessage("TransferInfo", TransferInfo)
+registerMessage(TransferInfo)
 
 class TransferPacket(message.baseMessage):
+    name = "TransferPacket"
     id = 17
     freq = 0
     trusted = False
@@ -4095,9 +4277,10 @@ class TransferPacket(message.baseMessage):
             ["Data", "Variable2"]
         ]
     }
-registerMessage("TransferPacket", TransferPacket)
+registerMessage(TransferPacket)
 
 class TransferAbort(message.baseMessage):
+    name = "TransferAbort"
     id = 155
     freq = 2
     trusted = False
@@ -4111,9 +4294,10 @@ class TransferAbort(message.baseMessage):
             ["ChannelType", "S32"]
         ]
     }
-registerMessage("TransferAbort", TransferAbort)
+registerMessage(TransferAbort)
 
 class RequestXfer(message.baseMessage):
+    name = "RequestXfer"
     id = 156
     freq = 2
     trusted = False
@@ -4132,9 +4316,10 @@ class RequestXfer(message.baseMessage):
             ["VFileType", "S16"]
         ]
     }
-registerMessage("RequestXfer", RequestXfer)
+registerMessage(RequestXfer)
 
 class SendXferPacket(message.baseMessage):
+    name = "SendXferPacket"
     id = 18
     freq = 0
     trusted = False
@@ -4152,9 +4337,10 @@ class SendXferPacket(message.baseMessage):
             ["Data", "Variable2"]
         ]
     }
-registerMessage("SendXferPacket", SendXferPacket)
+registerMessage(SendXferPacket)
 
 class ConfirmXferPacket(message.baseMessage):
+    name = "ConfirmXferPacket"
     id = 19
     freq = 0
     trusted = False
@@ -4168,9 +4354,10 @@ class ConfirmXferPacket(message.baseMessage):
             ["Packet", "U32"]
         ]
     }
-registerMessage("ConfirmXferPacket", ConfirmXferPacket)
+registerMessage(ConfirmXferPacket)
 
 class AbortXfer(message.baseMessage):
+    name = "AbortXfer"
     id = 157
     freq = 2
     trusted = False
@@ -4184,9 +4371,10 @@ class AbortXfer(message.baseMessage):
             ["Result", "S32"]
         ]
     }
-registerMessage("AbortXfer", AbortXfer)
+registerMessage(AbortXfer)
 
 class AvatarAnimation(message.baseMessage):
+    name = "AvatarAnimation"
     id = 20
     freq = 0
     trusted = True
@@ -4212,9 +4400,10 @@ class AvatarAnimation(message.baseMessage):
             ["TypeData", "Variable1"]
         ]
     }
-registerMessage("AvatarAnimation", AvatarAnimation)
+registerMessage(AvatarAnimation)
 
 class AvatarAppearance(message.baseMessage):
+    name = "AvatarAppearance"
     id = 158
     freq = 2
     trusted = True
@@ -4246,9 +4435,10 @@ class AvatarAppearance(message.baseMessage):
             ["HoverHeight", "LLVector3"]
         ]
     }
-registerMessage("AvatarAppearance", AvatarAppearance)
+registerMessage(AvatarAppearance)
 
 class AvatarSitResponse(message.baseMessage):
+    name = "AvatarSitResponse"
     id = 21
     freq = 0
     trusted = True
@@ -4270,9 +4460,10 @@ class AvatarSitResponse(message.baseMessage):
             ["ForceMouselook", "BOOL"]
         ]
     }
-registerMessage("AvatarSitResponse", AvatarSitResponse)
+registerMessage(AvatarSitResponse)
 
 class SetFollowCamProperties(message.baseMessage):
+    name = "SetFollowCamProperties"
     id = 159
     freq = 2
     trusted = True
@@ -4290,9 +4481,10 @@ class SetFollowCamProperties(message.baseMessage):
             ["Value", "F32"]
         ]
     }
-registerMessage("SetFollowCamProperties", SetFollowCamProperties)
+registerMessage(SetFollowCamProperties)
 
 class ClearFollowCamProperties(message.baseMessage):
+    name = "ClearFollowCamProperties"
     id = 160
     freq = 2
     trusted = True
@@ -4305,9 +4497,10 @@ class ClearFollowCamProperties(message.baseMessage):
             ["ObjectID", "LLUUID"]
         ]
     }
-registerMessage("ClearFollowCamProperties", ClearFollowCamProperties)
+registerMessage(ClearFollowCamProperties)
 
 class CameraConstraint(message.baseMessage):
+    name = "CameraConstraint"
     id = 22
     freq = 0
     trusted = True
@@ -4320,9 +4513,10 @@ class CameraConstraint(message.baseMessage):
             ["Plane", "LLVector4"]
         ]
     }
-registerMessage("CameraConstraint", CameraConstraint)
+registerMessage(CameraConstraint)
 
 class ObjectProperties(message.baseMessage):
+    name = "ObjectProperties"
     id = 9
     freq = 1
     trusted = True
@@ -4361,9 +4555,10 @@ class ObjectProperties(message.baseMessage):
             ["TextureID", "Variable1"]
         ]
     }
-registerMessage("ObjectProperties", ObjectProperties)
+registerMessage(ObjectProperties)
 
 class ObjectPropertiesFamily(message.baseMessage):
+    name = "ObjectPropertiesFamily"
     id = 10
     freq = 1
     trusted = True
@@ -4391,9 +4586,10 @@ class ObjectPropertiesFamily(message.baseMessage):
             ["Description", "Variable1"]
         ]
     }
-registerMessage("ObjectPropertiesFamily", ObjectPropertiesFamily)
+registerMessage(ObjectPropertiesFamily)
 
 class RequestPayPrice(message.baseMessage):
+    name = "RequestPayPrice"
     id = 161
     freq = 2
     trusted = False
@@ -4406,9 +4602,10 @@ class RequestPayPrice(message.baseMessage):
             ["ObjectID", "LLUUID"]
         ]
     }
-registerMessage("RequestPayPrice", RequestPayPrice)
+registerMessage(RequestPayPrice)
 
 class PayPriceReply(message.baseMessage):
+    name = "PayPriceReply"
     id = 162
     freq = 2
     trusted = True
@@ -4426,9 +4623,10 @@ class PayPriceReply(message.baseMessage):
             ["PayButton", "S32"]
         ]
     }
-registerMessage("PayPriceReply", PayPriceReply)
+registerMessage(PayPriceReply)
 
 class KickUser(message.baseMessage):
+    name = "KickUser"
     id = 163
     freq = 2
     trusted = True
@@ -4448,9 +4646,10 @@ class KickUser(message.baseMessage):
             ["Reason", "Variable2"]
         ]
     }
-registerMessage("KickUser", KickUser)
+registerMessage(KickUser)
 
 class KickUserAck(message.baseMessage):
+    name = "KickUserAck"
     id = 164
     freq = 2
     trusted = True
@@ -4464,9 +4663,10 @@ class KickUserAck(message.baseMessage):
             ["Flags", "U32"]
         ]
     }
-registerMessage("KickUserAck", KickUserAck)
+registerMessage(KickUserAck)
 
 class GodKickUser(message.baseMessage):
+    name = "GodKickUser"
     id = 165
     freq = 2
     trusted = False
@@ -4483,9 +4683,10 @@ class GodKickUser(message.baseMessage):
             ["Reason", "Variable2"]
         ]
     }
-registerMessage("GodKickUser", GodKickUser)
+registerMessage(GodKickUser)
 
 class SystemKickUser(message.baseMessage):
+    name = "SystemKickUser"
     id = 166
     freq = 2
     trusted = True
@@ -4498,9 +4699,10 @@ class SystemKickUser(message.baseMessage):
             ["AgentID", "LLUUID"]
         ]
     }
-registerMessage("SystemKickUser", SystemKickUser)
+registerMessage(SystemKickUser)
 
 class EjectUser(message.baseMessage):
+    name = "EjectUser"
     id = 167
     freq = 2
     trusted = False
@@ -4519,9 +4721,10 @@ class EjectUser(message.baseMessage):
             ["Flags", "U32"]
         ]
     }
-registerMessage("EjectUser", EjectUser)
+registerMessage(EjectUser)
 
 class FreezeUser(message.baseMessage):
+    name = "FreezeUser"
     id = 168
     freq = 2
     trusted = False
@@ -4540,9 +4743,10 @@ class FreezeUser(message.baseMessage):
             ["Flags", "U32"]
         ]
     }
-registerMessage("FreezeUser", FreezeUser)
+registerMessage(FreezeUser)
 
 class AvatarPropertiesRequest(message.baseMessage):
+    name = "AvatarPropertiesRequest"
     id = 169
     freq = 2
     trusted = False
@@ -4557,9 +4761,10 @@ class AvatarPropertiesRequest(message.baseMessage):
             ["AvatarID", "LLUUID"]
         ]
     }
-registerMessage("AvatarPropertiesRequest", AvatarPropertiesRequest)
+registerMessage(AvatarPropertiesRequest)
 
 class AvatarPropertiesRequestBackend(message.baseMessage):
+    name = "AvatarPropertiesRequestBackend"
     id = 170
     freq = 2
     trusted = True
@@ -4575,9 +4780,10 @@ class AvatarPropertiesRequestBackend(message.baseMessage):
             ["WebProfilesDisabled", "BOOL"]
         ]
     }
-registerMessage("AvatarPropertiesRequestBackend", AvatarPropertiesRequestBackend)
+registerMessage(AvatarPropertiesRequestBackend)
 
 class AvatarPropertiesReply(message.baseMessage):
+    name = "AvatarPropertiesReply"
     id = 171
     freq = 2
     trusted = True
@@ -4603,9 +4809,10 @@ class AvatarPropertiesReply(message.baseMessage):
             ["Flags", "U32"]
         ]
     }
-registerMessage("AvatarPropertiesReply", AvatarPropertiesReply)
+registerMessage(AvatarPropertiesReply)
 
 class AvatarInterestsReply(message.baseMessage):
+    name = "AvatarInterestsReply"
     id = 172
     freq = 2
     trusted = True
@@ -4627,9 +4834,10 @@ class AvatarInterestsReply(message.baseMessage):
             ["LanguagesText", "Variable1"]
         ]
     }
-registerMessage("AvatarInterestsReply", AvatarInterestsReply)
+registerMessage(AvatarInterestsReply)
 
 class AvatarGroupsReply(message.baseMessage):
+    name = "AvatarGroupsReply"
     id = 173
     freq = 2
     trusted = True
@@ -4656,9 +4864,10 @@ class AvatarGroupsReply(message.baseMessage):
             ["ListInProfile", "BOOL"]
         ]
     }
-registerMessage("AvatarGroupsReply", AvatarGroupsReply)
+registerMessage(AvatarGroupsReply)
 
 class AvatarPropertiesUpdate(message.baseMessage):
+    name = "AvatarPropertiesUpdate"
     id = 174
     freq = 2
     trusted = False
@@ -4682,9 +4891,10 @@ class AvatarPropertiesUpdate(message.baseMessage):
             ["ProfileURL", "Variable1"]
         ]
     }
-registerMessage("AvatarPropertiesUpdate", AvatarPropertiesUpdate)
+registerMessage(AvatarPropertiesUpdate)
 
 class AvatarInterestsUpdate(message.baseMessage):
+    name = "AvatarInterestsUpdate"
     id = 175
     freq = 2
     trusted = False
@@ -4706,9 +4916,10 @@ class AvatarInterestsUpdate(message.baseMessage):
             ["LanguagesText", "Variable1"]
         ]
     }
-registerMessage("AvatarInterestsUpdate", AvatarInterestsUpdate)
+registerMessage(AvatarInterestsUpdate)
 
 class AvatarNotesReply(message.baseMessage):
+    name = "AvatarNotesReply"
     id = 176
     freq = 2
     trusted = True
@@ -4726,9 +4937,10 @@ class AvatarNotesReply(message.baseMessage):
             ["Notes", "Variable2"]
         ]
     }
-registerMessage("AvatarNotesReply", AvatarNotesReply)
+registerMessage(AvatarNotesReply)
 
 class AvatarNotesUpdate(message.baseMessage):
+    name = "AvatarNotesUpdate"
     id = 177
     freq = 2
     trusted = False
@@ -4747,9 +4959,10 @@ class AvatarNotesUpdate(message.baseMessage):
             ["Notes", "Variable2"]
         ]
     }
-registerMessage("AvatarNotesUpdate", AvatarNotesUpdate)
+registerMessage(AvatarNotesUpdate)
 
 class AvatarPicksReply(message.baseMessage):
+    name = "AvatarPicksReply"
     id = 178
     freq = 2
     trusted = True
@@ -4768,9 +4981,10 @@ class AvatarPicksReply(message.baseMessage):
             ["PickName", "Variable1"]
         ]
     }
-registerMessage("AvatarPicksReply", AvatarPicksReply)
+registerMessage(AvatarPicksReply)
 
 class EventInfoRequest(message.baseMessage):
+    name = "EventInfoRequest"
     id = 179
     freq = 2
     trusted = False
@@ -4788,9 +5002,10 @@ class EventInfoRequest(message.baseMessage):
             ["EventID", "U32"]
         ]
     }
-registerMessage("EventInfoRequest", EventInfoRequest)
+registerMessage(EventInfoRequest)
 
 class EventInfoReply(message.baseMessage):
+    name = "EventInfoReply"
     id = 180
     freq = 2
     trusted = True
@@ -4819,9 +5034,10 @@ class EventInfoReply(message.baseMessage):
             ["EventFlags", "U32"]
         ]
     }
-registerMessage("EventInfoReply", EventInfoReply)
+registerMessage(EventInfoReply)
 
 class EventNotificationAddRequest(message.baseMessage):
+    name = "EventNotificationAddRequest"
     id = 181
     freq = 2
     trusted = False
@@ -4839,9 +5055,10 @@ class EventNotificationAddRequest(message.baseMessage):
             ["EventID", "U32"]
         ]
     }
-registerMessage("EventNotificationAddRequest", EventNotificationAddRequest)
+registerMessage(EventNotificationAddRequest)
 
 class EventNotificationRemoveRequest(message.baseMessage):
+    name = "EventNotificationRemoveRequest"
     id = 182
     freq = 2
     trusted = False
@@ -4859,9 +5076,10 @@ class EventNotificationRemoveRequest(message.baseMessage):
             ["EventID", "U32"]
         ]
     }
-registerMessage("EventNotificationRemoveRequest", EventNotificationRemoveRequest)
+registerMessage(EventNotificationRemoveRequest)
 
 class EventGodDelete(message.baseMessage):
+    name = "EventGodDelete"
     id = 183
     freq = 2
     trusted = False
@@ -4886,9 +5104,10 @@ class EventGodDelete(message.baseMessage):
             ["QueryStart", "S32"]
         ]
     }
-registerMessage("EventGodDelete", EventGodDelete)
+registerMessage(EventGodDelete)
 
 class PickInfoReply(message.baseMessage):
+    name = "PickInfoReply"
     id = 184
     freq = 2
     trusted = True
@@ -4917,9 +5136,10 @@ class PickInfoReply(message.baseMessage):
             ["Enabled", "BOOL"]
         ]
     }
-registerMessage("PickInfoReply", PickInfoReply)
+registerMessage(PickInfoReply)
 
 class PickInfoUpdate(message.baseMessage):
+    name = "PickInfoUpdate"
     id = 185
     freq = 2
     trusted = False
@@ -4946,9 +5166,10 @@ class PickInfoUpdate(message.baseMessage):
             ["Enabled", "BOOL"]
         ]
     }
-registerMessage("PickInfoUpdate", PickInfoUpdate)
+registerMessage(PickInfoUpdate)
 
 class PickDelete(message.baseMessage):
+    name = "PickDelete"
     id = 186
     freq = 2
     trusted = False
@@ -4966,9 +5187,10 @@ class PickDelete(message.baseMessage):
             ["PickID", "LLUUID"]
         ]
     }
-registerMessage("PickDelete", PickDelete)
+registerMessage(PickDelete)
 
 class PickGodDelete(message.baseMessage):
+    name = "PickGodDelete"
     id = 187
     freq = 2
     trusted = False
@@ -4987,9 +5209,10 @@ class PickGodDelete(message.baseMessage):
             ["QueryID", "LLUUID"]
         ]
     }
-registerMessage("PickGodDelete", PickGodDelete)
+registerMessage(PickGodDelete)
 
 class ScriptQuestion(message.baseMessage):
+    name = "ScriptQuestion"
     id = 188
     freq = 2
     trusted = True
@@ -5010,9 +5233,10 @@ class ScriptQuestion(message.baseMessage):
             ["ExperienceID", "LLUUID"]
         ]
     }
-registerMessage("ScriptQuestion", ScriptQuestion)
+registerMessage(ScriptQuestion)
 
 class ScriptControlChange(message.baseMessage):
+    name = "ScriptControlChange"
     id = 189
     freq = 2
     trusted = True
@@ -5027,9 +5251,10 @@ class ScriptControlChange(message.baseMessage):
             ["PassToAgent", "BOOL"]
         ]
     }
-registerMessage("ScriptControlChange", ScriptControlChange)
+registerMessage(ScriptControlChange)
 
 class ScriptDialog(message.baseMessage):
+    name = "ScriptDialog"
     id = 190
     freq = 2
     trusted = True
@@ -5056,9 +5281,10 @@ class ScriptDialog(message.baseMessage):
             ["OwnerID", "LLUUID"]
         ]
     }
-registerMessage("ScriptDialog", ScriptDialog)
+registerMessage(ScriptDialog)
 
 class ScriptDialogReply(message.baseMessage):
+    name = "ScriptDialogReply"
     id = 191
     freq = 2
     trusted = False
@@ -5079,9 +5305,10 @@ class ScriptDialogReply(message.baseMessage):
             ["ButtonLabel", "Variable1"]
         ]
     }
-registerMessage("ScriptDialogReply", ScriptDialogReply)
+registerMessage(ScriptDialogReply)
 
 class ForceScriptControlRelease(message.baseMessage):
+    name = "ForceScriptControlRelease"
     id = 192
     freq = 2
     trusted = False
@@ -5095,9 +5322,10 @@ class ForceScriptControlRelease(message.baseMessage):
             ["SessionID", "LLUUID"]
         ]
     }
-registerMessage("ForceScriptControlRelease", ForceScriptControlRelease)
+registerMessage(ForceScriptControlRelease)
 
 class RevokePermissions(message.baseMessage):
+    name = "RevokePermissions"
     id = 193
     freq = 2
     trusted = False
@@ -5116,9 +5344,10 @@ class RevokePermissions(message.baseMessage):
             ["ObjectPermissions", "U32"]
         ]
     }
-registerMessage("RevokePermissions", RevokePermissions)
+registerMessage(RevokePermissions)
 
 class LoadURL(message.baseMessage):
+    name = "LoadURL"
     id = 194
     freq = 2
     trusted = True
@@ -5136,9 +5365,10 @@ class LoadURL(message.baseMessage):
             ["URL", "Variable1"]
         ]
     }
-registerMessage("LoadURL", LoadURL)
+registerMessage(LoadURL)
 
 class ScriptTeleportRequest(message.baseMessage):
+    name = "ScriptTeleportRequest"
     id = 195
     freq = 2
     trusted = True
@@ -5154,9 +5384,10 @@ class ScriptTeleportRequest(message.baseMessage):
             ["LookAt", "LLVector3"]
         ]
     }
-registerMessage("ScriptTeleportRequest", ScriptTeleportRequest)
+registerMessage(ScriptTeleportRequest)
 
 class ParcelOverlay(message.baseMessage):
+    name = "ParcelOverlay"
     id = 196
     freq = 2
     trusted = True
@@ -5170,9 +5401,10 @@ class ParcelOverlay(message.baseMessage):
             ["Data", "Variable2"]
         ]
     }
-registerMessage("ParcelOverlay", ParcelOverlay)
+registerMessage(ParcelOverlay)
 
 class ParcelPropertiesRequest(message.baseMessage):
+    name = "ParcelPropertiesRequest"
     id = 11
     freq = 1
     trusted = False
@@ -5195,9 +5427,10 @@ class ParcelPropertiesRequest(message.baseMessage):
             ["SnapSelection", "BOOL"]
         ]
     }
-registerMessage("ParcelPropertiesRequest", ParcelPropertiesRequest)
+registerMessage(ParcelPropertiesRequest)
 
 class ParcelPropertiesRequestByID(message.baseMessage):
+    name = "ParcelPropertiesRequestByID"
     id = 197
     freq = 2
     trusted = False
@@ -5216,9 +5449,10 @@ class ParcelPropertiesRequestByID(message.baseMessage):
             ["LocalID", "S32"]
         ]
     }
-registerMessage("ParcelPropertiesRequestByID", ParcelPropertiesRequestByID)
+registerMessage(ParcelPropertiesRequestByID)
 
 class ParcelProperties(message.baseMessage):
+    name = "ParcelProperties"
     id = 23
     freq = 0
     trusted = True
@@ -5283,9 +5517,10 @@ class ParcelProperties(message.baseMessage):
             ["RegionDenyAgeUnverified", "BOOL"]
         ]
     }
-registerMessage("ParcelProperties", ParcelProperties)
+registerMessage(ParcelProperties)
 
 class ParcelPropertiesUpdate(message.baseMessage):
+    name = "ParcelPropertiesUpdate"
     id = 198
     freq = 2
     trusted = False
@@ -5321,9 +5556,10 @@ class ParcelPropertiesUpdate(message.baseMessage):
             ["LandingType", "U8"]
         ]
     }
-registerMessage("ParcelPropertiesUpdate", ParcelPropertiesUpdate)
+registerMessage(ParcelPropertiesUpdate)
 
 class ParcelReturnObjects(message.baseMessage):
+    name = "ParcelReturnObjects"
     id = 199
     freq = 2
     trusted = False
@@ -5350,9 +5586,10 @@ class ParcelReturnObjects(message.baseMessage):
             ["OwnerID", "LLUUID"]
         ]
     }
-registerMessage("ParcelReturnObjects", ParcelReturnObjects)
+registerMessage(ParcelReturnObjects)
 
 class ParcelSetOtherCleanTime(message.baseMessage):
+    name = "ParcelSetOtherCleanTime"
     id = 200
     freq = 2
     trusted = False
@@ -5371,9 +5608,10 @@ class ParcelSetOtherCleanTime(message.baseMessage):
             ["OtherCleanTime", "S32"]
         ]
     }
-registerMessage("ParcelSetOtherCleanTime", ParcelSetOtherCleanTime)
+registerMessage(ParcelSetOtherCleanTime)
 
 class ParcelDisableObjects(message.baseMessage):
+    name = "ParcelDisableObjects"
     id = 201
     freq = 2
     trusted = False
@@ -5400,9 +5638,10 @@ class ParcelDisableObjects(message.baseMessage):
             ["OwnerID", "LLUUID"]
         ]
     }
-registerMessage("ParcelDisableObjects", ParcelDisableObjects)
+registerMessage(ParcelDisableObjects)
 
 class ParcelSelectObjects(message.baseMessage):
+    name = "ParcelSelectObjects"
     id = 202
     freq = 2
     trusted = False
@@ -5425,9 +5664,10 @@ class ParcelSelectObjects(message.baseMessage):
             ["ReturnID", "LLUUID"]
         ]
     }
-registerMessage("ParcelSelectObjects", ParcelSelectObjects)
+registerMessage(ParcelSelectObjects)
 
 class EstateCovenantRequest(message.baseMessage):
+    name = "EstateCovenantRequest"
     id = 203
     freq = 2
     trusted = False
@@ -5441,9 +5681,10 @@ class EstateCovenantRequest(message.baseMessage):
             ["SessionID", "LLUUID"]
         ]
     }
-registerMessage("EstateCovenantRequest", EstateCovenantRequest)
+registerMessage(EstateCovenantRequest)
 
 class EstateCovenantReply(message.baseMessage):
+    name = "EstateCovenantReply"
     id = 204
     freq = 2
     trusted = True
@@ -5459,9 +5700,10 @@ class EstateCovenantReply(message.baseMessage):
             ["EstateOwnerID", "LLUUID"]
         ]
     }
-registerMessage("EstateCovenantReply", EstateCovenantReply)
+registerMessage(EstateCovenantReply)
 
 class ForceObjectSelect(message.baseMessage):
+    name = "ForceObjectSelect"
     id = 205
     freq = 2
     trusted = True
@@ -5478,9 +5720,10 @@ class ForceObjectSelect(message.baseMessage):
             ["LocalID", "U32"]
         ]
     }
-registerMessage("ForceObjectSelect", ForceObjectSelect)
+registerMessage(ForceObjectSelect)
 
 class ParcelBuyPass(message.baseMessage):
+    name = "ParcelBuyPass"
     id = 206
     freq = 2
     trusted = False
@@ -5498,9 +5741,10 @@ class ParcelBuyPass(message.baseMessage):
             ["LocalID", "S32"]
         ]
     }
-registerMessage("ParcelBuyPass", ParcelBuyPass)
+registerMessage(ParcelBuyPass)
 
 class ParcelDeedToGroup(message.baseMessage):
+    name = "ParcelDeedToGroup"
     id = 207
     freq = 2
     trusted = False
@@ -5519,9 +5763,10 @@ class ParcelDeedToGroup(message.baseMessage):
             ["LocalID", "S32"]
         ]
     }
-registerMessage("ParcelDeedToGroup", ParcelDeedToGroup)
+registerMessage(ParcelDeedToGroup)
 
 class ParcelReclaim(message.baseMessage):
+    name = "ParcelReclaim"
     id = 208
     freq = 2
     trusted = False
@@ -5539,9 +5784,10 @@ class ParcelReclaim(message.baseMessage):
             ["LocalID", "S32"]
         ]
     }
-registerMessage("ParcelReclaim", ParcelReclaim)
+registerMessage(ParcelReclaim)
 
 class ParcelClaim(message.baseMessage):
+    name = "ParcelClaim"
     id = 209
     freq = 2
     trusted = False
@@ -5568,9 +5814,10 @@ class ParcelClaim(message.baseMessage):
             ["North", "F32"]
         ]
     }
-registerMessage("ParcelClaim", ParcelClaim)
+registerMessage(ParcelClaim)
 
 class ParcelJoin(message.baseMessage):
+    name = "ParcelJoin"
     id = 210
     freq = 2
     trusted = False
@@ -5591,9 +5838,10 @@ class ParcelJoin(message.baseMessage):
             ["North", "F32"]
         ]
     }
-registerMessage("ParcelJoin", ParcelJoin)
+registerMessage(ParcelJoin)
 
 class ParcelDivide(message.baseMessage):
+    name = "ParcelDivide"
     id = 211
     freq = 2
     trusted = False
@@ -5614,9 +5862,10 @@ class ParcelDivide(message.baseMessage):
             ["North", "F32"]
         ]
     }
-registerMessage("ParcelDivide", ParcelDivide)
+registerMessage(ParcelDivide)
 
 class ParcelRelease(message.baseMessage):
+    name = "ParcelRelease"
     id = 212
     freq = 2
     trusted = False
@@ -5634,9 +5883,10 @@ class ParcelRelease(message.baseMessage):
             ["LocalID", "S32"]
         ]
     }
-registerMessage("ParcelRelease", ParcelRelease)
+registerMessage(ParcelRelease)
 
 class ParcelBuy(message.baseMessage):
+    name = "ParcelBuy"
     id = 213
     freq = 2
     trusted = False
@@ -5663,9 +5913,10 @@ class ParcelBuy(message.baseMessage):
             ["Area", "S32"]
         ]
     }
-registerMessage("ParcelBuy", ParcelBuy)
+registerMessage(ParcelBuy)
 
 class ParcelGodForceOwner(message.baseMessage):
+    name = "ParcelGodForceOwner"
     id = 214
     freq = 2
     trusted = False
@@ -5684,9 +5935,10 @@ class ParcelGodForceOwner(message.baseMessage):
             ["LocalID", "S32"]
         ]
     }
-registerMessage("ParcelGodForceOwner", ParcelGodForceOwner)
+registerMessage(ParcelGodForceOwner)
 
 class ParcelAccessListRequest(message.baseMessage):
+    name = "ParcelAccessListRequest"
     id = 215
     freq = 2
     trusted = False
@@ -5706,9 +5958,10 @@ class ParcelAccessListRequest(message.baseMessage):
             ["LocalID", "S32"]
         ]
     }
-registerMessage("ParcelAccessListRequest", ParcelAccessListRequest)
+registerMessage(ParcelAccessListRequest)
 
 class ParcelAccessListReply(message.baseMessage):
+    name = "ParcelAccessListReply"
     id = 216
     freq = 2
     trusted = True
@@ -5730,9 +5983,10 @@ class ParcelAccessListReply(message.baseMessage):
             ["Flags", "U32"]
         ]
     }
-registerMessage("ParcelAccessListReply", ParcelAccessListReply)
+registerMessage(ParcelAccessListReply)
 
 class ParcelAccessListUpdate(message.baseMessage):
+    name = "ParcelAccessListUpdate"
     id = 217
     freq = 2
     trusted = False
@@ -5760,9 +6014,10 @@ class ParcelAccessListUpdate(message.baseMessage):
             ["Flags", "U32"]
         ]
     }
-registerMessage("ParcelAccessListUpdate", ParcelAccessListUpdate)
+registerMessage(ParcelAccessListUpdate)
 
 class ParcelDwellRequest(message.baseMessage):
+    name = "ParcelDwellRequest"
     id = 218
     freq = 2
     trusted = False
@@ -5781,9 +6036,10 @@ class ParcelDwellRequest(message.baseMessage):
             ["ParcelID", "LLUUID"]
         ]
     }
-registerMessage("ParcelDwellRequest", ParcelDwellRequest)
+registerMessage(ParcelDwellRequest)
 
 class ParcelDwellReply(message.baseMessage):
+    name = "ParcelDwellReply"
     id = 219
     freq = 2
     trusted = True
@@ -5802,9 +6058,10 @@ class ParcelDwellReply(message.baseMessage):
             ["Dwell", "F32"]
         ]
     }
-registerMessage("ParcelDwellReply", ParcelDwellReply)
+registerMessage(ParcelDwellReply)
 
 class RequestParcelTransfer(message.baseMessage):
+    name = "RequestParcelTransfer"
     id = 220
     freq = 2
     trusted = True
@@ -5833,9 +6090,10 @@ class RequestParcelTransfer(message.baseMessage):
             ["GridY", "U32"]
         ]
     }
-registerMessage("RequestParcelTransfer", RequestParcelTransfer)
+registerMessage(RequestParcelTransfer)
 
 class UpdateParcel(message.baseMessage):
+    name = "UpdateParcel"
     id = 221
     freq = 2
     trusted = True
@@ -5868,9 +6126,10 @@ class UpdateParcel(message.baseMessage):
             ["MaturePublish", "BOOL"]
         ]
     }
-registerMessage("UpdateParcel", UpdateParcel)
+registerMessage(UpdateParcel)
 
 class RemoveParcel(message.baseMessage):
+    name = "RemoveParcel"
     id = 222
     freq = 2
     trusted = True
@@ -5883,9 +6142,10 @@ class RemoveParcel(message.baseMessage):
             ["ParcelID", "LLUUID"]
         ]
     }
-registerMessage("RemoveParcel", RemoveParcel)
+registerMessage(RemoveParcel)
 
 class MergeParcel(message.baseMessage):
+    name = "MergeParcel"
     id = 223
     freq = 2
     trusted = True
@@ -5902,9 +6162,10 @@ class MergeParcel(message.baseMessage):
             ["SlaveID", "LLUUID"]
         ]
     }
-registerMessage("MergeParcel", MergeParcel)
+registerMessage(MergeParcel)
 
 class LogParcelChanges(message.baseMessage):
+    name = "LogParcelChanges"
     id = 224
     freq = 2
     trusted = True
@@ -5930,9 +6191,10 @@ class LogParcelChanges(message.baseMessage):
             ["TransactionID", "LLUUID"]
         ]
     }
-registerMessage("LogParcelChanges", LogParcelChanges)
+registerMessage(LogParcelChanges)
 
 class CheckParcelSales(message.baseMessage):
+    name = "CheckParcelSales"
     id = 225
     freq = 2
     trusted = True
@@ -5945,9 +6207,10 @@ class CheckParcelSales(message.baseMessage):
             ["RegionHandle", "U64"]
         ]
     }
-registerMessage("CheckParcelSales", CheckParcelSales)
+registerMessage(CheckParcelSales)
 
 class ParcelSales(message.baseMessage):
+    name = "ParcelSales"
     id = 226
     freq = 2
     trusted = True
@@ -5961,9 +6224,10 @@ class ParcelSales(message.baseMessage):
             ["BuyerID", "LLUUID"]
         ]
     }
-registerMessage("ParcelSales", ParcelSales)
+registerMessage(ParcelSales)
 
 class ParcelGodMarkAsContent(message.baseMessage):
+    name = "ParcelGodMarkAsContent"
     id = 227
     freq = 2
     trusted = False
@@ -5981,9 +6245,10 @@ class ParcelGodMarkAsContent(message.baseMessage):
             ["LocalID", "S32"]
         ]
     }
-registerMessage("ParcelGodMarkAsContent", ParcelGodMarkAsContent)
+registerMessage(ParcelGodMarkAsContent)
 
 class ViewerStartAuction(message.baseMessage):
+    name = "ViewerStartAuction"
     id = 228
     freq = 2
     trusted = False
@@ -6002,9 +6267,10 @@ class ViewerStartAuction(message.baseMessage):
             ["SnapshotID", "LLUUID"]
         ]
     }
-registerMessage("ViewerStartAuction", ViewerStartAuction)
+registerMessage(ViewerStartAuction)
 
 class StartAuction(message.baseMessage):
+    name = "StartAuction"
     id = 229
     freq = 2
     trusted = True
@@ -6023,9 +6289,10 @@ class StartAuction(message.baseMessage):
             ["Name", "Variable1"]
         ]
     }
-registerMessage("StartAuction", StartAuction)
+registerMessage(StartAuction)
 
 class ConfirmAuctionStart(message.baseMessage):
+    name = "ConfirmAuctionStart"
     id = 230
     freq = 2
     trusted = True
@@ -6039,9 +6306,10 @@ class ConfirmAuctionStart(message.baseMessage):
             ["AuctionID", "U32"]
         ]
     }
-registerMessage("ConfirmAuctionStart", ConfirmAuctionStart)
+registerMessage(ConfirmAuctionStart)
 
 class CompleteAuction(message.baseMessage):
+    name = "CompleteAuction"
     id = 231
     freq = 2
     trusted = True
@@ -6054,9 +6322,10 @@ class CompleteAuction(message.baseMessage):
             ["ParcelID", "LLUUID"]
         ]
     }
-registerMessage("CompleteAuction", CompleteAuction)
+registerMessage(CompleteAuction)
 
 class CancelAuction(message.baseMessage):
+    name = "CancelAuction"
     id = 232
     freq = 2
     trusted = True
@@ -6069,9 +6338,10 @@ class CancelAuction(message.baseMessage):
             ["ParcelID", "LLUUID"]
         ]
     }
-registerMessage("CancelAuction", CancelAuction)
+registerMessage(CancelAuction)
 
 class CheckParcelAuctions(message.baseMessage):
+    name = "CheckParcelAuctions"
     id = 233
     freq = 2
     trusted = True
@@ -6084,9 +6354,10 @@ class CheckParcelAuctions(message.baseMessage):
             ["RegionHandle", "U64"]
         ]
     }
-registerMessage("CheckParcelAuctions", CheckParcelAuctions)
+registerMessage(CheckParcelAuctions)
 
 class ParcelAuctions(message.baseMessage):
+    name = "ParcelAuctions"
     id = 234
     freq = 2
     trusted = True
@@ -6100,9 +6371,10 @@ class ParcelAuctions(message.baseMessage):
             ["WinnerID", "LLUUID"]
         ]
     }
-registerMessage("ParcelAuctions", ParcelAuctions)
+registerMessage(ParcelAuctions)
 
 class UUIDNameRequest(message.baseMessage):
+    name = "UUIDNameRequest"
     id = 235
     freq = 2
     trusted = False
@@ -6115,9 +6387,10 @@ class UUIDNameRequest(message.baseMessage):
             ["ID", "LLUUID"]
         ]
     }
-registerMessage("UUIDNameRequest", UUIDNameRequest)
+registerMessage(UUIDNameRequest)
 
 class UUIDNameReply(message.baseMessage):
+    name = "UUIDNameReply"
     id = 236
     freq = 2
     trusted = True
@@ -6132,9 +6405,10 @@ class UUIDNameReply(message.baseMessage):
             ["LastName", "Variable1"]
         ]
     }
-registerMessage("UUIDNameReply", UUIDNameReply)
+registerMessage(UUIDNameReply)
 
 class UUIDGroupNameRequest(message.baseMessage):
+    name = "UUIDGroupNameRequest"
     id = 237
     freq = 2
     trusted = False
@@ -6147,9 +6421,10 @@ class UUIDGroupNameRequest(message.baseMessage):
             ["ID", "LLUUID"]
         ]
     }
-registerMessage("UUIDGroupNameRequest", UUIDGroupNameRequest)
+registerMessage(UUIDGroupNameRequest)
 
 class UUIDGroupNameReply(message.baseMessage):
+    name = "UUIDGroupNameReply"
     id = 238
     freq = 2
     trusted = True
@@ -6163,9 +6438,10 @@ class UUIDGroupNameReply(message.baseMessage):
             ["GroupName", "Variable1"]
         ]
     }
-registerMessage("UUIDGroupNameReply", UUIDGroupNameReply)
+registerMessage(UUIDGroupNameReply)
 
 class ChatPass(message.baseMessage):
+    name = "ChatPass"
     id = 239
     freq = 2
     trusted = True
@@ -6187,9 +6463,10 @@ class ChatPass(message.baseMessage):
             ["Message", "Variable2"]
         ]
     }
-registerMessage("ChatPass", ChatPass)
+registerMessage(ChatPass)
 
 class EdgeDataPacket(message.baseMessage):
+    name = "EdgeDataPacket"
     id = 24
     freq = 0
     trusted = True
@@ -6204,9 +6481,10 @@ class EdgeDataPacket(message.baseMessage):
             ["LayerData", "Variable2"]
         ]
     }
-registerMessage("EdgeDataPacket", EdgeDataPacket)
+registerMessage(EdgeDataPacket)
 
 class SimStatus(message.baseMessage):
+    name = "SimStatus"
     id = 12
     freq = 1
     trusted = True
@@ -6220,9 +6498,10 @@ class SimStatus(message.baseMessage):
             ["CanAcceptTasks", "BOOL"]
         ]
     }
-registerMessage("SimStatus", SimStatus)
+registerMessage(SimStatus)
 
 class ChildAgentUpdate(message.baseMessage):
+    name = "ChildAgentUpdate"
     id = 25
     freq = 0
     trusted = True
@@ -6292,9 +6571,10 @@ class ChildAgentUpdate(message.baseMessage):
             ["Flags", "U32"]
         ]
     }
-registerMessage("ChildAgentUpdate", ChildAgentUpdate)
+registerMessage(ChildAgentUpdate)
 
 class ChildAgentAlive(message.baseMessage):
+    name = "ChildAgentAlive"
     id = 26
     freq = 0
     trusted = True
@@ -6310,9 +6590,10 @@ class ChildAgentAlive(message.baseMessage):
             ["SessionID", "LLUUID"]
         ]
     }
-registerMessage("ChildAgentAlive", ChildAgentAlive)
+registerMessage(ChildAgentAlive)
 
 class ChildAgentPositionUpdate(message.baseMessage):
+    name = "ChildAgentPositionUpdate"
     id = 27
     freq = 0
     trusted = True
@@ -6336,9 +6617,10 @@ class ChildAgentPositionUpdate(message.baseMessage):
             ["ChangedGrid", "BOOL"]
         ]
     }
-registerMessage("ChildAgentPositionUpdate", ChildAgentPositionUpdate)
+registerMessage(ChildAgentPositionUpdate)
 
 class ChildAgentDying(message.baseMessage):
+    name = "ChildAgentDying"
     id = 240
     freq = 2
     trusted = True
@@ -6352,9 +6634,10 @@ class ChildAgentDying(message.baseMessage):
             ["SessionID", "LLUUID"]
         ]
     }
-registerMessage("ChildAgentDying", ChildAgentDying)
+registerMessage(ChildAgentDying)
 
 class ChildAgentUnknown(message.baseMessage):
+    name = "ChildAgentUnknown"
     id = 241
     freq = 2
     trusted = True
@@ -6368,9 +6651,10 @@ class ChildAgentUnknown(message.baseMessage):
             ["SessionID", "LLUUID"]
         ]
     }
-registerMessage("ChildAgentUnknown", ChildAgentUnknown)
+registerMessage(ChildAgentUnknown)
 
 class AtomicPassObject(message.baseMessage):
+    name = "AtomicPassObject"
     id = 28
     freq = 0
     trusted = True
@@ -6384,9 +6668,10 @@ class AtomicPassObject(message.baseMessage):
             ["AttachmentNeedsSave", "BOOL"]
         ]
     }
-registerMessage("AtomicPassObject", AtomicPassObject)
+registerMessage(AtomicPassObject)
 
 class KillChildAgents(message.baseMessage):
+    name = "KillChildAgents"
     id = 242
     freq = 2
     trusted = True
@@ -6399,9 +6684,10 @@ class KillChildAgents(message.baseMessage):
             ["AgentID", "LLUUID"]
         ]
     }
-registerMessage("KillChildAgents", KillChildAgents)
+registerMessage(KillChildAgents)
 
 class GetScriptRunning(message.baseMessage):
+    name = "GetScriptRunning"
     id = 243
     freq = 2
     trusted = False
@@ -6415,9 +6701,10 @@ class GetScriptRunning(message.baseMessage):
             ["ItemID", "LLUUID"]
         ]
     }
-registerMessage("GetScriptRunning", GetScriptRunning)
+registerMessage(GetScriptRunning)
 
 class ScriptRunningReply(message.baseMessage):
+    name = "ScriptRunningReply"
     id = 244
     freq = 2
     trusted = False
@@ -6432,9 +6719,10 @@ class ScriptRunningReply(message.baseMessage):
             ["Running", "BOOL"]
         ]
     }
-registerMessage("ScriptRunningReply", ScriptRunningReply)
+registerMessage(ScriptRunningReply)
 
 class SetScriptRunning(message.baseMessage):
+    name = "SetScriptRunning"
     id = 245
     freq = 2
     trusted = False
@@ -6454,9 +6742,10 @@ class SetScriptRunning(message.baseMessage):
             ["Running", "BOOL"]
         ]
     }
-registerMessage("SetScriptRunning", SetScriptRunning)
+registerMessage(SetScriptRunning)
 
 class ScriptReset(message.baseMessage):
+    name = "ScriptReset"
     id = 246
     freq = 2
     trusted = False
@@ -6475,9 +6764,10 @@ class ScriptReset(message.baseMessage):
             ["ItemID", "LLUUID"]
         ]
     }
-registerMessage("ScriptReset", ScriptReset)
+registerMessage(ScriptReset)
 
 class ScriptSensorRequest(message.baseMessage):
+    name = "ScriptSensorRequest"
     id = 247
     freq = 2
     trusted = True
@@ -6500,9 +6790,10 @@ class ScriptSensorRequest(message.baseMessage):
             ["SearchRegions", "U8"]
         ]
     }
-registerMessage("ScriptSensorRequest", ScriptSensorRequest)
+registerMessage(ScriptSensorRequest)
 
 class ScriptSensorReply(message.baseMessage):
+    name = "ScriptSensorReply"
     id = 248
     freq = 2
     trusted = True
@@ -6527,9 +6818,10 @@ class ScriptSensorReply(message.baseMessage):
             ["Range", "F32"]
         ]
     }
-registerMessage("ScriptSensorReply", ScriptSensorReply)
+registerMessage(ScriptSensorReply)
 
 class CompleteAgentMovement(message.baseMessage):
+    name = "CompleteAgentMovement"
     id = 249
     freq = 2
     trusted = False
@@ -6544,9 +6836,10 @@ class CompleteAgentMovement(message.baseMessage):
             ["CircuitCode", "U32"]
         ]
     }
-registerMessage("CompleteAgentMovement", CompleteAgentMovement)
+registerMessage(CompleteAgentMovement)
 
 class AgentMovementComplete(message.baseMessage):
+    name = "AgentMovementComplete"
     id = 250
     freq = 2
     trusted = False
@@ -6571,9 +6864,10 @@ class AgentMovementComplete(message.baseMessage):
             ["ChannelVersion", "Variable2"]
         ]
     }
-registerMessage("AgentMovementComplete", AgentMovementComplete)
+registerMessage(AgentMovementComplete)
 
 class DataServerLogout(message.baseMessage):
+    name = "DataServerLogout"
     id = 251
     freq = 2
     trusted = True
@@ -6589,9 +6883,10 @@ class DataServerLogout(message.baseMessage):
             ["SessionID", "LLUUID"]
         ]
     }
-registerMessage("DataServerLogout", DataServerLogout)
+registerMessage(DataServerLogout)
 
 class LogoutRequest(message.baseMessage):
+    name = "LogoutRequest"
     id = 252
     freq = 2
     trusted = False
@@ -6605,9 +6900,10 @@ class LogoutRequest(message.baseMessage):
             ["SessionID", "LLUUID"]
         ]
     }
-registerMessage("LogoutRequest", LogoutRequest)
+registerMessage(LogoutRequest)
 
 class LogoutReply(message.baseMessage):
+    name = "LogoutReply"
     id = 253
     freq = 2
     trusted = True
@@ -6625,9 +6921,10 @@ class LogoutReply(message.baseMessage):
             ["ItemID", "LLUUID"]
         ]
     }
-registerMessage("LogoutReply", LogoutReply)
+registerMessage(LogoutReply)
 
 class ImprovedInstantMessage(message.baseMessage):
+    name = "ImprovedInstantMessage"
     id = 254
     freq = 2
     trusted = False
@@ -6656,9 +6953,10 @@ class ImprovedInstantMessage(message.baseMessage):
             ["BinaryBucket", "Variable2"]
         ]
     }
-registerMessage("ImprovedInstantMessage", ImprovedInstantMessage)
+registerMessage(ImprovedInstantMessage)
 
 class RetrieveInstantMessages(message.baseMessage):
+    name = "RetrieveInstantMessages"
     id = 255
     freq = 2
     trusted = False
@@ -6672,9 +6970,10 @@ class RetrieveInstantMessages(message.baseMessage):
             ["SessionID", "LLUUID"]
         ]
     }
-registerMessage("RetrieveInstantMessages", RetrieveInstantMessages)
+registerMessage(RetrieveInstantMessages)
 
 class FindAgent(message.baseMessage):
+    name = "FindAgent"
     id = 256
     freq = 2
     trusted = False
@@ -6694,9 +6993,10 @@ class FindAgent(message.baseMessage):
             ["GlobalY", "F64"]
         ]
     }
-registerMessage("FindAgent", FindAgent)
+registerMessage(FindAgent)
 
 class RequestGodlikePowers(message.baseMessage):
+    name = "RequestGodlikePowers"
     id = 257
     freq = 2
     trusted = False
@@ -6715,9 +7015,10 @@ class RequestGodlikePowers(message.baseMessage):
             ["Token", "LLUUID"]
         ]
     }
-registerMessage("RequestGodlikePowers", RequestGodlikePowers)
+registerMessage(RequestGodlikePowers)
 
 class GrantGodlikePowers(message.baseMessage):
+    name = "GrantGodlikePowers"
     id = 258
     freq = 2
     trusted = True
@@ -6736,9 +7037,10 @@ class GrantGodlikePowers(message.baseMessage):
             ["Token", "LLUUID"]
         ]
     }
-registerMessage("GrantGodlikePowers", GrantGodlikePowers)
+registerMessage(GrantGodlikePowers)
 
 class GodlikeMessage(message.baseMessage):
+    name = "GodlikeMessage"
     id = 259
     freq = 2
     trusted = False
@@ -6762,9 +7064,10 @@ class GodlikeMessage(message.baseMessage):
             ["Parameter", "Variable1"]
         ]
     }
-registerMessage("GodlikeMessage", GodlikeMessage)
+registerMessage(GodlikeMessage)
 
 class EstateOwnerMessage(message.baseMessage):
+    name = "EstateOwnerMessage"
     id = 260
     freq = 2
     trusted = False
@@ -6788,9 +7091,10 @@ class EstateOwnerMessage(message.baseMessage):
             ["Parameter", "Variable1"]
         ]
     }
-registerMessage("EstateOwnerMessage", EstateOwnerMessage)
+registerMessage(EstateOwnerMessage)
 
 class GenericMessage(message.baseMessage):
+    name = "GenericMessage"
     id = 261
     freq = 2
     trusted = False
@@ -6814,9 +7118,10 @@ class GenericMessage(message.baseMessage):
             ["Parameter", "Variable1"]
         ]
     }
-registerMessage("GenericMessage", GenericMessage)
+registerMessage(GenericMessage)
 
 class MuteListRequest(message.baseMessage):
+    name = "MuteListRequest"
     id = 262
     freq = 2
     trusted = False
@@ -6834,9 +7139,10 @@ class MuteListRequest(message.baseMessage):
             ["MuteCRC", "U32"]
         ]
     }
-registerMessage("MuteListRequest", MuteListRequest)
+registerMessage(MuteListRequest)
 
 class UpdateMuteListEntry(message.baseMessage):
+    name = "UpdateMuteListEntry"
     id = 263
     freq = 2
     trusted = False
@@ -6857,9 +7163,10 @@ class UpdateMuteListEntry(message.baseMessage):
             ["MuteFlags", "U32"]
         ]
     }
-registerMessage("UpdateMuteListEntry", UpdateMuteListEntry)
+registerMessage(UpdateMuteListEntry)
 
 class RemoveMuteListEntry(message.baseMessage):
+    name = "RemoveMuteListEntry"
     id = 264
     freq = 2
     trusted = False
@@ -6878,9 +7185,10 @@ class RemoveMuteListEntry(message.baseMessage):
             ["MuteName", "Variable1"]
         ]
     }
-registerMessage("RemoveMuteListEntry", RemoveMuteListEntry)
+registerMessage(RemoveMuteListEntry)
 
 class CopyInventoryFromNotecard(message.baseMessage):
+    name = "CopyInventoryFromNotecard"
     id = 265
     freq = 2
     trusted = False
@@ -6904,9 +7212,10 @@ class CopyInventoryFromNotecard(message.baseMessage):
             ["FolderID", "LLUUID"]
         ]
     }
-registerMessage("CopyInventoryFromNotecard", CopyInventoryFromNotecard)
+registerMessage(CopyInventoryFromNotecard)
 
 class UpdateInventoryItem(message.baseMessage):
+    name = "UpdateInventoryItem"
     id = 266
     freq = 2
     trusted = False
@@ -6946,9 +7255,10 @@ class UpdateInventoryItem(message.baseMessage):
             ["CRC", "U32"]
         ]
     }
-registerMessage("UpdateInventoryItem", UpdateInventoryItem)
+registerMessage(UpdateInventoryItem)
 
 class UpdateCreateInventoryItem(message.baseMessage):
+    name = "UpdateCreateInventoryItem"
     id = 267
     freq = 2
     trusted = True
@@ -6988,9 +7298,10 @@ class UpdateCreateInventoryItem(message.baseMessage):
             ["CRC", "U32"]
         ]
     }
-registerMessage("UpdateCreateInventoryItem", UpdateCreateInventoryItem)
+registerMessage(UpdateCreateInventoryItem)
 
 class MoveInventoryItem(message.baseMessage):
+    name = "MoveInventoryItem"
     id = 268
     freq = 2
     trusted = False
@@ -7011,9 +7322,10 @@ class MoveInventoryItem(message.baseMessage):
             ["NewName", "Variable1"]
         ]
     }
-registerMessage("MoveInventoryItem", MoveInventoryItem)
+registerMessage(MoveInventoryItem)
 
 class CopyInventoryItem(message.baseMessage):
+    name = "CopyInventoryItem"
     id = 269
     freq = 2
     trusted = False
@@ -7035,9 +7347,10 @@ class CopyInventoryItem(message.baseMessage):
             ["NewName", "Variable1"]
         ]
     }
-registerMessage("CopyInventoryItem", CopyInventoryItem)
+registerMessage(CopyInventoryItem)
 
 class RemoveInventoryItem(message.baseMessage):
+    name = "RemoveInventoryItem"
     id = 270
     freq = 2
     trusted = False
@@ -7055,9 +7368,10 @@ class RemoveInventoryItem(message.baseMessage):
             ["ItemID", "LLUUID"]
         ]
     }
-registerMessage("RemoveInventoryItem", RemoveInventoryItem)
+registerMessage(RemoveInventoryItem)
 
 class ChangeInventoryItemFlags(message.baseMessage):
+    name = "ChangeInventoryItemFlags"
     id = 271
     freq = 2
     trusted = False
@@ -7076,9 +7390,10 @@ class ChangeInventoryItemFlags(message.baseMessage):
             ["Flags", "U32"]
         ]
     }
-registerMessage("ChangeInventoryItemFlags", ChangeInventoryItemFlags)
+registerMessage(ChangeInventoryItemFlags)
 
 class SaveAssetIntoInventory(message.baseMessage):
+    name = "SaveAssetIntoInventory"
     id = 272
     freq = 2
     trusted = True
@@ -7096,9 +7411,10 @@ class SaveAssetIntoInventory(message.baseMessage):
             ["NewAssetID", "LLUUID"]
         ]
     }
-registerMessage("SaveAssetIntoInventory", SaveAssetIntoInventory)
+registerMessage(SaveAssetIntoInventory)
 
 class CreateInventoryFolder(message.baseMessage):
+    name = "CreateInventoryFolder"
     id = 273
     freq = 2
     trusted = False
@@ -7119,9 +7435,10 @@ class CreateInventoryFolder(message.baseMessage):
             ["Name", "Variable1"]
         ]
     }
-registerMessage("CreateInventoryFolder", CreateInventoryFolder)
+registerMessage(CreateInventoryFolder)
 
 class UpdateInventoryFolder(message.baseMessage):
+    name = "UpdateInventoryFolder"
     id = 274
     freq = 2
     trusted = False
@@ -7142,9 +7459,10 @@ class UpdateInventoryFolder(message.baseMessage):
             ["Name", "Variable1"]
         ]
     }
-registerMessage("UpdateInventoryFolder", UpdateInventoryFolder)
+registerMessage(UpdateInventoryFolder)
 
 class MoveInventoryFolder(message.baseMessage):
+    name = "MoveInventoryFolder"
     id = 275
     freq = 2
     trusted = False
@@ -7164,9 +7482,10 @@ class MoveInventoryFolder(message.baseMessage):
             ["ParentID", "LLUUID"]
         ]
     }
-registerMessage("MoveInventoryFolder", MoveInventoryFolder)
+registerMessage(MoveInventoryFolder)
 
 class RemoveInventoryFolder(message.baseMessage):
+    name = "RemoveInventoryFolder"
     id = 276
     freq = 2
     trusted = False
@@ -7184,9 +7503,10 @@ class RemoveInventoryFolder(message.baseMessage):
             ["FolderID", "LLUUID"]
         ]
     }
-registerMessage("RemoveInventoryFolder", RemoveInventoryFolder)
+registerMessage(RemoveInventoryFolder)
 
 class FetchInventoryDescendents(message.baseMessage):
+    name = "FetchInventoryDescendents"
     id = 277
     freq = 2
     trusted = False
@@ -7208,9 +7528,10 @@ class FetchInventoryDescendents(message.baseMessage):
             ["FetchItems", "BOOL"]
         ]
     }
-registerMessage("FetchInventoryDescendents", FetchInventoryDescendents)
+registerMessage(FetchInventoryDescendents)
 
 class InventoryDescendents(message.baseMessage):
+    name = "InventoryDescendents"
     id = 278
     freq = 2
     trusted = True
@@ -7258,9 +7579,10 @@ class InventoryDescendents(message.baseMessage):
             ["CRC", "U32"]
         ]
     }
-registerMessage("InventoryDescendents", InventoryDescendents)
+registerMessage(InventoryDescendents)
 
 class FetchInventory(message.baseMessage):
+    name = "FetchInventory"
     id = 279
     freq = 2
     trusted = False
@@ -7279,9 +7601,10 @@ class FetchInventory(message.baseMessage):
             ["ItemID", "LLUUID"]
         ]
     }
-registerMessage("FetchInventory", FetchInventory)
+registerMessage(FetchInventory)
 
 class FetchInventoryReply(message.baseMessage):
+    name = "FetchInventoryReply"
     id = 280
     freq = 2
     trusted = True
@@ -7318,9 +7641,10 @@ class FetchInventoryReply(message.baseMessage):
             ["CRC", "U32"]
         ]
     }
-registerMessage("FetchInventoryReply", FetchInventoryReply)
+registerMessage(FetchInventoryReply)
 
 class BulkUpdateInventory(message.baseMessage):
+    name = "BulkUpdateInventory"
     id = 281
     freq = 2
     trusted = True
@@ -7366,9 +7690,10 @@ class BulkUpdateInventory(message.baseMessage):
             ["CRC", "U32"]
         ]
     }
-registerMessage("BulkUpdateInventory", BulkUpdateInventory)
+registerMessage(BulkUpdateInventory)
 
 class RequestInventoryAsset(message.baseMessage):
+    name = "RequestInventoryAsset"
     id = 282
     freq = 2
     trusted = True
@@ -7384,9 +7709,10 @@ class RequestInventoryAsset(message.baseMessage):
             ["ItemID", "LLUUID"]
         ]
     }
-registerMessage("RequestInventoryAsset", RequestInventoryAsset)
+registerMessage(RequestInventoryAsset)
 
 class InventoryAssetResponse(message.baseMessage):
+    name = "InventoryAssetResponse"
     id = 283
     freq = 2
     trusted = True
@@ -7401,9 +7727,10 @@ class InventoryAssetResponse(message.baseMessage):
             ["IsReadable", "BOOL"]
         ]
     }
-registerMessage("InventoryAssetResponse", InventoryAssetResponse)
+registerMessage(InventoryAssetResponse)
 
 class RemoveInventoryObjects(message.baseMessage):
+    name = "RemoveInventoryObjects"
     id = 284
     freq = 2
     trusted = False
@@ -7425,9 +7752,10 @@ class RemoveInventoryObjects(message.baseMessage):
             ["ItemID", "LLUUID"]
         ]
     }
-registerMessage("RemoveInventoryObjects", RemoveInventoryObjects)
+registerMessage(RemoveInventoryObjects)
 
 class PurgeInventoryDescendents(message.baseMessage):
+    name = "PurgeInventoryDescendents"
     id = 285
     freq = 2
     trusted = False
@@ -7445,9 +7773,10 @@ class PurgeInventoryDescendents(message.baseMessage):
             ["FolderID", "LLUUID"]
         ]
     }
-registerMessage("PurgeInventoryDescendents", PurgeInventoryDescendents)
+registerMessage(PurgeInventoryDescendents)
 
 class UpdateTaskInventory(message.baseMessage):
+    name = "UpdateTaskInventory"
     id = 286
     freq = 2
     trusted = False
@@ -7490,9 +7819,10 @@ class UpdateTaskInventory(message.baseMessage):
             ["CRC", "U32"]
         ]
     }
-registerMessage("UpdateTaskInventory", UpdateTaskInventory)
+registerMessage(UpdateTaskInventory)
 
 class RemoveTaskInventory(message.baseMessage):
+    name = "RemoveTaskInventory"
     id = 287
     freq = 2
     trusted = False
@@ -7511,9 +7841,10 @@ class RemoveTaskInventory(message.baseMessage):
             ["ItemID", "LLUUID"]
         ]
     }
-registerMessage("RemoveTaskInventory", RemoveTaskInventory)
+registerMessage(RemoveTaskInventory)
 
 class MoveTaskInventory(message.baseMessage):
+    name = "MoveTaskInventory"
     id = 288
     freq = 2
     trusted = False
@@ -7533,9 +7864,10 @@ class MoveTaskInventory(message.baseMessage):
             ["ItemID", "LLUUID"]
         ]
     }
-registerMessage("MoveTaskInventory", MoveTaskInventory)
+registerMessage(MoveTaskInventory)
 
 class RequestTaskInventory(message.baseMessage):
+    name = "RequestTaskInventory"
     id = 289
     freq = 2
     trusted = False
@@ -7553,9 +7885,10 @@ class RequestTaskInventory(message.baseMessage):
             ["LocalID", "U32"]
         ]
     }
-registerMessage("RequestTaskInventory", RequestTaskInventory)
+registerMessage(RequestTaskInventory)
 
 class ReplyTaskInventory(message.baseMessage):
+    name = "ReplyTaskInventory"
     id = 290
     freq = 2
     trusted = True
@@ -7570,9 +7903,10 @@ class ReplyTaskInventory(message.baseMessage):
             ["Filename", "Variable1"]
         ]
     }
-registerMessage("ReplyTaskInventory", ReplyTaskInventory)
+registerMessage(ReplyTaskInventory)
 
 class DeRezObject(message.baseMessage):
+    name = "DeRezObject"
     id = 291
     freq = 2
     trusted = False
@@ -7599,9 +7933,10 @@ class DeRezObject(message.baseMessage):
             ["ObjectLocalID", "U32"]
         ]
     }
-registerMessage("DeRezObject", DeRezObject)
+registerMessage(DeRezObject)
 
 class DeRezAck(message.baseMessage):
+    name = "DeRezAck"
     id = 292
     freq = 2
     trusted = True
@@ -7615,9 +7950,10 @@ class DeRezAck(message.baseMessage):
             ["Success", "BOOL"]
         ]
     }
-registerMessage("DeRezAck", DeRezAck)
+registerMessage(DeRezAck)
 
 class RezObject(message.baseMessage):
+    name = "RezObject"
     id = 293
     freq = 2
     trusted = False
@@ -7671,9 +8007,10 @@ class RezObject(message.baseMessage):
             ["CRC", "U32"]
         ]
     }
-registerMessage("RezObject", RezObject)
+registerMessage(RezObject)
 
 class RezObjectFromNotecard(message.baseMessage):
+    name = "RezObjectFromNotecard"
     id = 294
     freq = 2
     trusted = False
@@ -7712,9 +8049,10 @@ class RezObjectFromNotecard(message.baseMessage):
             ["ItemID", "LLUUID"]
         ]
     }
-registerMessage("RezObjectFromNotecard", RezObjectFromNotecard)
+registerMessage(RezObjectFromNotecard)
 
 class TransferInventory(message.baseMessage):
+    name = "TransferInventory"
     id = 295
     freq = 2
     trusted = True
@@ -7734,9 +8072,10 @@ class TransferInventory(message.baseMessage):
             ["Type", "S8"]
         ]
     }
-registerMessage("TransferInventory", TransferInventory)
+registerMessage(TransferInventory)
 
 class TransferInventoryAck(message.baseMessage):
+    name = "TransferInventoryAck"
     id = 296
     freq = 2
     trusted = True
@@ -7750,9 +8089,10 @@ class TransferInventoryAck(message.baseMessage):
             ["InventoryID", "LLUUID"]
         ]
     }
-registerMessage("TransferInventoryAck", TransferInventoryAck)
+registerMessage(TransferInventoryAck)
 
 class AcceptFriendship(message.baseMessage):
+    name = "AcceptFriendship"
     id = 297
     freq = 2
     trusted = False
@@ -7774,9 +8114,10 @@ class AcceptFriendship(message.baseMessage):
             ["FolderID", "LLUUID"]
         ]
     }
-registerMessage("AcceptFriendship", AcceptFriendship)
+registerMessage(AcceptFriendship)
 
 class DeclineFriendship(message.baseMessage):
+    name = "DeclineFriendship"
     id = 298
     freq = 2
     trusted = False
@@ -7794,9 +8135,10 @@ class DeclineFriendship(message.baseMessage):
             ["TransactionID", "LLUUID"]
         ]
     }
-registerMessage("DeclineFriendship", DeclineFriendship)
+registerMessage(DeclineFriendship)
 
 class FormFriendship(message.baseMessage):
+    name = "FormFriendship"
     id = 299
     freq = 2
     trusted = True
@@ -7810,9 +8152,10 @@ class FormFriendship(message.baseMessage):
             ["DestID", "LLUUID"]
         ]
     }
-registerMessage("FormFriendship", FormFriendship)
+registerMessage(FormFriendship)
 
 class TerminateFriendship(message.baseMessage):
+    name = "TerminateFriendship"
     id = 300
     freq = 2
     trusted = False
@@ -7830,9 +8173,10 @@ class TerminateFriendship(message.baseMessage):
             ["OtherID", "LLUUID"]
         ]
     }
-registerMessage("TerminateFriendship", TerminateFriendship)
+registerMessage(TerminateFriendship)
 
 class OfferCallingCard(message.baseMessage):
+    name = "OfferCallingCard"
     id = 301
     freq = 2
     trusted = False
@@ -7851,9 +8195,10 @@ class OfferCallingCard(message.baseMessage):
             ["TransactionID", "LLUUID"]
         ]
     }
-registerMessage("OfferCallingCard", OfferCallingCard)
+registerMessage(OfferCallingCard)
 
 class AcceptCallingCard(message.baseMessage):
+    name = "AcceptCallingCard"
     id = 302
     freq = 2
     trusted = False
@@ -7875,9 +8220,10 @@ class AcceptCallingCard(message.baseMessage):
             ["FolderID", "LLUUID"]
         ]
     }
-registerMessage("AcceptCallingCard", AcceptCallingCard)
+registerMessage(AcceptCallingCard)
 
 class DeclineCallingCard(message.baseMessage):
+    name = "DeclineCallingCard"
     id = 303
     freq = 2
     trusted = False
@@ -7895,9 +8241,10 @@ class DeclineCallingCard(message.baseMessage):
             ["TransactionID", "LLUUID"]
         ]
     }
-registerMessage("DeclineCallingCard", DeclineCallingCard)
+registerMessage(DeclineCallingCard)
 
 class RezScript(message.baseMessage):
+    name = "RezScript"
     id = 304
     freq = 2
     trusted = False
@@ -7941,9 +8288,10 @@ class RezScript(message.baseMessage):
             ["CRC", "U32"]
         ]
     }
-registerMessage("RezScript", RezScript)
+registerMessage(RezScript)
 
 class CreateInventoryItem(message.baseMessage):
+    name = "CreateInventoryItem"
     id = 305
     freq = 2
     trusted = False
@@ -7969,9 +8317,10 @@ class CreateInventoryItem(message.baseMessage):
             ["Description", "Variable1"]
         ]
     }
-registerMessage("CreateInventoryItem", CreateInventoryItem)
+registerMessage(CreateInventoryItem)
 
 class CreateLandmarkForEvent(message.baseMessage):
+    name = "CreateLandmarkForEvent"
     id = 306
     freq = 2
     trusted = False
@@ -7994,9 +8343,10 @@ class CreateLandmarkForEvent(message.baseMessage):
             ["Name", "Variable1"]
         ]
     }
-registerMessage("CreateLandmarkForEvent", CreateLandmarkForEvent)
+registerMessage(CreateLandmarkForEvent)
 
 class EventLocationRequest(message.baseMessage):
+    name = "EventLocationRequest"
     id = 307
     freq = 2
     trusted = True
@@ -8013,9 +8363,10 @@ class EventLocationRequest(message.baseMessage):
             ["EventID", "U32"]
         ]
     }
-registerMessage("EventLocationRequest", EventLocationRequest)
+registerMessage(EventLocationRequest)
 
 class EventLocationReply(message.baseMessage):
+    name = "EventLocationReply"
     id = 308
     freq = 2
     trusted = True
@@ -8034,9 +8385,10 @@ class EventLocationReply(message.baseMessage):
             ["RegionPos", "LLVector3"]
         ]
     }
-registerMessage("EventLocationReply", EventLocationReply)
+registerMessage(EventLocationReply)
 
 class RegionHandleRequest(message.baseMessage):
+    name = "RegionHandleRequest"
     id = 309
     freq = 2
     trusted = False
@@ -8049,9 +8401,10 @@ class RegionHandleRequest(message.baseMessage):
             ["RegionID", "LLUUID"]
         ]
     }
-registerMessage("RegionHandleRequest", RegionHandleRequest)
+registerMessage(RegionHandleRequest)
 
 class RegionIDAndHandleReply(message.baseMessage):
+    name = "RegionIDAndHandleReply"
     id = 310
     freq = 2
     trusted = True
@@ -8065,9 +8418,10 @@ class RegionIDAndHandleReply(message.baseMessage):
             ["RegionHandle", "U64"]
         ]
     }
-registerMessage("RegionIDAndHandleReply", RegionIDAndHandleReply)
+registerMessage(RegionIDAndHandleReply)
 
 class MoneyTransferRequest(message.baseMessage):
+    name = "MoneyTransferRequest"
     id = 311
     freq = 2
     trusted = False
@@ -8092,9 +8446,10 @@ class MoneyTransferRequest(message.baseMessage):
             ["Description", "Variable1"]
         ]
     }
-registerMessage("MoneyTransferRequest", MoneyTransferRequest)
+registerMessage(MoneyTransferRequest)
 
 class MoneyTransferBackend(message.baseMessage):
+    name = "MoneyTransferBackend"
     id = 312
     freq = 2
     trusted = True
@@ -8119,9 +8474,10 @@ class MoneyTransferBackend(message.baseMessage):
             ["Description", "Variable1"]
         ]
     }
-registerMessage("MoneyTransferBackend", MoneyTransferBackend)
+registerMessage(MoneyTransferBackend)
 
 class MoneyBalanceRequest(message.baseMessage):
+    name = "MoneyBalanceRequest"
     id = 313
     freq = 2
     trusted = False
@@ -8139,9 +8495,10 @@ class MoneyBalanceRequest(message.baseMessage):
             ["TransactionID", "LLUUID"]
         ]
     }
-registerMessage("MoneyBalanceRequest", MoneyBalanceRequest)
+registerMessage(MoneyBalanceRequest)
 
 class MoneyBalanceReply(message.baseMessage):
+    name = "MoneyBalanceReply"
     id = 314
     freq = 2
     trusted = True
@@ -8170,9 +8527,10 @@ class MoneyBalanceReply(message.baseMessage):
             ["ItemDescription", "Variable1"]
         ]
     }
-registerMessage("MoneyBalanceReply", MoneyBalanceReply)
+registerMessage(MoneyBalanceReply)
 
 class RoutedMoneyBalanceReply(message.baseMessage):
+    name = "RoutedMoneyBalanceReply"
     id = 315
     freq = 2
     trusted = True
@@ -8206,9 +8564,10 @@ class RoutedMoneyBalanceReply(message.baseMessage):
             ["ItemDescription", "Variable1"]
         ]
     }
-registerMessage("RoutedMoneyBalanceReply", RoutedMoneyBalanceReply)
+registerMessage(RoutedMoneyBalanceReply)
 
 class ActivateGestures(message.baseMessage):
+    name = "ActivateGestures"
     id = 316
     freq = 2
     trusted = False
@@ -8229,9 +8588,10 @@ class ActivateGestures(message.baseMessage):
             ["GestureFlags", "U32"]
         ]
     }
-registerMessage("ActivateGestures", ActivateGestures)
+registerMessage(ActivateGestures)
 
 class DeactivateGestures(message.baseMessage):
+    name = "DeactivateGestures"
     id = 317
     freq = 2
     trusted = False
@@ -8251,9 +8611,10 @@ class DeactivateGestures(message.baseMessage):
             ["GestureFlags", "U32"]
         ]
     }
-registerMessage("DeactivateGestures", DeactivateGestures)
+registerMessage(DeactivateGestures)
 
 class MuteListUpdate(message.baseMessage):
+    name = "MuteListUpdate"
     id = 318
     freq = 2
     trusted = True
@@ -8267,9 +8628,10 @@ class MuteListUpdate(message.baseMessage):
             ["Filename", "Variable1"]
         ]
     }
-registerMessage("MuteListUpdate", MuteListUpdate)
+registerMessage(MuteListUpdate)
 
 class UseCachedMuteList(message.baseMessage):
+    name = "UseCachedMuteList"
     id = 319
     freq = 2
     trusted = False
@@ -8282,9 +8644,10 @@ class UseCachedMuteList(message.baseMessage):
             ["AgentID", "LLUUID"]
         ]
     }
-registerMessage("UseCachedMuteList", UseCachedMuteList)
+registerMessage(UseCachedMuteList)
 
 class GrantUserRights(message.baseMessage):
+    name = "GrantUserRights"
     id = 320
     freq = 2
     trusted = False
@@ -8303,9 +8666,10 @@ class GrantUserRights(message.baseMessage):
             ["RelatedRights", "S32"]
         ]
     }
-registerMessage("GrantUserRights", GrantUserRights)
+registerMessage(GrantUserRights)
 
 class ChangeUserRights(message.baseMessage):
+    name = "ChangeUserRights"
     id = 321
     freq = 2
     trusted = True
@@ -8323,9 +8687,10 @@ class ChangeUserRights(message.baseMessage):
             ["RelatedRights", "S32"]
         ]
     }
-registerMessage("ChangeUserRights", ChangeUserRights)
+registerMessage(ChangeUserRights)
 
 class OnlineNotification(message.baseMessage):
+    name = "OnlineNotification"
     id = 322
     freq = 2
     trusted = True
@@ -8338,9 +8703,10 @@ class OnlineNotification(message.baseMessage):
             ["AgentID", "LLUUID"]
         ]
     }
-registerMessage("OnlineNotification", OnlineNotification)
+registerMessage(OnlineNotification)
 
 class OfflineNotification(message.baseMessage):
+    name = "OfflineNotification"
     id = 323
     freq = 2
     trusted = True
@@ -8353,9 +8719,10 @@ class OfflineNotification(message.baseMessage):
             ["AgentID", "LLUUID"]
         ]
     }
-registerMessage("OfflineNotification", OfflineNotification)
+registerMessage(OfflineNotification)
 
 class SetStartLocationRequest(message.baseMessage):
+    name = "SetStartLocationRequest"
     id = 324
     freq = 2
     trusted = False
@@ -8376,9 +8743,10 @@ class SetStartLocationRequest(message.baseMessage):
             ["LocationLookAt", "LLVector3"]
         ]
     }
-registerMessage("SetStartLocationRequest", SetStartLocationRequest)
+registerMessage(SetStartLocationRequest)
 
 class SetStartLocation(message.baseMessage):
+    name = "SetStartLocation"
     id = 325
     freq = 2
     trusted = True
@@ -8396,9 +8764,10 @@ class SetStartLocation(message.baseMessage):
             ["LocationLookAt", "LLVector3"]
         ]
     }
-registerMessage("SetStartLocation", SetStartLocation)
+registerMessage(SetStartLocation)
 
 class NetTest(message.baseMessage):
+    name = "NetTest"
     id = 326
     freq = 2
     trusted = False
@@ -8411,9 +8780,10 @@ class NetTest(message.baseMessage):
             ["Port", "IPPORT"]
         ]
     }
-registerMessage("NetTest", NetTest)
+registerMessage(NetTest)
 
 class SetCPURatio(message.baseMessage):
+    name = "SetCPURatio"
     id = 327
     freq = 2
     trusted = False
@@ -8426,9 +8796,10 @@ class SetCPURatio(message.baseMessage):
             ["Ratio", "U8"]
         ]
     }
-registerMessage("SetCPURatio", SetCPURatio)
+registerMessage(SetCPURatio)
 
 class SimCrashed(message.baseMessage):
+    name = "SimCrashed"
     id = 328
     freq = 2
     trusted = False
@@ -8446,9 +8817,10 @@ class SimCrashed(message.baseMessage):
             ["AgentID", "LLUUID"]
         ]
     }
-registerMessage("SimCrashed", SimCrashed)
+registerMessage(SimCrashed)
 
 class NameValuePair(message.baseMessage):
+    name = "NameValuePair"
     id = 329
     freq = 2
     trusted = True
@@ -8465,9 +8837,10 @@ class NameValuePair(message.baseMessage):
             ["NVPair", "Variable2"]
         ]
     }
-registerMessage("NameValuePair", NameValuePair)
+registerMessage(NameValuePair)
 
 class RemoveNameValuePair(message.baseMessage):
+    name = "RemoveNameValuePair"
     id = 330
     freq = 2
     trusted = True
@@ -8484,9 +8857,10 @@ class RemoveNameValuePair(message.baseMessage):
             ["NVPair", "Variable2"]
         ]
     }
-registerMessage("RemoveNameValuePair", RemoveNameValuePair)
+registerMessage(RemoveNameValuePair)
 
 class UpdateAttachment(message.baseMessage):
+    name = "UpdateAttachment"
     id = 331
     freq = 2
     trusted = True
@@ -8533,9 +8907,10 @@ class UpdateAttachment(message.baseMessage):
             ["CRC", "U32"]
         ]
     }
-registerMessage("UpdateAttachment", UpdateAttachment)
+registerMessage(UpdateAttachment)
 
 class RemoveAttachment(message.baseMessage):
+    name = "RemoveAttachment"
     id = 332
     freq = 2
     trusted = False
@@ -8554,9 +8929,10 @@ class RemoveAttachment(message.baseMessage):
             ["ItemID", "LLUUID"]
         ]
     }
-registerMessage("RemoveAttachment", RemoveAttachment)
+registerMessage(RemoveAttachment)
 
 class SoundTrigger(message.baseMessage):
+    name = "SoundTrigger"
     id = 29
     freq = 0
     trusted = False
@@ -8575,9 +8951,10 @@ class SoundTrigger(message.baseMessage):
             ["Gain", "F32"]
         ]
     }
-registerMessage("SoundTrigger", SoundTrigger)
+registerMessage(SoundTrigger)
 
 class AttachedSound(message.baseMessage):
+    name = "AttachedSound"
     id = 13
     freq = 1
     trusted = True
@@ -8594,9 +8971,10 @@ class AttachedSound(message.baseMessage):
             ["Flags", "U8"]
         ]
     }
-registerMessage("AttachedSound", AttachedSound)
+registerMessage(AttachedSound)
 
 class AttachedSoundGainChange(message.baseMessage):
+    name = "AttachedSoundGainChange"
     id = 14
     freq = 1
     trusted = True
@@ -8610,9 +8988,10 @@ class AttachedSoundGainChange(message.baseMessage):
             ["Gain", "F32"]
         ]
     }
-registerMessage("AttachedSoundGainChange", AttachedSoundGainChange)
+registerMessage(AttachedSoundGainChange)
 
 class PreloadSound(message.baseMessage):
+    name = "PreloadSound"
     id = 15
     freq = 1
     trusted = True
@@ -8627,9 +9006,10 @@ class PreloadSound(message.baseMessage):
             ["SoundID", "LLUUID"]
         ]
     }
-registerMessage("PreloadSound", PreloadSound)
+registerMessage(PreloadSound)
 
 class AssetUploadRequest(message.baseMessage):
+    name = "AssetUploadRequest"
     id = 333
     freq = 2
     trusted = False
@@ -8646,9 +9026,10 @@ class AssetUploadRequest(message.baseMessage):
             ["AssetData", "Variable2"]
         ]
     }
-registerMessage("AssetUploadRequest", AssetUploadRequest)
+registerMessage(AssetUploadRequest)
 
 class AssetUploadComplete(message.baseMessage):
+    name = "AssetUploadComplete"
     id = 334
     freq = 2
     trusted = False
@@ -8663,9 +9044,10 @@ class AssetUploadComplete(message.baseMessage):
             ["Success", "BOOL"]
         ]
     }
-registerMessage("AssetUploadComplete", AssetUploadComplete)
+registerMessage(AssetUploadComplete)
 
 class EmailMessageRequest(message.baseMessage):
+    name = "EmailMessageRequest"
     id = 335
     freq = 2
     trusted = True
@@ -8680,9 +9062,10 @@ class EmailMessageRequest(message.baseMessage):
             ["Subject", "Variable1"]
         ]
     }
-registerMessage("EmailMessageRequest", EmailMessageRequest)
+registerMessage(EmailMessageRequest)
 
 class EmailMessageReply(message.baseMessage):
+    name = "EmailMessageReply"
     id = 336
     freq = 2
     trusted = True
@@ -8701,9 +9084,10 @@ class EmailMessageReply(message.baseMessage):
             ["MailFilter", "Variable1"]
         ]
     }
-registerMessage("EmailMessageReply", EmailMessageReply)
+registerMessage(EmailMessageReply)
 
 class InternalScriptMail(message.baseMessage):
+    name = "InternalScriptMail"
     id = 16
     freq = 1
     trusted = True
@@ -8719,9 +9103,10 @@ class InternalScriptMail(message.baseMessage):
             ["Body", "Variable2"]
         ]
     }
-registerMessage("InternalScriptMail", InternalScriptMail)
+registerMessage(InternalScriptMail)
 
 class ScriptDataRequest(message.baseMessage):
+    name = "ScriptDataRequest"
     id = 337
     freq = 2
     trusted = True
@@ -8736,9 +9121,10 @@ class ScriptDataRequest(message.baseMessage):
             ["Request", "Variable2"]
         ]
     }
-registerMessage("ScriptDataRequest", ScriptDataRequest)
+registerMessage(ScriptDataRequest)
 
 class ScriptDataReply(message.baseMessage):
+    name = "ScriptDataReply"
     id = 338
     freq = 2
     trusted = True
@@ -8752,9 +9138,10 @@ class ScriptDataReply(message.baseMessage):
             ["Reply", "Variable2"]
         ]
     }
-registerMessage("ScriptDataReply", ScriptDataReply)
+registerMessage(ScriptDataReply)
 
 class CreateGroupRequest(message.baseMessage):
+    name = "CreateGroupRequest"
     id = 339
     freq = 2
     trusted = False
@@ -8779,9 +9166,10 @@ class CreateGroupRequest(message.baseMessage):
             ["MaturePublish", "BOOL"]
         ]
     }
-registerMessage("CreateGroupRequest", CreateGroupRequest)
+registerMessage(CreateGroupRequest)
 
 class CreateGroupReply(message.baseMessage):
+    name = "CreateGroupReply"
     id = 340
     freq = 2
     trusted = True
@@ -8800,9 +9188,10 @@ class CreateGroupReply(message.baseMessage):
             ["Message", "Variable1"]
         ]
     }
-registerMessage("CreateGroupReply", CreateGroupReply)
+registerMessage(CreateGroupReply)
 
 class UpdateGroupInfo(message.baseMessage):
+    name = "UpdateGroupInfo"
     id = 341
     freq = 2
     trusted = False
@@ -8827,9 +9216,10 @@ class UpdateGroupInfo(message.baseMessage):
             ["MaturePublish", "BOOL"]
         ]
     }
-registerMessage("UpdateGroupInfo", UpdateGroupInfo)
+registerMessage(UpdateGroupInfo)
 
 class GroupRoleChanges(message.baseMessage):
+    name = "GroupRoleChanges"
     id = 342
     freq = 2
     trusted = False
@@ -8850,9 +9240,10 @@ class GroupRoleChanges(message.baseMessage):
             ["Change", "U32"]
         ]
     }
-registerMessage("GroupRoleChanges", GroupRoleChanges)
+registerMessage(GroupRoleChanges)
 
 class JoinGroupRequest(message.baseMessage):
+    name = "JoinGroupRequest"
     id = 343
     freq = 2
     trusted = False
@@ -8870,9 +9261,10 @@ class JoinGroupRequest(message.baseMessage):
             ["GroupID", "LLUUID"]
         ]
     }
-registerMessage("JoinGroupRequest", JoinGroupRequest)
+registerMessage(JoinGroupRequest)
 
 class JoinGroupReply(message.baseMessage):
+    name = "JoinGroupReply"
     id = 344
     freq = 2
     trusted = True
@@ -8890,9 +9282,10 @@ class JoinGroupReply(message.baseMessage):
             ["Success", "BOOL"]
         ]
     }
-registerMessage("JoinGroupReply", JoinGroupReply)
+registerMessage(JoinGroupReply)
 
 class EjectGroupMemberRequest(message.baseMessage):
+    name = "EjectGroupMemberRequest"
     id = 345
     freq = 2
     trusted = False
@@ -8914,9 +9307,10 @@ class EjectGroupMemberRequest(message.baseMessage):
             ["EjecteeID", "LLUUID"]
         ]
     }
-registerMessage("EjectGroupMemberRequest", EjectGroupMemberRequest)
+registerMessage(EjectGroupMemberRequest)
 
 class EjectGroupMemberReply(message.baseMessage):
+    name = "EjectGroupMemberReply"
     id = 346
     freq = 2
     trusted = True
@@ -8937,9 +9331,10 @@ class EjectGroupMemberReply(message.baseMessage):
             ["Success", "BOOL"]
         ]
     }
-registerMessage("EjectGroupMemberReply", EjectGroupMemberReply)
+registerMessage(EjectGroupMemberReply)
 
 class LeaveGroupRequest(message.baseMessage):
+    name = "LeaveGroupRequest"
     id = 347
     freq = 2
     trusted = False
@@ -8957,9 +9352,10 @@ class LeaveGroupRequest(message.baseMessage):
             ["GroupID", "LLUUID"]
         ]
     }
-registerMessage("LeaveGroupRequest", LeaveGroupRequest)
+registerMessage(LeaveGroupRequest)
 
 class LeaveGroupReply(message.baseMessage):
+    name = "LeaveGroupReply"
     id = 348
     freq = 2
     trusted = True
@@ -8977,9 +9373,10 @@ class LeaveGroupReply(message.baseMessage):
             ["Success", "BOOL"]
         ]
     }
-registerMessage("LeaveGroupReply", LeaveGroupReply)
+registerMessage(LeaveGroupReply)
 
 class InviteGroupRequest(message.baseMessage):
+    name = "InviteGroupRequest"
     id = 349
     freq = 2
     trusted = False
@@ -9002,9 +9399,10 @@ class InviteGroupRequest(message.baseMessage):
             ["RoleID", "LLUUID"]
         ]
     }
-registerMessage("InviteGroupRequest", InviteGroupRequest)
+registerMessage(InviteGroupRequest)
 
 class InviteGroupResponse(message.baseMessage):
+    name = "InviteGroupResponse"
     id = 350
     freq = 2
     trusted = True
@@ -9021,9 +9419,10 @@ class InviteGroupResponse(message.baseMessage):
             ["MembershipFee", "S32"]
         ]
     }
-registerMessage("InviteGroupResponse", InviteGroupResponse)
+registerMessage(InviteGroupResponse)
 
 class GroupProfileRequest(message.baseMessage):
+    name = "GroupProfileRequest"
     id = 351
     freq = 2
     trusted = False
@@ -9041,9 +9440,10 @@ class GroupProfileRequest(message.baseMessage):
             ["GroupID", "LLUUID"]
         ]
     }
-registerMessage("GroupProfileRequest", GroupProfileRequest)
+registerMessage(GroupProfileRequest)
 
 class GroupProfileReply(message.baseMessage):
+    name = "GroupProfileReply"
     id = 352
     freq = 2
     trusted = True
@@ -9075,9 +9475,10 @@ class GroupProfileReply(message.baseMessage):
             ["OwnerRole", "LLUUID"]
         ]
     }
-registerMessage("GroupProfileReply", GroupProfileReply)
+registerMessage(GroupProfileReply)
 
 class GroupAccountSummaryRequest(message.baseMessage):
+    name = "GroupAccountSummaryRequest"
     id = 353
     freq = 2
     trusted = False
@@ -9098,9 +9499,10 @@ class GroupAccountSummaryRequest(message.baseMessage):
             ["CurrentInterval", "S32"]
         ]
     }
-registerMessage("GroupAccountSummaryRequest", GroupAccountSummaryRequest)
+registerMessage(GroupAccountSummaryRequest)
 
 class GroupAccountSummaryReply(message.baseMessage):
+    name = "GroupAccountSummaryReply"
     id = 354
     freq = 2
     trusted = True
@@ -9137,9 +9539,10 @@ class GroupAccountSummaryReply(message.baseMessage):
             ["TaxDate", "Variable1"]
         ]
     }
-registerMessage("GroupAccountSummaryReply", GroupAccountSummaryReply)
+registerMessage(GroupAccountSummaryReply)
 
 class GroupAccountDetailsRequest(message.baseMessage):
+    name = "GroupAccountDetailsRequest"
     id = 355
     freq = 2
     trusted = False
@@ -9160,9 +9563,10 @@ class GroupAccountDetailsRequest(message.baseMessage):
             ["CurrentInterval", "S32"]
         ]
     }
-registerMessage("GroupAccountDetailsRequest", GroupAccountDetailsRequest)
+registerMessage(GroupAccountDetailsRequest)
 
 class GroupAccountDetailsReply(message.baseMessage):
+    name = "GroupAccountDetailsReply"
     id = 356
     freq = 2
     trusted = True
@@ -9188,9 +9592,10 @@ class GroupAccountDetailsReply(message.baseMessage):
             ["Amount", "S32"]
         ]
     }
-registerMessage("GroupAccountDetailsReply", GroupAccountDetailsReply)
+registerMessage(GroupAccountDetailsReply)
 
 class GroupAccountTransactionsRequest(message.baseMessage):
+    name = "GroupAccountTransactionsRequest"
     id = 357
     freq = 2
     trusted = False
@@ -9211,9 +9616,10 @@ class GroupAccountTransactionsRequest(message.baseMessage):
             ["CurrentInterval", "S32"]
         ]
     }
-registerMessage("GroupAccountTransactionsRequest", GroupAccountTransactionsRequest)
+registerMessage(GroupAccountTransactionsRequest)
 
 class GroupAccountTransactionsReply(message.baseMessage):
+    name = "GroupAccountTransactionsReply"
     id = 358
     freq = 2
     trusted = True
@@ -9242,9 +9648,10 @@ class GroupAccountTransactionsReply(message.baseMessage):
             ["Amount", "S32"]
         ]
     }
-registerMessage("GroupAccountTransactionsReply", GroupAccountTransactionsReply)
+registerMessage(GroupAccountTransactionsReply)
 
 class GroupActiveProposalsRequest(message.baseMessage):
+    name = "GroupActiveProposalsRequest"
     id = 359
     freq = 2
     trusted = False
@@ -9266,9 +9673,10 @@ class GroupActiveProposalsRequest(message.baseMessage):
             ["TransactionID", "LLUUID"]
         ]
     }
-registerMessage("GroupActiveProposalsRequest", GroupActiveProposalsRequest)
+registerMessage(GroupActiveProposalsRequest)
 
 class GroupActiveProposalItemReply(message.baseMessage):
+    name = "GroupActiveProposalItemReply"
     id = 360
     freq = 2
     trusted = True
@@ -9300,9 +9708,10 @@ class GroupActiveProposalItemReply(message.baseMessage):
             ["ProposalText", "Variable1"]
         ]
     }
-registerMessage("GroupActiveProposalItemReply", GroupActiveProposalItemReply)
+registerMessage(GroupActiveProposalItemReply)
 
 class GroupVoteHistoryRequest(message.baseMessage):
+    name = "GroupVoteHistoryRequest"
     id = 361
     freq = 2
     trusted = False
@@ -9324,9 +9733,10 @@ class GroupVoteHistoryRequest(message.baseMessage):
             ["TransactionID", "LLUUID"]
         ]
     }
-registerMessage("GroupVoteHistoryRequest", GroupVoteHistoryRequest)
+registerMessage(GroupVoteHistoryRequest)
 
 class GroupVoteHistoryItemReply(message.baseMessage):
+    name = "GroupVoteHistoryItemReply"
     id = 362
     freq = 2
     trusted = True
@@ -9364,9 +9774,10 @@ class GroupVoteHistoryItemReply(message.baseMessage):
             ["NumVotes", "S32"]
         ]
     }
-registerMessage("GroupVoteHistoryItemReply", GroupVoteHistoryItemReply)
+registerMessage(GroupVoteHistoryItemReply)
 
 class StartGroupProposal(message.baseMessage):
+    name = "StartGroupProposal"
     id = 363
     freq = 2
     trusted = False
@@ -9388,9 +9799,10 @@ class StartGroupProposal(message.baseMessage):
             ["ProposalText", "Variable1"]
         ]
     }
-registerMessage("StartGroupProposal", StartGroupProposal)
+registerMessage(StartGroupProposal)
 
 class GroupProposalBallot(message.baseMessage):
+    name = "GroupProposalBallot"
     id = 364
     freq = 2
     trusted = False
@@ -9410,9 +9822,10 @@ class GroupProposalBallot(message.baseMessage):
             ["VoteCast", "Variable1"]
         ]
     }
-registerMessage("GroupProposalBallot", GroupProposalBallot)
+registerMessage(GroupProposalBallot)
 
 class TallyVotes(message.baseMessage):
+    name = "TallyVotes"
     id = 365
     freq = 2
     trusted = True
@@ -9423,9 +9836,10 @@ class TallyVotes(message.baseMessage):
     structure = {
 
     }
-registerMessage("TallyVotes", TallyVotes)
+registerMessage(TallyVotes)
 
 class GroupMembersRequest(message.baseMessage):
+    name = "GroupMembersRequest"
     id = 366
     freq = 2
     trusted = False
@@ -9444,9 +9858,10 @@ class GroupMembersRequest(message.baseMessage):
             ["RequestID", "LLUUID"]
         ]
     }
-registerMessage("GroupMembersRequest", GroupMembersRequest)
+registerMessage(GroupMembersRequest)
 
 class GroupMembersReply(message.baseMessage):
+    name = "GroupMembersReply"
     id = 367
     freq = 2
     trusted = True
@@ -9474,9 +9889,10 @@ class GroupMembersReply(message.baseMessage):
             ["IsOwner", "BOOL"]
         ]
     }
-registerMessage("GroupMembersReply", GroupMembersReply)
+registerMessage(GroupMembersReply)
 
 class ActivateGroup(message.baseMessage):
+    name = "ActivateGroup"
     id = 368
     freq = 2
     trusted = False
@@ -9491,9 +9907,10 @@ class ActivateGroup(message.baseMessage):
             ["GroupID", "LLUUID"]
         ]
     }
-registerMessage("ActivateGroup", ActivateGroup)
+registerMessage(ActivateGroup)
 
 class SetGroupContribution(message.baseMessage):
+    name = "SetGroupContribution"
     id = 369
     freq = 2
     trusted = False
@@ -9512,9 +9929,10 @@ class SetGroupContribution(message.baseMessage):
             ["Contribution", "S32"]
         ]
     }
-registerMessage("SetGroupContribution", SetGroupContribution)
+registerMessage(SetGroupContribution)
 
 class SetGroupAcceptNotices(message.baseMessage):
+    name = "SetGroupAcceptNotices"
     id = 370
     freq = 2
     trusted = False
@@ -9537,9 +9955,10 @@ class SetGroupAcceptNotices(message.baseMessage):
             ["ListInProfile", "BOOL"]
         ]
     }
-registerMessage("SetGroupAcceptNotices", SetGroupAcceptNotices)
+registerMessage(SetGroupAcceptNotices)
 
 class GroupRoleDataRequest(message.baseMessage):
+    name = "GroupRoleDataRequest"
     id = 371
     freq = 2
     trusted = False
@@ -9558,9 +9977,10 @@ class GroupRoleDataRequest(message.baseMessage):
             ["RequestID", "LLUUID"]
         ]
     }
-registerMessage("GroupRoleDataRequest", GroupRoleDataRequest)
+registerMessage(GroupRoleDataRequest)
 
 class GroupRoleDataReply(message.baseMessage):
+    name = "GroupRoleDataReply"
     id = 372
     freq = 2
     trusted = True
@@ -9588,9 +10008,10 @@ class GroupRoleDataReply(message.baseMessage):
             ["Members", "U32"]
         ]
     }
-registerMessage("GroupRoleDataReply", GroupRoleDataReply)
+registerMessage(GroupRoleDataReply)
 
 class GroupRoleMembersRequest(message.baseMessage):
+    name = "GroupRoleMembersRequest"
     id = 373
     freq = 2
     trusted = False
@@ -9609,9 +10030,10 @@ class GroupRoleMembersRequest(message.baseMessage):
             ["RequestID", "LLUUID"]
         ]
     }
-registerMessage("GroupRoleMembersRequest", GroupRoleMembersRequest)
+registerMessage(GroupRoleMembersRequest)
 
 class GroupRoleMembersReply(message.baseMessage):
+    name = "GroupRoleMembersReply"
     id = 374
     freq = 2
     trusted = True
@@ -9632,9 +10054,10 @@ class GroupRoleMembersReply(message.baseMessage):
             ["MemberID", "LLUUID"]
         ]
     }
-registerMessage("GroupRoleMembersReply", GroupRoleMembersReply)
+registerMessage(GroupRoleMembersReply)
 
 class GroupTitlesRequest(message.baseMessage):
+    name = "GroupTitlesRequest"
     id = 375
     freq = 2
     trusted = False
@@ -9650,9 +10073,10 @@ class GroupTitlesRequest(message.baseMessage):
             ["RequestID", "LLUUID"]
         ]
     }
-registerMessage("GroupTitlesRequest", GroupTitlesRequest)
+registerMessage(GroupTitlesRequest)
 
 class GroupTitlesReply(message.baseMessage):
+    name = "GroupTitlesReply"
     id = 376
     freq = 2
     trusted = True
@@ -9673,9 +10097,10 @@ class GroupTitlesReply(message.baseMessage):
             ["Selected", "BOOL"]
         ]
     }
-registerMessage("GroupTitlesReply", GroupTitlesReply)
+registerMessage(GroupTitlesReply)
 
 class GroupTitleUpdate(message.baseMessage):
+    name = "GroupTitleUpdate"
     id = 377
     freq = 2
     trusted = False
@@ -9691,9 +10116,10 @@ class GroupTitleUpdate(message.baseMessage):
             ["TitleRoleID", "LLUUID"]
         ]
     }
-registerMessage("GroupTitleUpdate", GroupTitleUpdate)
+registerMessage(GroupTitleUpdate)
 
 class GroupRoleUpdate(message.baseMessage):
+    name = "GroupRoleUpdate"
     id = 378
     freq = 2
     trusted = False
@@ -9717,9 +10143,10 @@ class GroupRoleUpdate(message.baseMessage):
             ["UpdateType", "U8"]
         ]
     }
-registerMessage("GroupRoleUpdate", GroupRoleUpdate)
+registerMessage(GroupRoleUpdate)
 
 class LiveHelpGroupRequest(message.baseMessage):
+    name = "LiveHelpGroupRequest"
     id = 379
     freq = 2
     trusted = True
@@ -9733,9 +10160,10 @@ class LiveHelpGroupRequest(message.baseMessage):
             ["AgentID", "LLUUID"]
         ]
     }
-registerMessage("LiveHelpGroupRequest", LiveHelpGroupRequest)
+registerMessage(LiveHelpGroupRequest)
 
 class LiveHelpGroupReply(message.baseMessage):
+    name = "LiveHelpGroupReply"
     id = 380
     freq = 2
     trusted = True
@@ -9750,9 +10178,10 @@ class LiveHelpGroupReply(message.baseMessage):
             ["Selection", "Variable1"]
         ]
     }
-registerMessage("LiveHelpGroupReply", LiveHelpGroupReply)
+registerMessage(LiveHelpGroupReply)
 
 class AgentWearablesRequest(message.baseMessage):
+    name = "AgentWearablesRequest"
     id = 381
     freq = 2
     trusted = False
@@ -9766,9 +10195,10 @@ class AgentWearablesRequest(message.baseMessage):
             ["SessionID", "LLUUID"]
         ]
     }
-registerMessage("AgentWearablesRequest", AgentWearablesRequest)
+registerMessage(AgentWearablesRequest)
 
 class AgentWearablesUpdate(message.baseMessage):
+    name = "AgentWearablesUpdate"
     id = 382
     freq = 2
     trusted = True
@@ -9789,9 +10219,10 @@ class AgentWearablesUpdate(message.baseMessage):
             ["WearableType", "U8"]
         ]
     }
-registerMessage("AgentWearablesUpdate", AgentWearablesUpdate)
+registerMessage(AgentWearablesUpdate)
 
 class AgentIsNowWearing(message.baseMessage):
+    name = "AgentIsNowWearing"
     id = 383
     freq = 2
     trusted = False
@@ -9810,9 +10241,10 @@ class AgentIsNowWearing(message.baseMessage):
             ["WearableType", "U8"]
         ]
     }
-registerMessage("AgentIsNowWearing", AgentIsNowWearing)
+registerMessage(AgentIsNowWearing)
 
 class AgentCachedTexture(message.baseMessage):
+    name = "AgentCachedTexture"
     id = 384
     freq = 2
     trusted = False
@@ -9832,9 +10264,10 @@ class AgentCachedTexture(message.baseMessage):
             ["TextureIndex", "U8"]
         ]
     }
-registerMessage("AgentCachedTexture", AgentCachedTexture)
+registerMessage(AgentCachedTexture)
 
 class AgentCachedTextureResponse(message.baseMessage):
+    name = "AgentCachedTextureResponse"
     id = 385
     freq = 2
     trusted = True
@@ -9855,9 +10288,10 @@ class AgentCachedTextureResponse(message.baseMessage):
             ["HostName", "Variable1"]
         ]
     }
-registerMessage("AgentCachedTextureResponse", AgentCachedTextureResponse)
+registerMessage(AgentCachedTextureResponse)
 
 class AgentDataUpdateRequest(message.baseMessage):
+    name = "AgentDataUpdateRequest"
     id = 386
     freq = 2
     trusted = False
@@ -9871,9 +10305,10 @@ class AgentDataUpdateRequest(message.baseMessage):
             ["SessionID", "LLUUID"]
         ]
     }
-registerMessage("AgentDataUpdateRequest", AgentDataUpdateRequest)
+registerMessage(AgentDataUpdateRequest)
 
 class AgentDataUpdate(message.baseMessage):
+    name = "AgentDataUpdate"
     id = 387
     freq = 2
     trusted = True
@@ -9892,9 +10327,10 @@ class AgentDataUpdate(message.baseMessage):
             ["GroupName", "Variable1"]
         ]
     }
-registerMessage("AgentDataUpdate", AgentDataUpdate)
+registerMessage(AgentDataUpdate)
 
 class GroupDataUpdate(message.baseMessage):
+    name = "GroupDataUpdate"
     id = 388
     freq = 2
     trusted = True
@@ -9910,9 +10346,10 @@ class GroupDataUpdate(message.baseMessage):
             ["GroupTitle", "Variable1"]
         ]
     }
-registerMessage("GroupDataUpdate", GroupDataUpdate)
+registerMessage(GroupDataUpdate)
 
 class AgentGroupDataUpdate(message.baseMessage):
+    name = "AgentGroupDataUpdate"
     id = 389
     freq = 2
     trusted = True
@@ -9934,9 +10371,10 @@ class AgentGroupDataUpdate(message.baseMessage):
             ["GroupName", "Variable1"]
         ]
     }
-registerMessage("AgentGroupDataUpdate", AgentGroupDataUpdate)
+registerMessage(AgentGroupDataUpdate)
 
 class AgentDropGroup(message.baseMessage):
+    name = "AgentDropGroup"
     id = 390
     freq = 2
     trusted = True
@@ -9950,9 +10388,10 @@ class AgentDropGroup(message.baseMessage):
             ["GroupID", "LLUUID"]
         ]
     }
-registerMessage("AgentDropGroup", AgentDropGroup)
+registerMessage(AgentDropGroup)
 
 class LogTextMessage(message.baseMessage):
+    name = "LogTextMessage"
     id = 391
     freq = 2
     trusted = True
@@ -9970,9 +10409,10 @@ class LogTextMessage(message.baseMessage):
             ["Message", "Variable2"]
         ]
     }
-registerMessage("LogTextMessage", LogTextMessage)
+registerMessage(LogTextMessage)
 
 class ViewerEffect(message.baseMessage):
+    name = "ViewerEffect"
     id = 17
     freq = 1
     trusted = False
@@ -9995,9 +10435,10 @@ class ViewerEffect(message.baseMessage):
             ["TypeData", "Variable1"]
         ]
     }
-registerMessage("ViewerEffect", ViewerEffect)
+registerMessage(ViewerEffect)
 
 class CreateTrustedCircuit(message.baseMessage):
+    name = "CreateTrustedCircuit"
     id = 392
     freq = 2
     trusted = False
@@ -10011,9 +10452,10 @@ class CreateTrustedCircuit(message.baseMessage):
             ["Digest", "Fixed"]
         ]
     }
-registerMessage("CreateTrustedCircuit", CreateTrustedCircuit)
+registerMessage(CreateTrustedCircuit)
 
 class DenyTrustedCircuit(message.baseMessage):
+    name = "DenyTrustedCircuit"
     id = 393
     freq = 2
     trusted = False
@@ -10026,9 +10468,10 @@ class DenyTrustedCircuit(message.baseMessage):
             ["EndPointID", "LLUUID"]
         ]
     }
-registerMessage("DenyTrustedCircuit", DenyTrustedCircuit)
+registerMessage(DenyTrustedCircuit)
 
 class RequestTrustedCircuit(message.baseMessage):
+    name = "RequestTrustedCircuit"
     id = 394
     freq = 2
     trusted = True
@@ -10039,9 +10482,10 @@ class RequestTrustedCircuit(message.baseMessage):
     structure = {
 
     }
-registerMessage("RequestTrustedCircuit", RequestTrustedCircuit)
+registerMessage(RequestTrustedCircuit)
 
 class RezSingleAttachmentFromInv(message.baseMessage):
+    name = "RezSingleAttachmentFromInv"
     id = 395
     freq = 2
     trusted = False
@@ -10067,9 +10511,10 @@ class RezSingleAttachmentFromInv(message.baseMessage):
             ["Description", "Variable1"]
         ]
     }
-registerMessage("RezSingleAttachmentFromInv", RezSingleAttachmentFromInv)
+registerMessage(RezSingleAttachmentFromInv)
 
 class RezMultipleAttachmentsFromInv(message.baseMessage):
+    name = "RezMultipleAttachmentsFromInv"
     id = 396
     freq = 2
     trusted = False
@@ -10101,9 +10546,10 @@ class RezMultipleAttachmentsFromInv(message.baseMessage):
             ["Description", "Variable1"]
         ]
     }
-registerMessage("RezMultipleAttachmentsFromInv", RezMultipleAttachmentsFromInv)
+registerMessage(RezMultipleAttachmentsFromInv)
 
 class DetachAttachmentIntoInv(message.baseMessage):
+    name = "DetachAttachmentIntoInv"
     id = 397
     freq = 2
     trusted = False
@@ -10117,9 +10563,10 @@ class DetachAttachmentIntoInv(message.baseMessage):
             ["ItemID", "LLUUID"]
         ]
     }
-registerMessage("DetachAttachmentIntoInv", DetachAttachmentIntoInv)
+registerMessage(DetachAttachmentIntoInv)
 
 class CreateNewOutfitAttachments(message.baseMessage):
+    name = "CreateNewOutfitAttachments"
     id = 398
     freq = 2
     trusted = False
@@ -10142,9 +10589,10 @@ class CreateNewOutfitAttachments(message.baseMessage):
             ["OldFolderID", "LLUUID"]
         ]
     }
-registerMessage("CreateNewOutfitAttachments", CreateNewOutfitAttachments)
+registerMessage(CreateNewOutfitAttachments)
 
 class UserInfoRequest(message.baseMessage):
+    name = "UserInfoRequest"
     id = 399
     freq = 2
     trusted = False
@@ -10158,9 +10606,10 @@ class UserInfoRequest(message.baseMessage):
             ["SessionID", "LLUUID"]
         ]
     }
-registerMessage("UserInfoRequest", UserInfoRequest)
+registerMessage(UserInfoRequest)
 
 class UserInfoReply(message.baseMessage):
+    name = "UserInfoReply"
     id = 400
     freq = 2
     trusted = False
@@ -10179,9 +10628,10 @@ class UserInfoReply(message.baseMessage):
             ["EMail", "Variable2"]
         ]
     }
-registerMessage("UserInfoReply", UserInfoReply)
+registerMessage(UserInfoReply)
 
 class UpdateUserInfo(message.baseMessage):
+    name = "UpdateUserInfo"
     id = 401
     freq = 2
     trusted = False
@@ -10200,9 +10650,10 @@ class UpdateUserInfo(message.baseMessage):
             ["DirectoryVisibility", "Variable1"]
         ]
     }
-registerMessage("UpdateUserInfo", UpdateUserInfo)
+registerMessage(UpdateUserInfo)
 
 class ParcelRename(message.baseMessage):
+    name = "ParcelRename"
     id = 402
     freq = 2
     trusted = True
@@ -10216,9 +10667,10 @@ class ParcelRename(message.baseMessage):
             ["NewName", "Variable1"]
         ]
     }
-registerMessage("ParcelRename", ParcelRename)
+registerMessage(ParcelRename)
 
 class InitiateDownload(message.baseMessage):
+    name = "InitiateDownload"
     id = 403
     freq = 2
     trusted = False
@@ -10236,9 +10688,10 @@ class InitiateDownload(message.baseMessage):
             ["ViewerFilename", "Variable1"]
         ]
     }
-registerMessage("InitiateDownload", InitiateDownload)
+registerMessage(InitiateDownload)
 
 class SystemMessage(message.baseMessage):
+    name = "SystemMessage"
     id = 404
     freq = 2
     trusted = True
@@ -10257,9 +10710,10 @@ class SystemMessage(message.baseMessage):
             ["Parameter", "Variable1"]
         ]
     }
-registerMessage("SystemMessage", SystemMessage)
+registerMessage(SystemMessage)
 
 class MapLayerRequest(message.baseMessage):
+    name = "MapLayerRequest"
     id = 405
     freq = 2
     trusted = False
@@ -10276,9 +10730,10 @@ class MapLayerRequest(message.baseMessage):
             ["Godlike", "BOOL"]
         ]
     }
-registerMessage("MapLayerRequest", MapLayerRequest)
+registerMessage(MapLayerRequest)
 
 class MapLayerReply(message.baseMessage):
+    name = "MapLayerReply"
     id = 406
     freq = 2
     trusted = True
@@ -10300,9 +10755,10 @@ class MapLayerReply(message.baseMessage):
             ["ImageID", "LLUUID"]
         ]
     }
-registerMessage("MapLayerReply", MapLayerReply)
+registerMessage(MapLayerReply)
 
 class MapBlockRequest(message.baseMessage):
+    name = "MapBlockRequest"
     id = 407
     freq = 2
     trusted = False
@@ -10326,9 +10782,10 @@ class MapBlockRequest(message.baseMessage):
             ["MaxY", "U16"]
         ]
     }
-registerMessage("MapBlockRequest", MapBlockRequest)
+registerMessage(MapBlockRequest)
 
 class MapNameRequest(message.baseMessage):
+    name = "MapNameRequest"
     id = 408
     freq = 2
     trusted = False
@@ -10349,9 +10806,10 @@ class MapNameRequest(message.baseMessage):
             ["Name", "Variable1"]
         ]
     }
-registerMessage("MapNameRequest", MapNameRequest)
+registerMessage(MapNameRequest)
 
 class MapBlockReply(message.baseMessage):
+    name = "MapBlockReply"
     id = 409
     freq = 2
     trusted = True
@@ -10376,9 +10834,10 @@ class MapBlockReply(message.baseMessage):
             ["MapImageID", "LLUUID"]
         ]
     }
-registerMessage("MapBlockReply", MapBlockReply)
+registerMessage(MapBlockReply)
 
 class MapItemRequest(message.baseMessage):
+    name = "MapItemRequest"
     id = 410
     freq = 2
     trusted = False
@@ -10400,9 +10859,10 @@ class MapItemRequest(message.baseMessage):
             ["RegionHandle", "U64"]
         ]
     }
-registerMessage("MapItemRequest", MapItemRequest)
+registerMessage(MapItemRequest)
 
 class MapItemReply(message.baseMessage):
+    name = "MapItemReply"
     id = 411
     freq = 2
     trusted = True
@@ -10429,9 +10889,10 @@ class MapItemReply(message.baseMessage):
             ["Name", "Variable1"]
         ]
     }
-registerMessage("MapItemReply", MapItemReply)
+registerMessage(MapItemReply)
 
 class SendPostcard(message.baseMessage):
+    name = "SendPostcard"
     id = 412
     freq = 2
     trusted = False
@@ -10454,9 +10915,10 @@ class SendPostcard(message.baseMessage):
             ["MaturePublish", "BOOL"]
         ]
     }
-registerMessage("SendPostcard", SendPostcard)
+registerMessage(SendPostcard)
 
 class RpcChannelRequest(message.baseMessage):
+    name = "RpcChannelRequest"
     id = 413
     freq = 2
     trusted = True
@@ -10472,9 +10934,10 @@ class RpcChannelRequest(message.baseMessage):
             ["ItemID", "LLUUID"]
         ]
     }
-registerMessage("RpcChannelRequest", RpcChannelRequest)
+registerMessage(RpcChannelRequest)
 
 class RpcChannelReply(message.baseMessage):
+    name = "RpcChannelReply"
     id = 414
     freq = 2
     trusted = True
@@ -10489,9 +10952,10 @@ class RpcChannelReply(message.baseMessage):
             ["ChannelID", "LLUUID"]
         ]
     }
-registerMessage("RpcChannelReply", RpcChannelReply)
+registerMessage(RpcChannelReply)
 
 class RpcScriptRequestInbound(message.baseMessage):
+    name = "RpcScriptRequestInbound"
     id = 415
     freq = 2
     trusted = False
@@ -10513,9 +10977,10 @@ class RpcScriptRequestInbound(message.baseMessage):
             ["StringValue", "Variable2"]
         ]
     }
-registerMessage("RpcScriptRequestInbound", RpcScriptRequestInbound)
+registerMessage(RpcScriptRequestInbound)
 
 class RpcScriptRequestInboundForward(message.baseMessage):
+    name = "RpcScriptRequestInboundForward"
     id = 416
     freq = 2
     trusted = True
@@ -10534,9 +10999,10 @@ class RpcScriptRequestInboundForward(message.baseMessage):
             ["StringValue", "Variable2"]
         ]
     }
-registerMessage("RpcScriptRequestInboundForward", RpcScriptRequestInboundForward)
+registerMessage(RpcScriptRequestInboundForward)
 
 class RpcScriptReplyInbound(message.baseMessage):
+    name = "RpcScriptReplyInbound"
     id = 417
     freq = 2
     trusted = False
@@ -10553,9 +11019,10 @@ class RpcScriptReplyInbound(message.baseMessage):
             ["StringValue", "Variable2"]
         ]
     }
-registerMessage("RpcScriptReplyInbound", RpcScriptReplyInbound)
+registerMessage(RpcScriptReplyInbound)
 
 class ScriptMailRegistration(message.baseMessage):
+    name = "ScriptMailRegistration"
     id = 418
     freq = 2
     trusted = True
@@ -10571,9 +11038,10 @@ class ScriptMailRegistration(message.baseMessage):
             ["Flags", "U32"]
         ]
     }
-registerMessage("ScriptMailRegistration", ScriptMailRegistration)
+registerMessage(ScriptMailRegistration)
 
 class ParcelMediaCommandMessage(message.baseMessage):
+    name = "ParcelMediaCommandMessage"
     id = 419
     freq = 2
     trusted = True
@@ -10588,9 +11056,10 @@ class ParcelMediaCommandMessage(message.baseMessage):
             ["Time", "F32"]
         ]
     }
-registerMessage("ParcelMediaCommandMessage", ParcelMediaCommandMessage)
+registerMessage(ParcelMediaCommandMessage)
 
 class ParcelMediaUpdate(message.baseMessage):
+    name = "ParcelMediaUpdate"
     id = 420
     freq = 2
     trusted = True
@@ -10613,9 +11082,10 @@ class ParcelMediaUpdate(message.baseMessage):
             ["MediaLoop", "U8"]
         ]
     }
-registerMessage("ParcelMediaUpdate", ParcelMediaUpdate)
+registerMessage(ParcelMediaUpdate)
 
 class LandStatRequest(message.baseMessage):
+    name = "LandStatRequest"
     id = 421
     freq = 2
     trusted = False
@@ -10636,9 +11106,10 @@ class LandStatRequest(message.baseMessage):
             ["ParcelLocalID", "S32"]
         ]
     }
-registerMessage("LandStatRequest", LandStatRequest)
+registerMessage(LandStatRequest)
 
 class LandStatReply(message.baseMessage):
+    name = "LandStatReply"
     id = 422
     freq = 2
     trusted = True
@@ -10664,9 +11135,10 @@ class LandStatReply(message.baseMessage):
             ["OwnerName", "Variable1"]
         ]
     }
-registerMessage("LandStatReply", LandStatReply)
+registerMessage(LandStatReply)
 
 class Error(message.baseMessage):
+    name = "Error"
     id = 423
     freq = 2
     trusted = False
@@ -10688,9 +11160,10 @@ class Error(message.baseMessage):
             ["Data", "Variable2"]
         ]
     }
-registerMessage("Error", Error)
+registerMessage(Error)
 
 class ObjectIncludeInSearch(message.baseMessage):
+    name = "ObjectIncludeInSearch"
     id = 424
     freq = 2
     trusted = False
@@ -10709,9 +11182,10 @@ class ObjectIncludeInSearch(message.baseMessage):
             ["IncludeInSearch", "BOOL"]
         ]
     }
-registerMessage("ObjectIncludeInSearch", ObjectIncludeInSearch)
+registerMessage(ObjectIncludeInSearch)
 
 class RezRestoreToWorld(message.baseMessage):
+    name = "RezRestoreToWorld"
     id = 425
     freq = 2
     trusted = False
@@ -10749,9 +11223,10 @@ class RezRestoreToWorld(message.baseMessage):
             ["CRC", "U32"]
         ]
     }
-registerMessage("RezRestoreToWorld", RezRestoreToWorld)
+registerMessage(RezRestoreToWorld)
 
 class LinkInventoryItem(message.baseMessage):
+    name = "LinkInventoryItem"
     id = 426
     freq = 2
     trusted = False
@@ -10776,5 +11251,5 @@ class LinkInventoryItem(message.baseMessage):
             ["Description", "Variable1"]
         ]
     }
-registerMessage("LinkInventoryItem", LinkInventoryItem)
+registerMessage(LinkInventoryItem)
 

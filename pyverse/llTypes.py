@@ -63,6 +63,14 @@ class variable:
     
     def __str__(self):
         try:
+            return self.data.decode()
+        except UnicodeDecodeError:
+            return "<VARIABLE %i=%s>"%(self.type,self.data.decode())
+        except:
+            return "<VARIABLE %i: %i>"%(self.type,len(self.data))
+            
+    def __repr__(self):
+        try:
             return "<VARIABLE %i=%s>"%(self.type,self.data.decode())
         except:
             return "<VARIABLE %i: %i>"%(self.type,len(self.data))
@@ -266,9 +274,9 @@ def llEncodeType(t, ty = None):
         return null()
     elif ty == "Fixed":
         return fixed(t)
-    elif ty == "Variable 1":
+    elif ty == "Variable1":
         return variable(1, t)
-    elif ty == "Variable 2":
+    elif ty == "Variable2":
         return variable(2, t)
     elif ty == "U8":
         return struct.unpack("B", t)[0]

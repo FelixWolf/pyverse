@@ -15,6 +15,7 @@ class region:
     lastPing = 0
     nextAgentUpdate = 0
     sequence = 1
+    acks = []
     def __init__(self, loginToken, host = "0.0.0.0", port = 0):
         self.loginToken = loginToken
         self.host = loginToken["sim_ip"]
@@ -46,20 +47,32 @@ class region:
         self.sequence = self.sequence + 1
         return self.sequence - 1
     
-    def handleInternalPackets(self, blob):
+    def handleInternalPackets(self, pck):
+        if pck.body.name == "StartPingCheck":
+            myMessage = messages.getMessageByName("CompletePingCheck")
+            myMessage.PingID["PingID"] = pck.body.PingID["PingID"]
+            self.send(myMessage)
+        self.acks = self.acks + pck.acks
         return True
         
     def recv(self):
-        blob = self.sock.recv(65507)
-        if self.handleInternalPackets(blob):
+        try:
+            blob = self.sock.recv(65507)
+            blob = packet.packet(bytes=blob)
+            if not hasattr(blob, "body"):
+                blob.body = messages.TestMessage()
+            self.handleInternalPackets(blob)
             return blob
+        except KeyboardInterrupt:
+            #Gracefully exit
+            self.logout()
     
     def send(self, blob):
         if type(blob) is not packet.packet:
             if type(blob) == bytes:
-                blob = packet.packet(sequence = self.seq, bytes = blob)
+                blob = packet.packet(sequence = self.seq, bytes = blob, acks = self.acks[0:255])
             else:
-                blob = packet.packet(sequence = self.seq, message = blob)
+                blob = packet.packet(sequence = self.seq, message = blob, acks = self.acks[0:255])
         self.sock.sendto(bytes(blob), (self.host,self.port))
         return True
     

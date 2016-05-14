@@ -18,7 +18,7 @@ class packet:
     resent = 0
     ack = True
     
-    def __init__(self, bytes=None, message=None, mid = 0, sequence = 0, zero_coded = 0, reliable = 0, resent = 0, ack = 0):
+    def __init__(self, bytes=None, message=None, mid = 0, sequence = 0, zero_coded = 0, reliable = 0, resent = 0, ack = 0, acks = []):
         if bytes:
             """Read an entire packet"""
             #Load in the header data
@@ -35,15 +35,26 @@ class packet:
                 self.bytes = zerocode.decode(bytes[6+self.extra_bytes:])
             else:
                 self.bytes = bytes[6+self.extra_bytes:]
+            offset = 1
             self.MID = struct.unpack_from(">I", self.bytes, 0)[0]
-            if self.MID & 0xFFFF0000 == 0xFFFF0000:
+            self.realID = 0
+            if self.MID & 0xFFFFFFFA == 0xFFFFFFFA:
+                self.realID = self.MID
+                self.MID = self.MID & 0x000000FA
+                offset = 4
+            elif self.MID & 0xFFFF0000 == 0xFFFF0000:
                 self.MID = self.MID & 0x0000FFFF
+                self.realID = self.MID + 0xFFFF0000
+                offset = 4
             elif self.MID & 0xFF000000 == 0xFF000000:
-                self.MID = self.MID & 0xFFFF0000
+                self.MID = (self.MID >> 16) & 0xFF
+                self.realID = self.MID + 0xFF00
+                offset = 2
             else:
-                self.MID = self.MID & 0xFF000000
-            self.body = messages.getMessageByID(self.MID, self.bytes)
-            if self.ack:
+                self.MID = (self.MID >> 24) & 0xFF
+                self.realID = self.MID
+            self.body = messages.getMessageByID(self.realID, self.bytes[offset:])
+            if self.ack and len(self.acks) == 0:
                 ackcount = bytes[len(bytes)-1]
                 offset = len(bytes) - (ackcount * 4) - 1
                 for i in range(ackcount):
@@ -54,6 +65,7 @@ class packet:
             self.zero_coded = message.zero_coded
             self.sequence = sequence
             self.body = message
+            self.acks = acks
         else:
             if mid:
                 self.mid = mid
@@ -65,8 +77,9 @@ class packet:
                 self.reliable == True
             if resent == True:
                 self.resent == True
-            if ack == True:
+            if ack == True or len(acks) > 0:
                 self.ack == True
+                self.acks = acks
     
     def __bytes__(self):
         self.flags = 0

@@ -5,8 +5,8 @@ import struct
 baseTypes = {
     "Null": llTypes.null(),
     "Fixed": llTypes.fixed(b""),
-    "Variable 1": llTypes.variable(1, b""),
-    "Variable 2": llTypes.variable(2, b""),
+    "Variable1": llTypes.variable(1, b""),
+    "Variable2": llTypes.variable(2, b""),
     "U8": 0,
     "U16": 0,
     "U32": 0,
@@ -29,8 +29,8 @@ baseTypes = {
 typeLengths = {
     "Null": 0,
     "Fixed": 0,
-    "Variable 1": 0,
-    "Variable 2": 0,
+    "Variable1": 0,
+    "Variable2": 0,
     "U8": 1,
     "U16": 2,
     "U32": 4,
@@ -43,8 +43,8 @@ typeLengths = {
     "F64": 8,
     "LLVector3": 12,
     "LLVector3d": 24,
-    "LLVector4": 14,
-    "LLQuaternion": 14,
+    "LLVector4": 16,
+    "LLQuaternion": 16,
     "LLUUID": 16,
     "BOOL": 1,
     "IPADDR": 4,
@@ -96,10 +96,10 @@ class baseMessage:
                 tmp = {}
                 for value in self.structure[key[0]]:
                     tlen = 0
-                    if value[1] == "Variable 1":
+                    if value[1] == "Variable1":
                         tlen = struct.unpack_from(">B", data, offset)[0]
                         offset = offset + 1
-                    elif value[1] == "Variable 2":
+                    elif value[1] == "Variable2":
                         tlen = struct.unpack_from(">H", data, offset)[0]
                         offset = offset + 2
                     else:
@@ -108,32 +108,35 @@ class baseMessage:
                     offset = offset + tlen
                 setattr(self, key[0], tmp)
             elif key[1] == 0:
-                tmp = {}
                 count = struct.unpack_from(">B", data, offset)[0]
                 offset = offset + 1
-                for value in range(count):
-                    tlen = 0
-                    if value[1] == "Variable 1":
-                        tlen = struct.unpack_from(">B", data, offset)[0]
-                        offset = offset + 1
-                    elif value[1] == "Variable 2":
-                        tlen = struct.unpack_from(">H", data, offset)[0]
-                        offset = offset + 2
-                    else:
-                        tlen = typeLengths[value[1]]
-                    tmp[value[0]] = llTypes.llEncodeType(data[offset:offset+tlen], value[1])
-                    offset = offset + tlen
-                setattr(self, key[0], tmp)
+                tmp2 = []
+                for i in range(count):
+                    tmp = {}
+                    for value in self.structure[key[0]]:
+                        tlen = 0
+                        if value[1] == "Variable1":
+                            tlen = struct.unpack_from(">B", data, offset)[0]
+                            offset = offset + 1
+                        elif value[1] == "Variable2":
+                            tlen = struct.unpack_from(">H", data, offset)[0]
+                            offset = offset + 2
+                        else:
+                            tlen = typeLengths[value[1]]
+                        tmp[value[0]] = llTypes.llEncodeType(data[offset:offset+tlen], value[1])
+                        offset = offset + tlen
+                    tmp2.append(tmp)
+                setattr(self, key[0], tmp2)
             else:
                 outblock = []
                 for i in range(key[1]):
                     tmp = {}
                     for value in self.structure[key[0]]:
                         tlen = 0
-                        if value[1] == "Variable 1":
+                        if value[1] == "Variable1":
                             tlen = struct.unpack_from(">B", data, offset)[0]
                             offset = offset + 1
-                        elif value[1] == "Variable 2":
+                        elif value[1] == "Variable2":
                             tlen = struct.unpack_from(">H", data, offset)[0]
                             offset = offset + 2
                         else:
