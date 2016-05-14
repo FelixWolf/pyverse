@@ -6,7 +6,7 @@ class packet:
     #Body byte data, incase we need it
     bytes = b""
     body = None
-    mid = 0
+    MID = 0
     sequence = 0
     extra = b""
     acks = []
@@ -17,6 +17,7 @@ class packet:
     reliable = 0
     resent = 0
     ack = True
+    realID = 0
     
     def __init__(self, bytes=None, message=None, mid = 0, sequence = 0, zero_coded = 0, reliable = 0, resent = 0, ack = 0, acks = []):
         if bytes:
@@ -54,21 +55,45 @@ class packet:
                 self.MID = (self.MID >> 24) & 0xFF
                 self.realID = self.MID
             self.body = messages.getMessageByID(self.realID, self.bytes[offset:])
-            if self.ack and len(self.acks) == 0:
+            if self.ack:
                 ackcount = bytes[len(bytes)-1]
                 offset = len(bytes) - (ackcount * 4) - 1
                 for i in range(ackcount):
                     self.acks.append(struct.unpack_from(">I", offset)[0])
                     offset = offset + 4
+            else:
+                self.acks = acks
         elif message:
-            self.mid = message.id
+            self.MID = self.realID = message.id
+            if message.freq == 2:
+                self.realID = self.MID + 0xFFFF0000
+            elif message.freq == 1:
+                self.realID = self.MID + 0xFF00
+            if len(acks) > 0 or ack:
+                self.ack = True
             self.zero_coded = message.zero_coded
             self.sequence = sequence
             self.body = message
             self.acks = acks
         else:
-            if mid:
-                self.mid = mid
+            if MID:
+                self.MID = MID
+                self.realID = 0
+                if self.MID & 0xFFFFFFFA == 0xFFFFFFFA:
+                    self.realID = self.MID
+                    self.MID = self.MID & 0x000000FA
+                    offset = 4
+                elif self.MID & 0xFFFF0000 == 0xFFFF0000:
+                    self.MID = self.MID & 0x0000FFFF
+                    self.realID = self.MID + 0xFFFF0000
+                    offset = 4
+                elif self.MID & 0xFF000000 == 0xFF000000:
+                    self.MID = (self.MID >> 16) & 0xFF
+                    self.realID = self.MID + 0xFF00
+                    offset = 2
+                else:
+                    self.MID = (self.MID >> 24) & 0xFF
+                    self.realID = self.MID
             if sequence:
                 self.sequence = sequence
             if zero_coded == True:
@@ -100,11 +125,11 @@ class packet:
         if self.zero_coded:
             body = zerocode.encode(body)
         if self.body.freq == 3:
-            result = struct.pack(">I", self.mid + 0xFFFFFF00)
+            result = struct.pack(">I", self.MID)
         elif self.body.freq == 2:
-            result = struct.pack(">I", self.mid + 0xFFFF0000)
+            result = struct.pack(">I", self.MID + 0xFFFF0000)
         elif self.body.freq == 1:
-            result = struct.pack(">H", self.mid + 0xFF00)
+            result = struct.pack(">H", self.MID + 0xFF00)
         elif self.body.freq == 0:
-            result = struct.pack(">B", self.mid)
+            result = struct.pack(">B", self.MID)
         return struct.pack(">BiB", self.flags, self.sequence, len(self.extra)) + result + self.extra + body + acks
