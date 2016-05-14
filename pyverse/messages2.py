@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from . import llTypes
+import llTypes
 import struct
 
 baseTypes = {
@@ -61,14 +61,14 @@ class baseMessage:
         ("NeighborBlock", 4)
     ]
     structure = {
-        "TestBlock1": [
-            ["Test1", "U32"]
-        ],
-        "NeighborBlock": [
-            ["Test0", "U32"],
-            ["Test1", "U32"],
-            ["Test2", "U32"]
-        ]
+        "TestBlock1": {
+            "Test1": "U32"
+        },
+        "NeighborBlock": {
+            "Test0": "U32",
+            "Test1": "U32",
+            "Test2": "U32"
+        }
     }
     def __init__(self, data=None):
         if not data:
@@ -76,12 +76,12 @@ class baseMessage:
                 if key[1] == 1:
                     tmp = {}
                     for value in self.structure[key[0]]:
-                        tmp[value[0]] = baseTypes[value[1]]
+                        tmp[value] = baseTypes[self.structure[key[0]][value]]
                     setattr(self, key[0], tmp)
                 else:
                     tmp = {}
                     for value in self.structure[key[0]]:
-                        tmp[value[0]] = baseTypes[value[1]]
+                        tmp[value] = baseTypes[self.structure[key[0]][value]]
                     tmp2 = []
                     for i in range(key[1]):
                         tmp2.append(tmp)
@@ -95,16 +95,17 @@ class baseMessage:
             if key[1] == 1:
                 tmp = {}
                 for value in self.structure[key[0]]:
+                    print(value)
                     tlen = 0
-                    if value[1] == "Variable 1":
+                    if self.structure[key[0]][value] == "Variable 1":
                         tlen = struct.unpack_from(">B", data, offset)[0]
                         offset = offset + 1
-                    elif value[1] == "Variable 2":
+                    elif self.structure[key[0]][value] == "Variable 2":
                         tlen = struct.unpack_from(">H", data, offset)[0]
                         offset = offset + 2
                     else:
-                        tlen = typeLengths[value[1]]
-                    tmp[value[0]] = llTypes.llEncodeType(data[offset:offset+tlen], value[1])
+                        tlen = typeLengths[self.structure[key[0]][value]]
+                    tmp[value] = llTypes.llEncodeType(data[offset:offset+tlen], self.structure[key[0]][value])
                     offset = offset + tlen
                 setattr(self, key[0], tmp)
             elif key[1] == 0:
@@ -113,15 +114,15 @@ class baseMessage:
                 offset = offset + 1
                 for value in range(count):
                     tlen = 0
-                    if value[1] == "Variable 1":
+                    if self.structure[key[0]][value] == "Variable 1":
                         tlen = struct.unpack_from(">B", data, offset)[0]
                         offset = offset + 1
-                    elif value[1] == "Variable 2":
+                    elif self.structure[key[0]][value] == "Variable 2":
                         tlen = struct.unpack_from(">H", data, offset)[0]
                         offset = offset + 2
                     else:
-                        tlen = typeLengths[value[1]]
-                    tmp[value[0]] = llTypes.llEncodeType(data[offset:offset+tlen], value[1])
+                        tlen = typeLengths[self.structure[key[0]][value]]
+                    tmp[value] = llTypes.llEncodeType(data[offset:offset+tlen], self.structure[key[0]][value])
                     offset = offset + tlen
                 setattr(self, key[0], tmp)
             else:
@@ -130,37 +131,47 @@ class baseMessage:
                     tmp = {}
                     for value in self.structure[key[0]]:
                         tlen = 0
-                        if value[1] == "Variable 1":
+                        if self.structure[key[0]][value] == "Variable 1":
                             tlen = struct.unpack_from(">B", data, offset)[0]
                             offset = offset + 1
-                        elif value[1] == "Variable 2":
+                        elif self.structure[key[0]][value] == "Variable 2":
                             tlen = struct.unpack_from(">H", data, offset)[0]
                             offset = offset + 2
                         else:
-                            tlen = typeLengths[value[1]]
-                        tmp[value[0]] = llTypes.llEncodeType(data[offset:offset+tlen], value[1])
+                            tlen = typeLengths[self.structure[key[0]][value]]
+                        tmp[value] = llTypes.llEncodeType(data[offset:offset+tlen], self.structure[key[0]][value])
                         offset = offset + tlen
                     outblock.append(tmp)
                 setattr(self, key[0], outblock)
 
     def __bytes__(self):
         result = b""
+        if self.freq == 3:
+            result = struct.pack(">I", self.id + 0xFFFFFF00)
+        elif self.freq == 2:
+            result = struct.pack(">I", self.id + 0xFFFF0000)
+        elif self.freq == 1:
+            result = struct.pack(">H", self.id + 0xFF00)
+        elif self.freq == 0:
+            result = struct.pack(">B", self.id)
         for key in self.blocks:
             if key[1] == 1:
                 tmp = getattr(self, key[0])
                 for value in self.structure[key[0]]:
-                    result = result + llTypes.llDecodeType(tmp[value[0]], value[1])
+                    result = result + llTypes.llDecodeType(tmp[value], self.structure[key[0]][value])
             elif key[1] == 0:
                 tmp = getattr(self, key[0])
                 result = result + struct.pack("B", len(tmp))
                 for i in range(len(tmp)):
                     tmp2 = tmp[i]
                     for value in self.structure[key[0]]:
-                        result = result + llTypes.llDecodeType(tmp2[value[0]], value[1])
+                        result = result + llTypes.llDecodeType(tmp2[value], self.structure[key[0]][value])
             else:
                 tmp = getattr(self, key[0])
                 for i in range(key[1]):
                     tmp2 = tmp[i]
                     for value in self.structure[key[0]]:
-                        result = result + llTypes.llDecodeType(tmp2[value[0]], value[1])
+                        result = result + llTypes.llDecodeType(tmp2[value], self.structure[key[0]][value])
         return result
+
+a = baseMessage(data=b"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00")

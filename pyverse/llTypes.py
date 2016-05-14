@@ -240,6 +240,8 @@ def llDecodeType(t, ty = None):
         a == vector3d or a == vector4 or a == quaternion or a == uuid or \
         a == IPAddr or a == IPPort:
         return bytes(t)
+    elif a == bytes:
+        return t
     elif ty == "U8":
         return struct.pack("B", t)
     elif ty == "U16":
@@ -303,3 +305,5 @@ def llEncodeType(t, ty = None):
         return IPAddr(struct.unpack("<H", t)[0])
     elif ty == "BOOL" or t == bool:
         return struct.pack("B", 1 if t == True else 0)
+    elif ty == "LLUUID":
+        return uuid(t)

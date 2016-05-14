@@ -83,13 +83,14 @@ template = """class %s(message.baseMessage):
     id = %s
     freq = %s
     trusted = %s
+    zero_coded = %s
     blocks = [
 %s
     ]
     structure = {
 %s
     }
-registerMessage(%s)
+registerMessage(\"%s\", %s)
 
 """
 result = ""
@@ -119,15 +120,15 @@ for message in a:
         blocks = blocks[:-2]
         structures = ""
         for i in range(1,len(message)):
-            structures = structures + "        \"%s\": {\n"%message[i][0][0]
+            structures = structures + "        \"%s\": [\n"%message[i][0][0]
             for x in message[i]:
                 if type(x[0]) != str:
                     if x[0][1] == "Variable":
                         x[0][1] = x[0][1]+x[0][2]
-                    structures = structures + "            \"%s\": \"%s\",\n"%(x[0][0],x[0][1])
+                    structures = structures + "            [\"%s\", \"%s\"],\n"%(x[0][0],x[0][1])
             structures = structures[:-2]+"\n"
-            structures = structures + "        },\n"
-        result = result + template%(messageName,id,frequency,"True" if trusted else "False",blocks,structures[:-2],messageName)
+            structures = structures + "        ],\n"
+        result = result + template%(messageName,id,frequency,"True" if trusted else "False","True" if zerocoded else "False",blocks,structures[:-2],messageName,messageName)
 
 f = open("result.py","w+")
 f.write(result)

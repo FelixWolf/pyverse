@@ -1,5 +1,5 @@
-import messages
-import zerocode
+from . import messages
+from . import zerocode
 import struct
 class packet:
     """Load a packet"""
@@ -16,9 +16,9 @@ class packet:
     zero_coded = 0
     reliable = 0
     resent = 0
-    ack = 0
+    ack = True
     
-    def __init__(self, bytes=None, mid = 0, sequence = 0, zero_coded = 0, reliable = 0, resent = 0, ack = 0):
+    def __init__(self, bytes=None, message=None, mid = 0, sequence = 0, zero_coded = 0, reliable = 0, resent = 0, ack = 0):
         if bytes:
             """Read an entire packet"""
             #Load in the header data
@@ -35,7 +35,7 @@ class packet:
                 self.bytes = zerocode.decode(bytes[6+self.extra_bytes:])
             else:
                 self.bytes = bytes[6+self.extra_bytes:]
-            self.MID = struct.unpack_from(">I", self.bytes, 0)
+            self.MID = struct.unpack_from(">I", self.bytes, 0)[0]
             if self.MID & 0xFFFF0000 == 0xFFFF0000:
                 self.MID = self.MID & 0x0000FFFF
             elif self.MID & 0xFF000000 == 0xFF000000:
@@ -49,6 +49,11 @@ class packet:
                 for i in range(ackcount):
                     self.acks.append(struct.unpack_from(">I", offset)[0])
                     offset = offset + 4
+        elif message:
+            self.mid = message.id
+            self.zero_coded = message.zero_coded
+            self.sequence = sequence
+            self.body = message
         else:
             if mid:
                 self.mid = mid
@@ -78,7 +83,15 @@ class packet:
             for i in self.acks:
                 acks = acks + struct.pack(">I", i)
             acks = acks + struct.pack(">b", len(self.acks))
-        body = self.body
+        body = bytes(self.body)
         if self.zero_coded:
             body = zerocode.encode(body)
-        return struct.pack(">BiB", self.flags, self.sequence, len(self.extra)) + extra + bytes(body) + acks
+        if self.body.freq == 3:
+            result = struct.pack(">I", self.mid + 0xFFFFFF00)
+        elif self.body.freq == 2:
+            result = struct.pack(">I", self.mid + 0xFFFF0000)
+        elif self.body.freq == 1:
+            result = struct.pack(">H", self.mid + 0xFF00)
+        elif self.body.freq == 0:
+            result = struct.pack(">B", self.mid)
+        return struct.pack(">BiB", self.flags, self.sequence, len(self.extra)) + result + self.extra + body + acks
