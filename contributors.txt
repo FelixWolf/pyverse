@@ -1,0 +1,9 @@
+Félix Wolf
+    Twitter: @_felix_wolf_
+    Email: felix.wolfz@gmail.com
+    Second Life: Chaser.Zaks
+
+Special thanks to:
+    Linden Lab for providing Second Life, message_template.msg
+    The Second Life wiki contributors for documenting parts of the protocol
+    libopenmetaverse for code references and special docs at http://lib.openmetaverse.co/
