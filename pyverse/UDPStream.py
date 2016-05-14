@@ -12,7 +12,8 @@ class region:
     agent_id = None
     session_id = None
     loginToken = {}
-    lastPing = 0
+    nextPing = 0
+    nextAck = 0
     nextAgentUpdate = 0
     sequence = 1
     acks = []
@@ -52,8 +53,22 @@ class region:
             myMessage = messages.getMessageByName("CompletePingCheck")
             myMessage.PingID["PingID"] = pck.body.PingID["PingID"]
             self.send(myMessage)
-        self.acks = self.acks + pck.acks
-        return True
+        if pck.reliable:
+            self.acks = self.acks + [pck.sequence]
+        if self.nextAck < time.time() and len(self.acks) > 0:
+            self.sendAcks()
+        
+    def sendAcks(self):
+        myMessage = messages.getMessageByName("PacketAck")
+        tmp = self.acks[0:255]
+        self.acks = self.acks[255:]
+        myMessage.Packets = []
+        for i in range(len(tmp)):
+            myMessage.Packets.append({
+                "ID": tmp[i]
+            })
+        self.send(myMessage)
+        self.nextAck = time.time() + 1
         
     def recv(self):
         try:
@@ -71,8 +86,12 @@ class region:
         if type(blob) is not packet.packet:
             if type(blob) == bytes:
                 blob = packet.packet(sequence = self.seq, bytes = blob, acks = self.acks[0:255])
+                self.acks = self.acks[255:]
+                self.nextAck = time.time() + 1
             else:
                 blob = packet.packet(sequence = self.seq, message = blob, acks = self.acks[0:255])
+                self.acks = self.acks[255:]
+                self.nextAck = time.time() + 1
         self.sock.sendto(bytes(blob), (self.host,self.port))
         return True
     
