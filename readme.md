@@ -17,18 +17,25 @@ from pyverse import llTypes
 
 loginToken = pyverse.login("firstname","lastname","password")
 print(loginToken["message"]) #Print MOTD
-session = pyverse.regionConnection(loginToken, host = "0.0.0.0", port = (29000,29099))
+session = pyverse.regionConnection(loginToken, host = "0.0.0.0", port = (29000,29099)) #Host and Port are optional
 print("Connected to %s:%i from %s:%i"%(session.host,session.port,session.clientHost,session.clientPort))
-try:
-    while True:
-        if session.nextAgentUpdate > time.time():
-            session.agentUpdate()
-        data = session.recv()
-        if not data:
-            break
-        print(data)
-except KeyboardInterrupt:
-    session.logout() #Log out gracefully
+
+while True:
+    if session.nextAgentUpdate > time.time():
+        session.agentUpdate()
+    data = session.recv()
+    if not data:
+        break
+    if data.body.name == "ChatFromSimulator":
+        if data.body.ChatData["ChatType"] == pyverse.const.CHAT_TYPING_START \
+         or data.body.ChatData["ChatType"] == pyverse.const.CHAT_TYPING_STOP:
+            pass
+        else:
+            print("%s: %s"%(
+                    str(data.body.ChatData["FromName"])[:-1],
+                    str(data.body.ChatData["Message"])[:-1]
+                )
+            )
 ```
 
 Current status
