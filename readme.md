@@ -44,6 +44,7 @@ Can connect and do THINGS, possibly decodes packets properly as well.<br/>
 TODO:
 * Add support for the llCABundle.crt file during login for FULL COMPATIBILITY!
 * Helper functions that create stuff like say(session, 0, "message")
+* Adhere to [PEP 8](https://www.python.org/dev/peps/pep-0008/#comments) and comment the code.
 
 Contribution
 ------
