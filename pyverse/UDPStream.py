@@ -21,6 +21,22 @@ class region:
     acks = []
     objects = None
     circuit_code = None
+    sim = {
+        "name": "",
+        "owner": "",
+        "terrain": {
+            "water": 0,
+            "base": [],
+            "detail": [],
+            "height": [],
+            "range": []
+        },
+        "CPUClassID": 0,
+        "CPURatio": 0,
+        "ColoName": "",
+        "ProductSKU": "",
+        "ProductName": ""
+    }
     def __init__(self, loginToken, host = "0.0.0.0", port = 0):
         if loginToken["login"] != "true":
             raise ConnectionError("Unable to log into simulator:\n    %s"%(loginToken["message"] if "message" in loginToken else "Unknown error"))
@@ -54,26 +70,6 @@ class region:
         myMessage.AgentData["CircuitCode"] = self.circuit_code
         self.send(myMessage)
         
-        #Setup FOV and Window size(Needed to recieve object packets?)
-        myMessage = messages.getMessageByName("AgentFOV")
-        myMessage.AgentData["AgentID"] = self.agent_id
-        myMessage.AgentData["SessionID"] = self.session_id
-        myMessage.AgentData["CircuitCode"] = self.circuit_code
-        myMessage.FOVBlock["GenCounter"] = 0
-        myMessage.FOVBlock["VerticalAngle"] = 6.233185307179586
-        self.send(myMessage)
-        
-        myMessage = messages.getMessageByName("AgentHeightWidth")
-        myMessage.AgentData["AgentID"] = self.agent_id
-        myMessage.AgentData["SessionID"] = self.session_id
-        myMessage.AgentData["CircuitCode"] = self.circuit_code
-        myMessage.HeightWidthBlock["GenCounter"] = 0
-        myMessage.HeightWidthBlock["Height"] = 0xFFFF
-        myMessage.HeightWidthBlock["Width"] = 0xFFFF
-        self.send(myMessage)
-        
-        self.throttle(self.circuit_code) #Set throttle to defaults
-        
         #These modules are optional, I'll add a method of plugins later
         #Fire up the object accountant
         self.objects = objectAccountant()
@@ -86,22 +82,69 @@ class region:
         return self.sequence - 1
     
     def handleInternalPackets(self, pck):
-        if pck.body.name != "AttachedSound":
-            print("Got %s"%pck.body.name)
         if pck.body.name == "StartPingCheck":
             myMessage = messages.getMessageByName("CompletePingCheck")
             myMessage.PingID["PingID"] = pck.body.PingID["PingID"]
             self.send(myMessage)
+        elif pck.body.name == "RegionHandshake":
+            self.sim = {
+                "name": pck.body.RegionInfo["SimName"],
+                "owner": pck.body.RegionInfo["SimOwner"],
+                "UUID": pck.body.RegionInfo2["RegionID"],
+                "terrain": {
+                    "water": pck.body.RegionInfo["WaterHeight"],
+                    "base": [
+                        pck.body.RegionInfo["TerrainBase0"],
+                        pck.body.RegionInfo["TerrainBase1"],
+                        pck.body.RegionInfo["TerrainBase2"],
+                        pck.body.RegionInfo["TerrainBase3"]
+                    ],
+                    "detail": [
+                        pck.body.RegionInfo["TerrainBase0"],
+                        pck.body.RegionInfo["TerrainBase1"],
+                        pck.body.RegionInfo["TerrainBase2"],
+                        pck.body.RegionInfo["TerrainBase3"]
+                    ],
+                    "height": [
+                        pck.body.RegionInfo["TerrainStartHeight00"],
+                        pck.body.RegionInfo["TerrainStartHeight01"],
+                        pck.body.RegionInfo["TerrainStartHeight10"],
+                        pck.body.RegionInfo["TerrainStartHeight11"]
+                    ],
+                    "range": [
+                        pck.body.RegionInfo["TerrainHeightRange00"],
+                        pck.body.RegionInfo["TerrainHeightRange01"],
+                        pck.body.RegionInfo["TerrainHeightRange10"],
+                        pck.body.RegionInfo["TerrainHeightRange11"]
+                    ]
+                },
+                "CPUClassID": pck.body.RegionInfo3["CPUClassID"],
+                "CPURatio": pck.body.RegionInfo3["CPURatio"],
+                "ColoName": str(pck.body.RegionInfo3["ColoName"]),
+                "ProductSKU": str(pck.body.RegionInfo3["ProductSKU"]),
+                "ProductName": str(pck.body.RegionInfo3["ProductName"])
+            }
+            myMessage = messages.getMessageByName("RegionHandshakeReply")
+            myMessage.AgentData["AgentID"] = self.agent_id
+            myMessage.AgentData["SessionID"] = self.session_id
+            myMessage.RegionInfo["Flags"] = 0
+            self.send(myMessage)
+            
+            #Informative packets
+            self.throttle()
+            self.setFOV()
+            self.setWindowSize()
+            
         elif pck.body.name == "ObjectUpdate":
             for obj in pck.body.ObjectData:
                 self.objects.updateObject(obj)
-            print("ODB Size: %i"%len(self.objects.objectDB))
+            print("ODB Size: %i"%len(self.objects.objectDB)) #TEMPORARY: Debugging
         elif pck.body.name == "KillObject":
             for obj in pck.body.ObjectData:
                 self.objects.deleteObject(obj)
         elif pck.body.name == "SimStats":
             self.status.update(pck.body.Stat)
-            print("TimeDilation: %i"%self.status.timeDilation)
+            print("TimeDilation: %i"%self.status.timeDilation) #TEMPORARY: Debugging
         
         if pck.reliable:
             self.acks = self.acks + [pck.sequence]
@@ -148,12 +191,12 @@ class region:
         except Exception as e:
             return e
     
-    def throttle(self, ccode, resend = 150000, land = 170000, wind = 34000, \
+    def throttle(self, resend = 150000, land = 170000, wind = 34000, \
             cloud = 34000, task = 446000, texture = 446000, asset = 220000):
         myMessage = messages.getMessageByName("AgentThrottle")
         myMessage.AgentData["AgentID"] = self.agent_id
         myMessage.AgentData["SessionID"] = self.session_id
-        myMessage.AgentData["CircuitCode"] = ccode
+        myMessage.AgentData["CircuitCode"] = self.circuit_code
         myMessage.Throttle["GenCounter"] = 0
         myMessage.Throttle["Throttles"] = variable(1,
             struct.pack("<fffffff",
@@ -169,6 +212,29 @@ class region:
         )
         self.send(myMessage)
     
+    fovGenCounter = 0
+    def setFOV(self, FOV=6.233185307179586):
+        myMessage = messages.getMessageByName("AgentFOV")
+        myMessage.AgentData["AgentID"] = self.agent_id
+        myMessage.AgentData["SessionID"] = self.session_id
+        myMessage.AgentData["CircuitCode"] = self.circuit_code
+        myMessage.FOVBlock["GenCounter"] = self.fovGenCounter
+        myMessage.FOVBlock["VerticalAngle"] = 6.233185307179586
+        self.send(myMessage)
+        self.fovGenCounter = self.fovGenCounter + 1
+        
+    AHWGenCounter = 0
+    def setWindowSize(self, width=0xffff, height=0xffff):
+        myMessage = messages.getMessageByName("AgentHeightWidth")
+        myMessage.AgentData["AgentID"] = self.agent_id
+        myMessage.AgentData["SessionID"] = self.session_id
+        myMessage.AgentData["CircuitCode"] = self.circuit_code
+        myMessage.HeightWidthBlock["GenCounter"] = self.AHWGenCounter
+        myMessage.HeightWidthBlock["Height"] = height
+        myMessage.HeightWidthBlock["Width"] = width
+        self.send(myMessage)
+        self.AHWGenCounter = self.AHWGenCounter + 1
+    
     def sendAcks(self):
         if len(self.acks) > 0:
             myMessage = messages.getMessageByName("PacketAck")
@@ -182,7 +248,7 @@ class region:
             self.send(myMessage)
             self.nextAck = time.time() + 1
     
-    def agentUpdate(self, controls = 0, cameraPos = vector3(128, 128, 0), state = 0, flags = 0, far = 1024, rate = 5):
+    def agentUpdate(self, controls = 0, cameraPos = vector3(128, 128, 0), state = 0, flags = 0, far = 1024, rate = 0.5):
         myMessage = messages.getMessageByName("AgentUpdate")
         myMessage.AgentData["AgentID"] = self.agent_id
         myMessage.AgentData["SessionID"] = self.session_id
