@@ -138,16 +138,17 @@ class region:
         elif pck.body.name == "ObjectUpdate":
             for obj in pck.body.ObjectData:
                 self.objects.updateObject(obj)
-            print("ODB Size: %i"%len(self.objects.objectDB)) #TEMPORARY: Debugging
+            
         elif pck.body.name == "KillObject":
             for obj in pck.body.ObjectData:
-                self.objects.deleteObject(obj)
+                self.objects.deleteObject(obj["ID"])
+                
         elif pck.body.name == "SimStats":
             self.status.update(pck.body.Stat)
-            print("TimeDilation: %i"%self.status.timeDilation) #TEMPORARY: Debugging
         
         if pck.reliable:
             self.acks = self.acks + [pck.sequence]
+        
         ctime = time.time()
         if self.nextAck < ctime:
             self.sendAcks()
