@@ -17,7 +17,6 @@ class packet:
     reliable = 0
     resent = 0
     ack = True
-    realID = 0
     
     def __init__(self, bytes=None, message=None, mid = 0, sequence = 0, zero_coded = 0, reliable = 0, resent = 0, ack = 0, acks = []):
         if bytes:
@@ -38,23 +37,23 @@ class packet:
                 self.bytes = bytes[6+self.extra_bytes:]
             offset = 1
             self.MID = struct.unpack_from(">I", self.bytes, 0)[0]
-            self.realID = 0
+            realID = self.MID
             if self.MID & 0xFFFFFFFA == 0xFFFFFFFA:
-                self.realID = self.MID
+                realID = self.MID
                 self.MID = self.MID & 0x000000FA
                 offset = 4
             elif self.MID & 0xFFFF0000 == 0xFFFF0000:
                 self.MID = self.MID & 0x0000FFFF
-                self.realID = self.MID + 0xFFFF0000
+                realID = self.MID + 0xFFFF0000
                 offset = 4
             elif self.MID & 0xFF000000 == 0xFF000000:
                 self.MID = (self.MID >> 16) & 0xFF
-                self.realID = self.MID + 0xFF00
+                realID = self.MID + 0xFF00
                 offset = 2
             else:
                 self.MID = (self.MID >> 24) & 0xFF
-                self.realID = self.MID
-            self.body = messages.getMessageByID(self.realID, self.bytes[offset:])
+                realID = self.MID
+            self.body = messages.getMessageByID(realID, self.bytes[offset:])
             if self.ack:
                 ackcount = bytes[len(bytes)-1]
                 offset = len(bytes) - (ackcount * 4) - 1
@@ -64,11 +63,7 @@ class packet:
             else:
                 self.acks = acks
         elif message:
-            self.MID = self.realID = message.id
-            if message.freq == 2:
-                self.realID = self.MID + 0xFFFF0000
-            elif message.freq == 1:
-                self.realID = self.MID + 0xFF00
+            self.MID = message.id
             if len(acks) > 0 or ack:
                 self.ack = True
             self.zero_coded = message.zero_coded
@@ -78,22 +73,17 @@ class packet:
         else:
             if MID:
                 self.MID = MID
-                self.realID = 0
                 if self.MID & 0xFFFFFFFA == 0xFFFFFFFA:
-                    self.realID = self.MID
                     self.MID = self.MID & 0x000000FA
                     offset = 4
                 elif self.MID & 0xFFFF0000 == 0xFFFF0000:
                     self.MID = self.MID & 0x0000FFFF
-                    self.realID = self.MID + 0xFFFF0000
                     offset = 4
                 elif self.MID & 0xFF000000 == 0xFF000000:
                     self.MID = (self.MID >> 16) & 0xFF
-                    self.realID = self.MID + 0xFF00
                     offset = 2
                 else:
                     self.MID = (self.MID >> 24) & 0xFF
-                    self.realID = self.MID
             if sequence:
                 self.sequence = sequence
             if zero_coded == True:
@@ -109,7 +99,8 @@ class packet:
     def __bytes__(self):
         self.flags = 0
         if self.zero_coded:
-            self.flags = self.flags | 0x80
+            #self.flags = self.flags | 0x80
+            self.zero_coded = False
         if self.reliable:
             self.flags = self.flags | 0x40
         if self.resent:
