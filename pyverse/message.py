@@ -5,8 +5,10 @@ import struct
 baseTypes = {
     "Null": llTypes.null(),
     "Fixed": llTypes.fixed(b""),
-    "Variable1": llTypes.variable(1, b""),
-    "Variable2": llTypes.variable(2, b""),
+    "Variable": [
+        llTypes.variable(1, b""),
+        llTypes.variable(2, b"")
+    ],
     "U8": 0,
     "U16": 0,
     "U32": 0,
@@ -29,8 +31,7 @@ baseTypes = {
 typeLengths = {
     "Null": 0,
     "Fixed": 0,
-    "Variable1": 0,
-    "Variable2": 0,
+    "Variable": 0,
     "Color4U": 4,
     "U8": 1,
     "U16": 2,
@@ -78,12 +79,18 @@ class baseMessage:
                 if key[1] == 1:
                     tmp = {}
                     for value in self.structure[key[0]]:
-                        tmp[value[0]] = baseTypes[value[1]]
+                        if value[1] == "Variable":
+                            tmp[value[0]] = baseTypes[value[1]][value[2]]
+                        else:
+                            tmp[value[0]] = baseTypes[value[1]]
                     setattr(self, key[0], tmp)
                 else:
                     tmp = {}
                     for value in self.structure[key[0]]:
-                        tmp[value[0]] = baseTypes[value[1]]
+                        if value[1] == "Variable":
+                            tmp[value[0]] = baseTypes[value[1]][value[2]]
+                        else:
+                            tmp[value[0]] = baseTypes[value[1]]
                     tmp2 = []
                     for i in range(key[1]):
                         tmp2.append(tmp)
@@ -98,15 +105,18 @@ class baseMessage:
                 tmp = {}
                 for value in self.structure[key[0]]:
                     tlen = 0
-                    if value[1] == "Variable1":
-                        tlen = struct.unpack_from(">B", data, offset)[0]
-                        offset = offset + 1
-                    elif value[1] == "Variable2":
-                        tlen = struct.unpack_from(">H", data, offset)[0]
-                        offset = offset + 2
+                    if value[1] == "Variable":
+                        if value[2] == 1:
+                            tlen = struct.unpack_from(">B", data, offset)[0]
+                            offset = offset + 1
+                        elif value[2] == 2:
+                            tlen = struct.unpack_from(">H", data, offset)[0]
+                            offset = offset + 2
+                    elif value[1] == "Fixed":
+                        tlen = value[2]
                     else:
                         tlen = typeLengths[value[1]]
-                    tmp[value[0]] = llTypes.llEncodeType(data[offset:offset+tlen], value[1])
+                    tmp[value[0]] = llTypes.llEncodeType(data[offset:offset+tlen], value[1], value[2] if value[1] == "Variable" else None)
                     offset = offset + tlen
                 setattr(self, key[0], tmp)
             elif key[1] == 0:
@@ -117,15 +127,18 @@ class baseMessage:
                     tmp = {}
                     for value in self.structure[key[0]]:
                         tlen = 0
-                        if value[1] == "Variable1":
-                            tlen = struct.unpack_from(">B", data, offset)[0]
-                            offset = offset + 1
-                        elif value[1] == "Variable2":
-                            tlen = struct.unpack_from(">H", data, offset)[0]
-                            offset = offset + 2
+                        if value[1] == "Variable":
+                            if value[2] == 1:
+                                tlen = struct.unpack_from(">B", data, offset)[0]
+                                offset = offset + 1
+                            elif value[2] == 2:
+                                tlen = struct.unpack_from(">H", data, offset)[0]
+                                offset = offset + 2
+                        elif value[1] == "Fixed":
+                            tlen = value[2]
                         else:
                             tlen = typeLengths[value[1]]
-                        tmp[value[0]] = llTypes.llEncodeType(data[offset:offset+tlen], value[1])
+                        tmp[value[0]] = llTypes.llEncodeType(data[offset:offset+tlen], value[1], value[2] if value[1] == "Variable" else None)
                         offset = offset + tlen
                     tmp2.append(tmp)
                 setattr(self, key[0], tmp2)
@@ -135,15 +148,18 @@ class baseMessage:
                     tmp = {}
                     for value in self.structure[key[0]]:
                         tlen = 0
-                        if value[1] == "Variable1":
-                            tlen = struct.unpack_from(">B", data, offset)[0]
-                            offset = offset + 1
-                        elif value[1] == "Variable2":
-                            tlen = struct.unpack_from(">H", data, offset)[0]
-                            offset = offset + 2
+                        if value[1] == "Variable":
+                            if value[2] == 1:
+                                tlen = struct.unpack_from(">B", data, offset)[0]
+                                offset = offset + 1
+                            elif value[2] == 2:
+                                tlen = struct.unpack_from(">H", data, offset)[0]
+                                offset = offset + 2
+                        elif value[1] == "Fixed":
+                            tlen = value[2]
                         else:
                             tlen = typeLengths[value[1]]
-                        tmp[value[0]] = llTypes.llEncodeType(data[offset:offset+tlen], value[1])
+                        tmp[value[0]] = llTypes.llEncodeType(data[offset:offset+tlen], value[1], value[2] if value[1] == "Variable" else None)
                         offset = offset + tlen
                     outblock.append(tmp)
                 setattr(self, key[0], outblock)

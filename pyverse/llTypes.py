@@ -27,7 +27,7 @@ class fixed:
     
     def __str__(self):
         try:
-            return "<FIXED=%s>"%self.data.decode()
+            return self.data.decode()
         except:
             return "<FIXED: %i>"%len(self.data)
 
@@ -65,7 +65,10 @@ class variable:
         return len(data)
     
     def __str__(self):
-        return "<VARIABLE %i: %i>"%(self.type,len(self.data))
+        try:
+            return self.data.decode()
+        except:
+            return "<VARIABLE %i: %i>"%(self.type,len(self.data))
             
     def __repr__(self):
         return "<VARIABLE %i: %i>"%(self.type,len(self.data))
@@ -308,15 +311,13 @@ def llDecodeType(t, ty = None):
     elif ty == "BOOL" or t == bool:
         return struct.pack(">B", 1 if t == True else 0)
         
-def llEncodeType(t, ty = None):
+def llEncodeType(t, ty = None, vlen = None):
     if ty == "Null":
         return null()
     elif ty == "Fixed":
         return fixed(t)
-    elif ty == "Variable1":
-        return variable(1, t)
-    elif ty == "Variable2":
-        return variable(2, t)
+    elif ty == "Variable":
+        return variable(vlen, t)
     elif ty == "U8":
         return struct.unpack("<B", t)[0]
     elif ty == "U16":

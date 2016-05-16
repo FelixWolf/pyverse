@@ -124,9 +124,10 @@ for message in a:
             structures = structures + "        \"%s\": [\n"%message[i][0][0]
             for x in message[i]:
                 if type(x[0]) != str:
-                    if x[0][1] == "Variable":
-                        x[0][1] = x[0][1]+x[0][2]
-                    structures = structures + "            (\"%s\", \"%s\"),\n"%(x[0][0],x[0][1])
+                    add = ""
+                    if x[0][1] == "Variable" or x[0][1] == "Fixed":
+                        add = ", %s"%x[0][2]
+                    structures = structures + "            (\"%s\", \"%s\"%s),\n"%(x[0][0],x[0][1],add)
             structures = structures[:-2]+"\n"
             structures = structures + "        ],\n"
         result = result + template%(messageName,messageName,id,frequency,"True" if trusted else "False","True" if zerocoded else "False",blocks,structures[:-2],messageName)

@@ -152,7 +152,7 @@ class NeighborList(message.baseMessage):
             ("PublicIP", "IPADDR"),
             ("PublicPort", "IPPORT"),
             ("RegionID", "LLUUID"),
-            ("Name", "Variable1"),
+            ("Name", "Variable", 1),
             ("SimAccess", "U8")
         ]
     }
@@ -177,7 +177,7 @@ class AvatarTextureUpdate(message.baseMessage):
         "WearableData": [
             ("CacheID", "LLUUID"),
             ("TextureIndex", "U8"),
-            ("HostName", "Variable1")
+            ("HostName", "Variable", 1)
         ],
         "TextureData": [
             ("TextureID", "LLUUID")
@@ -259,7 +259,7 @@ class SimulatorReady(message.baseMessage):
     ]
     structure = {
         "SimulatorBlock": [
-            ("SimName", "Variable1"),
+            ("SimName", "Variable", 1),
             ("SimAccess", "U8"),
             ("RegionFlags", "U32"),
             ("RegionID", "LLUUID"),
@@ -286,7 +286,7 @@ class TelehubInfo(message.baseMessage):
     structure = {
         "TelehubBlock": [
             ("ObjectID", "LLUUID"),
-            ("ObjectName", "Variable1"),
+            ("ObjectName", "Variable", 1),
             ("TelehubPos", "LLVector3"),
             ("TelehubRot", "LLQuaternion")
         ],
@@ -320,7 +320,7 @@ class SimulatorPresentAtLocation(message.baseMessage):
             ("Port", "IPPORT")
         ],
         "SimulatorBlock": [
-            ("SimName", "Variable1"),
+            ("SimName", "Variable", 1),
             ("SimAccess", "U8"),
             ("RegionFlags", "U32"),
             ("RegionID", "LLUUID"),
@@ -421,7 +421,7 @@ class RegionPresenceResponse(message.baseMessage):
             ("ExternalRegionIP", "IPADDR"),
             ("RegionPort", "IPPORT"),
             ("ValidUntil", "F64"),
-            ("Message", "Variable1")
+            ("Message", "Variable", 1)
         ]
     }
 registerMessage(RegionPresenceResponse)
@@ -438,7 +438,7 @@ class UpdateSimulator(message.baseMessage):
     structure = {
         "SimulatorInfo": [
             ("RegionID", "LLUUID"),
-            ("SimName", "Variable1"),
+            ("SimName", "Variable", 1),
             ("EstateID", "U32"),
             ("SimAccess", "U8")
         ]
@@ -459,7 +459,7 @@ class LogDwellTime(message.baseMessage):
             ("AgentID", "LLUUID"),
             ("SessionID", "LLUUID"),
             ("Duration", "F32"),
-            ("SimName", "Variable1"),
+            ("SimName", "Variable", 1),
             ("RegionX", "U32"),
             ("RegionY", "U32"),
             ("AvgAgentsInView", "U8"),
@@ -479,7 +479,7 @@ class FeatureDisabled(message.baseMessage):
     ]
     structure = {
         "FailureInfo": [
-            ("ErrorMessage", "Variable1"),
+            ("ErrorMessage", "Variable", 1),
             ("AgentID", "LLUUID"),
             ("TransactionID", "LLUUID")
         ]
@@ -535,11 +535,11 @@ class UserReportInternal(message.baseMessage):
             ("CreatorID", "LLUUID"),
             ("RegionID", "LLUUID"),
             ("AbuserID", "LLUUID"),
-            ("AbuseRegionName", "Variable1"),
+            ("AbuseRegionName", "Variable", 1),
             ("AbuseRegionID", "LLUUID"),
-            ("Summary", "Variable1"),
-            ("Details", "Variable2"),
-            ("VersionString", "Variable1")
+            ("Summary", "Variable", 1),
+            ("Details", "Variable", 2),
+            ("VersionString", "Variable", 1)
         ]
     }
 registerMessage(UserReportInternal)
@@ -556,13 +556,13 @@ class SetSimStatusInDatabase(message.baseMessage):
     structure = {
         "Data": [
             ("RegionID", "LLUUID"),
-            ("HostName", "Variable1"),
+            ("HostName", "Variable", 1),
             ("X", "S32"),
             ("Y", "S32"),
             ("PID", "S32"),
             ("AgentCount", "S32"),
             ("TimeToLive", "S32"),
-            ("Status", "Variable1")
+            ("Status", "Variable", 1)
         ]
     }
 registerMessage(SetSimStatusInDatabase)
@@ -579,13 +579,13 @@ class SetSimPresenceInDatabase(message.baseMessage):
     structure = {
         "SimData": [
             ("RegionID", "LLUUID"),
-            ("HostName", "Variable1"),
+            ("HostName", "Variable", 1),
             ("GridX", "U32"),
             ("GridY", "U32"),
             ("PID", "S32"),
             ("AgentCount", "S32"),
             ("TimeToLive", "S32"),
-            ("Status", "Variable1")
+            ("Status", "Variable", 1)
         ]
     }
 registerMessage(SetSimPresenceInDatabase)
@@ -653,7 +653,7 @@ class AvatarPickerRequest(message.baseMessage):
             ("QueryID", "LLUUID")
         ],
         "Data": [
-            ("Name", "Variable1")
+            ("Name", "Variable", 1)
         ]
     }
 registerMessage(AvatarPickerRequest)
@@ -676,7 +676,7 @@ class AvatarPickerRequestBackend(message.baseMessage):
             ("GodLevel", "U8")
         ],
         "Data": [
-            ("Name", "Variable1")
+            ("Name", "Variable", 1)
         ]
     }
 registerMessage(AvatarPickerRequestBackend)
@@ -698,8 +698,8 @@ class AvatarPickerReply(message.baseMessage):
         ],
         "Data": [
             ("AvatarID", "LLUUID"),
-            ("FirstName", "Variable1"),
-            ("LastName", "Variable1")
+            ("FirstName", "Variable", 1),
+            ("LastName", "Variable", 1)
         ]
     }
 registerMessage(AvatarPickerReply)
@@ -725,10 +725,10 @@ class PlacesQuery(message.baseMessage):
             ("TransactionID", "LLUUID")
         ],
         "QueryData": [
-            ("QueryText", "Variable1"),
+            ("QueryText", "Variable", 1),
             ("QueryFlags", "U32"),
             ("Category", "S8"),
-            ("SimName", "Variable1")
+            ("SimName", "Variable", 1)
         ]
     }
 registerMessage(PlacesQuery)
@@ -754,15 +754,15 @@ class PlacesReply(message.baseMessage):
         ],
         "QueryData": [
             ("OwnerID", "LLUUID"),
-            ("Name", "Variable1"),
-            ("Desc", "Variable1"),
+            ("Name", "Variable", 1),
+            ("Desc", "Variable", 1),
             ("ActualArea", "S32"),
             ("BillableArea", "S32"),
             ("Flags", "U8"),
             ("GlobalX", "F32"),
             ("GlobalY", "F32"),
             ("GlobalZ", "F32"),
-            ("SimName", "Variable1"),
+            ("SimName", "Variable", 1),
             ("SnapshotID", "LLUUID"),
             ("Dwell", "F32"),
             ("Price", "S32")
@@ -787,7 +787,7 @@ class DirFindQuery(message.baseMessage):
         ],
         "QueryData": [
             ("QueryID", "LLUUID"),
-            ("QueryText", "Variable1"),
+            ("QueryText", "Variable", 1),
             ("QueryFlags", "U32"),
             ("QueryStart", "S32")
         ]
@@ -810,7 +810,7 @@ class DirFindQueryBackend(message.baseMessage):
         ],
         "QueryData": [
             ("QueryID", "LLUUID"),
-            ("QueryText", "Variable1"),
+            ("QueryText", "Variable", 1),
             ("QueryFlags", "U32"),
             ("QueryStart", "S32"),
             ("EstateID", "U32"),
@@ -836,10 +836,10 @@ class DirPlacesQuery(message.baseMessage):
         ],
         "QueryData": [
             ("QueryID", "LLUUID"),
-            ("QueryText", "Variable1"),
+            ("QueryText", "Variable", 1),
             ("QueryFlags", "U32"),
             ("Category", "S8"),
-            ("SimName", "Variable1"),
+            ("SimName", "Variable", 1),
             ("QueryStart", "S32")
         ]
     }
@@ -861,10 +861,10 @@ class DirPlacesQueryBackend(message.baseMessage):
         ],
         "QueryData": [
             ("QueryID", "LLUUID"),
-            ("QueryText", "Variable1"),
+            ("QueryText", "Variable", 1),
             ("QueryFlags", "U32"),
             ("Category", "S8"),
-            ("SimName", "Variable1"),
+            ("SimName", "Variable", 1),
             ("EstateID", "U32"),
             ("Godlike", "BOOL"),
             ("QueryStart", "S32")
@@ -893,7 +893,7 @@ class DirPlacesReply(message.baseMessage):
         ],
         "QueryReplies": [
             ("ParcelID", "LLUUID"),
-            ("Name", "Variable1"),
+            ("Name", "Variable", 1),
             ("ForSale", "BOOL"),
             ("Auction", "BOOL"),
             ("Dwell", "F32")
@@ -924,9 +924,9 @@ class DirPeopleReply(message.baseMessage):
         ],
         "QueryReplies": [
             ("AgentID", "LLUUID"),
-            ("FirstName", "Variable1"),
-            ("LastName", "Variable1"),
-            ("Group", "Variable1"),
+            ("FirstName", "Variable", 1),
+            ("LastName", "Variable", 1),
+            ("Group", "Variable", 1),
             ("Online", "BOOL"),
             ("Reputation", "S32")
         ]
@@ -954,9 +954,9 @@ class DirEventsReply(message.baseMessage):
         ],
         "QueryReplies": [
             ("OwnerID", "LLUUID"),
-            ("Name", "Variable1"),
+            ("Name", "Variable", 1),
             ("EventID", "U32"),
-            ("Date", "Variable1"),
+            ("Date", "Variable", 1),
             ("UnixTime", "U32"),
             ("EventFlags", "U32")
         ],
@@ -986,7 +986,7 @@ class DirGroupsReply(message.baseMessage):
         ],
         "QueryReplies": [
             ("GroupID", "LLUUID"),
-            ("GroupName", "Variable1"),
+            ("GroupName", "Variable", 1),
             ("Members", "S32"),
             ("SearchOrder", "F32")
         ]
@@ -1010,7 +1010,7 @@ class DirClassifiedQuery(message.baseMessage):
         ],
         "QueryData": [
             ("QueryID", "LLUUID"),
-            ("QueryText", "Variable1"),
+            ("QueryText", "Variable", 1),
             ("QueryFlags", "U32"),
             ("Category", "U32"),
             ("QueryStart", "S32")
@@ -1034,7 +1034,7 @@ class DirClassifiedQueryBackend(message.baseMessage):
         ],
         "QueryData": [
             ("QueryID", "LLUUID"),
-            ("QueryText", "Variable1"),
+            ("QueryText", "Variable", 1),
             ("QueryFlags", "U32"),
             ("Category", "U32"),
             ("EstateID", "U32"),
@@ -1065,7 +1065,7 @@ class DirClassifiedReply(message.baseMessage):
         ],
         "QueryReplies": [
             ("ClassifiedID", "LLUUID"),
-            ("Name", "Variable1"),
+            ("Name", "Variable", 1),
             ("ClassifiedFlags", "U8"),
             ("CreationDate", "U32"),
             ("ExpirationDate", "U32"),
@@ -1094,7 +1094,7 @@ class AvatarClassifiedReply(message.baseMessage):
         ],
         "Data": [
             ("ClassifiedID", "LLUUID"),
-            ("Name", "Variable1")
+            ("Name", "Variable", 1)
         ]
     }
 registerMessage(AvatarClassifiedReply)
@@ -1140,14 +1140,14 @@ class ClassifiedInfoReply(message.baseMessage):
             ("CreationDate", "U32"),
             ("ExpirationDate", "U32"),
             ("Category", "U32"),
-            ("Name", "Variable1"),
-            ("Desc", "Variable2"),
+            ("Name", "Variable", 1),
+            ("Desc", "Variable", 2),
             ("ParcelID", "LLUUID"),
             ("ParentEstate", "U32"),
             ("SnapshotID", "LLUUID"),
-            ("SimName", "Variable1"),
+            ("SimName", "Variable", 1),
             ("PosGlobal", "LLVector3d"),
-            ("ParcelName", "Variable1"),
+            ("ParcelName", "Variable", 1),
             ("ClassifiedFlags", "U8"),
             ("PriceForListing", "S32")
         ]
@@ -1172,8 +1172,8 @@ class ClassifiedInfoUpdate(message.baseMessage):
         "Data": [
             ("ClassifiedID", "LLUUID"),
             ("Category", "U32"),
-            ("Name", "Variable1"),
-            ("Desc", "Variable2"),
+            ("Name", "Variable", 1),
+            ("Desc", "Variable", 2),
             ("ParcelID", "LLUUID"),
             ("ParentEstate", "U32"),
             ("SnapshotID", "LLUUID"),
@@ -1300,7 +1300,7 @@ class DirLandReply(message.baseMessage):
         ],
         "QueryReplies": [
             ("ParcelID", "LLUUID"),
-            ("Name", "Variable1"),
+            ("Name", "Variable", 1),
             ("Auction", "BOOL"),
             ("ForSale", "BOOL"),
             ("SalePrice", "S32"),
@@ -1374,7 +1374,7 @@ class DirPopularReply(message.baseMessage):
         ],
         "QueryReplies": [
             ("ParcelID", "LLUUID"),
-            ("Name", "Variable1"),
+            ("Name", "Variable", 1),
             ("Dwell", "F32")
         ]
     }
@@ -1418,15 +1418,15 @@ class ParcelInfoReply(message.baseMessage):
         "Data": [
             ("ParcelID", "LLUUID"),
             ("OwnerID", "LLUUID"),
-            ("Name", "Variable1"),
-            ("Desc", "Variable1"),
+            ("Name", "Variable", 1),
+            ("Desc", "Variable", 1),
             ("ActualArea", "S32"),
             ("BillableArea", "S32"),
             ("Flags", "U8"),
             ("GlobalX", "F32"),
             ("GlobalY", "F32"),
             ("GlobalZ", "F32"),
-            ("SimName", "Variable1"),
+            ("SimName", "Variable", 1),
             ("SnapshotID", "LLUUID"),
             ("Dwell", "F32"),
             ("SalePrice", "S32"),
@@ -1514,8 +1514,8 @@ class GroupNoticesListReply(message.baseMessage):
         "Data": [
             ("NoticeID", "LLUUID"),
             ("Timestamp", "U32"),
-            ("FromName", "Variable2"),
-            ("Subject", "Variable2"),
+            ("FromName", "Variable", 2),
+            ("Subject", "Variable", 2),
             ("HasAttachment", "BOOL"),
             ("AssetType", "U8")
         ]
@@ -1561,9 +1561,9 @@ class GroupNoticeAdd(message.baseMessage):
             ("ToGroupID", "LLUUID"),
             ("ID", "LLUUID"),
             ("Dialog", "U8"),
-            ("FromAgentName", "Variable1"),
-            ("Message", "Variable2"),
-            ("BinaryBucket", "Variable2")
+            ("FromAgentName", "Variable", 1),
+            ("Message", "Variable", 2),
+            ("BinaryBucket", "Variable", 2)
         ]
     }
 registerMessage(GroupNoticeAdd)
@@ -1668,7 +1668,7 @@ class TeleportProgress(message.baseMessage):
         ],
         "Info": [
             ("TeleportFlags", "U32"),
-            ("Message", "Variable1")
+            ("Message", "Variable", 1)
         ]
     }
 registerMessage(TeleportProgress)
@@ -1729,7 +1729,7 @@ class TeleportFinish(message.baseMessage):
             ("SimIP", "IPADDR"),
             ("SimPort", "IPPORT"),
             ("RegionHandle", "U64"),
-            ("SeedCapability", "Variable2"),
+            ("SeedCapability", "Variable", 2),
             ("SimAccess", "U8"),
             ("TeleportFlags", "U32")
         ]
@@ -1754,7 +1754,7 @@ class StartLure(message.baseMessage):
         ],
         "Info": [
             ("LureType", "U8"),
-            ("Message", "Variable1")
+            ("Message", "Variable", 1)
         ],
         "TargetData": [
             ("TargetID", "LLUUID")
@@ -1827,11 +1827,11 @@ class TeleportFailed(message.baseMessage):
     structure = {
         "Info": [
             ("AgentID", "LLUUID"),
-            ("Reason", "Variable1")
+            ("Reason", "Variable", 1)
         ],
         "AlertInfo": [
-            ("Message", "Variable1"),
-            ("ExtraParams", "Variable1")
+            ("Message", "Variable", 1),
+            ("ExtraParams", "Variable", 1)
         ]
     }
 registerMessage(TeleportFailed)
@@ -1976,7 +1976,7 @@ class ChatFromViewer(message.baseMessage):
             ("SessionID", "LLUUID")
         ],
         "ChatData": [
-            ("Message", "Variable2"),
+            ("Message", "Variable", 2),
             ("Type", "U8"),
             ("Channel", "S32")
         ]
@@ -2001,7 +2001,7 @@ class AgentThrottle(message.baseMessage):
         ],
         "Throttle": [
             ("GenCounter", "U32"),
-            ("Throttles", "Variable1")
+            ("Throttles", "Variable", 1)
         ]
     }
 registerMessage(AgentThrottle)
@@ -2077,7 +2077,7 @@ class AgentSetAppearance(message.baseMessage):
             ("TextureIndex", "U8")
         ],
         "ObjectData": [
-            ("TextureEntry", "Variable2")
+            ("TextureEntry", "Variable", 2)
         ],
         "VisualParam": [
             ("ParamValue", "U8")
@@ -2106,7 +2106,7 @@ class AgentAnimation(message.baseMessage):
             ("StartAnim", "BOOL")
         ],
         "PhysicalAvatarEventList": [
-            ("TypeData", "Variable1")
+            ("TypeData", "Variable", 1)
         ]
     }
 registerMessage(AgentAnimation)
@@ -2393,7 +2393,7 @@ class MultipleObjectUpdate(message.baseMessage):
         "ObjectData": [
             ("ObjectLocalID", "U32"),
             ("Type", "U8"),
-            ("Data", "Variable1")
+            ("Data", "Variable", 1)
         ]
     }
 registerMessage(MultipleObjectUpdate)
@@ -2555,8 +2555,8 @@ class ObjectImage(message.baseMessage):
         ],
         "ObjectData": [
             ("ObjectLocalID", "U32"),
-            ("MediaURL", "Variable1"),
-            ("TextureEntry", "Variable2")
+            ("MediaURL", "Variable", 1),
+            ("TextureEntry", "Variable", 2)
         ]
     }
 registerMessage(ObjectImage)
@@ -2642,7 +2642,7 @@ class ObjectExtraParams(message.baseMessage):
             ("ParamType", "U16"),
             ("ParamInUse", "BOOL"),
             ("ParamSize", "U32"),
-            ("ParamData", "Variable1")
+            ("ParamData", "Variable", 1)
         ]
     }
 registerMessage(ObjectExtraParams)
@@ -2829,7 +2829,7 @@ class ObjectName(message.baseMessage):
         ],
         "ObjectData": [
             ("LocalID", "U32"),
-            ("Name", "Variable1")
+            ("Name", "Variable", 1)
         ]
     }
 registerMessage(ObjectName)
@@ -2851,7 +2851,7 @@ class ObjectDescription(message.baseMessage):
         ],
         "ObjectData": [
             ("LocalID", "U32"),
-            ("Description", "Variable1")
+            ("Description", "Variable", 1)
         ]
     }
 registerMessage(ObjectDescription)
@@ -3293,7 +3293,7 @@ class StateSave(message.baseMessage):
             ("SessionID", "LLUUID")
         ],
         "DataBlock": [
-            ("Filename", "Variable1")
+            ("Filename", "Variable", 1)
         ]
     }
 registerMessage(StateSave)
@@ -3407,9 +3407,9 @@ class ViewerStats(message.baseMessage):
             ("MetersTraveled", "F64"),
             ("RegionsVisited", "S32"),
             ("SysRAM", "U32"),
-            ("SysOS", "Variable1"),
-            ("SysCPU", "Variable1"),
-            ("SysGPU", "Variable1")
+            ("SysOS", "Variable", 1),
+            ("SysCPU", "Variable", 1),
+            ("SysGPU", "Variable", 1)
         ],
         "DownloadTotals": [
             ("World", "U32"),
@@ -3483,11 +3483,11 @@ class UserReport(message.baseMessage):
             ("ScreenshotID", "LLUUID"),
             ("ObjectID", "LLUUID"),
             ("AbuserID", "LLUUID"),
-            ("AbuseRegionName", "Variable1"),
+            ("AbuseRegionName", "Variable", 1),
             ("AbuseRegionID", "LLUUID"),
-            ("Summary", "Variable1"),
-            ("Details", "Variable2"),
-            ("VersionString", "Variable1")
+            ("Summary", "Variable", 1),
+            ("Details", "Variable", 2),
+            ("VersionString", "Variable", 1)
         ]
     }
 registerMessage(UserReport)
@@ -3504,11 +3504,11 @@ class AlertMessage(message.baseMessage):
     ]
     structure = {
         "AlertData": [
-            ("Message", "Variable1")
+            ("Message", "Variable", 1)
         ],
         "AlertInfo": [
-            ("Message", "Variable1"),
-            ("ExtraParams", "Variable1")
+            ("Message", "Variable", 1),
+            ("ExtraParams", "Variable", 1)
         ]
     }
 registerMessage(AlertMessage)
@@ -3529,7 +3529,7 @@ class AgentAlertMessage(message.baseMessage):
         ],
         "AlertData": [
             ("Modal", "BOOL"),
-            ("Message", "Variable1")
+            ("Message", "Variable", 1)
         ]
     }
 registerMessage(AgentAlertMessage)
@@ -3597,14 +3597,14 @@ class ChatFromSimulator(message.baseMessage):
     ]
     structure = {
         "ChatData": [
-            ("FromName", "Variable1"),
+            ("FromName", "Variable", 1),
             ("SourceID", "LLUUID"),
             ("OwnerID", "LLUUID"),
             ("SourceType", "U8"),
             ("ChatType", "U8"),
             ("Audible", "U8"),
             ("Position", "LLVector3"),
-            ("Message", "Variable2")
+            ("Message", "Variable", 2)
         ]
     }
 registerMessage(ChatFromSimulator)
@@ -3676,7 +3676,7 @@ class RegionInfo(message.baseMessage):
             ("SessionID", "LLUUID")
         ],
         "RegionInfo": [
-            ("SimName", "Variable1"),
+            ("SimName", "Variable", 1),
             ("EstateID", "U32"),
             ("ParentEstateID", "U32"),
             ("RegionFlags", "U32"),
@@ -3694,8 +3694,8 @@ class RegionInfo(message.baseMessage):
             ("SunHour", "F32")
         ],
         "RegionInfo2": [
-            ("ProductSKU", "Variable1"),
-            ("ProductName", "Variable1"),
+            ("ProductSKU", "Variable", 1),
+            ("ProductName", "Variable", 1),
             ("MaxAgents32", "U32"),
             ("HardMaxAgents", "U32"),
             ("HardMaxObjects", "U32")
@@ -3723,7 +3723,7 @@ class GodUpdateRegionInfo(message.baseMessage):
             ("SessionID", "LLUUID")
         ],
         "RegionInfo": [
-            ("SimName", "Variable1"),
+            ("SimName", "Variable", 1),
             ("EstateID", "U32"),
             ("ParentEstateID", "U32"),
             ("RegionFlags", "U32"),
@@ -3818,7 +3818,7 @@ class RegionHandshake(message.baseMessage):
         "RegionInfo": [
             ("RegionFlags", "U32"),
             ("SimAccess", "U8"),
-            ("SimName", "Variable1"),
+            ("SimName", "Variable", 1),
             ("SimOwner", "LLUUID"),
             ("IsEstateManager", "BOOL"),
             ("WaterHeight", "F32"),
@@ -3847,9 +3847,9 @@ class RegionHandshake(message.baseMessage):
         "RegionInfo3": [
             ("CPUClassID", "S32"),
             ("CPURatio", "S32"),
-            ("ColoName", "Variable1"),
-            ("ProductSKU", "Variable1"),
-            ("ProductName", "Variable1")
+            ("ColoName", "Variable", 1),
+            ("ProductSKU", "Variable", 1),
+            ("ProductName", "Variable", 1)
         ],
         "RegionInfo4": [
             ("RegionFlagsExtended", "U64"),
@@ -3924,7 +3924,7 @@ class ImageData(message.baseMessage):
             ("Packets", "U16")
         ],
         "ImageData": [
-            ("Data", "Variable2")
+            ("Data", "Variable", 2)
         ]
     }
 registerMessage(ImageData)
@@ -3945,7 +3945,7 @@ class ImagePacket(message.baseMessage):
             ("Packet", "U16")
         ],
         "ImageData": [
-            ("Data", "Variable2")
+            ("Data", "Variable", 2)
         ]
     }
 registerMessage(ImagePacket)
@@ -3965,7 +3965,7 @@ class LayerData(message.baseMessage):
             ("Type", "U8")
         ],
         "LayerData": [
-            ("Data", "Variable2")
+            ("Data", "Variable", 2)
         ]
     }
 registerMessage(LayerData)
@@ -3994,7 +3994,7 @@ class ObjectUpdate(message.baseMessage):
             ("Material", "U8"),
             ("ClickAction", "U8"),
             ("Scale", "LLVector3"),
-            ("ObjectData", "Variable1"),
+            ("ObjectData", "Variable", 1),
             ("ParentID", "U32"),
             ("UpdateFlags", "U32"),
             ("PathCurve", "U8"),
@@ -4015,15 +4015,15 @@ class ObjectUpdate(message.baseMessage):
             ("ProfileBegin", "U16"),
             ("ProfileEnd", "U16"),
             ("ProfileHollow", "U16"),
-            ("TextureEntry", "Variable2"),
-            ("TextureAnim", "Variable1"),
-            ("NameValue", "Variable2"),
-            ("Data", "Variable2"),
-            ("Text", "Variable1"),
-            ("TextColor", "Fixed"),
-            ("MediaURL", "Variable1"),
-            ("PSBlock", "Variable1"),
-            ("ExtraParams", "Variable1"),
+            ("TextureEntry", "Variable", 2),
+            ("TextureAnim", "Variable", 1),
+            ("NameValue", "Variable", 2),
+            ("Data", "Variable", 2),
+            ("Text", "Variable", 1),
+            ("TextColor", "Fixed", 4),
+            ("MediaURL", "Variable", 1),
+            ("PSBlock", "Variable", 1),
+            ("ExtraParams", "Variable", 1),
             ("Sound", "LLUUID"),
             ("OwnerID", "LLUUID"),
             ("Gain", "F32"),
@@ -4053,7 +4053,7 @@ class ObjectUpdateCompressed(message.baseMessage):
         ],
         "ObjectData": [
             ("UpdateFlags", "U32"),
-            ("Data", "Variable2")
+            ("Data", "Variable", 2)
         ]
     }
 registerMessage(ObjectUpdateCompressed)
@@ -4097,8 +4097,8 @@ class ImprovedTerseObjectUpdate(message.baseMessage):
             ("TimeDilation", "U16")
         ],
         "ObjectData": [
-            ("Data", "Variable1"),
-            ("TextureEntry", "Variable2")
+            ("Data", "Variable", 1),
+            ("TextureEntry", "Variable", 2)
         ]
     }
 registerMessage(ImprovedTerseObjectUpdate)
@@ -4139,7 +4139,7 @@ class CrossedRegion(message.baseMessage):
             ("SimIP", "IPADDR"),
             ("SimPort", "IPPORT"),
             ("RegionHandle", "U64"),
-            ("SeedCapability", "Variable2")
+            ("SeedCapability", "Variable", 2)
         ],
         "Info": [
             ("Position", "LLVector3"),
@@ -4233,7 +4233,7 @@ class TransferRequest(message.baseMessage):
             ("ChannelType", "S32"),
             ("SourceType", "S32"),
             ("Priority", "F32"),
-            ("Params", "Variable2")
+            ("Params", "Variable", 2)
         ]
     }
 registerMessage(TransferRequest)
@@ -4254,7 +4254,7 @@ class TransferInfo(message.baseMessage):
             ("TargetType", "S32"),
             ("Status", "S32"),
             ("Size", "S32"),
-            ("Params", "Variable2")
+            ("Params", "Variable", 2)
         ]
     }
 registerMessage(TransferInfo)
@@ -4274,7 +4274,7 @@ class TransferPacket(message.baseMessage):
             ("ChannelType", "S32"),
             ("Packet", "S32"),
             ("Status", "S32"),
-            ("Data", "Variable2")
+            ("Data", "Variable", 2)
         ]
     }
 registerMessage(TransferPacket)
@@ -4308,7 +4308,7 @@ class RequestXfer(message.baseMessage):
     structure = {
         "XferID": [
             ("ID", "U64"),
-            ("Filename", "Variable1"),
+            ("Filename", "Variable", 1),
             ("FilePath", "U8"),
             ("DeleteOnCompletion", "BOOL"),
             ("UseBigPackets", "BOOL"),
@@ -4334,7 +4334,7 @@ class SendXferPacket(message.baseMessage):
             ("Packet", "U32")
         ],
         "DataPacket": [
-            ("Data", "Variable2")
+            ("Data", "Variable", 2)
         ]
     }
 registerMessage(SendXferPacket)
@@ -4397,7 +4397,7 @@ class AvatarAnimation(message.baseMessage):
             ("ObjectID", "LLUUID")
         ],
         "PhysicalAvatarEventList": [
-            ("TypeData", "Variable1")
+            ("TypeData", "Variable", 1)
         ]
     }
 registerMessage(AvatarAnimation)
@@ -4421,7 +4421,7 @@ class AvatarAppearance(message.baseMessage):
             ("IsTrial", "BOOL")
         ],
         "ObjectData": [
-            ("TextureEntry", "Variable2")
+            ("TextureEntry", "Variable", 2)
         ],
         "VisualParam": [
             ("ParamValue", "U8")
@@ -4548,11 +4548,11 @@ class ObjectProperties(message.baseMessage):
             ("FolderID", "LLUUID"),
             ("FromTaskID", "LLUUID"),
             ("LastOwnerID", "LLUUID"),
-            ("Name", "Variable1"),
-            ("Description", "Variable1"),
-            ("TouchName", "Variable1"),
-            ("SitName", "Variable1"),
-            ("TextureID", "Variable1")
+            ("Name", "Variable", 1),
+            ("Description", "Variable", 1),
+            ("TouchName", "Variable", 1),
+            ("SitName", "Variable", 1),
+            ("TextureID", "Variable", 1)
         ]
     }
 registerMessage(ObjectProperties)
@@ -4582,8 +4582,8 @@ class ObjectPropertiesFamily(message.baseMessage):
             ("SalePrice", "S32"),
             ("Category", "U32"),
             ("LastOwnerID", "LLUUID"),
-            ("Name", "Variable1"),
-            ("Description", "Variable1")
+            ("Name", "Variable", 1),
+            ("Description", "Variable", 1)
         ]
     }
 registerMessage(ObjectPropertiesFamily)
@@ -4643,7 +4643,7 @@ class KickUser(message.baseMessage):
         "UserInfo": [
             ("AgentID", "LLUUID"),
             ("SessionID", "LLUUID"),
-            ("Reason", "Variable2")
+            ("Reason", "Variable", 2)
         ]
     }
 registerMessage(KickUser)
@@ -4680,7 +4680,7 @@ class GodKickUser(message.baseMessage):
             ("GodSessionID", "LLUUID"),
             ("AgentID", "LLUUID"),
             ("KickFlags", "U32"),
-            ("Reason", "Variable2")
+            ("Reason", "Variable", 2)
         ]
     }
 registerMessage(GodKickUser)
@@ -4801,11 +4801,11 @@ class AvatarPropertiesReply(message.baseMessage):
             ("ImageID", "LLUUID"),
             ("FLImageID", "LLUUID"),
             ("PartnerID", "LLUUID"),
-            ("AboutText", "Variable2"),
-            ("FLAboutText", "Variable1"),
-            ("BornOn", "Variable1"),
-            ("ProfileURL", "Variable1"),
-            ("CharterMember", "Variable1"),
+            ("AboutText", "Variable", 2),
+            ("FLAboutText", "Variable", 1),
+            ("BornOn", "Variable", 1),
+            ("ProfileURL", "Variable", 1),
+            ("CharterMember", "Variable", 1),
             ("Flags", "U32")
         ]
     }
@@ -4828,10 +4828,10 @@ class AvatarInterestsReply(message.baseMessage):
         ],
         "PropertiesData": [
             ("WantToMask", "U32"),
-            ("WantToText", "Variable1"),
+            ("WantToText", "Variable", 1),
             ("SkillsMask", "U32"),
-            ("SkillsText", "Variable1"),
-            ("LanguagesText", "Variable1")
+            ("SkillsText", "Variable", 1),
+            ("LanguagesText", "Variable", 1)
         ]
     }
 registerMessage(AvatarInterestsReply)
@@ -4855,9 +4855,9 @@ class AvatarGroupsReply(message.baseMessage):
         "GroupData": [
             ("GroupPowers", "U64"),
             ("AcceptNotices", "BOOL"),
-            ("GroupTitle", "Variable1"),
+            ("GroupTitle", "Variable", 1),
             ("GroupID", "LLUUID"),
-            ("GroupName", "Variable1"),
+            ("GroupName", "Variable", 1),
             ("GroupInsigniaID", "LLUUID")
         ],
         "NewGroupData": [
@@ -4884,11 +4884,11 @@ class AvatarPropertiesUpdate(message.baseMessage):
         "PropertiesData": [
             ("ImageID", "LLUUID"),
             ("FLImageID", "LLUUID"),
-            ("AboutText", "Variable2"),
-            ("FLAboutText", "Variable1"),
+            ("AboutText", "Variable", 2),
+            ("FLAboutText", "Variable", 1),
             ("AllowPublish", "BOOL"),
             ("MaturePublish", "BOOL"),
-            ("ProfileURL", "Variable1")
+            ("ProfileURL", "Variable", 1)
         ]
     }
 registerMessage(AvatarPropertiesUpdate)
@@ -4910,10 +4910,10 @@ class AvatarInterestsUpdate(message.baseMessage):
         ],
         "PropertiesData": [
             ("WantToMask", "U32"),
-            ("WantToText", "Variable1"),
+            ("WantToText", "Variable", 1),
             ("SkillsMask", "U32"),
-            ("SkillsText", "Variable1"),
-            ("LanguagesText", "Variable1")
+            ("SkillsText", "Variable", 1),
+            ("LanguagesText", "Variable", 1)
         ]
     }
 registerMessage(AvatarInterestsUpdate)
@@ -4934,7 +4934,7 @@ class AvatarNotesReply(message.baseMessage):
         ],
         "Data": [
             ("TargetID", "LLUUID"),
-            ("Notes", "Variable2")
+            ("Notes", "Variable", 2)
         ]
     }
 registerMessage(AvatarNotesReply)
@@ -4956,7 +4956,7 @@ class AvatarNotesUpdate(message.baseMessage):
         ],
         "Data": [
             ("TargetID", "LLUUID"),
-            ("Notes", "Variable2")
+            ("Notes", "Variable", 2)
         ]
     }
 registerMessage(AvatarNotesUpdate)
@@ -4978,7 +4978,7 @@ class AvatarPicksReply(message.baseMessage):
         ],
         "Data": [
             ("PickID", "LLUUID"),
-            ("PickName", "Variable1")
+            ("PickName", "Variable", 1)
         ]
     }
 registerMessage(AvatarPicksReply)
@@ -5020,16 +5020,16 @@ class EventInfoReply(message.baseMessage):
         ],
         "EventData": [
             ("EventID", "U32"),
-            ("Creator", "Variable1"),
-            ("Name", "Variable1"),
-            ("Category", "Variable1"),
-            ("Desc", "Variable2"),
-            ("Date", "Variable1"),
+            ("Creator", "Variable", 1),
+            ("Name", "Variable", 1),
+            ("Category", "Variable", 1),
+            ("Desc", "Variable", 2),
+            ("Date", "Variable", 1),
             ("DateUTC", "U32"),
             ("Duration", "U32"),
             ("Cover", "U32"),
             ("Amount", "U32"),
-            ("SimName", "Variable1"),
+            ("SimName", "Variable", 1),
             ("GlobalPos", "LLVector3d"),
             ("EventFlags", "U32")
         ]
@@ -5099,7 +5099,7 @@ class EventGodDelete(message.baseMessage):
         ],
         "QueryData": [
             ("QueryID", "LLUUID"),
-            ("QueryText", "Variable1"),
+            ("QueryText", "Variable", 1),
             ("QueryFlags", "U32"),
             ("QueryStart", "S32")
         ]
@@ -5125,12 +5125,12 @@ class PickInfoReply(message.baseMessage):
             ("CreatorID", "LLUUID"),
             ("TopPick", "BOOL"),
             ("ParcelID", "LLUUID"),
-            ("Name", "Variable1"),
-            ("Desc", "Variable2"),
+            ("Name", "Variable", 1),
+            ("Desc", "Variable", 2),
             ("SnapshotID", "LLUUID"),
-            ("User", "Variable1"),
-            ("OriginalName", "Variable1"),
-            ("SimName", "Variable1"),
+            ("User", "Variable", 1),
+            ("OriginalName", "Variable", 1),
+            ("SimName", "Variable", 1),
             ("PosGlobal", "LLVector3d"),
             ("SortOrder", "S32"),
             ("Enabled", "BOOL")
@@ -5158,8 +5158,8 @@ class PickInfoUpdate(message.baseMessage):
             ("CreatorID", "LLUUID"),
             ("TopPick", "BOOL"),
             ("ParcelID", "LLUUID"),
-            ("Name", "Variable1"),
-            ("Desc", "Variable2"),
+            ("Name", "Variable", 1),
+            ("Desc", "Variable", 2),
             ("SnapshotID", "LLUUID"),
             ("PosGlobal", "LLVector3d"),
             ("SortOrder", "S32"),
@@ -5225,8 +5225,8 @@ class ScriptQuestion(message.baseMessage):
         "Data": [
             ("TaskID", "LLUUID"),
             ("ItemID", "LLUUID"),
-            ("ObjectName", "Variable1"),
-            ("ObjectOwner", "Variable1"),
+            ("ObjectName", "Variable", 1),
+            ("ObjectOwner", "Variable", 1),
             ("Questions", "S32")
         ],
         "Experience": [
@@ -5267,15 +5267,15 @@ class ScriptDialog(message.baseMessage):
     structure = {
         "Data": [
             ("ObjectID", "LLUUID"),
-            ("FirstName", "Variable1"),
-            ("LastName", "Variable1"),
-            ("ObjectName", "Variable1"),
-            ("Message", "Variable2"),
+            ("FirstName", "Variable", 1),
+            ("LastName", "Variable", 1),
+            ("ObjectName", "Variable", 1),
+            ("Message", "Variable", 2),
             ("ChatChannel", "S32"),
             ("ImageID", "LLUUID")
         ],
         "Buttons": [
-            ("ButtonLabel", "Variable1")
+            ("ButtonLabel", "Variable", 1)
         ],
         "OwnerData": [
             ("OwnerID", "LLUUID")
@@ -5302,7 +5302,7 @@ class ScriptDialogReply(message.baseMessage):
             ("ObjectID", "LLUUID"),
             ("ChatChannel", "S32"),
             ("ButtonIndex", "S32"),
-            ("ButtonLabel", "Variable1")
+            ("ButtonLabel", "Variable", 1)
         ]
     }
 registerMessage(ScriptDialogReply)
@@ -5357,12 +5357,12 @@ class LoadURL(message.baseMessage):
     ]
     structure = {
         "Data": [
-            ("ObjectName", "Variable1"),
+            ("ObjectName", "Variable", 1),
             ("ObjectID", "LLUUID"),
             ("OwnerID", "LLUUID"),
             ("OwnerIsGroup", "BOOL"),
-            ("Message", "Variable1"),
-            ("URL", "Variable1")
+            ("Message", "Variable", 1),
+            ("URL", "Variable", 1)
         ]
     }
 registerMessage(LoadURL)
@@ -5378,8 +5378,8 @@ class ScriptTeleportRequest(message.baseMessage):
     ]
     structure = {
         "Data": [
-            ("ObjectName", "Variable1"),
-            ("SimName", "Variable1"),
+            ("ObjectName", "Variable", 1),
+            ("SimName", "Variable", 1),
             ("SimPosition", "LLVector3"),
             ("LookAt", "LLVector3")
         ]
@@ -5398,7 +5398,7 @@ class ParcelOverlay(message.baseMessage):
     structure = {
         "ParcelData": [
             ("SequenceID", "S32"),
-            ("Data", "Variable2")
+            ("Data", "Variable", 2)
         ]
     }
 registerMessage(ParcelOverlay)
@@ -5478,7 +5478,7 @@ class ParcelProperties(message.baseMessage):
             ("RentPrice", "S32"),
             ("AABBMin", "LLVector3"),
             ("AABBMax", "LLVector3"),
-            ("Bitmap", "Variable2"),
+            ("Bitmap", "Variable", 2),
             ("Area", "S32"),
             ("Status", "U8"),
             ("SimWideMaxPrims", "S32"),
@@ -5493,10 +5493,10 @@ class ParcelProperties(message.baseMessage):
             ("OtherCleanTime", "S32"),
             ("ParcelFlags", "U32"),
             ("SalePrice", "S32"),
-            ("Name", "Variable1"),
-            ("Desc", "Variable1"),
-            ("MusicURL", "Variable1"),
-            ("MediaURL", "Variable1"),
+            ("Name", "Variable", 1),
+            ("Desc", "Variable", 1),
+            ("MusicURL", "Variable", 1),
+            ("MediaURL", "Variable", 1),
             ("MediaID", "LLUUID"),
             ("MediaAutoScale", "U8"),
             ("GroupID", "LLUUID"),
@@ -5539,10 +5539,10 @@ class ParcelPropertiesUpdate(message.baseMessage):
             ("Flags", "U32"),
             ("ParcelFlags", "U32"),
             ("SalePrice", "S32"),
-            ("Name", "Variable1"),
-            ("Desc", "Variable1"),
-            ("MusicURL", "Variable1"),
-            ("MediaURL", "Variable1"),
+            ("Name", "Variable", 1),
+            ("Desc", "Variable", 1),
+            ("MusicURL", "Variable", 1),
+            ("MediaURL", "Variable", 1),
             ("MediaID", "LLUUID"),
             ("MediaAutoScale", "U8"),
             ("GroupID", "LLUUID"),
@@ -5696,7 +5696,7 @@ class EstateCovenantReply(message.baseMessage):
         "Data": [
             ("CovenantID", "LLUUID"),
             ("CovenantTimestamp", "U32"),
-            ("EstateName", "Variable1"),
+            ("EstateName", "Variable", 1),
             ("EstateOwnerID", "LLUUID")
         ]
     }
@@ -6108,9 +6108,9 @@ class UpdateParcel(message.baseMessage):
             ("OwnerID", "LLUUID"),
             ("GroupOwned", "BOOL"),
             ("Status", "U8"),
-            ("Name", "Variable1"),
-            ("Description", "Variable1"),
-            ("MusicURL", "Variable1"),
+            ("Name", "Variable", 1),
+            ("Description", "Variable", 1),
+            ("MusicURL", "Variable", 1),
             ("RegionX", "F32"),
             ("RegionY", "F32"),
             ("ActualArea", "S32"),
@@ -6286,7 +6286,7 @@ class StartAuction(message.baseMessage):
         "ParcelData": [
             ("ParcelID", "LLUUID"),
             ("SnapshotID", "LLUUID"),
-            ("Name", "Variable1")
+            ("Name", "Variable", 1)
         ]
     }
 registerMessage(StartAuction)
@@ -6401,8 +6401,8 @@ class UUIDNameReply(message.baseMessage):
     structure = {
         "UUIDNameBlock": [
             ("ID", "LLUUID"),
-            ("FirstName", "Variable1"),
-            ("LastName", "Variable1")
+            ("FirstName", "Variable", 1),
+            ("LastName", "Variable", 1)
         ]
     }
 registerMessage(UUIDNameReply)
@@ -6435,7 +6435,7 @@ class UUIDGroupNameReply(message.baseMessage):
     structure = {
         "UUIDNameBlock": [
             ("ID", "LLUUID"),
-            ("GroupName", "Variable1")
+            ("GroupName", "Variable", 1)
         ]
     }
 registerMessage(UUIDGroupNameReply)
@@ -6455,12 +6455,12 @@ class ChatPass(message.baseMessage):
             ("Position", "LLVector3"),
             ("ID", "LLUUID"),
             ("OwnerID", "LLUUID"),
-            ("Name", "Variable1"),
+            ("Name", "Variable", 1),
             ("SourceType", "U8"),
             ("Type", "U8"),
             ("Radius", "F32"),
             ("SimAccess", "U8"),
-            ("Message", "Variable2")
+            ("Message", "Variable", 2)
         ]
     }
 registerMessage(ChatPass)
@@ -6478,7 +6478,7 @@ class EdgeDataPacket(message.baseMessage):
         "EdgeData": [
             ("LayerType", "U8"),
             ("Direction", "U8"),
-            ("LayerData", "Variable2")
+            ("LayerData", "Variable", 2)
         ]
     }
 registerMessage(EdgeDataPacket)
@@ -6532,7 +6532,7 @@ class ChildAgentUpdate(message.baseMessage):
             ("ChangedGrid", "BOOL"),
             ("Far", "F32"),
             ("Aspect", "F32"),
-            ("Throttles", "Variable1"),
+            ("Throttles", "Variable", 1),
             ("LocomotionState", "U32"),
             ("HeadRotation", "LLQuaternion"),
             ("BodyRotation", "LLQuaternion"),
@@ -6542,7 +6542,7 @@ class ChildAgentUpdate(message.baseMessage):
             ("AlwaysRun", "BOOL"),
             ("PreyAgent", "LLUUID"),
             ("AgentAccess", "U8"),
-            ("AgentTextures", "Variable2"),
+            ("AgentTextures", "Variable", 2),
             ("ActiveGroupID", "LLUUID")
         ],
         "GroupData": [
@@ -6558,7 +6558,7 @@ class ChildAgentUpdate(message.baseMessage):
             ("GranterID", "LLUUID")
         ],
         "NVPairData": [
-            ("NVPairs", "Variable2")
+            ("NVPairs", "Variable", 2)
         ],
         "VisualParam": [
             ("ParamValue", "U8")
@@ -6782,7 +6782,7 @@ class ScriptSensorRequest(message.baseMessage):
             ("SearchID", "LLUUID"),
             ("SearchPos", "LLVector3"),
             ("SearchDir", "LLQuaternion"),
-            ("SearchName", "Variable1"),
+            ("SearchName", "Variable", 1),
             ("Type", "S32"),
             ("Range", "F32"),
             ("Arc", "F32"),
@@ -6813,7 +6813,7 @@ class ScriptSensorReply(message.baseMessage):
             ("Position", "LLVector3"),
             ("Velocity", "LLVector3"),
             ("Rotation", "LLQuaternion"),
-            ("Name", "Variable1"),
+            ("Name", "Variable", 1),
             ("Type", "S32"),
             ("Range", "F32")
         ]
@@ -6861,7 +6861,7 @@ class AgentMovementComplete(message.baseMessage):
             ("Timestamp", "U32")
         ],
         "SimData": [
-            ("ChannelVersion", "Variable2")
+            ("ChannelVersion", "Variable", 2)
         ]
     }
 registerMessage(AgentMovementComplete)
@@ -6948,9 +6948,9 @@ class ImprovedInstantMessage(message.baseMessage):
             ("Dialog", "U8"),
             ("ID", "LLUUID"),
             ("Timestamp", "U32"),
-            ("FromAgentName", "Variable1"),
-            ("Message", "Variable2"),
-            ("BinaryBucket", "Variable2")
+            ("FromAgentName", "Variable", 1),
+            ("Message", "Variable", 2),
+            ("BinaryBucket", "Variable", 2)
         ]
     }
 registerMessage(ImprovedInstantMessage)
@@ -7057,11 +7057,11 @@ class GodlikeMessage(message.baseMessage):
             ("TransactionID", "LLUUID")
         ],
         "MethodData": [
-            ("Method", "Variable1"),
+            ("Method", "Variable", 1),
             ("Invoice", "LLUUID")
         ],
         "ParamList": [
-            ("Parameter", "Variable1")
+            ("Parameter", "Variable", 1)
         ]
     }
 registerMessage(GodlikeMessage)
@@ -7084,11 +7084,11 @@ class EstateOwnerMessage(message.baseMessage):
             ("TransactionID", "LLUUID")
         ],
         "MethodData": [
-            ("Method", "Variable1"),
+            ("Method", "Variable", 1),
             ("Invoice", "LLUUID")
         ],
         "ParamList": [
-            ("Parameter", "Variable1")
+            ("Parameter", "Variable", 1)
         ]
     }
 registerMessage(EstateOwnerMessage)
@@ -7111,11 +7111,11 @@ class GenericMessage(message.baseMessage):
             ("TransactionID", "LLUUID")
         ],
         "MethodData": [
-            ("Method", "Variable1"),
+            ("Method", "Variable", 1),
             ("Invoice", "LLUUID")
         ],
         "ParamList": [
-            ("Parameter", "Variable1")
+            ("Parameter", "Variable", 1)
         ]
     }
 registerMessage(GenericMessage)
@@ -7158,7 +7158,7 @@ class UpdateMuteListEntry(message.baseMessage):
         ],
         "MuteData": [
             ("MuteID", "LLUUID"),
-            ("MuteName", "Variable1"),
+            ("MuteName", "Variable", 1),
             ("MuteType", "S32"),
             ("MuteFlags", "U32")
         ]
@@ -7182,7 +7182,7 @@ class RemoveMuteListEntry(message.baseMessage):
         ],
         "MuteData": [
             ("MuteID", "LLUUID"),
-            ("MuteName", "Variable1")
+            ("MuteName", "Variable", 1)
         ]
     }
 registerMessage(RemoveMuteListEntry)
@@ -7249,8 +7249,8 @@ class UpdateInventoryItem(message.baseMessage):
             ("Flags", "U32"),
             ("SaleType", "U8"),
             ("SalePrice", "S32"),
-            ("Name", "Variable1"),
-            ("Description", "Variable1"),
+            ("Name", "Variable", 1),
+            ("Description", "Variable", 1),
             ("CreationDate", "S32"),
             ("CRC", "U32")
         ]
@@ -7292,8 +7292,8 @@ class UpdateCreateInventoryItem(message.baseMessage):
             ("Flags", "U32"),
             ("SaleType", "U8"),
             ("SalePrice", "S32"),
-            ("Name", "Variable1"),
-            ("Description", "Variable1"),
+            ("Name", "Variable", 1),
+            ("Description", "Variable", 1),
             ("CreationDate", "S32"),
             ("CRC", "U32")
         ]
@@ -7319,7 +7319,7 @@ class MoveInventoryItem(message.baseMessage):
         "InventoryData": [
             ("ItemID", "LLUUID"),
             ("FolderID", "LLUUID"),
-            ("NewName", "Variable1")
+            ("NewName", "Variable", 1)
         ]
     }
 registerMessage(MoveInventoryItem)
@@ -7344,7 +7344,7 @@ class CopyInventoryItem(message.baseMessage):
             ("OldAgentID", "LLUUID"),
             ("OldItemID", "LLUUID"),
             ("NewFolderID", "LLUUID"),
-            ("NewName", "Variable1")
+            ("NewName", "Variable", 1)
         ]
     }
 registerMessage(CopyInventoryItem)
@@ -7432,7 +7432,7 @@ class CreateInventoryFolder(message.baseMessage):
             ("FolderID", "LLUUID"),
             ("ParentID", "LLUUID"),
             ("Type", "S8"),
-            ("Name", "Variable1")
+            ("Name", "Variable", 1)
         ]
     }
 registerMessage(CreateInventoryFolder)
@@ -7456,7 +7456,7 @@ class UpdateInventoryFolder(message.baseMessage):
             ("FolderID", "LLUUID"),
             ("ParentID", "LLUUID"),
             ("Type", "S8"),
-            ("Name", "Variable1")
+            ("Name", "Variable", 1)
         ]
     }
 registerMessage(UpdateInventoryFolder)
@@ -7553,7 +7553,7 @@ class InventoryDescendents(message.baseMessage):
             ("FolderID", "LLUUID"),
             ("ParentID", "LLUUID"),
             ("Type", "S8"),
-            ("Name", "Variable1")
+            ("Name", "Variable", 1)
         ],
         "ItemData": [
             ("ItemID", "LLUUID"),
@@ -7573,8 +7573,8 @@ class InventoryDescendents(message.baseMessage):
             ("Flags", "U32"),
             ("SaleType", "U8"),
             ("SalePrice", "S32"),
-            ("Name", "Variable1"),
-            ("Description", "Variable1"),
+            ("Name", "Variable", 1),
+            ("Description", "Variable", 1),
             ("CreationDate", "S32"),
             ("CRC", "U32")
         ]
@@ -7635,8 +7635,8 @@ class FetchInventoryReply(message.baseMessage):
             ("Flags", "U32"),
             ("SaleType", "U8"),
             ("SalePrice", "S32"),
-            ("Name", "Variable1"),
-            ("Description", "Variable1"),
+            ("Name", "Variable", 1),
+            ("Description", "Variable", 1),
             ("CreationDate", "S32"),
             ("CRC", "U32")
         ]
@@ -7663,7 +7663,7 @@ class BulkUpdateInventory(message.baseMessage):
             ("FolderID", "LLUUID"),
             ("ParentID", "LLUUID"),
             ("Type", "S8"),
-            ("Name", "Variable1")
+            ("Name", "Variable", 1)
         ],
         "ItemData": [
             ("ItemID", "LLUUID"),
@@ -7684,8 +7684,8 @@ class BulkUpdateInventory(message.baseMessage):
             ("Flags", "U32"),
             ("SaleType", "U8"),
             ("SalePrice", "S32"),
-            ("Name", "Variable1"),
-            ("Description", "Variable1"),
+            ("Name", "Variable", 1),
+            ("Description", "Variable", 1),
             ("CreationDate", "S32"),
             ("CRC", "U32")
         ]
@@ -7813,8 +7813,8 @@ class UpdateTaskInventory(message.baseMessage):
             ("Flags", "U32"),
             ("SaleType", "U8"),
             ("SalePrice", "S32"),
-            ("Name", "Variable1"),
-            ("Description", "Variable1"),
+            ("Name", "Variable", 1),
+            ("Description", "Variable", 1),
             ("CreationDate", "S32"),
             ("CRC", "U32")
         ]
@@ -7900,7 +7900,7 @@ class ReplyTaskInventory(message.baseMessage):
         "InventoryData": [
             ("TaskID", "LLUUID"),
             ("Serial", "S16"),
-            ("Filename", "Variable1")
+            ("Filename", "Variable", 1)
         ]
     }
 registerMessage(ReplyTaskInventory)
@@ -8001,8 +8001,8 @@ class RezObject(message.baseMessage):
             ("Flags", "U32"),
             ("SaleType", "U8"),
             ("SalePrice", "S32"),
-            ("Name", "Variable1"),
-            ("Description", "Variable1"),
+            ("Name", "Variable", 1),
+            ("Description", "Variable", 1),
             ("CreationDate", "S32"),
             ("CRC", "U32")
         ]
@@ -8282,8 +8282,8 @@ class RezScript(message.baseMessage):
             ("Flags", "U32"),
             ("SaleType", "U8"),
             ("SalePrice", "S32"),
-            ("Name", "Variable1"),
-            ("Description", "Variable1"),
+            ("Name", "Variable", 1),
+            ("Description", "Variable", 1),
             ("CreationDate", "S32"),
             ("CRC", "U32")
         ]
@@ -8313,8 +8313,8 @@ class CreateInventoryItem(message.baseMessage):
             ("Type", "S8"),
             ("InvType", "S8"),
             ("WearableType", "U8"),
-            ("Name", "Variable1"),
-            ("Description", "Variable1")
+            ("Name", "Variable", 1),
+            ("Description", "Variable", 1)
         ]
     }
 registerMessage(CreateInventoryItem)
@@ -8340,7 +8340,7 @@ class CreateLandmarkForEvent(message.baseMessage):
         ],
         "InventoryBlock": [
             ("FolderID", "LLUUID"),
-            ("Name", "Variable1")
+            ("Name", "Variable", 1)
         ]
     }
 registerMessage(CreateLandmarkForEvent)
@@ -8443,7 +8443,7 @@ class MoneyTransferRequest(message.baseMessage):
             ("AggregatePermNextOwner", "U8"),
             ("AggregatePermInventory", "U8"),
             ("TransactionType", "S32"),
-            ("Description", "Variable1")
+            ("Description", "Variable", 1)
         ]
     }
 registerMessage(MoneyTransferRequest)
@@ -8471,7 +8471,7 @@ class MoneyTransferBackend(message.baseMessage):
             ("RegionID", "LLUUID"),
             ("GridX", "U32"),
             ("GridY", "U32"),
-            ("Description", "Variable1")
+            ("Description", "Variable", 1)
         ]
     }
 registerMessage(MoneyTransferBackend)
@@ -8515,7 +8515,7 @@ class MoneyBalanceReply(message.baseMessage):
             ("MoneyBalance", "S32"),
             ("SquareMetersCredit", "S32"),
             ("SquareMetersCommitted", "S32"),
-            ("Description", "Variable1")
+            ("Description", "Variable", 1)
         ],
         "TransactionInfo": [
             ("TransactionType", "S32"),
@@ -8524,7 +8524,7 @@ class MoneyBalanceReply(message.baseMessage):
             ("DestID", "LLUUID"),
             ("IsDestGroup", "BOOL"),
             ("Amount", "S32"),
-            ("ItemDescription", "Variable1")
+            ("ItemDescription", "Variable", 1)
         ]
     }
 registerMessage(MoneyBalanceReply)
@@ -8552,7 +8552,7 @@ class RoutedMoneyBalanceReply(message.baseMessage):
             ("MoneyBalance", "S32"),
             ("SquareMetersCredit", "S32"),
             ("SquareMetersCommitted", "S32"),
-            ("Description", "Variable1")
+            ("Description", "Variable", 1)
         ],
         "TransactionInfo": [
             ("TransactionType", "S32"),
@@ -8561,7 +8561,7 @@ class RoutedMoneyBalanceReply(message.baseMessage):
             ("DestID", "LLUUID"),
             ("IsDestGroup", "BOOL"),
             ("Amount", "S32"),
-            ("ItemDescription", "Variable1")
+            ("ItemDescription", "Variable", 1)
         ]
     }
 registerMessage(RoutedMoneyBalanceReply)
@@ -8625,7 +8625,7 @@ class MuteListUpdate(message.baseMessage):
     structure = {
         "MuteData": [
             ("AgentID", "LLUUID"),
-            ("Filename", "Variable1")
+            ("Filename", "Variable", 1)
         ]
     }
 registerMessage(MuteListUpdate)
@@ -8737,7 +8737,7 @@ class SetStartLocationRequest(message.baseMessage):
             ("SessionID", "LLUUID")
         ],
         "StartLocationData": [
-            ("SimName", "Variable1"),
+            ("SimName", "Variable", 1),
             ("LocationID", "U32"),
             ("LocationPos", "LLVector3"),
             ("LocationLookAt", "LLVector3")
@@ -8834,7 +8834,7 @@ class NameValuePair(message.baseMessage):
             ("ID", "LLUUID")
         ],
         "NameValueData": [
-            ("NVPair", "Variable2")
+            ("NVPair", "Variable", 2)
         ]
     }
 registerMessage(NameValuePair)
@@ -8854,7 +8854,7 @@ class RemoveNameValuePair(message.baseMessage):
             ("ID", "LLUUID")
         ],
         "NameValueData": [
-            ("NVPair", "Variable2")
+            ("NVPair", "Variable", 2)
         ]
     }
 registerMessage(RemoveNameValuePair)
@@ -8901,8 +8901,8 @@ class UpdateAttachment(message.baseMessage):
             ("Flags", "U32"),
             ("SaleType", "U8"),
             ("SalePrice", "S32"),
-            ("Name", "Variable1"),
-            ("Description", "Variable1"),
+            ("Name", "Variable", 1),
+            ("Description", "Variable", 1),
             ("CreationDate", "S32"),
             ("CRC", "U32")
         ]
@@ -9023,7 +9023,7 @@ class AssetUploadRequest(message.baseMessage):
             ("Type", "S8"),
             ("Tempfile", "BOOL"),
             ("StoreLocal", "BOOL"),
-            ("AssetData", "Variable2")
+            ("AssetData", "Variable", 2)
         ]
     }
 registerMessage(AssetUploadRequest)
@@ -9058,8 +9058,8 @@ class EmailMessageRequest(message.baseMessage):
     structure = {
         "DataBlock": [
             ("ObjectID", "LLUUID"),
-            ("FromAddress", "Variable1"),
-            ("Subject", "Variable1")
+            ("FromAddress", "Variable", 1),
+            ("Subject", "Variable", 1)
         ]
     }
 registerMessage(EmailMessageRequest)
@@ -9078,10 +9078,10 @@ class EmailMessageReply(message.baseMessage):
             ("ObjectID", "LLUUID"),
             ("More", "U32"),
             ("Time", "U32"),
-            ("FromAddress", "Variable1"),
-            ("Subject", "Variable1"),
-            ("Data", "Variable2"),
-            ("MailFilter", "Variable1")
+            ("FromAddress", "Variable", 1),
+            ("Subject", "Variable", 1),
+            ("Data", "Variable", 2),
+            ("MailFilter", "Variable", 1)
         ]
     }
 registerMessage(EmailMessageReply)
@@ -9097,10 +9097,10 @@ class InternalScriptMail(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ("From", "Variable1"),
+            ("From", "Variable", 1),
             ("To", "LLUUID"),
-            ("Subject", "Variable1"),
-            ("Body", "Variable2")
+            ("Subject", "Variable", 1),
+            ("Body", "Variable", 2)
         ]
     }
 registerMessage(InternalScriptMail)
@@ -9118,7 +9118,7 @@ class ScriptDataRequest(message.baseMessage):
         "DataBlock": [
             ("Hash", "U64"),
             ("RequestType", "S8"),
-            ("Request", "Variable2")
+            ("Request", "Variable", 2)
         ]
     }
 registerMessage(ScriptDataRequest)
@@ -9135,7 +9135,7 @@ class ScriptDataReply(message.baseMessage):
     structure = {
         "DataBlock": [
             ("Hash", "U64"),
-            ("Reply", "Variable2")
+            ("Reply", "Variable", 2)
         ]
     }
 registerMessage(ScriptDataReply)
@@ -9156,8 +9156,8 @@ class CreateGroupRequest(message.baseMessage):
             ("SessionID", "LLUUID")
         ],
         "GroupData": [
-            ("Name", "Variable1"),
-            ("Charter", "Variable2"),
+            ("Name", "Variable", 1),
+            ("Charter", "Variable", 2),
             ("ShowInList", "BOOL"),
             ("InsigniaID", "LLUUID"),
             ("MembershipFee", "S32"),
@@ -9185,7 +9185,7 @@ class CreateGroupReply(message.baseMessage):
         "ReplyData": [
             ("GroupID", "LLUUID"),
             ("Success", "BOOL"),
-            ("Message", "Variable1")
+            ("Message", "Variable", 1)
         ]
     }
 registerMessage(CreateGroupReply)
@@ -9207,7 +9207,7 @@ class UpdateGroupInfo(message.baseMessage):
         ],
         "GroupData": [
             ("GroupID", "LLUUID"),
-            ("Charter", "Variable2"),
+            ("Charter", "Variable", 2),
             ("ShowInList", "BOOL"),
             ("InsigniaID", "LLUUID"),
             ("MembershipFee", "S32"),
@@ -9458,10 +9458,10 @@ class GroupProfileReply(message.baseMessage):
         ],
         "GroupData": [
             ("GroupID", "LLUUID"),
-            ("Name", "Variable1"),
-            ("Charter", "Variable2"),
+            ("Name", "Variable", 1),
+            ("Charter", "Variable", 2),
             ("ShowInList", "BOOL"),
-            ("MemberTitle", "Variable1"),
+            ("MemberTitle", "Variable", 1),
             ("PowersMask", "U64"),
             ("InsigniaID", "LLUUID"),
             ("FounderID", "LLUUID"),
@@ -9520,7 +9520,7 @@ class GroupAccountSummaryReply(message.baseMessage):
             ("RequestID", "LLUUID"),
             ("IntervalDays", "S32"),
             ("CurrentInterval", "S32"),
-            ("StartDate", "Variable1"),
+            ("StartDate", "Variable", 1),
             ("Balance", "S32"),
             ("TotalCredits", "S32"),
             ("TotalDebits", "S32"),
@@ -9535,8 +9535,8 @@ class GroupAccountSummaryReply(message.baseMessage):
             ("GroupTaxEstimate", "S32"),
             ("ParcelDirFeeEstimate", "S32"),
             ("NonExemptMembers", "S32"),
-            ("LastTaxDate", "Variable1"),
-            ("TaxDate", "Variable1")
+            ("LastTaxDate", "Variable", 1),
+            ("TaxDate", "Variable", 1)
         ]
     }
 registerMessage(GroupAccountSummaryReply)
@@ -9585,10 +9585,10 @@ class GroupAccountDetailsReply(message.baseMessage):
             ("RequestID", "LLUUID"),
             ("IntervalDays", "S32"),
             ("CurrentInterval", "S32"),
-            ("StartDate", "Variable1")
+            ("StartDate", "Variable", 1)
         ],
         "HistoryData": [
-            ("Description", "Variable1"),
+            ("Description", "Variable", 1),
             ("Amount", "S32")
         ]
     }
@@ -9638,13 +9638,13 @@ class GroupAccountTransactionsReply(message.baseMessage):
             ("RequestID", "LLUUID"),
             ("IntervalDays", "S32"),
             ("CurrentInterval", "S32"),
-            ("StartDate", "Variable1")
+            ("StartDate", "Variable", 1)
         ],
         "HistoryData": [
-            ("Time", "Variable1"),
-            ("User", "Variable1"),
+            ("Time", "Variable", 1),
+            ("User", "Variable", 1),
             ("Type", "S32"),
-            ("Item", "Variable1"),
+            ("Item", "Variable", 1),
             ("Amount", "S32")
         ]
     }
@@ -9698,14 +9698,14 @@ class GroupActiveProposalItemReply(message.baseMessage):
         "ProposalData": [
             ("VoteID", "LLUUID"),
             ("VoteInitiator", "LLUUID"),
-            ("TerseDateID", "Variable1"),
-            ("StartDateTime", "Variable1"),
-            ("EndDateTime", "Variable1"),
+            ("TerseDateID", "Variable", 1),
+            ("StartDateTime", "Variable", 1),
+            ("EndDateTime", "Variable", 1),
             ("AlreadyVoted", "BOOL"),
-            ("VoteCast", "Variable1"),
+            ("VoteCast", "Variable", 1),
             ("Majority", "F32"),
             ("Quorum", "S32"),
-            ("ProposalText", "Variable1")
+            ("ProposalText", "Variable", 1)
         ]
     }
 registerMessage(GroupActiveProposalItemReply)
@@ -9758,19 +9758,19 @@ class GroupVoteHistoryItemReply(message.baseMessage):
         ],
         "HistoryItemData": [
             ("VoteID", "LLUUID"),
-            ("TerseDateID", "Variable1"),
-            ("StartDateTime", "Variable1"),
-            ("EndDateTime", "Variable1"),
+            ("TerseDateID", "Variable", 1),
+            ("StartDateTime", "Variable", 1),
+            ("EndDateTime", "Variable", 1),
             ("VoteInitiator", "LLUUID"),
-            ("VoteType", "Variable1"),
-            ("VoteResult", "Variable1"),
+            ("VoteType", "Variable", 1),
+            ("VoteResult", "Variable", 1),
             ("Majority", "F32"),
             ("Quorum", "S32"),
-            ("ProposalText", "Variable2")
+            ("ProposalText", "Variable", 2)
         ],
         "VoteItem": [
             ("CandidateID", "LLUUID"),
-            ("VoteCast", "Variable1"),
+            ("VoteCast", "Variable", 1),
             ("NumVotes", "S32")
         ]
     }
@@ -9796,7 +9796,7 @@ class StartGroupProposal(message.baseMessage):
             ("Quorum", "S32"),
             ("Majority", "F32"),
             ("Duration", "S32"),
-            ("ProposalText", "Variable1")
+            ("ProposalText", "Variable", 1)
         ]
     }
 registerMessage(StartGroupProposal)
@@ -9819,7 +9819,7 @@ class GroupProposalBallot(message.baseMessage):
         "ProposalData": [
             ("ProposalID", "LLUUID"),
             ("GroupID", "LLUUID"),
-            ("VoteCast", "Variable1")
+            ("VoteCast", "Variable", 1)
         ]
     }
 registerMessage(GroupProposalBallot)
@@ -9883,9 +9883,9 @@ class GroupMembersReply(message.baseMessage):
         "MemberData": [
             ("AgentID", "LLUUID"),
             ("Contribution", "S32"),
-            ("OnlineStatus", "Variable1"),
+            ("OnlineStatus", "Variable", 1),
             ("AgentPowers", "U64"),
-            ("Title", "Variable1"),
+            ("Title", "Variable", 1),
             ("IsOwner", "BOOL")
         ]
     }
@@ -10001,9 +10001,9 @@ class GroupRoleDataReply(message.baseMessage):
         ],
         "RoleData": [
             ("RoleID", "LLUUID"),
-            ("Name", "Variable1"),
-            ("Title", "Variable1"),
-            ("Description", "Variable1"),
+            ("Name", "Variable", 1),
+            ("Title", "Variable", 1),
+            ("Description", "Variable", 1),
             ("Powers", "U64"),
             ("Members", "U32")
         ]
@@ -10092,7 +10092,7 @@ class GroupTitlesReply(message.baseMessage):
             ("RequestID", "LLUUID")
         ],
         "GroupData": [
-            ("Title", "Variable1"),
+            ("Title", "Variable", 1),
             ("RoleID", "LLUUID"),
             ("Selected", "BOOL")
         ]
@@ -10136,9 +10136,9 @@ class GroupRoleUpdate(message.baseMessage):
         ],
         "RoleData": [
             ("RoleID", "LLUUID"),
-            ("Name", "Variable1"),
-            ("Description", "Variable1"),
-            ("Title", "Variable1"),
+            ("Name", "Variable", 1),
+            ("Description", "Variable", 1),
+            ("Title", "Variable", 1),
             ("Powers", "U64"),
             ("UpdateType", "U8")
         ]
@@ -10175,7 +10175,7 @@ class LiveHelpGroupReply(message.baseMessage):
         "ReplyData": [
             ("RequestID", "LLUUID"),
             ("GroupID", "LLUUID"),
-            ("Selection", "Variable1")
+            ("Selection", "Variable", 1)
         ]
     }
 registerMessage(LiveHelpGroupReply)
@@ -10285,7 +10285,7 @@ class AgentCachedTextureResponse(message.baseMessage):
         "WearableData": [
             ("TextureID", "LLUUID"),
             ("TextureIndex", "U8"),
-            ("HostName", "Variable1")
+            ("HostName", "Variable", 1)
         ]
     }
 registerMessage(AgentCachedTextureResponse)
@@ -10319,12 +10319,12 @@ class AgentDataUpdate(message.baseMessage):
     structure = {
         "AgentData": [
             ("AgentID", "LLUUID"),
-            ("FirstName", "Variable1"),
-            ("LastName", "Variable1"),
-            ("GroupTitle", "Variable1"),
+            ("FirstName", "Variable", 1),
+            ("LastName", "Variable", 1),
+            ("GroupTitle", "Variable", 1),
             ("ActiveGroupID", "LLUUID"),
             ("GroupPowers", "U64"),
-            ("GroupName", "Variable1")
+            ("GroupName", "Variable", 1)
         ]
     }
 registerMessage(AgentDataUpdate)
@@ -10343,7 +10343,7 @@ class GroupDataUpdate(message.baseMessage):
             ("AgentID", "LLUUID"),
             ("GroupID", "LLUUID"),
             ("AgentPowers", "U64"),
-            ("GroupTitle", "Variable1")
+            ("GroupTitle", "Variable", 1)
         ]
     }
 registerMessage(GroupDataUpdate)
@@ -10368,7 +10368,7 @@ class AgentGroupDataUpdate(message.baseMessage):
             ("AcceptNotices", "BOOL"),
             ("GroupInsigniaID", "LLUUID"),
             ("Contribution", "S32"),
-            ("GroupName", "Variable1")
+            ("GroupName", "Variable", 1)
         ]
     }
 registerMessage(AgentGroupDataUpdate)
@@ -10406,7 +10406,7 @@ class LogTextMessage(message.baseMessage):
             ("GlobalX", "F64"),
             ("GlobalY", "F64"),
             ("Time", "U32"),
-            ("Message", "Variable2")
+            ("Message", "Variable", 2)
         ]
     }
 registerMessage(LogTextMessage)
@@ -10431,8 +10431,8 @@ class ViewerEffect(message.baseMessage):
             ("AgentID", "LLUUID"),
             ("Type", "U8"),
             ("Duration", "F32"),
-            ("Color", "Fixed"),
-            ("TypeData", "Variable1")
+            ("Color", "Fixed", 4),
+            ("TypeData", "Variable", 1)
         ]
     }
 registerMessage(ViewerEffect)
@@ -10449,7 +10449,7 @@ class CreateTrustedCircuit(message.baseMessage):
     structure = {
         "DataBlock": [
             ("EndPointID", "LLUUID"),
-            ("Digest", "Fixed")
+            ("Digest", "Fixed", 32)
         ]
     }
 registerMessage(CreateTrustedCircuit)
@@ -10507,8 +10507,8 @@ class RezSingleAttachmentFromInv(message.baseMessage):
             ("GroupMask", "U32"),
             ("EveryoneMask", "U32"),
             ("NextOwnerMask", "U32"),
-            ("Name", "Variable1"),
-            ("Description", "Variable1")
+            ("Name", "Variable", 1),
+            ("Description", "Variable", 1)
         ]
     }
 registerMessage(RezSingleAttachmentFromInv)
@@ -10542,8 +10542,8 @@ class RezMultipleAttachmentsFromInv(message.baseMessage):
             ("GroupMask", "U32"),
             ("EveryoneMask", "U32"),
             ("NextOwnerMask", "U32"),
-            ("Name", "Variable1"),
-            ("Description", "Variable1")
+            ("Name", "Variable", 1),
+            ("Description", "Variable", 1)
         ]
     }
 registerMessage(RezMultipleAttachmentsFromInv)
@@ -10624,8 +10624,8 @@ class UserInfoReply(message.baseMessage):
         ],
         "UserData": [
             ("IMViaEMail", "BOOL"),
-            ("DirectoryVisibility", "Variable1"),
-            ("EMail", "Variable2")
+            ("DirectoryVisibility", "Variable", 1),
+            ("EMail", "Variable", 2)
         ]
     }
 registerMessage(UserInfoReply)
@@ -10647,7 +10647,7 @@ class UpdateUserInfo(message.baseMessage):
         ],
         "UserData": [
             ("IMViaEMail", "BOOL"),
-            ("DirectoryVisibility", "Variable1")
+            ("DirectoryVisibility", "Variable", 1)
         ]
     }
 registerMessage(UpdateUserInfo)
@@ -10664,7 +10664,7 @@ class ParcelRename(message.baseMessage):
     structure = {
         "ParcelData": [
             ("ParcelID", "LLUUID"),
-            ("NewName", "Variable1")
+            ("NewName", "Variable", 1)
         ]
     }
 registerMessage(ParcelRename)
@@ -10684,8 +10684,8 @@ class InitiateDownload(message.baseMessage):
             ("AgentID", "LLUUID")
         ],
         "FileData": [
-            ("SimFilename", "Variable1"),
-            ("ViewerFilename", "Variable1")
+            ("SimFilename", "Variable", 1),
+            ("ViewerFilename", "Variable", 1)
         ]
     }
 registerMessage(InitiateDownload)
@@ -10702,12 +10702,12 @@ class SystemMessage(message.baseMessage):
     ]
     structure = {
         "MethodData": [
-            ("Method", "Variable1"),
+            ("Method", "Variable", 1),
             ("Invoice", "LLUUID"),
-            ("Digest", "Fixed")
+            ("Digest", "Fixed", 32)
         ],
         "ParamList": [
-            ("Parameter", "Variable1")
+            ("Parameter", "Variable", 1)
         ]
     }
 registerMessage(SystemMessage)
@@ -10803,7 +10803,7 @@ class MapNameRequest(message.baseMessage):
             ("Godlike", "BOOL")
         ],
         "NameData": [
-            ("Name", "Variable1")
+            ("Name", "Variable", 1)
         ]
     }
 registerMessage(MapNameRequest)
@@ -10826,7 +10826,7 @@ class MapBlockReply(message.baseMessage):
         "Data": [
             ("X", "U16"),
             ("Y", "U16"),
-            ("Name", "Variable1"),
+            ("Name", "Variable", 1),
             ("Access", "U8"),
             ("RegionFlags", "U32"),
             ("WaterHeight", "U8"),
@@ -10886,7 +10886,7 @@ class MapItemReply(message.baseMessage):
             ("ID", "LLUUID"),
             ("Extra", "S32"),
             ("Extra2", "S32"),
-            ("Name", "Variable1")
+            ("Name", "Variable", 1)
         ]
     }
 registerMessage(MapItemReply)
@@ -10906,11 +10906,11 @@ class SendPostcard(message.baseMessage):
             ("SessionID", "LLUUID"),
             ("AssetID", "LLUUID"),
             ("PosGlobal", "LLVector3d"),
-            ("To", "Variable1"),
-            ("From", "Variable1"),
-            ("Name", "Variable1"),
-            ("Subject", "Variable1"),
-            ("Msg", "Variable2"),
+            ("To", "Variable", 1),
+            ("From", "Variable", 1),
+            ("Name", "Variable", 1),
+            ("Subject", "Variable", 1),
+            ("Msg", "Variable", 2),
             ("AllowPublish", "BOOL"),
             ("MaturePublish", "BOOL")
         ]
@@ -10974,7 +10974,7 @@ class RpcScriptRequestInbound(message.baseMessage):
             ("ItemID", "LLUUID"),
             ("ChannelID", "LLUUID"),
             ("IntValue", "U32"),
-            ("StringValue", "Variable2")
+            ("StringValue", "Variable", 2)
         ]
     }
 registerMessage(RpcScriptRequestInbound)
@@ -10996,7 +10996,7 @@ class RpcScriptRequestInboundForward(message.baseMessage):
             ("ItemID", "LLUUID"),
             ("ChannelID", "LLUUID"),
             ("IntValue", "U32"),
-            ("StringValue", "Variable2")
+            ("StringValue", "Variable", 2)
         ]
     }
 registerMessage(RpcScriptRequestInboundForward)
@@ -11016,7 +11016,7 @@ class RpcScriptReplyInbound(message.baseMessage):
             ("ItemID", "LLUUID"),
             ("ChannelID", "LLUUID"),
             ("IntValue", "U32"),
-            ("StringValue", "Variable2")
+            ("StringValue", "Variable", 2)
         ]
     }
 registerMessage(RpcScriptReplyInbound)
@@ -11032,7 +11032,7 @@ class ScriptMailRegistration(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ("TargetIP", "Variable1"),
+            ("TargetIP", "Variable", 1),
             ("TargetPort", "IPPORT"),
             ("TaskID", "LLUUID"),
             ("Flags", "U32")
@@ -11070,13 +11070,13 @@ class ParcelMediaUpdate(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ("MediaURL", "Variable1"),
+            ("MediaURL", "Variable", 1),
             ("MediaID", "LLUUID"),
             ("MediaAutoScale", "U8")
         ],
         "DataBlockExtended": [
-            ("MediaType", "Variable1"),
-            ("MediaDesc", "Variable1"),
+            ("MediaType", "Variable", 1),
+            ("MediaDesc", "Variable", 1),
             ("MediaWidth", "S32"),
             ("MediaHeight", "S32"),
             ("MediaLoop", "U8")
@@ -11102,7 +11102,7 @@ class LandStatRequest(message.baseMessage):
         "RequestData": [
             ("ReportType", "U32"),
             ("RequestFlags", "U32"),
-            ("Filter", "Variable1"),
+            ("Filter", "Variable", 1),
             ("ParcelLocalID", "S32")
         ]
     }
@@ -11131,8 +11131,8 @@ class LandStatReply(message.baseMessage):
             ("LocationY", "F32"),
             ("LocationZ", "F32"),
             ("Score", "F32"),
-            ("TaskName", "Variable1"),
-            ("OwnerName", "Variable1")
+            ("TaskName", "Variable", 1),
+            ("OwnerName", "Variable", 1)
         ]
     }
 registerMessage(LandStatReply)
@@ -11153,11 +11153,11 @@ class Error(message.baseMessage):
         ],
         "Data": [
             ("Code", "S32"),
-            ("Token", "Variable1"),
+            ("Token", "Variable", 1),
             ("ID", "LLUUID"),
-            ("System", "Variable1"),
-            ("Message", "Variable2"),
-            ("Data", "Variable2")
+            ("System", "Variable", 1),
+            ("Message", "Variable", 2),
+            ("Data", "Variable", 2)
         ]
     }
 registerMessage(Error)
@@ -11217,8 +11217,8 @@ class RezRestoreToWorld(message.baseMessage):
             ("Flags", "U32"),
             ("SaleType", "U8"),
             ("SalePrice", "S32"),
-            ("Name", "Variable1"),
-            ("Description", "Variable1"),
+            ("Name", "Variable", 1),
+            ("Description", "Variable", 1),
             ("CreationDate", "S32"),
             ("CRC", "U32")
         ]
@@ -11247,8 +11247,8 @@ class LinkInventoryItem(message.baseMessage):
             ("OldItemID", "LLUUID"),
             ("Type", "S8"),
             ("InvType", "S8"),
-            ("Name", "Variable1"),
-            ("Description", "Variable1")
+            ("Name", "Variable", 1),
+            ("Description", "Variable", 1)
         ]
     }
 registerMessage(LinkInventoryItem)
