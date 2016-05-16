@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import struct
 import uuid as __uuid__
 class null:
@@ -54,26 +55,20 @@ class variable:
     
     def __bytes__(self):
         if type == 1:
-            return struct.pack("<B", len(data)) + data
+            return struct.pack("<B", len(self.data)) + self.data
         elif type == 2:
-            return struct.pack("<H", len(data)) + data
-    
+            return struct.pack("<H", len(self.data)) + self.data
+        #Fall back and hope for the best
+        return struct.pack("<B", len(self.data)) + self.data
+        
     def __len__(self):
         return len(data)
     
     def __str__(self):
-        try:
-            return self.data.decode()
-        except UnicodeDecodeError:
-            return "<VARIABLE %i=%s>"%(self.type,self.data.decode())
-        except:
-            return "<VARIABLE %i: %i>"%(self.type,len(self.data))
+        return "<VARIABLE %i: %i>"%(self.type,len(self.data))
             
     def __repr__(self):
-        try:
-            return "<VARIABLE %i=%s>"%(self.type,self.data.decode())
-        except:
-            return "<VARIABLE %i: %i>"%(self.type,len(self.data))
+        return "<VARIABLE %i: %i>"%(self.type,len(self.data))
 
 class vector3:
     x = 0
@@ -167,7 +162,7 @@ class quaternion:
         return "<%f, %f, %f, %f>"%(self.s, self.x, self.y, self.z)
     
     def __eq__(self, cmp):
-        if type(cmp) != vector4:
+        if type(cmp) != quaternion:
             return False
         if self.x != cmp.x:
             return False
@@ -179,7 +174,40 @@ class quaternion:
             return False
         return True
 
-class uuid:
+#Alias for people who can't spell quaternion
+rotation = quaternion
+
+class color4U:
+    r = 0
+    g = 0
+    b = 0
+    a = 0
+    def __init__(self, r=0, g=0, b=0, a=0):
+        self.r = r
+        self.g = g
+        self.b = b
+        self.a = a
+    
+    def __bytes__(self):
+        return struct.pack("<BBBB", self.r, self.g, self.b, self.a)
+    
+    def __str__(self):
+        return "<%i, %i, %i, %i>"%(self.r, self.g, self.b, self.a)
+    
+    def __eq__(self, cmp):
+        if type(cmp) != color4U:
+            return False
+        if self.r != cmp.r:
+            return False
+        if self.g != cmp.g:
+            return False
+        if self.b != cmp.b:
+            return False
+        if self.a != cmp.a:
+            return False
+        return True
+
+class LLUUID:
     UUID = __uuid__.UUID("00000000-0000-0000-0000-000000000000")
     def __init__(self, key = "00000000-0000-0000-0000-000000000000"):
         if type(key) == bytes:
@@ -197,7 +225,14 @@ class uuid:
         return str(self.UUID)
     
     def __len__(self):
+        #Always returns 16
         return 16
+        
+    def __eq__(self, other):
+        if type(other) == LLUUID:
+            if bytes(self) == bytes(other):
+                return True
+        return False
 
 class IPAddr:
     addr = [0,0,0,0]
@@ -245,29 +280,33 @@ class IPPort:
 def llDecodeType(t, ty = None):
     a = type(t)
     if a == null or a == fixed or a == variable or a == vector3 or \
-        a == vector3d or a == vector4 or a == quaternion or a == uuid or \
+        a == vector3d or a == vector4 or a == quaternion or a == LLUUID or \
         a == IPAddr or a == IPPort:
         return bytes(t)
     elif a == bytes:
         return t
     elif ty == "U8":
-        return struct.pack("B", t)
+        return struct.pack("<B", t)
     elif ty == "U16":
-        return struct.pack("H", t)
+        return struct.pack("<H", t)
     elif ty == "U32":
-        return struct.pack("I", t)
+        return struct.pack("<I", t)
     elif ty == "U64":
-        return struct.pack("Q", t)
+        return struct.pack("<Q", t)
     elif ty == "S8":
-        return struct.pack("b", t)
+        return struct.pack("<b", t)
     elif ty == "S16":
-        return struct.pack("h", t)
+        return struct.pack("<h", t)
     elif ty == "S32":
-        return struct.pack("i", t)
+        return struct.pack("<i", t)
     elif ty == "S64":
-        return struct.pack("q", t)
+        return struct.pack("<q", t)
+    elif ty == "F32":
+        return struct.pack("<f", t)
+    elif ty == "F64":
+        return struct.pack("<d", t)
     elif ty == "BOOL" or t == bool:
-        return struct.pack("B", 1 if t == True else 0)
+        return struct.pack(">B", 1 if t == True else 0)
         
 def llEncodeType(t, ty = None):
     if ty == "Null":
@@ -279,21 +318,25 @@ def llEncodeType(t, ty = None):
     elif ty == "Variable2":
         return variable(2, t)
     elif ty == "U8":
-        return struct.unpack("B", t)[0]
+        return struct.unpack("<B", t)[0]
     elif ty == "U16":
-        return struct.unpack("H", t)[0]
+        return struct.unpack("<H", t)[0]
     elif ty == "U32":
-        return struct.unpack("I", t)[0]
+        return struct.unpack("<I", t)[0]
     elif ty == "U64":
-        return struct.unpack("Q", t)[0]
+        return struct.unpack("<Q", t)[0]
     elif ty == "S8":
-        return struct.unpack("b", t)[0]
+        return struct.unpack("<b", t)[0]
     elif ty == "S16":
-        return struct.unpack("h", t)[0]
+        return struct.unpack("<h", t)[0]
     elif ty == "S32":
-        return struct.unpack("i", t)[0]
+        return struct.unpack("<i", t)[0]
     elif ty == "S64":
-        return struct.unpack("q", t)[0]
+        return struct.unpack("<q", t)[0]
+    elif ty == "F32":
+        return struct.unpack("<f", t)[0]
+    elif ty == "F64":
+        return struct.unpack("<d", t)[0]
     elif ty == "LLVector3":
         tmp = struct.unpack("<fff", t)
         return vector3(tmp[0],tmp[1],tmp[2])
@@ -314,4 +357,4 @@ def llEncodeType(t, ty = None):
     elif ty == "BOOL" or t == bool:
         return struct.pack("B", 1 if t == True else 0)
     elif ty == "LLUUID":
-        return uuid(t)
+        return LLUUID(t)
