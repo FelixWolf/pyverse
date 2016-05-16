@@ -39,62 +39,62 @@ class simMonitor:
     def update(self, stats):
         for stat in stats:
             name = "None"
-            if stat[0] == const.LL_SIM_STAT_TIME_DILATION:
+            if stat["StatID"] == const.LL_SIM_STAT_TIME_DILATION:
                 name = "timeDilation"
-            elif stat[0] == const.LL_SIM_STAT_FPS:
+            elif stat["StatID"] == const.LL_SIM_STAT_FPS:
                 name = "FPS"
-            elif stat[0] == const.LL_SIM_STAT_PHYSFPS:
+            elif stat["StatID"] == const.LL_SIM_STAT_PHYSFPS:
                 name = "physFPS"
-            elif stat[0] == const.LL_SIM_STAT_AGENTUPS:
+            elif stat["StatID"] == const.LL_SIM_STAT_AGENTUPS:
                 name = "agentUpdates"
-            elif stat[0] == const.LL_SIM_STAT_FRAMEMS:
+            elif stat["StatID"] == const.LL_SIM_STAT_FRAMEMS:
                 name = "frameMS"
-            elif stat[0] == const.LL_SIM_STAT_NETMS:
+            elif stat["StatID"] == const.LL_SIM_STAT_NETMS:
                 name = "netMS"
-            elif stat[0] == const.LL_SIM_STAT_SIMOTHERMS:
+            elif stat["StatID"] == const.LL_SIM_STAT_SIMOTHERMS:
                 name = "otherMS"
-            elif stat[0] == const.LL_SIM_STAT_SIMPHYSICSMS:
+            elif stat["StatID"] == const.LL_SIM_STAT_SIMPHYSICSMS:
                 name = "physicsMS"
-            elif stat[0] == const.LL_SIM_STAT_AGENTMS:
+            elif stat["StatID"] == const.LL_SIM_STAT_AGENTMS:
                 name = "agentMS"
-            elif stat[0] == const.LL_SIM_STAT_IMAGESMS:
+            elif stat["StatID"] == const.LL_SIM_STAT_IMAGESMS:
                 name = "imagesMS"
-            elif stat[0] == const.LL_SIM_STAT_SCRIPTMS:
+            elif stat["StatID"] == const.LL_SIM_STAT_SCRIPTMS:
                 name = "scriptMS"
-            elif stat[0] == const.LL_SIM_STAT_NUMTASKS:
+            elif stat["StatID"] == const.LL_SIM_STAT_NUMTASKS:
                 name = "tasks"
-            elif stat[0] == const.LL_SIM_STAT_NUMTASKSACTIVE:
+            elif stat["StatID"] == const.LL_SIM_STAT_NUMTASKSACTIVE:
                 name = "tasksActive"
-            elif stat[0] == const.LL_SIM_STAT_NUMAGENTMAIN:
+            elif stat["StatID"] == const.LL_SIM_STAT_NUMAGENTMAIN:
                 name = "agentsMain"
-            elif stat[0] == const.LL_SIM_STAT_NUMAGENTCHILD:
+            elif stat["StatID"] == const.LL_SIM_STAT_NUMAGENTCHILD:
                 name = "agentsChild"
-            elif stat[0] == const.LL_SIM_STAT_NUMSCRIPTSACTIVE:
+            elif stat["StatID"] == const.LL_SIM_STAT_NUMSCRIPTSACTIVE:
                 name = "scriptsActive"
-            elif stat[0] == const.LL_SIM_STAT_LSLIPS:
+            elif stat["StatID"] == const.LL_SIM_STAT_LSLIPS:
                 name = "LSLIPS"
-            elif stat[0] == const.LL_SIM_STAT_INPPS:
+            elif stat["StatID"] == const.LL_SIM_STAT_INPPS:
                 name = "packetsIn"
-            elif stat[0] == const.LL_SIM_STAT_OUTPPS:
+            elif stat["StatID"] == const.LL_SIM_STAT_OUTPPS:
                 name = "packetsOut"
-            elif stat[0] == const.LL_SIM_STAT_PENDING_DOWNLOADS:
+            elif stat["StatID"] == const.LL_SIM_STAT_PENDING_DOWNLOADS:
                 name = "pendingDownloads"
-            elif stat[0] == const.LL_SIM_STAT_PENDING_UPLOADS:
+            elif stat["StatID"] == const.LL_SIM_STAT_PENDING_UPLOADS:
                 name = "pendingUploads"
-            elif stat[0] == const.LL_SIM_STAT_PENDING_LOCAL_UPLOADS:
+            elif stat["StatID"] == const.LL_SIM_STAT_PENDING_LOCAL_UPLOADS:
                 name = "pendingLocalUploads"
-            elif stat[0] == const.LL_SIM_STAT_TOTAL_UNACKED_BYTES:
+            elif stat["StatID"] == const.LL_SIM_STAT_TOTAL_UNACKED_BYTES:
                 name = "TotalUnackedBytes"
-            elif stat[0] == const.LL_SIM_STAT_PHYSICS_PINNED_TASKS:
+            elif stat["StatID"] == const.LL_SIM_STAT_PHYSICS_PINNED_TASKS:
                 name = "physicsPinnedTasks"
-            elif stat[0] == const.LL_SIM_STAT_PHYSICS_LOD_TASKS:
+            elif stat["StatID"] == const.LL_SIM_STAT_PHYSICS_LOD_TASKS:
                 name = "physicsLODTasks"
-            elif stat[0] == const.LL_SIM_STAT_SIMPHYSICSSTEPMS:
+            elif stat["StatID"] == const.LL_SIM_STAT_SIMPHYSICSSTEPMS:
                 name = "simPhysicsStepMS"
-            elif stat[0] == const.LL_SIM_STAT_SIMPHYSICSSHAPEMS:
+            elif stat["StatID"] == const.LL_SIM_STAT_SIMPHYSICSSHAPEMS:
                 name = "simPhysicsShapeMS"
-            elif stat[0] == const.LL_SIM_STAT_SIMPHYSICSOTHERMS:
+            elif stat["StatID"] == const.LL_SIM_STAT_SIMPHYSICSOTHERMS:
                 name = "simPhysicsOtherMS"
-            elif stat[0] == const.LL_SIM_STAT_SIMPHYSICSMEMORY:
+            elif stat["StatID"] == const.LL_SIM_STAT_SIMPHYSICSMEMORY:
                 name = "simPhysicsMemory"
-            setattr(self, name, stat[1])
+            setattr(self, name, stat["StatValue"])

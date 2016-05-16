@@ -65,8 +65,8 @@ class objectAccountant:
     
     def updateObject(self, objectData):
         """Register/update an object from message data"""
-        id = objectData["FullID"]
-        if id not in objectDB:
+        id = objectData["ID"]
+        if id not in self.objectDB:
             self.objectDB[id] = llObject()
         self.objectDB[id].id = id #For self referencing
         self.objectDB[id].state = objectData["State"]
@@ -74,9 +74,9 @@ class objectAccountant:
         self.objectDB[id].pCode = objectData["PCode"]
         self.objectDB[id].material = objectData["Material"]
         self.objectDB[id].clickAction = objectData["ClickAction"]
-        self.objectDB[id].scale = objectData["scale"]
+        self.objectDB[id].scale = objectData["Scale"]
         #Impliment objectData decoder here: self.objectDB[id].objectData = decodeObjectData(objectData["ObjectData"])
-        self.objectDB[id].parent = objectData["parentID"]
+        self.objectDB[id].parent = objectData["ParentID"]
         self.objectDB[id].flags = objectData["UpdateFlags"]
         self.objectDB[id].profileCurve = objectData["ProfileCurve"]
         self.objectDB[id].pathBegin = objectData["PathBegin"]
@@ -105,14 +105,14 @@ class objectAccountant:
         #Impliment Extra decoder here: self.objectDB[id].extraParams = decodeExtraParams(objectData["ExtraParams"])
 
         self.objectDB[id].sound = objectData["Sound"]
-        self.objectDB[id].owner = objectData["Owner"]
+        self.objectDB[id].owner = objectData["OwnerID"]
         self.objectDB[id].soundGain = objectData["Gain"]
         self.objectDB[id].soundFlags = objectData["Flags"]
         self.objectDB[id].soundRadius = objectData["Radius"]
         
         self.objectDB[id].jointType = objectData["JointType"]
         self.objectDB[id].jointPivot = objectData["JointPivot"]
-        self.objectDB[id].jointAxis = objectData["JointAxis"]
+        self.objectDB[id].jointAxis = objectData["JointAxisOrAnchor"]
         
     def deleteObject(self, id):
         """Delete an object from message data"""
