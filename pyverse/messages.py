@@ -22,7 +22,7 @@ def getMessageByName(key, data = None):
         return message_lookup[key](data=data)
     else:
         return None
-        
+
 class TestMessage(message.baseMessage):
     name = "TestMessage"
     id = 1
@@ -35,12 +35,12 @@ class TestMessage(message.baseMessage):
     ]
     structure = {
         "TestBlock1": [
-            ["Test1", "U32"]
+            ("Test1", "U32")
         ],
         "NeighborBlock": [
-            ["Test0", "U32"],
-            ["Test1", "U32"],
-            ["Test2", "U32"]
+            ("Test0", "U32"),
+            ("Test1", "U32"),
+            ("Test2", "U32")
         ]
     }
 registerMessage(TestMessage)
@@ -56,7 +56,7 @@ class PacketAck(message.baseMessage):
     ]
     structure = {
         "Packets": [
-            ["ID", "U32"]
+            ("ID", "U32")
         ]
     }
 registerMessage(PacketAck)
@@ -72,8 +72,8 @@ class OpenCircuit(message.baseMessage):
     ]
     structure = {
         "CircuitInfo": [
-            ["IP", "IPADDR"],
-            ["Port", "IPPORT"]
+            ("IP", "IPADDR"),
+            ("Port", "IPPORT")
         ]
     }
 registerMessage(OpenCircuit)
@@ -103,8 +103,8 @@ class StartPingCheck(message.baseMessage):
     ]
     structure = {
         "PingID": [
-            ["PingID", "U8"],
-            ["OldestUnacked", "U32"]
+            ("PingID", "U8"),
+            ("OldestUnacked", "U32")
         ]
     }
 registerMessage(StartPingCheck)
@@ -120,7 +120,7 @@ class CompletePingCheck(message.baseMessage):
     ]
     structure = {
         "PingID": [
-            ["PingID", "U8"]
+            ("PingID", "U8")
         ]
     }
 registerMessage(CompletePingCheck)
@@ -136,9 +136,9 @@ class AddCircuitCode(message.baseMessage):
     ]
     structure = {
         "CircuitCode": [
-            ["Code", "U32"],
-            ["SessionID", "LLUUID"],
-            ["AgentID", "LLUUID"]
+            ("Code", "U32"),
+            ("SessionID", "LLUUID"),
+            ("AgentID", "LLUUID")
         ]
     }
 registerMessage(AddCircuitCode)
@@ -154,9 +154,9 @@ class UseCircuitCode(message.baseMessage):
     ]
     structure = {
         "CircuitCode": [
-            ["Code", "U32"],
-            ["SessionID", "LLUUID"],
-            ["ID", "LLUUID"]
+            ("Code", "U32"),
+            ("SessionID", "LLUUID"),
+            ("ID", "LLUUID")
         ]
     }
 registerMessage(UseCircuitCode)
@@ -172,13 +172,13 @@ class NeighborList(message.baseMessage):
     ]
     structure = {
         "NeighborBlock": [
-            ["IP", "IPADDR"],
-            ["Port", "IPPORT"],
-            ["PublicIP", "IPADDR"],
-            ["PublicPort", "IPPORT"],
-            ["RegionID", "LLUUID"],
-            ["Name", "Variable1"],
-            ["SimAccess", "U8"]
+            ("IP", "IPADDR"),
+            ("Port", "IPPORT"),
+            ("PublicIP", "IPADDR"),
+            ("PublicPort", "IPPORT"),
+            ("RegionID", "LLUUID"),
+            ("Name", "Variable1"),
+            ("SimAccess", "U8")
         ]
     }
 registerMessage(NeighborList)
@@ -196,16 +196,16 @@ class AvatarTextureUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["TexturesChanged", "BOOL"]
+            ("AgentID", "LLUUID"),
+            ("TexturesChanged", "BOOL")
         ],
         "WearableData": [
-            ["CacheID", "LLUUID"],
-            ["TextureIndex", "U8"],
-            ["HostName", "Variable1"]
+            ("CacheID", "LLUUID"),
+            ("TextureIndex", "U8"),
+            ("HostName", "Variable1")
         ],
         "TextureData": [
-            ["TextureID", "LLUUID"]
+            ("TextureID", "LLUUID")
         ]
     }
 registerMessage(AvatarTextureUpdate)
@@ -221,7 +221,7 @@ class SimulatorMapUpdate(message.baseMessage):
     ]
     structure = {
         "MapData": [
-            ["Flags", "U32"]
+            ("Flags", "U32")
         ]
     }
 registerMessage(SimulatorMapUpdate)
@@ -237,9 +237,9 @@ class SimulatorSetMap(message.baseMessage):
     ]
     structure = {
         "MapData": [
-            ["RegionHandle", "U64"],
-            ["Type", "S32"],
-            ["MapImage", "LLUUID"]
+            ("RegionHandle", "U64"),
+            ("Type", "S32"),
+            ("MapImage", "LLUUID")
         ]
     }
 registerMessage(SimulatorSetMap)
@@ -284,16 +284,16 @@ class SimulatorReady(message.baseMessage):
     ]
     structure = {
         "SimulatorBlock": [
-            ["SimName", "Variable1"],
-            ["SimAccess", "U8"],
-            ["RegionFlags", "U32"],
-            ["RegionID", "LLUUID"],
-            ["EstateID", "U32"],
-            ["ParentEstateID", "U32"]
+            ("SimName", "Variable1"),
+            ("SimAccess", "U8"),
+            ("RegionFlags", "U32"),
+            ("RegionID", "LLUUID"),
+            ("EstateID", "U32"),
+            ("ParentEstateID", "U32")
         ],
         "TelehubBlock": [
-            ["HasTelehub", "BOOL"],
-            ["TelehubPos", "LLVector3"]
+            ("HasTelehub", "BOOL"),
+            ("TelehubPos", "LLVector3")
         ]
     }
 registerMessage(SimulatorReady)
@@ -310,13 +310,13 @@ class TelehubInfo(message.baseMessage):
     ]
     structure = {
         "TelehubBlock": [
-            ["ObjectID", "LLUUID"],
-            ["ObjectName", "Variable1"],
-            ["TelehubPos", "LLVector3"],
-            ["TelehubRot", "LLQuaternion"]
+            ("ObjectID", "LLUUID"),
+            ("ObjectName", "Variable1"),
+            ("TelehubPos", "LLVector3"),
+            ("TelehubRot", "LLQuaternion")
         ],
         "SpawnPointBlock": [
-            ["SpawnPointPos", "LLVector3"]
+            ("SpawnPointPos", "LLVector3")
         ]
     }
 registerMessage(TelehubInfo)
@@ -335,26 +335,26 @@ class SimulatorPresentAtLocation(message.baseMessage):
     ]
     structure = {
         "SimulatorPublicHostBlock": [
-            ["Port", "IPPORT"],
-            ["SimulatorIP", "IPADDR"],
-            ["GridX", "U32"],
-            ["GridY", "U32"]
+            ("Port", "IPPORT"),
+            ("SimulatorIP", "IPADDR"),
+            ("GridX", "U32"),
+            ("GridY", "U32")
         ],
         "NeighborBlock": [
-            ["IP", "IPADDR"],
-            ["Port", "IPPORT"]
+            ("IP", "IPADDR"),
+            ("Port", "IPPORT")
         ],
         "SimulatorBlock": [
-            ["SimName", "Variable1"],
-            ["SimAccess", "U8"],
-            ["RegionFlags", "U32"],
-            ["RegionID", "LLUUID"],
-            ["EstateID", "U32"],
-            ["ParentEstateID", "U32"]
+            ("SimName", "Variable1"),
+            ("SimAccess", "U8"),
+            ("RegionFlags", "U32"),
+            ("RegionID", "LLUUID"),
+            ("EstateID", "U32"),
+            ("ParentEstateID", "U32")
         ],
         "TelehubBlock": [
-            ["HasTelehub", "BOOL"],
-            ["TelehubPos", "LLVector3"]
+            ("HasTelehub", "BOOL"),
+            ("TelehubPos", "LLVector3")
         ]
     }
 registerMessage(SimulatorPresentAtLocation)
@@ -371,14 +371,14 @@ class SimulatorLoad(message.baseMessage):
     ]
     structure = {
         "SimulatorLoad": [
-            ["TimeDilation", "F32"],
-            ["AgentCount", "S32"],
-            ["CanAcceptAgents", "BOOL"]
+            ("TimeDilation", "F32"),
+            ("AgentCount", "S32"),
+            ("CanAcceptAgents", "BOOL")
         ],
         "AgentList": [
-            ["CircuitCode", "U32"],
-            ["X", "U8"],
-            ["Y", "U8"]
+            ("CircuitCode", "U32"),
+            ("X", "U8"),
+            ("Y", "U8")
         ]
     }
 registerMessage(SimulatorLoad)
@@ -408,7 +408,7 @@ class RegionPresenceRequestByRegionID(message.baseMessage):
     ]
     structure = {
         "RegionData": [
-            ["RegionID", "LLUUID"]
+            ("RegionID", "LLUUID")
         ]
     }
 registerMessage(RegionPresenceRequestByRegionID)
@@ -424,7 +424,7 @@ class RegionPresenceRequestByHandle(message.baseMessage):
     ]
     structure = {
         "RegionData": [
-            ["RegionHandle", "U64"]
+            ("RegionHandle", "U64")
         ]
     }
 registerMessage(RegionPresenceRequestByHandle)
@@ -440,13 +440,13 @@ class RegionPresenceResponse(message.baseMessage):
     ]
     structure = {
         "RegionData": [
-            ["RegionID", "LLUUID"],
-            ["RegionHandle", "U64"],
-            ["InternalRegionIP", "IPADDR"],
-            ["ExternalRegionIP", "IPADDR"],
-            ["RegionPort", "IPPORT"],
-            ["ValidUntil", "F64"],
-            ["Message", "Variable1"]
+            ("RegionID", "LLUUID"),
+            ("RegionHandle", "U64"),
+            ("InternalRegionIP", "IPADDR"),
+            ("ExternalRegionIP", "IPADDR"),
+            ("RegionPort", "IPPORT"),
+            ("ValidUntil", "F64"),
+            ("Message", "Variable1")
         ]
     }
 registerMessage(RegionPresenceResponse)
@@ -462,10 +462,10 @@ class UpdateSimulator(message.baseMessage):
     ]
     structure = {
         "SimulatorInfo": [
-            ["RegionID", "LLUUID"],
-            ["SimName", "Variable1"],
-            ["EstateID", "U32"],
-            ["SimAccess", "U8"]
+            ("RegionID", "LLUUID"),
+            ("SimName", "Variable1"),
+            ("EstateID", "U32"),
+            ("SimAccess", "U8")
         ]
     }
 registerMessage(UpdateSimulator)
@@ -481,14 +481,14 @@ class LogDwellTime(message.baseMessage):
     ]
     structure = {
         "DwellInfo": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["Duration", "F32"],
-            ["SimName", "Variable1"],
-            ["RegionX", "U32"],
-            ["RegionY", "U32"],
-            ["AvgAgentsInView", "U8"],
-            ["AvgViewerFPS", "U8"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("Duration", "F32"),
+            ("SimName", "Variable1"),
+            ("RegionX", "U32"),
+            ("RegionY", "U32"),
+            ("AvgAgentsInView", "U8"),
+            ("AvgViewerFPS", "U8")
         ]
     }
 registerMessage(LogDwellTime)
@@ -504,9 +504,9 @@ class FeatureDisabled(message.baseMessage):
     ]
     structure = {
         "FailureInfo": [
-            ["ErrorMessage", "Variable1"],
-            ["AgentID", "LLUUID"],
-            ["TransactionID", "LLUUID"]
+            ("ErrorMessage", "Variable1"),
+            ("AgentID", "LLUUID"),
+            ("TransactionID", "LLUUID")
         ]
     }
 registerMessage(FeatureDisabled)
@@ -522,17 +522,17 @@ class LogFailedMoneyTransaction(message.baseMessage):
     ]
     structure = {
         "TransactionData": [
-            ["TransactionID", "LLUUID"],
-            ["TransactionTime", "U32"],
-            ["TransactionType", "S32"],
-            ["SourceID", "LLUUID"],
-            ["DestID", "LLUUID"],
-            ["Flags", "U8"],
-            ["Amount", "S32"],
-            ["SimulatorIP", "IPADDR"],
-            ["GridX", "U32"],
-            ["GridY", "U32"],
-            ["FailureType", "U8"]
+            ("TransactionID", "LLUUID"),
+            ("TransactionTime", "U32"),
+            ("TransactionType", "S32"),
+            ("SourceID", "LLUUID"),
+            ("DestID", "LLUUID"),
+            ("Flags", "U8"),
+            ("Amount", "S32"),
+            ("SimulatorIP", "IPADDR"),
+            ("GridX", "U32"),
+            ("GridY", "U32"),
+            ("FailureType", "U8")
         ]
     }
 registerMessage(LogFailedMoneyTransaction)
@@ -548,23 +548,23 @@ class UserReportInternal(message.baseMessage):
     ]
     structure = {
         "ReportData": [
-            ["ReportType", "U8"],
-            ["Category", "U8"],
-            ["ReporterID", "LLUUID"],
-            ["ViewerPosition", "LLVector3"],
-            ["AgentPosition", "LLVector3"],
-            ["ScreenshotID", "LLUUID"],
-            ["ObjectID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["LastOwnerID", "LLUUID"],
-            ["CreatorID", "LLUUID"],
-            ["RegionID", "LLUUID"],
-            ["AbuserID", "LLUUID"],
-            ["AbuseRegionName", "Variable1"],
-            ["AbuseRegionID", "LLUUID"],
-            ["Summary", "Variable1"],
-            ["Details", "Variable2"],
-            ["VersionString", "Variable1"]
+            ("ReportType", "U8"),
+            ("Category", "U8"),
+            ("ReporterID", "LLUUID"),
+            ("ViewerPosition", "LLVector3"),
+            ("AgentPosition", "LLVector3"),
+            ("ScreenshotID", "LLUUID"),
+            ("ObjectID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("LastOwnerID", "LLUUID"),
+            ("CreatorID", "LLUUID"),
+            ("RegionID", "LLUUID"),
+            ("AbuserID", "LLUUID"),
+            ("AbuseRegionName", "Variable1"),
+            ("AbuseRegionID", "LLUUID"),
+            ("Summary", "Variable1"),
+            ("Details", "Variable2"),
+            ("VersionString", "Variable1")
         ]
     }
 registerMessage(UserReportInternal)
@@ -580,14 +580,14 @@ class SetSimStatusInDatabase(message.baseMessage):
     ]
     structure = {
         "Data": [
-            ["RegionID", "LLUUID"],
-            ["HostName", "Variable1"],
-            ["X", "S32"],
-            ["Y", "S32"],
-            ["PID", "S32"],
-            ["AgentCount", "S32"],
-            ["TimeToLive", "S32"],
-            ["Status", "Variable1"]
+            ("RegionID", "LLUUID"),
+            ("HostName", "Variable1"),
+            ("X", "S32"),
+            ("Y", "S32"),
+            ("PID", "S32"),
+            ("AgentCount", "S32"),
+            ("TimeToLive", "S32"),
+            ("Status", "Variable1")
         ]
     }
 registerMessage(SetSimStatusInDatabase)
@@ -603,14 +603,14 @@ class SetSimPresenceInDatabase(message.baseMessage):
     ]
     structure = {
         "SimData": [
-            ["RegionID", "LLUUID"],
-            ["HostName", "Variable1"],
-            ["GridX", "U32"],
-            ["GridY", "U32"],
-            ["PID", "S32"],
-            ["AgentCount", "S32"],
-            ["TimeToLive", "S32"],
-            ["Status", "Variable1"]
+            ("RegionID", "LLUUID"),
+            ("HostName", "Variable1"),
+            ("GridX", "U32"),
+            ("GridY", "U32"),
+            ("PID", "S32"),
+            ("AgentCount", "S32"),
+            ("TimeToLive", "S32"),
+            ("Status", "Variable1")
         ]
     }
 registerMessage(SetSimPresenceInDatabase)
@@ -640,23 +640,23 @@ class EconomyData(message.baseMessage):
     ]
     structure = {
         "Info": [
-            ["ObjectCapacity", "S32"],
-            ["ObjectCount", "S32"],
-            ["PriceEnergyUnit", "S32"],
-            ["PriceObjectClaim", "S32"],
-            ["PricePublicObjectDecay", "S32"],
-            ["PricePublicObjectDelete", "S32"],
-            ["PriceParcelClaim", "S32"],
-            ["PriceParcelClaimFactor", "F32"],
-            ["PriceUpload", "S32"],
-            ["PriceRentLight", "S32"],
-            ["TeleportMinPrice", "S32"],
-            ["TeleportPriceExponent", "F32"],
-            ["EnergyEfficiency", "F32"],
-            ["PriceObjectRent", "F32"],
-            ["PriceObjectScaleFactor", "F32"],
-            ["PriceParcelRent", "S32"],
-            ["PriceGroupCreate", "S32"]
+            ("ObjectCapacity", "S32"),
+            ("ObjectCount", "S32"),
+            ("PriceEnergyUnit", "S32"),
+            ("PriceObjectClaim", "S32"),
+            ("PricePublicObjectDecay", "S32"),
+            ("PricePublicObjectDelete", "S32"),
+            ("PriceParcelClaim", "S32"),
+            ("PriceParcelClaimFactor", "F32"),
+            ("PriceUpload", "S32"),
+            ("PriceRentLight", "S32"),
+            ("TeleportMinPrice", "S32"),
+            ("TeleportPriceExponent", "F32"),
+            ("EnergyEfficiency", "F32"),
+            ("PriceObjectRent", "F32"),
+            ("PriceObjectScaleFactor", "F32"),
+            ("PriceParcelRent", "S32"),
+            ("PriceGroupCreate", "S32")
         ]
     }
 registerMessage(EconomyData)
@@ -673,12 +673,12 @@ class AvatarPickerRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["QueryID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("QueryID", "LLUUID")
         ],
         "Data": [
-            ["Name", "Variable1"]
+            ("Name", "Variable1")
         ]
     }
 registerMessage(AvatarPickerRequest)
@@ -695,13 +695,13 @@ class AvatarPickerRequestBackend(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["QueryID", "LLUUID"],
-            ["GodLevel", "U8"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("QueryID", "LLUUID"),
+            ("GodLevel", "U8")
         ],
         "Data": [
-            ["Name", "Variable1"]
+            ("Name", "Variable1")
         ]
     }
 registerMessage(AvatarPickerRequestBackend)
@@ -718,13 +718,13 @@ class AvatarPickerReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["QueryID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("QueryID", "LLUUID")
         ],
         "Data": [
-            ["AvatarID", "LLUUID"],
-            ["FirstName", "Variable1"],
-            ["LastName", "Variable1"]
+            ("AvatarID", "LLUUID"),
+            ("FirstName", "Variable1"),
+            ("LastName", "Variable1")
         ]
     }
 registerMessage(AvatarPickerReply)
@@ -742,18 +742,18 @@ class PlacesQuery(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["QueryID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("QueryID", "LLUUID")
         ],
         "TransactionData": [
-            ["TransactionID", "LLUUID"]
+            ("TransactionID", "LLUUID")
         ],
         "QueryData": [
-            ["QueryText", "Variable1"],
-            ["QueryFlags", "U32"],
-            ["Category", "S8"],
-            ["SimName", "Variable1"]
+            ("QueryText", "Variable1"),
+            ("QueryFlags", "U32"),
+            ("Category", "S8"),
+            ("SimName", "Variable1")
         ]
     }
 registerMessage(PlacesQuery)
@@ -771,26 +771,26 @@ class PlacesReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["QueryID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("QueryID", "LLUUID")
         ],
         "TransactionData": [
-            ["TransactionID", "LLUUID"]
+            ("TransactionID", "LLUUID")
         ],
         "QueryData": [
-            ["OwnerID", "LLUUID"],
-            ["Name", "Variable1"],
-            ["Desc", "Variable1"],
-            ["ActualArea", "S32"],
-            ["BillableArea", "S32"],
-            ["Flags", "U8"],
-            ["GlobalX", "F32"],
-            ["GlobalY", "F32"],
-            ["GlobalZ", "F32"],
-            ["SimName", "Variable1"],
-            ["SnapshotID", "LLUUID"],
-            ["Dwell", "F32"],
-            ["Price", "S32"]
+            ("OwnerID", "LLUUID"),
+            ("Name", "Variable1"),
+            ("Desc", "Variable1"),
+            ("ActualArea", "S32"),
+            ("BillableArea", "S32"),
+            ("Flags", "U8"),
+            ("GlobalX", "F32"),
+            ("GlobalY", "F32"),
+            ("GlobalZ", "F32"),
+            ("SimName", "Variable1"),
+            ("SnapshotID", "LLUUID"),
+            ("Dwell", "F32"),
+            ("Price", "S32")
         ]
     }
 registerMessage(PlacesReply)
@@ -807,14 +807,14 @@ class DirFindQuery(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "QueryData": [
-            ["QueryID", "LLUUID"],
-            ["QueryText", "Variable1"],
-            ["QueryFlags", "U32"],
-            ["QueryStart", "S32"]
+            ("QueryID", "LLUUID"),
+            ("QueryText", "Variable1"),
+            ("QueryFlags", "U32"),
+            ("QueryStart", "S32")
         ]
     }
 registerMessage(DirFindQuery)
@@ -831,15 +831,15 @@ class DirFindQueryBackend(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "QueryData": [
-            ["QueryID", "LLUUID"],
-            ["QueryText", "Variable1"],
-            ["QueryFlags", "U32"],
-            ["QueryStart", "S32"],
-            ["EstateID", "U32"],
-            ["Godlike", "BOOL"]
+            ("QueryID", "LLUUID"),
+            ("QueryText", "Variable1"),
+            ("QueryFlags", "U32"),
+            ("QueryStart", "S32"),
+            ("EstateID", "U32"),
+            ("Godlike", "BOOL")
         ]
     }
 registerMessage(DirFindQueryBackend)
@@ -856,16 +856,16 @@ class DirPlacesQuery(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "QueryData": [
-            ["QueryID", "LLUUID"],
-            ["QueryText", "Variable1"],
-            ["QueryFlags", "U32"],
-            ["Category", "S8"],
-            ["SimName", "Variable1"],
-            ["QueryStart", "S32"]
+            ("QueryID", "LLUUID"),
+            ("QueryText", "Variable1"),
+            ("QueryFlags", "U32"),
+            ("Category", "S8"),
+            ("SimName", "Variable1"),
+            ("QueryStart", "S32")
         ]
     }
 registerMessage(DirPlacesQuery)
@@ -882,17 +882,17 @@ class DirPlacesQueryBackend(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "QueryData": [
-            ["QueryID", "LLUUID"],
-            ["QueryText", "Variable1"],
-            ["QueryFlags", "U32"],
-            ["Category", "S8"],
-            ["SimName", "Variable1"],
-            ["EstateID", "U32"],
-            ["Godlike", "BOOL"],
-            ["QueryStart", "S32"]
+            ("QueryID", "LLUUID"),
+            ("QueryText", "Variable1"),
+            ("QueryFlags", "U32"),
+            ("Category", "S8"),
+            ("SimName", "Variable1"),
+            ("EstateID", "U32"),
+            ("Godlike", "BOOL"),
+            ("QueryStart", "S32")
         ]
     }
 registerMessage(DirPlacesQueryBackend)
@@ -911,20 +911,20 @@ class DirPlacesReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "QueryData": [
-            ["QueryID", "LLUUID"]
+            ("QueryID", "LLUUID")
         ],
         "QueryReplies": [
-            ["ParcelID", "LLUUID"],
-            ["Name", "Variable1"],
-            ["ForSale", "BOOL"],
-            ["Auction", "BOOL"],
-            ["Dwell", "F32"]
+            ("ParcelID", "LLUUID"),
+            ("Name", "Variable1"),
+            ("ForSale", "BOOL"),
+            ("Auction", "BOOL"),
+            ("Dwell", "F32")
         ],
         "StatusData": [
-            ["Status", "U32"]
+            ("Status", "U32")
         ]
     }
 registerMessage(DirPlacesReply)
@@ -942,18 +942,18 @@ class DirPeopleReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "QueryData": [
-            ["QueryID", "LLUUID"]
+            ("QueryID", "LLUUID")
         ],
         "QueryReplies": [
-            ["AgentID", "LLUUID"],
-            ["FirstName", "Variable1"],
-            ["LastName", "Variable1"],
-            ["Group", "Variable1"],
-            ["Online", "BOOL"],
-            ["Reputation", "S32"]
+            ("AgentID", "LLUUID"),
+            ("FirstName", "Variable1"),
+            ("LastName", "Variable1"),
+            ("Group", "Variable1"),
+            ("Online", "BOOL"),
+            ("Reputation", "S32")
         ]
     }
 registerMessage(DirPeopleReply)
@@ -972,21 +972,21 @@ class DirEventsReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "QueryData": [
-            ["QueryID", "LLUUID"]
+            ("QueryID", "LLUUID")
         ],
         "QueryReplies": [
-            ["OwnerID", "LLUUID"],
-            ["Name", "Variable1"],
-            ["EventID", "U32"],
-            ["Date", "Variable1"],
-            ["UnixTime", "U32"],
-            ["EventFlags", "U32"]
+            ("OwnerID", "LLUUID"),
+            ("Name", "Variable1"),
+            ("EventID", "U32"),
+            ("Date", "Variable1"),
+            ("UnixTime", "U32"),
+            ("EventFlags", "U32")
         ],
         "StatusData": [
-            ["Status", "U32"]
+            ("Status", "U32")
         ]
     }
 registerMessage(DirEventsReply)
@@ -1004,16 +1004,16 @@ class DirGroupsReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "QueryData": [
-            ["QueryID", "LLUUID"]
+            ("QueryID", "LLUUID")
         ],
         "QueryReplies": [
-            ["GroupID", "LLUUID"],
-            ["GroupName", "Variable1"],
-            ["Members", "S32"],
-            ["SearchOrder", "F32"]
+            ("GroupID", "LLUUID"),
+            ("GroupName", "Variable1"),
+            ("Members", "S32"),
+            ("SearchOrder", "F32")
         ]
     }
 registerMessage(DirGroupsReply)
@@ -1030,15 +1030,15 @@ class DirClassifiedQuery(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "QueryData": [
-            ["QueryID", "LLUUID"],
-            ["QueryText", "Variable1"],
-            ["QueryFlags", "U32"],
-            ["Category", "U32"],
-            ["QueryStart", "S32"]
+            ("QueryID", "LLUUID"),
+            ("QueryText", "Variable1"),
+            ("QueryFlags", "U32"),
+            ("Category", "U32"),
+            ("QueryStart", "S32")
         ]
     }
 registerMessage(DirClassifiedQuery)
@@ -1055,16 +1055,16 @@ class DirClassifiedQueryBackend(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "QueryData": [
-            ["QueryID", "LLUUID"],
-            ["QueryText", "Variable1"],
-            ["QueryFlags", "U32"],
-            ["Category", "U32"],
-            ["EstateID", "U32"],
-            ["Godlike", "BOOL"],
-            ["QueryStart", "S32"]
+            ("QueryID", "LLUUID"),
+            ("QueryText", "Variable1"),
+            ("QueryFlags", "U32"),
+            ("Category", "U32"),
+            ("EstateID", "U32"),
+            ("Godlike", "BOOL"),
+            ("QueryStart", "S32")
         ]
     }
 registerMessage(DirClassifiedQueryBackend)
@@ -1083,21 +1083,21 @@ class DirClassifiedReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "QueryData": [
-            ["QueryID", "LLUUID"]
+            ("QueryID", "LLUUID")
         ],
         "QueryReplies": [
-            ["ClassifiedID", "LLUUID"],
-            ["Name", "Variable1"],
-            ["ClassifiedFlags", "U8"],
-            ["CreationDate", "U32"],
-            ["ExpirationDate", "U32"],
-            ["PriceForListing", "S32"]
+            ("ClassifiedID", "LLUUID"),
+            ("Name", "Variable1"),
+            ("ClassifiedFlags", "U8"),
+            ("CreationDate", "U32"),
+            ("ExpirationDate", "U32"),
+            ("PriceForListing", "S32")
         ],
         "StatusData": [
-            ["Status", "U32"]
+            ("Status", "U32")
         ]
     }
 registerMessage(DirClassifiedReply)
@@ -1114,12 +1114,12 @@ class AvatarClassifiedReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["TargetID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("TargetID", "LLUUID")
         ],
         "Data": [
-            ["ClassifiedID", "LLUUID"],
-            ["Name", "Variable1"]
+            ("ClassifiedID", "LLUUID"),
+            ("Name", "Variable1")
         ]
     }
 registerMessage(AvatarClassifiedReply)
@@ -1136,11 +1136,11 @@ class ClassifiedInfoRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["ClassifiedID", "LLUUID"]
+            ("ClassifiedID", "LLUUID")
         ]
     }
 registerMessage(ClassifiedInfoRequest)
@@ -1157,24 +1157,24 @@ class ClassifiedInfoReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "Data": [
-            ["ClassifiedID", "LLUUID"],
-            ["CreatorID", "LLUUID"],
-            ["CreationDate", "U32"],
-            ["ExpirationDate", "U32"],
-            ["Category", "U32"],
-            ["Name", "Variable1"],
-            ["Desc", "Variable2"],
-            ["ParcelID", "LLUUID"],
-            ["ParentEstate", "U32"],
-            ["SnapshotID", "LLUUID"],
-            ["SimName", "Variable1"],
-            ["PosGlobal", "LLVector3d"],
-            ["ParcelName", "Variable1"],
-            ["ClassifiedFlags", "U8"],
-            ["PriceForListing", "S32"]
+            ("ClassifiedID", "LLUUID"),
+            ("CreatorID", "LLUUID"),
+            ("CreationDate", "U32"),
+            ("ExpirationDate", "U32"),
+            ("Category", "U32"),
+            ("Name", "Variable1"),
+            ("Desc", "Variable2"),
+            ("ParcelID", "LLUUID"),
+            ("ParentEstate", "U32"),
+            ("SnapshotID", "LLUUID"),
+            ("SimName", "Variable1"),
+            ("PosGlobal", "LLVector3d"),
+            ("ParcelName", "Variable1"),
+            ("ClassifiedFlags", "U8"),
+            ("PriceForListing", "S32")
         ]
     }
 registerMessage(ClassifiedInfoReply)
@@ -1191,20 +1191,20 @@ class ClassifiedInfoUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["ClassifiedID", "LLUUID"],
-            ["Category", "U32"],
-            ["Name", "Variable1"],
-            ["Desc", "Variable2"],
-            ["ParcelID", "LLUUID"],
-            ["ParentEstate", "U32"],
-            ["SnapshotID", "LLUUID"],
-            ["PosGlobal", "LLVector3d"],
-            ["ClassifiedFlags", "U8"],
-            ["PriceForListing", "S32"]
+            ("ClassifiedID", "LLUUID"),
+            ("Category", "U32"),
+            ("Name", "Variable1"),
+            ("Desc", "Variable2"),
+            ("ParcelID", "LLUUID"),
+            ("ParentEstate", "U32"),
+            ("SnapshotID", "LLUUID"),
+            ("PosGlobal", "LLVector3d"),
+            ("ClassifiedFlags", "U8"),
+            ("PriceForListing", "S32")
         ]
     }
 registerMessage(ClassifiedInfoUpdate)
@@ -1221,11 +1221,11 @@ class ClassifiedDelete(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["ClassifiedID", "LLUUID"]
+            ("ClassifiedID", "LLUUID")
         ]
     }
 registerMessage(ClassifiedDelete)
@@ -1242,12 +1242,12 @@ class ClassifiedGodDelete(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["ClassifiedID", "LLUUID"],
-            ["QueryID", "LLUUID"]
+            ("ClassifiedID", "LLUUID"),
+            ("QueryID", "LLUUID")
         ]
     }
 registerMessage(ClassifiedGodDelete)
@@ -1264,16 +1264,16 @@ class DirLandQuery(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "QueryData": [
-            ["QueryID", "LLUUID"],
-            ["QueryFlags", "U32"],
-            ["SearchType", "U32"],
-            ["Price", "S32"],
-            ["Area", "S32"],
-            ["QueryStart", "S32"]
+            ("QueryID", "LLUUID"),
+            ("QueryFlags", "U32"),
+            ("SearchType", "U32"),
+            ("Price", "S32"),
+            ("Area", "S32"),
+            ("QueryStart", "S32")
         ]
     }
 registerMessage(DirLandQuery)
@@ -1290,17 +1290,17 @@ class DirLandQueryBackend(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "QueryData": [
-            ["QueryID", "LLUUID"],
-            ["QueryFlags", "U32"],
-            ["SearchType", "U32"],
-            ["Price", "S32"],
-            ["Area", "S32"],
-            ["QueryStart", "S32"],
-            ["EstateID", "U32"],
-            ["Godlike", "BOOL"]
+            ("QueryID", "LLUUID"),
+            ("QueryFlags", "U32"),
+            ("SearchType", "U32"),
+            ("Price", "S32"),
+            ("Area", "S32"),
+            ("QueryStart", "S32"),
+            ("EstateID", "U32"),
+            ("Godlike", "BOOL")
         ]
     }
 registerMessage(DirLandQueryBackend)
@@ -1318,18 +1318,18 @@ class DirLandReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "QueryData": [
-            ["QueryID", "LLUUID"]
+            ("QueryID", "LLUUID")
         ],
         "QueryReplies": [
-            ["ParcelID", "LLUUID"],
-            ["Name", "Variable1"],
-            ["Auction", "BOOL"],
-            ["ForSale", "BOOL"],
-            ["SalePrice", "S32"],
-            ["ActualArea", "S32"]
+            ("ParcelID", "LLUUID"),
+            ("Name", "Variable1"),
+            ("Auction", "BOOL"),
+            ("ForSale", "BOOL"),
+            ("SalePrice", "S32"),
+            ("ActualArea", "S32")
         ]
     }
 registerMessage(DirLandReply)
@@ -1346,12 +1346,12 @@ class DirPopularQuery(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "QueryData": [
-            ["QueryID", "LLUUID"],
-            ["QueryFlags", "U32"]
+            ("QueryID", "LLUUID"),
+            ("QueryFlags", "U32")
         ]
     }
 registerMessage(DirPopularQuery)
@@ -1368,13 +1368,13 @@ class DirPopularQueryBackend(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "QueryData": [
-            ["QueryID", "LLUUID"],
-            ["QueryFlags", "U32"],
-            ["EstateID", "U32"],
-            ["Godlike", "BOOL"]
+            ("QueryID", "LLUUID"),
+            ("QueryFlags", "U32"),
+            ("EstateID", "U32"),
+            ("Godlike", "BOOL")
         ]
     }
 registerMessage(DirPopularQueryBackend)
@@ -1392,15 +1392,15 @@ class DirPopularReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "QueryData": [
-            ["QueryID", "LLUUID"]
+            ("QueryID", "LLUUID")
         ],
         "QueryReplies": [
-            ["ParcelID", "LLUUID"],
-            ["Name", "Variable1"],
-            ["Dwell", "F32"]
+            ("ParcelID", "LLUUID"),
+            ("Name", "Variable1"),
+            ("Dwell", "F32")
         ]
     }
 registerMessage(DirPopularReply)
@@ -1417,11 +1417,11 @@ class ParcelInfoRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["ParcelID", "LLUUID"]
+            ("ParcelID", "LLUUID")
         ]
     }
 registerMessage(ParcelInfoRequest)
@@ -1438,24 +1438,24 @@ class ParcelInfoReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "Data": [
-            ["ParcelID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["Name", "Variable1"],
-            ["Desc", "Variable1"],
-            ["ActualArea", "S32"],
-            ["BillableArea", "S32"],
-            ["Flags", "U8"],
-            ["GlobalX", "F32"],
-            ["GlobalY", "F32"],
-            ["GlobalZ", "F32"],
-            ["SimName", "Variable1"],
-            ["SnapshotID", "LLUUID"],
-            ["Dwell", "F32"],
-            ["SalePrice", "S32"],
-            ["AuctionID", "S32"]
+            ("ParcelID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("Name", "Variable1"),
+            ("Desc", "Variable1"),
+            ("ActualArea", "S32"),
+            ("BillableArea", "S32"),
+            ("Flags", "U8"),
+            ("GlobalX", "F32"),
+            ("GlobalY", "F32"),
+            ("GlobalZ", "F32"),
+            ("SimName", "Variable1"),
+            ("SnapshotID", "LLUUID"),
+            ("Dwell", "F32"),
+            ("SalePrice", "S32"),
+            ("AuctionID", "S32")
         ]
     }
 registerMessage(ParcelInfoReply)
@@ -1472,11 +1472,11 @@ class ParcelObjectOwnersRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ParcelData": [
-            ["LocalID", "S32"]
+            ("LocalID", "S32")
         ]
     }
 registerMessage(ParcelObjectOwnersRequest)
@@ -1492,10 +1492,10 @@ class ParcelObjectOwnersReply(message.baseMessage):
     ]
     structure = {
         "Data": [
-            ["OwnerID", "LLUUID"],
-            ["IsGroupOwned", "BOOL"],
-            ["Count", "S32"],
-            ["OnlineStatus", "BOOL"]
+            ("OwnerID", "LLUUID"),
+            ("IsGroupOwned", "BOOL"),
+            ("Count", "S32"),
+            ("OnlineStatus", "BOOL")
         ]
     }
 registerMessage(ParcelObjectOwnersReply)
@@ -1512,11 +1512,11 @@ class GroupNoticesListRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["GroupID", "LLUUID"]
+            ("GroupID", "LLUUID")
         ]
     }
 registerMessage(GroupNoticesListRequest)
@@ -1533,16 +1533,16 @@ class GroupNoticesListReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "Data": [
-            ["NoticeID", "LLUUID"],
-            ["Timestamp", "U32"],
-            ["FromName", "Variable2"],
-            ["Subject", "Variable2"],
-            ["HasAttachment", "BOOL"],
-            ["AssetType", "U8"]
+            ("NoticeID", "LLUUID"),
+            ("Timestamp", "U32"),
+            ("FromName", "Variable2"),
+            ("Subject", "Variable2"),
+            ("HasAttachment", "BOOL"),
+            ("AssetType", "U8")
         ]
     }
 registerMessage(GroupNoticesListReply)
@@ -1559,11 +1559,11 @@ class GroupNoticeRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["GroupNoticeID", "LLUUID"]
+            ("GroupNoticeID", "LLUUID")
         ]
     }
 registerMessage(GroupNoticeRequest)
@@ -1580,15 +1580,15 @@ class GroupNoticeAdd(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "MessageBlock": [
-            ["ToGroupID", "LLUUID"],
-            ["ID", "LLUUID"],
-            ["Dialog", "U8"],
-            ["FromAgentName", "Variable1"],
-            ["Message", "Variable2"],
-            ["BinaryBucket", "Variable2"]
+            ("ToGroupID", "LLUUID"),
+            ("ID", "LLUUID"),
+            ("Dialog", "U8"),
+            ("FromAgentName", "Variable1"),
+            ("Message", "Variable2"),
+            ("BinaryBucket", "Variable2")
         ]
     }
 registerMessage(GroupNoticeAdd)
@@ -1605,13 +1605,13 @@ class TeleportRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Info": [
-            ["RegionID", "LLUUID"],
-            ["Position", "LLVector3"],
-            ["LookAt", "LLVector3"]
+            ("RegionID", "LLUUID"),
+            ("Position", "LLVector3"),
+            ("LookAt", "LLVector3")
         ]
     }
 registerMessage(TeleportRequest)
@@ -1628,13 +1628,13 @@ class TeleportLocationRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Info": [
-            ["RegionHandle", "U64"],
-            ["Position", "LLVector3"],
-            ["LookAt", "LLVector3"]
+            ("RegionHandle", "U64"),
+            ("Position", "LLVector3"),
+            ("LookAt", "LLVector3")
         ]
     }
 registerMessage(TeleportLocationRequest)
@@ -1650,11 +1650,11 @@ class TeleportLocal(message.baseMessage):
     ]
     structure = {
         "Info": [
-            ["AgentID", "LLUUID"],
-            ["LocationID", "U32"],
-            ["Position", "LLVector3"],
-            ["LookAt", "LLVector3"],
-            ["TeleportFlags", "U32"]
+            ("AgentID", "LLUUID"),
+            ("LocationID", "U32"),
+            ("Position", "LLVector3"),
+            ("LookAt", "LLVector3"),
+            ("TeleportFlags", "U32")
         ]
     }
 registerMessage(TeleportLocal)
@@ -1670,9 +1670,9 @@ class TeleportLandmarkRequest(message.baseMessage):
     ]
     structure = {
         "Info": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["LandmarkID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("LandmarkID", "LLUUID")
         ]
     }
 registerMessage(TeleportLandmarkRequest)
@@ -1689,11 +1689,11 @@ class TeleportProgress(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "Info": [
-            ["TeleportFlags", "U32"],
-            ["Message", "Variable1"]
+            ("TeleportFlags", "U32"),
+            ("Message", "Variable1")
         ]
     }
 registerMessage(TeleportProgress)
@@ -1710,11 +1710,11 @@ class DataHomeLocationRequest(message.baseMessage):
     ]
     structure = {
         "Info": [
-            ["AgentID", "LLUUID"],
-            ["KickedFromEstateID", "U32"]
+            ("AgentID", "LLUUID"),
+            ("KickedFromEstateID", "U32")
         ],
         "AgentInfo": [
-            ["AgentEffectiveMaturity", "U32"]
+            ("AgentEffectiveMaturity", "U32")
         ]
     }
 registerMessage(DataHomeLocationRequest)
@@ -1730,10 +1730,10 @@ class DataHomeLocationReply(message.baseMessage):
     ]
     structure = {
         "Info": [
-            ["AgentID", "LLUUID"],
-            ["RegionHandle", "U64"],
-            ["Position", "LLVector3"],
-            ["LookAt", "LLVector3"]
+            ("AgentID", "LLUUID"),
+            ("RegionHandle", "U64"),
+            ("Position", "LLVector3"),
+            ("LookAt", "LLVector3")
         ]
     }
 registerMessage(DataHomeLocationReply)
@@ -1749,14 +1749,14 @@ class TeleportFinish(message.baseMessage):
     ]
     structure = {
         "Info": [
-            ["AgentID", "LLUUID"],
-            ["LocationID", "U32"],
-            ["SimIP", "IPADDR"],
-            ["SimPort", "IPPORT"],
-            ["RegionHandle", "U64"],
-            ["SeedCapability", "Variable2"],
-            ["SimAccess", "U8"],
-            ["TeleportFlags", "U32"]
+            ("AgentID", "LLUUID"),
+            ("LocationID", "U32"),
+            ("SimIP", "IPADDR"),
+            ("SimPort", "IPPORT"),
+            ("RegionHandle", "U64"),
+            ("SeedCapability", "Variable2"),
+            ("SimAccess", "U8"),
+            ("TeleportFlags", "U32")
         ]
     }
 registerMessage(TeleportFinish)
@@ -1774,15 +1774,15 @@ class StartLure(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Info": [
-            ["LureType", "U8"],
-            ["Message", "Variable1"]
+            ("LureType", "U8"),
+            ("Message", "Variable1")
         ],
         "TargetData": [
-            ["TargetID", "LLUUID"]
+            ("TargetID", "LLUUID")
         ]
     }
 registerMessage(StartLure)
@@ -1798,10 +1798,10 @@ class TeleportLureRequest(message.baseMessage):
     ]
     structure = {
         "Info": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["LureID", "LLUUID"],
-            ["TeleportFlags", "U32"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("LureID", "LLUUID"),
+            ("TeleportFlags", "U32")
         ]
     }
 registerMessage(TeleportLureRequest)
@@ -1817,8 +1817,8 @@ class TeleportCancel(message.baseMessage):
     ]
     structure = {
         "Info": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ]
     }
 registerMessage(TeleportCancel)
@@ -1834,7 +1834,7 @@ class TeleportStart(message.baseMessage):
     ]
     structure = {
         "Info": [
-            ["TeleportFlags", "U32"]
+            ("TeleportFlags", "U32")
         ]
     }
 registerMessage(TeleportStart)
@@ -1851,12 +1851,12 @@ class TeleportFailed(message.baseMessage):
     ]
     structure = {
         "Info": [
-            ["AgentID", "LLUUID"],
-            ["Reason", "Variable1"]
+            ("AgentID", "LLUUID"),
+            ("Reason", "Variable1")
         ],
         "AlertInfo": [
-            ["Message", "Variable1"],
-            ["ExtraParams", "Variable1"]
+            ("Message", "Variable1"),
+            ("ExtraParams", "Variable1")
         ]
     }
 registerMessage(TeleportFailed)
@@ -1873,12 +1873,12 @@ class Undo(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectID", "LLUUID"]
+            ("ObjectID", "LLUUID")
         ]
     }
 registerMessage(Undo)
@@ -1895,12 +1895,12 @@ class Redo(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectID", "LLUUID"]
+            ("ObjectID", "LLUUID")
         ]
     }
 registerMessage(Redo)
@@ -1916,8 +1916,8 @@ class UndoLand(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ]
     }
 registerMessage(UndoLand)
@@ -1933,9 +1933,9 @@ class AgentPause(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["SerialNum", "U32"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("SerialNum", "U32")
         ]
     }
 registerMessage(AgentPause)
@@ -1951,9 +1951,9 @@ class AgentResume(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["SerialNum", "U32"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("SerialNum", "U32")
         ]
     }
 registerMessage(AgentResume)
@@ -1969,18 +1969,18 @@ class AgentUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["BodyRotation", "LLQuaternion"],
-            ["HeadRotation", "LLQuaternion"],
-            ["State", "U8"],
-            ["CameraCenter", "LLVector3"],
-            ["CameraAtAxis", "LLVector3"],
-            ["CameraLeftAxis", "LLVector3"],
-            ["CameraUpAxis", "LLVector3"],
-            ["Far", "F32"],
-            ["ControlFlags", "U32"],
-            ["Flags", "U8"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("BodyRotation", "LLQuaternion"),
+            ("HeadRotation", "LLQuaternion"),
+            ("State", "U8"),
+            ("CameraCenter", "LLVector3"),
+            ("CameraAtAxis", "LLVector3"),
+            ("CameraLeftAxis", "LLVector3"),
+            ("CameraUpAxis", "LLVector3"),
+            ("Far", "F32"),
+            ("ControlFlags", "U32"),
+            ("Flags", "U8")
         ]
     }
 registerMessage(AgentUpdate)
@@ -1997,13 +1997,13 @@ class ChatFromViewer(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ChatData": [
-            ["Message", "Variable2"],
-            ["Type", "U8"],
-            ["Channel", "S32"]
+            ("Message", "Variable2"),
+            ("Type", "U8"),
+            ("Channel", "S32")
         ]
     }
 registerMessage(ChatFromViewer)
@@ -2020,13 +2020,13 @@ class AgentThrottle(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["CircuitCode", "U32"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("CircuitCode", "U32")
         ],
         "Throttle": [
-            ["GenCounter", "U32"],
-            ["Throttles", "Variable1"]
+            ("GenCounter", "U32"),
+            ("Throttles", "Variable1")
         ]
     }
 registerMessage(AgentThrottle)
@@ -2043,13 +2043,13 @@ class AgentFOV(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["CircuitCode", "U32"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("CircuitCode", "U32")
         ],
         "FOVBlock": [
-            ["GenCounter", "U32"],
-            ["VerticalAngle", "F32"]
+            ("GenCounter", "U32"),
+            ("VerticalAngle", "F32")
         ]
     }
 registerMessage(AgentFOV)
@@ -2066,14 +2066,14 @@ class AgentHeightWidth(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["CircuitCode", "U32"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("CircuitCode", "U32")
         ],
         "HeightWidthBlock": [
-            ["GenCounter", "U32"],
-            ["Height", "U16"],
-            ["Width", "U16"]
+            ("GenCounter", "U32"),
+            ("Height", "U16"),
+            ("Width", "U16")
         ]
     }
 registerMessage(AgentHeightWidth)
@@ -2092,20 +2092,20 @@ class AgentSetAppearance(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["SerialNum", "U32"],
-            ["Size", "LLVector3"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("SerialNum", "U32"),
+            ("Size", "LLVector3")
         ],
         "WearableData": [
-            ["CacheID", "LLUUID"],
-            ["TextureIndex", "U8"]
+            ("CacheID", "LLUUID"),
+            ("TextureIndex", "U8")
         ],
         "ObjectData": [
-            ["TextureEntry", "Variable2"]
+            ("TextureEntry", "Variable2")
         ],
         "VisualParam": [
-            ["ParamValue", "U8"]
+            ("ParamValue", "U8")
         ]
     }
 registerMessage(AgentSetAppearance)
@@ -2123,15 +2123,15 @@ class AgentAnimation(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "AnimationList": [
-            ["AnimID", "LLUUID"],
-            ["StartAnim", "BOOL"]
+            ("AnimID", "LLUUID"),
+            ("StartAnim", "BOOL")
         ],
         "PhysicalAvatarEventList": [
-            ["TypeData", "Variable1"]
+            ("TypeData", "Variable1")
         ]
     }
 registerMessage(AgentAnimation)
@@ -2148,12 +2148,12 @@ class AgentRequestSit(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "TargetObject": [
-            ["TargetID", "LLUUID"],
-            ["Offset", "LLVector3"]
+            ("TargetID", "LLUUID"),
+            ("Offset", "LLVector3")
         ]
     }
 registerMessage(AgentRequestSit)
@@ -2169,8 +2169,8 @@ class AgentSit(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ]
     }
 registerMessage(AgentSit)
@@ -2187,11 +2187,11 @@ class AgentQuitCopy(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "FuseBlock": [
-            ["ViewerCircuitCode", "U32"]
+            ("ViewerCircuitCode", "U32")
         ]
     }
 registerMessage(AgentQuitCopy)
@@ -2208,15 +2208,15 @@ class RequestImage(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "RequestImage": [
-            ["Image", "LLUUID"],
-            ["DiscardLevel", "S8"],
-            ["DownloadPriority", "F32"],
-            ["Packet", "U32"],
-            ["Type", "U8"]
+            ("Image", "LLUUID"),
+            ("DiscardLevel", "S8"),
+            ("DownloadPriority", "F32"),
+            ("Packet", "U32"),
+            ("Type", "U8")
         ]
     }
 registerMessage(RequestImage)
@@ -2232,7 +2232,7 @@ class ImageNotInDatabase(message.baseMessage):
     ]
     structure = {
         "ImageID": [
-            ["ID", "LLUUID"]
+            ("ID", "LLUUID")
         ]
     }
 registerMessage(ImageNotInDatabase)
@@ -2248,7 +2248,7 @@ class RebakeAvatarTextures(message.baseMessage):
     ]
     structure = {
         "TextureData": [
-            ["TextureID", "LLUUID"]
+            ("TextureID", "LLUUID")
         ]
     }
 registerMessage(RebakeAvatarTextures)
@@ -2264,9 +2264,9 @@ class SetAlwaysRun(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["AlwaysRun", "BOOL"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("AlwaysRun", "BOOL")
         ]
     }
 registerMessage(SetAlwaysRun)
@@ -2283,40 +2283,40 @@ class ObjectAdd(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "ObjectData": [
-            ["PCode", "U8"],
-            ["Material", "U8"],
-            ["AddFlags", "U32"],
-            ["PathCurve", "U8"],
-            ["ProfileCurve", "U8"],
-            ["PathBegin", "U16"],
-            ["PathEnd", "U16"],
-            ["PathScaleX", "U8"],
-            ["PathScaleY", "U8"],
-            ["PathShearX", "U8"],
-            ["PathShearY", "U8"],
-            ["PathTwist", "S8"],
-            ["PathTwistBegin", "S8"],
-            ["PathRadiusOffset", "S8"],
-            ["PathTaperX", "S8"],
-            ["PathTaperY", "S8"],
-            ["PathRevolutions", "U8"],
-            ["PathSkew", "S8"],
-            ["ProfileBegin", "U16"],
-            ["ProfileEnd", "U16"],
-            ["ProfileHollow", "U16"],
-            ["BypassRaycast", "U8"],
-            ["RayStart", "LLVector3"],
-            ["RayEnd", "LLVector3"],
-            ["RayTargetID", "LLUUID"],
-            ["RayEndIsIntersection", "U8"],
-            ["Scale", "LLVector3"],
-            ["Rotation", "LLQuaternion"],
-            ["State", "U8"]
+            ("PCode", "U8"),
+            ("Material", "U8"),
+            ("AddFlags", "U32"),
+            ("PathCurve", "U8"),
+            ("ProfileCurve", "U8"),
+            ("PathBegin", "U16"),
+            ("PathEnd", "U16"),
+            ("PathScaleX", "U8"),
+            ("PathScaleY", "U8"),
+            ("PathShearX", "U8"),
+            ("PathShearY", "U8"),
+            ("PathTwist", "S8"),
+            ("PathTwistBegin", "S8"),
+            ("PathRadiusOffset", "S8"),
+            ("PathTaperX", "S8"),
+            ("PathTaperY", "S8"),
+            ("PathRevolutions", "U8"),
+            ("PathSkew", "S8"),
+            ("ProfileBegin", "U16"),
+            ("ProfileEnd", "U16"),
+            ("ProfileHollow", "U16"),
+            ("BypassRaycast", "U8"),
+            ("RayStart", "LLVector3"),
+            ("RayEnd", "LLVector3"),
+            ("RayTargetID", "LLUUID"),
+            ("RayEndIsIntersection", "U8"),
+            ("Scale", "LLVector3"),
+            ("Rotation", "LLQuaternion"),
+            ("State", "U8")
         ]
     }
 registerMessage(ObjectAdd)
@@ -2333,12 +2333,12 @@ class ObjectDelete(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["Force", "BOOL"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("Force", "BOOL")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"]
+            ("ObjectLocalID", "U32")
         ]
     }
 registerMessage(ObjectDelete)
@@ -2356,16 +2356,16 @@ class ObjectDuplicate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "SharedData": [
-            ["Offset", "LLVector3"],
-            ["DuplicateFlags", "U32"]
+            ("Offset", "LLVector3"),
+            ("DuplicateFlags", "U32")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"]
+            ("ObjectLocalID", "U32")
         ]
     }
 registerMessage(ObjectDuplicate)
@@ -2382,20 +2382,20 @@ class ObjectDuplicateOnRay(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["RayStart", "LLVector3"],
-            ["RayEnd", "LLVector3"],
-            ["BypassRaycast", "BOOL"],
-            ["RayEndIsIntersection", "BOOL"],
-            ["CopyCenters", "BOOL"],
-            ["CopyRotates", "BOOL"],
-            ["RayTargetID", "LLUUID"],
-            ["DuplicateFlags", "U32"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("RayStart", "LLVector3"),
+            ("RayEnd", "LLVector3"),
+            ("BypassRaycast", "BOOL"),
+            ("RayEndIsIntersection", "BOOL"),
+            ("CopyCenters", "BOOL"),
+            ("CopyRotates", "BOOL"),
+            ("RayTargetID", "LLUUID"),
+            ("DuplicateFlags", "U32")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"]
+            ("ObjectLocalID", "U32")
         ]
     }
 registerMessage(ObjectDuplicateOnRay)
@@ -2412,13 +2412,13 @@ class MultipleObjectUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"],
-            ["Type", "U8"],
-            ["Data", "Variable1"]
+            ("ObjectLocalID", "U32"),
+            ("Type", "U8"),
+            ("Data", "Variable1")
         ]
     }
 registerMessage(MultipleObjectUpdate)
@@ -2435,12 +2435,12 @@ class RequestMultipleObjects(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["CacheMissType", "U8"],
-            ["ID", "U32"]
+            ("CacheMissType", "U8"),
+            ("ID", "U32")
         ]
     }
 registerMessage(RequestMultipleObjects)
@@ -2457,12 +2457,12 @@ class ObjectPosition(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"],
-            ["Position", "LLVector3"]
+            ("ObjectLocalID", "U32"),
+            ("Position", "LLVector3")
         ]
     }
 registerMessage(ObjectPosition)
@@ -2479,12 +2479,12 @@ class ObjectScale(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"],
-            ["Scale", "LLVector3"]
+            ("ObjectLocalID", "U32"),
+            ("Scale", "LLVector3")
         ]
     }
 registerMessage(ObjectScale)
@@ -2501,12 +2501,12 @@ class ObjectRotation(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"],
-            ["Rotation", "LLQuaternion"]
+            ("ObjectLocalID", "U32"),
+            ("Rotation", "LLQuaternion")
         ]
     }
 registerMessage(ObjectRotation)
@@ -2523,20 +2523,20 @@ class ObjectFlagUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["ObjectLocalID", "U32"],
-            ["UsePhysics", "BOOL"],
-            ["IsTemporary", "BOOL"],
-            ["IsPhantom", "BOOL"],
-            ["CastsShadows", "BOOL"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("ObjectLocalID", "U32"),
+            ("UsePhysics", "BOOL"),
+            ("IsTemporary", "BOOL"),
+            ("IsPhantom", "BOOL"),
+            ("CastsShadows", "BOOL")
         ],
         "ExtraPhysics": [
-            ["PhysicsShapeType", "U8"],
-            ["Density", "F32"],
-            ["Friction", "F32"],
-            ["Restitution", "F32"],
-            ["GravityMultiplier", "F32"]
+            ("PhysicsShapeType", "U8"),
+            ("Density", "F32"),
+            ("Friction", "F32"),
+            ("Restitution", "F32"),
+            ("GravityMultiplier", "F32")
         ]
     }
 registerMessage(ObjectFlagUpdate)
@@ -2553,12 +2553,12 @@ class ObjectClickAction(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"],
-            ["ClickAction", "U8"]
+            ("ObjectLocalID", "U32"),
+            ("ClickAction", "U8")
         ]
     }
 registerMessage(ObjectClickAction)
@@ -2575,13 +2575,13 @@ class ObjectImage(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"],
-            ["MediaURL", "Variable1"],
-            ["TextureEntry", "Variable2"]
+            ("ObjectLocalID", "U32"),
+            ("MediaURL", "Variable1"),
+            ("TextureEntry", "Variable2")
         ]
     }
 registerMessage(ObjectImage)
@@ -2598,12 +2598,12 @@ class ObjectMaterial(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"],
-            ["Material", "U8"]
+            ("ObjectLocalID", "U32"),
+            ("Material", "U8")
         ]
     }
 registerMessage(ObjectMaterial)
@@ -2620,29 +2620,29 @@ class ObjectShape(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"],
-            ["PathCurve", "U8"],
-            ["ProfileCurve", "U8"],
-            ["PathBegin", "U16"],
-            ["PathEnd", "U16"],
-            ["PathScaleX", "U8"],
-            ["PathScaleY", "U8"],
-            ["PathShearX", "U8"],
-            ["PathShearY", "U8"],
-            ["PathTwist", "S8"],
-            ["PathTwistBegin", "S8"],
-            ["PathRadiusOffset", "S8"],
-            ["PathTaperX", "S8"],
-            ["PathTaperY", "S8"],
-            ["PathRevolutions", "U8"],
-            ["PathSkew", "S8"],
-            ["ProfileBegin", "U16"],
-            ["ProfileEnd", "U16"],
-            ["ProfileHollow", "U16"]
+            ("ObjectLocalID", "U32"),
+            ("PathCurve", "U8"),
+            ("ProfileCurve", "U8"),
+            ("PathBegin", "U16"),
+            ("PathEnd", "U16"),
+            ("PathScaleX", "U8"),
+            ("PathScaleY", "U8"),
+            ("PathShearX", "U8"),
+            ("PathShearY", "U8"),
+            ("PathTwist", "S8"),
+            ("PathTwistBegin", "S8"),
+            ("PathRadiusOffset", "S8"),
+            ("PathTaperX", "S8"),
+            ("PathTaperY", "S8"),
+            ("PathRevolutions", "U8"),
+            ("PathSkew", "S8"),
+            ("ProfileBegin", "U16"),
+            ("ProfileEnd", "U16"),
+            ("ProfileHollow", "U16")
         ]
     }
 registerMessage(ObjectShape)
@@ -2659,15 +2659,15 @@ class ObjectExtraParams(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"],
-            ["ParamType", "U16"],
-            ["ParamInUse", "BOOL"],
-            ["ParamSize", "U32"],
-            ["ParamData", "Variable1"]
+            ("ObjectLocalID", "U32"),
+            ("ParamType", "U16"),
+            ("ParamInUse", "BOOL"),
+            ("ParamSize", "U32"),
+            ("ParamData", "Variable1")
         ]
     }
 registerMessage(ObjectExtraParams)
@@ -2685,16 +2685,16 @@ class ObjectOwner(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "HeaderData": [
-            ["Override", "BOOL"],
-            ["OwnerID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("Override", "BOOL"),
+            ("OwnerID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"]
+            ("ObjectLocalID", "U32")
         ]
     }
 registerMessage(ObjectOwner)
@@ -2711,12 +2711,12 @@ class ObjectGroup(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"]
+            ("ObjectLocalID", "U32")
         ]
     }
 registerMessage(ObjectGroup)
@@ -2733,15 +2733,15 @@ class ObjectBuy(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["CategoryID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("CategoryID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"],
-            ["SaleType", "U8"],
-            ["SalePrice", "S32"]
+            ("ObjectLocalID", "U32"),
+            ("SaleType", "U8"),
+            ("SalePrice", "S32")
         ]
     }
 registerMessage(ObjectBuy)
@@ -2758,13 +2758,13 @@ class BuyObjectInventory(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["ObjectID", "LLUUID"],
-            ["ItemID", "LLUUID"],
-            ["FolderID", "LLUUID"]
+            ("ObjectID", "LLUUID"),
+            ("ItemID", "LLUUID"),
+            ("FolderID", "LLUUID")
         ]
     }
 registerMessage(BuyObjectInventory)
@@ -2780,8 +2780,8 @@ class DerezContainer(message.baseMessage):
     ]
     structure = {
         "Data": [
-            ["ObjectID", "LLUUID"],
-            ["Delete", "BOOL"]
+            ("ObjectID", "LLUUID"),
+            ("Delete", "BOOL")
         ]
     }
 registerMessage(DerezContainer)
@@ -2799,17 +2799,17 @@ class ObjectPermissions(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "HeaderData": [
-            ["Override", "BOOL"]
+            ("Override", "BOOL")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"],
-            ["Field", "U8"],
-            ["Set", "U8"],
-            ["Mask", "U32"]
+            ("ObjectLocalID", "U32"),
+            ("Field", "U8"),
+            ("Set", "U8"),
+            ("Mask", "U32")
         ]
     }
 registerMessage(ObjectPermissions)
@@ -2826,13 +2826,13 @@ class ObjectSaleInfo(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["LocalID", "U32"],
-            ["SaleType", "U8"],
-            ["SalePrice", "S32"]
+            ("LocalID", "U32"),
+            ("SaleType", "U8"),
+            ("SalePrice", "S32")
         ]
     }
 registerMessage(ObjectSaleInfo)
@@ -2849,12 +2849,12 @@ class ObjectName(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["LocalID", "U32"],
-            ["Name", "Variable1"]
+            ("LocalID", "U32"),
+            ("Name", "Variable1")
         ]
     }
 registerMessage(ObjectName)
@@ -2871,12 +2871,12 @@ class ObjectDescription(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["LocalID", "U32"],
-            ["Description", "Variable1"]
+            ("LocalID", "U32"),
+            ("Description", "Variable1")
         ]
     }
 registerMessage(ObjectDescription)
@@ -2893,12 +2893,12 @@ class ObjectCategory(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["LocalID", "U32"],
-            ["Category", "U32"]
+            ("LocalID", "U32"),
+            ("Category", "U32")
         ]
     }
 registerMessage(ObjectCategory)
@@ -2915,11 +2915,11 @@ class ObjectSelect(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"]
+            ("ObjectLocalID", "U32")
         ]
     }
 registerMessage(ObjectSelect)
@@ -2936,11 +2936,11 @@ class ObjectDeselect(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"]
+            ("ObjectLocalID", "U32")
         ]
     }
 registerMessage(ObjectDeselect)
@@ -2957,13 +2957,13 @@ class ObjectAttach(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["AttachmentPoint", "U8"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("AttachmentPoint", "U8")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"],
-            ["Rotation", "LLQuaternion"]
+            ("ObjectLocalID", "U32"),
+            ("Rotation", "LLQuaternion")
         ]
     }
 registerMessage(ObjectAttach)
@@ -2980,11 +2980,11 @@ class ObjectDetach(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"]
+            ("ObjectLocalID", "U32")
         ]
     }
 registerMessage(ObjectDetach)
@@ -3001,11 +3001,11 @@ class ObjectDrop(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"]
+            ("ObjectLocalID", "U32")
         ]
     }
 registerMessage(ObjectDrop)
@@ -3022,11 +3022,11 @@ class ObjectLink(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"]
+            ("ObjectLocalID", "U32")
         ]
     }
 registerMessage(ObjectLink)
@@ -3043,11 +3043,11 @@ class ObjectDelink(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"]
+            ("ObjectLocalID", "U32")
         ]
     }
 registerMessage(ObjectDelink)
@@ -3065,20 +3065,20 @@ class ObjectGrab(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["LocalID", "U32"],
-            ["GrabOffset", "LLVector3"]
+            ("LocalID", "U32"),
+            ("GrabOffset", "LLVector3")
         ],
         "SurfaceInfo": [
-            ["UVCoord", "LLVector3"],
-            ["STCoord", "LLVector3"],
-            ["FaceIndex", "S32"],
-            ["Position", "LLVector3"],
-            ["Normal", "LLVector3"],
-            ["Binormal", "LLVector3"]
+            ("UVCoord", "LLVector3"),
+            ("STCoord", "LLVector3"),
+            ("FaceIndex", "S32"),
+            ("Position", "LLVector3"),
+            ("Normal", "LLVector3"),
+            ("Binormal", "LLVector3")
         ]
     }
 registerMessage(ObjectGrab)
@@ -3096,22 +3096,22 @@ class ObjectGrabUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectID", "LLUUID"],
-            ["GrabOffsetInitial", "LLVector3"],
-            ["GrabPosition", "LLVector3"],
-            ["TimeSinceLast", "U32"]
+            ("ObjectID", "LLUUID"),
+            ("GrabOffsetInitial", "LLVector3"),
+            ("GrabPosition", "LLVector3"),
+            ("TimeSinceLast", "U32")
         ],
         "SurfaceInfo": [
-            ["UVCoord", "LLVector3"],
-            ["STCoord", "LLVector3"],
-            ["FaceIndex", "S32"],
-            ["Position", "LLVector3"],
-            ["Normal", "LLVector3"],
-            ["Binormal", "LLVector3"]
+            ("UVCoord", "LLVector3"),
+            ("STCoord", "LLVector3"),
+            ("FaceIndex", "S32"),
+            ("Position", "LLVector3"),
+            ("Normal", "LLVector3"),
+            ("Binormal", "LLVector3")
         ]
     }
 registerMessage(ObjectGrabUpdate)
@@ -3129,19 +3129,19 @@ class ObjectDeGrab(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["LocalID", "U32"]
+            ("LocalID", "U32")
         ],
         "SurfaceInfo": [
-            ["UVCoord", "LLVector3"],
-            ["STCoord", "LLVector3"],
-            ["FaceIndex", "S32"],
-            ["Position", "LLVector3"],
-            ["Normal", "LLVector3"],
-            ["Binormal", "LLVector3"]
+            ("UVCoord", "LLVector3"),
+            ("STCoord", "LLVector3"),
+            ("FaceIndex", "S32"),
+            ("Position", "LLVector3"),
+            ("Normal", "LLVector3"),
+            ("Binormal", "LLVector3")
         ]
     }
 registerMessage(ObjectDeGrab)
@@ -3158,11 +3158,11 @@ class ObjectSpinStart(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectID", "LLUUID"]
+            ("ObjectID", "LLUUID")
         ]
     }
 registerMessage(ObjectSpinStart)
@@ -3179,12 +3179,12 @@ class ObjectSpinUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectID", "LLUUID"],
-            ["Rotation", "LLQuaternion"]
+            ("ObjectID", "LLUUID"),
+            ("Rotation", "LLQuaternion")
         ]
     }
 registerMessage(ObjectSpinUpdate)
@@ -3201,11 +3201,11 @@ class ObjectSpinStop(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectID", "LLUUID"]
+            ("ObjectID", "LLUUID")
         ]
     }
 registerMessage(ObjectSpinStop)
@@ -3222,12 +3222,12 @@ class ObjectExportSelected(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["RequestID", "LLUUID"],
-            ["VolumeDetail", "S16"]
+            ("AgentID", "LLUUID"),
+            ("RequestID", "LLUUID"),
+            ("VolumeDetail", "S16")
         ],
         "ObjectData": [
-            ["ObjectID", "LLUUID"]
+            ("ObjectID", "LLUUID")
         ]
     }
 registerMessage(ObjectExportSelected)
@@ -3246,24 +3246,24 @@ class ModifyLand(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ModifyBlock": [
-            ["Action", "U8"],
-            ["BrushSize", "U8"],
-            ["Seconds", "F32"],
-            ["Height", "F32"]
+            ("Action", "U8"),
+            ("BrushSize", "U8"),
+            ("Seconds", "F32"),
+            ("Height", "F32")
         ],
         "ParcelData": [
-            ["LocalID", "S32"],
-            ["West", "F32"],
-            ["South", "F32"],
-            ["East", "F32"],
-            ["North", "F32"]
+            ("LocalID", "S32"),
+            ("West", "F32"),
+            ("South", "F32"),
+            ("East", "F32"),
+            ("North", "F32")
         ],
         "ModifyBlockExtended": [
-            ["BrushSize", "F32"]
+            ("BrushSize", "F32")
         ]
     }
 registerMessage(ModifyLand)
@@ -3279,8 +3279,8 @@ class VelocityInterpolateOn(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ]
     }
 registerMessage(VelocityInterpolateOn)
@@ -3296,8 +3296,8 @@ class VelocityInterpolateOff(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ]
     }
 registerMessage(VelocityInterpolateOff)
@@ -3314,11 +3314,11 @@ class StateSave(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "DataBlock": [
-            ["Filename", "Variable1"]
+            ("Filename", "Variable1")
         ]
     }
 registerMessage(StateSave)
@@ -3334,8 +3334,8 @@ class ReportAutosaveCrash(message.baseMessage):
     ]
     structure = {
         "AutosaveData": [
-            ["PID", "S32"],
-            ["Status", "S32"]
+            ("PID", "S32"),
+            ("Status", "S32")
         ]
     }
 registerMessage(ReportAutosaveCrash)
@@ -3352,12 +3352,12 @@ class SimWideDeletes(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "DataBlock": [
-            ["TargetID", "LLUUID"],
-            ["Flags", "U32"]
+            ("TargetID", "LLUUID"),
+            ("Flags", "U32")
         ]
     }
 registerMessage(SimWideDeletes)
@@ -3374,12 +3374,12 @@ class RequestObjectPropertiesFamily(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["RequestFlags", "U32"],
-            ["ObjectID", "LLUUID"]
+            ("RequestFlags", "U32"),
+            ("ObjectID", "LLUUID")
         ]
     }
 registerMessage(RequestObjectPropertiesFamily)
@@ -3396,11 +3396,11 @@ class TrackAgent(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "TargetData": [
-            ["PreyID", "LLUUID"]
+            ("PreyID", "LLUUID")
         ]
     }
 registerMessage(TrackAgent)
@@ -3420,44 +3420,44 @@ class ViewerStats(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["IP", "IPADDR"],
-            ["StartTime", "U32"],
-            ["RunTime", "F32"],
-            ["SimFPS", "F32"],
-            ["FPS", "F32"],
-            ["AgentsInView", "U8"],
-            ["Ping", "F32"],
-            ["MetersTraveled", "F64"],
-            ["RegionsVisited", "S32"],
-            ["SysRAM", "U32"],
-            ["SysOS", "Variable1"],
-            ["SysCPU", "Variable1"],
-            ["SysGPU", "Variable1"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("IP", "IPADDR"),
+            ("StartTime", "U32"),
+            ("RunTime", "F32"),
+            ("SimFPS", "F32"),
+            ("FPS", "F32"),
+            ("AgentsInView", "U8"),
+            ("Ping", "F32"),
+            ("MetersTraveled", "F64"),
+            ("RegionsVisited", "S32"),
+            ("SysRAM", "U32"),
+            ("SysOS", "Variable1"),
+            ("SysCPU", "Variable1"),
+            ("SysGPU", "Variable1")
         ],
         "DownloadTotals": [
-            ["World", "U32"],
-            ["Objects", "U32"],
-            ["Textures", "U32"]
+            ("World", "U32"),
+            ("Objects", "U32"),
+            ("Textures", "U32")
         ],
         "NetStats": [
-            ["Bytes", "U32"],
-            ["Packets", "U32"],
-            ["Compressed", "U32"],
-            ["Savings", "U32"]
+            ("Bytes", "U32"),
+            ("Packets", "U32"),
+            ("Compressed", "U32"),
+            ("Savings", "U32")
         ],
         "FailStats": [
-            ["SendPacket", "U32"],
-            ["Dropped", "U32"],
-            ["Resent", "U32"],
-            ["FailedResends", "U32"],
-            ["OffCircuit", "U32"],
-            ["Invalid", "U32"]
+            ("SendPacket", "U32"),
+            ("Dropped", "U32"),
+            ("Resent", "U32"),
+            ("FailedResends", "U32"),
+            ("OffCircuit", "U32"),
+            ("Invalid", "U32")
         ],
         "MiscStats": [
-            ["Type", "U32"],
-            ["Value", "F64"]
+            ("Type", "U32"),
+            ("Value", "F64")
         ]
     }
 registerMessage(ViewerStats)
@@ -3474,13 +3474,13 @@ class ScriptAnswerYes(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["TaskID", "LLUUID"],
-            ["ItemID", "LLUUID"],
-            ["Questions", "S32"]
+            ("TaskID", "LLUUID"),
+            ("ItemID", "LLUUID"),
+            ("Questions", "S32")
         ]
     }
 registerMessage(ScriptAnswerYes)
@@ -3497,22 +3497,22 @@ class UserReport(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ReportData": [
-            ["ReportType", "U8"],
-            ["Category", "U8"],
-            ["Position", "LLVector3"],
-            ["CheckFlags", "U8"],
-            ["ScreenshotID", "LLUUID"],
-            ["ObjectID", "LLUUID"],
-            ["AbuserID", "LLUUID"],
-            ["AbuseRegionName", "Variable1"],
-            ["AbuseRegionID", "LLUUID"],
-            ["Summary", "Variable1"],
-            ["Details", "Variable2"],
-            ["VersionString", "Variable1"]
+            ("ReportType", "U8"),
+            ("Category", "U8"),
+            ("Position", "LLVector3"),
+            ("CheckFlags", "U8"),
+            ("ScreenshotID", "LLUUID"),
+            ("ObjectID", "LLUUID"),
+            ("AbuserID", "LLUUID"),
+            ("AbuseRegionName", "Variable1"),
+            ("AbuseRegionID", "LLUUID"),
+            ("Summary", "Variable1"),
+            ("Details", "Variable2"),
+            ("VersionString", "Variable1")
         ]
     }
 registerMessage(UserReport)
@@ -3529,11 +3529,11 @@ class AlertMessage(message.baseMessage):
     ]
     structure = {
         "AlertData": [
-            ["Message", "Variable1"]
+            ("Message", "Variable1")
         ],
         "AlertInfo": [
-            ["Message", "Variable1"],
-            ["ExtraParams", "Variable1"]
+            ("Message", "Variable1"),
+            ("ExtraParams", "Variable1")
         ]
     }
 registerMessage(AlertMessage)
@@ -3550,11 +3550,11 @@ class AgentAlertMessage(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "AlertData": [
-            ["Modal", "BOOL"],
-            ["Message", "Variable1"]
+            ("Modal", "BOOL"),
+            ("Message", "Variable1")
         ]
     }
 registerMessage(AgentAlertMessage)
@@ -3570,11 +3570,11 @@ class MeanCollisionAlert(message.baseMessage):
     ]
     structure = {
         "MeanCollision": [
-            ["Victim", "LLUUID"],
-            ["Perp", "LLUUID"],
-            ["Time", "U32"],
-            ["Mag", "F32"],
-            ["Type", "U8"]
+            ("Victim", "LLUUID"),
+            ("Perp", "LLUUID"),
+            ("Time", "U32"),
+            ("Mag", "F32"),
+            ("Type", "U8")
         ]
     }
 registerMessage(MeanCollisionAlert)
@@ -3590,7 +3590,7 @@ class ViewerFrozenMessage(message.baseMessage):
     ]
     structure = {
         "FrozenData": [
-            ["Data", "BOOL"]
+            ("Data", "BOOL")
         ]
     }
 registerMessage(ViewerFrozenMessage)
@@ -3606,7 +3606,7 @@ class HealthMessage(message.baseMessage):
     ]
     structure = {
         "HealthData": [
-            ["Health", "F32"]
+            ("Health", "F32")
         ]
     }
 registerMessage(HealthMessage)
@@ -3622,14 +3622,14 @@ class ChatFromSimulator(message.baseMessage):
     ]
     structure = {
         "ChatData": [
-            ["FromName", "Variable1"],
-            ["SourceID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["SourceType", "U8"],
-            ["ChatType", "U8"],
-            ["Audible", "U8"],
-            ["Position", "LLVector3"],
-            ["Message", "Variable2"]
+            ("FromName", "Variable1"),
+            ("SourceID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("SourceType", "U8"),
+            ("ChatType", "U8"),
+            ("Audible", "U8"),
+            ("Position", "LLVector3"),
+            ("Message", "Variable2")
         ]
     }
 registerMessage(ChatFromSimulator)
@@ -3648,20 +3648,20 @@ class SimStats(message.baseMessage):
     ]
     structure = {
         "Region": [
-            ["RegionX", "U32"],
-            ["RegionY", "U32"],
-            ["RegionFlags", "U32"],
-            ["ObjectCapacity", "U32"]
+            ("RegionX", "U32"),
+            ("RegionY", "U32"),
+            ("RegionFlags", "U32"),
+            ("ObjectCapacity", "U32")
         ],
         "Stat": [
-            ["StatID", "U32"],
-            ["StatValue", "F32"]
+            ("StatID", "U32"),
+            ("StatValue", "F32")
         ],
         "PidStat": [
-            ["PID", "S32"]
+            ("PID", "S32")
         ],
         "RegionInfo": [
-            ["RegionFlagsExtended", "U64"]
+            ("RegionFlagsExtended", "U64")
         ]
     }
 registerMessage(SimStats)
@@ -3677,8 +3677,8 @@ class RequestRegionInfo(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ]
     }
 registerMessage(RequestRegionInfo)
@@ -3697,36 +3697,36 @@ class RegionInfo(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "RegionInfo": [
-            ["SimName", "Variable1"],
-            ["EstateID", "U32"],
-            ["ParentEstateID", "U32"],
-            ["RegionFlags", "U32"],
-            ["SimAccess", "U8"],
-            ["MaxAgents", "U8"],
-            ["BillableFactor", "F32"],
-            ["ObjectBonusFactor", "F32"],
-            ["WaterHeight", "F32"],
-            ["TerrainRaiseLimit", "F32"],
-            ["TerrainLowerLimit", "F32"],
-            ["PricePerMeter", "S32"],
-            ["RedirectGridX", "S32"],
-            ["RedirectGridY", "S32"],
-            ["UseEstateSun", "BOOL"],
-            ["SunHour", "F32"]
+            ("SimName", "Variable1"),
+            ("EstateID", "U32"),
+            ("ParentEstateID", "U32"),
+            ("RegionFlags", "U32"),
+            ("SimAccess", "U8"),
+            ("MaxAgents", "U8"),
+            ("BillableFactor", "F32"),
+            ("ObjectBonusFactor", "F32"),
+            ("WaterHeight", "F32"),
+            ("TerrainRaiseLimit", "F32"),
+            ("TerrainLowerLimit", "F32"),
+            ("PricePerMeter", "S32"),
+            ("RedirectGridX", "S32"),
+            ("RedirectGridY", "S32"),
+            ("UseEstateSun", "BOOL"),
+            ("SunHour", "F32")
         ],
         "RegionInfo2": [
-            ["ProductSKU", "Variable1"],
-            ["ProductName", "Variable1"],
-            ["MaxAgents32", "U32"],
-            ["HardMaxAgents", "U32"],
-            ["HardMaxObjects", "U32"]
+            ("ProductSKU", "Variable1"),
+            ("ProductName", "Variable1"),
+            ("MaxAgents32", "U32"),
+            ("HardMaxAgents", "U32"),
+            ("HardMaxObjects", "U32")
         ],
         "RegionInfo3": [
-            ["RegionFlagsExtended", "U64"]
+            ("RegionFlagsExtended", "U64")
         ]
     }
 registerMessage(RegionInfo)
@@ -3744,21 +3744,21 @@ class GodUpdateRegionInfo(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "RegionInfo": [
-            ["SimName", "Variable1"],
-            ["EstateID", "U32"],
-            ["ParentEstateID", "U32"],
-            ["RegionFlags", "U32"],
-            ["BillableFactor", "F32"],
-            ["PricePerMeter", "S32"],
-            ["RedirectGridX", "S32"],
-            ["RedirectGridY", "S32"]
+            ("SimName", "Variable1"),
+            ("EstateID", "U32"),
+            ("ParentEstateID", "U32"),
+            ("RegionFlags", "U32"),
+            ("BillableFactor", "F32"),
+            ("PricePerMeter", "S32"),
+            ("RedirectGridX", "S32"),
+            ("RedirectGridY", "S32")
         ],
         "RegionInfo2": [
-            ["RegionFlagsExtended", "U64"]
+            ("RegionFlagsExtended", "U64")
         ]
     }
 registerMessage(GodUpdateRegionInfo)
@@ -3774,7 +3774,7 @@ class NearestLandingRegionRequest(message.baseMessage):
     ]
     structure = {
         "RequestingRegionData": [
-            ["RegionHandle", "U64"]
+            ("RegionHandle", "U64")
         ]
     }
 registerMessage(NearestLandingRegionRequest)
@@ -3790,7 +3790,7 @@ class NearestLandingRegionReply(message.baseMessage):
     ]
     structure = {
         "LandingRegionData": [
-            ["RegionHandle", "U64"]
+            ("RegionHandle", "U64")
         ]
     }
 registerMessage(NearestLandingRegionReply)
@@ -3806,7 +3806,7 @@ class NearestLandingRegionUpdated(message.baseMessage):
     ]
     structure = {
         "RegionData": [
-            ["RegionHandle", "U64"]
+            ("RegionHandle", "U64")
         ]
     }
 registerMessage(NearestLandingRegionUpdated)
@@ -3822,7 +3822,7 @@ class TeleportLandingStatusChanged(message.baseMessage):
     ]
     structure = {
         "RegionData": [
-            ["RegionHandle", "U64"]
+            ("RegionHandle", "U64")
         ]
     }
 registerMessage(TeleportLandingStatusChanged)
@@ -3841,44 +3841,44 @@ class RegionHandshake(message.baseMessage):
     ]
     structure = {
         "RegionInfo": [
-            ["RegionFlags", "U32"],
-            ["SimAccess", "U8"],
-            ["SimName", "Variable1"],
-            ["SimOwner", "LLUUID"],
-            ["IsEstateManager", "BOOL"],
-            ["WaterHeight", "F32"],
-            ["BillableFactor", "F32"],
-            ["CacheID", "LLUUID"],
-            ["TerrainBase0", "LLUUID"],
-            ["TerrainBase1", "LLUUID"],
-            ["TerrainBase2", "LLUUID"],
-            ["TerrainBase3", "LLUUID"],
-            ["TerrainDetail0", "LLUUID"],
-            ["TerrainDetail1", "LLUUID"],
-            ["TerrainDetail2", "LLUUID"],
-            ["TerrainDetail3", "LLUUID"],
-            ["TerrainStartHeight00", "F32"],
-            ["TerrainStartHeight01", "F32"],
-            ["TerrainStartHeight10", "F32"],
-            ["TerrainStartHeight11", "F32"],
-            ["TerrainHeightRange00", "F32"],
-            ["TerrainHeightRange01", "F32"],
-            ["TerrainHeightRange10", "F32"],
-            ["TerrainHeightRange11", "F32"]
+            ("RegionFlags", "U32"),
+            ("SimAccess", "U8"),
+            ("SimName", "Variable1"),
+            ("SimOwner", "LLUUID"),
+            ("IsEstateManager", "BOOL"),
+            ("WaterHeight", "F32"),
+            ("BillableFactor", "F32"),
+            ("CacheID", "LLUUID"),
+            ("TerrainBase0", "LLUUID"),
+            ("TerrainBase1", "LLUUID"),
+            ("TerrainBase2", "LLUUID"),
+            ("TerrainBase3", "LLUUID"),
+            ("TerrainDetail0", "LLUUID"),
+            ("TerrainDetail1", "LLUUID"),
+            ("TerrainDetail2", "LLUUID"),
+            ("TerrainDetail3", "LLUUID"),
+            ("TerrainStartHeight00", "F32"),
+            ("TerrainStartHeight01", "F32"),
+            ("TerrainStartHeight10", "F32"),
+            ("TerrainStartHeight11", "F32"),
+            ("TerrainHeightRange00", "F32"),
+            ("TerrainHeightRange01", "F32"),
+            ("TerrainHeightRange10", "F32"),
+            ("TerrainHeightRange11", "F32")
         ],
         "RegionInfo2": [
-            ["RegionID", "LLUUID"]
+            ("RegionID", "LLUUID")
         ],
         "RegionInfo3": [
-            ["CPUClassID", "S32"],
-            ["CPURatio", "S32"],
-            ["ColoName", "Variable1"],
-            ["ProductSKU", "Variable1"],
-            ["ProductName", "Variable1"]
+            ("CPUClassID", "S32"),
+            ("CPURatio", "S32"),
+            ("ColoName", "Variable1"),
+            ("ProductSKU", "Variable1"),
+            ("ProductName", "Variable1")
         ],
         "RegionInfo4": [
-            ["RegionFlagsExtended", "U64"],
-            ["RegionProtocols", "U64"]
+            ("RegionFlagsExtended", "U64"),
+            ("RegionProtocols", "U64")
         ]
     }
 registerMessage(RegionHandshake)
@@ -3895,11 +3895,11 @@ class RegionHandshakeReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "RegionInfo": [
-            ["Flags", "U32"]
+            ("Flags", "U32")
         ]
     }
 registerMessage(RegionHandshakeReply)
@@ -3917,16 +3917,16 @@ class CoarseLocationUpdate(message.baseMessage):
     ]
     structure = {
         "Location": [
-            ["X", "U8"],
-            ["Y", "U8"],
-            ["Z", "U8"]
+            ("X", "U8"),
+            ("Y", "U8"),
+            ("Z", "U8")
         ],
         "Index": [
-            ["You", "S16"],
-            ["Prey", "S16"]
+            ("You", "S16"),
+            ("Prey", "S16")
         ],
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ]
     }
 registerMessage(CoarseLocationUpdate)
@@ -3943,13 +3943,13 @@ class ImageData(message.baseMessage):
     ]
     structure = {
         "ImageID": [
-            ["ID", "LLUUID"],
-            ["Codec", "U8"],
-            ["Size", "U32"],
-            ["Packets", "U16"]
+            ("ID", "LLUUID"),
+            ("Codec", "U8"),
+            ("Size", "U32"),
+            ("Packets", "U16")
         ],
         "ImageData": [
-            ["Data", "Variable2"]
+            ("Data", "Variable2")
         ]
     }
 registerMessage(ImageData)
@@ -3966,11 +3966,11 @@ class ImagePacket(message.baseMessage):
     ]
     structure = {
         "ImageID": [
-            ["ID", "LLUUID"],
-            ["Packet", "U16"]
+            ("ID", "LLUUID"),
+            ("Packet", "U16")
         ],
         "ImageData": [
-            ["Data", "Variable2"]
+            ("Data", "Variable2")
         ]
     }
 registerMessage(ImagePacket)
@@ -3987,10 +3987,10 @@ class LayerData(message.baseMessage):
     ]
     structure = {
         "LayerID": [
-            ["Type", "U8"]
+            ("Type", "U8")
         ],
         "LayerData": [
-            ["Data", "Variable2"]
+            ("Data", "Variable2")
         ]
     }
 registerMessage(LayerData)
@@ -4007,56 +4007,56 @@ class ObjectUpdate(message.baseMessage):
     ]
     structure = {
         "RegionData": [
-            ["RegionHandle", "U64"],
-            ["TimeDilation", "U16"]
+            ("RegionHandle", "U64"),
+            ("TimeDilation", "U16")
         ],
         "ObjectData": [
-            ["ID", "U32"],
-            ["State", "U8"],
-            ["FullID", "LLUUID"],
-            ["CRC", "U32"],
-            ["PCode", "U8"],
-            ["Material", "U8"],
-            ["ClickAction", "U8"],
-            ["Scale", "LLVector3"],
-            ["ObjectData", "Variable1"],
-            ["ParentID", "U32"],
-            ["UpdateFlags", "U32"],
-            ["PathCurve", "U8"],
-            ["ProfileCurve", "U8"],
-            ["PathBegin", "U16"],
-            ["PathEnd", "U16"],
-            ["PathScaleX", "U8"],
-            ["PathScaleY", "U8"],
-            ["PathShearX", "U8"],
-            ["PathShearY", "U8"],
-            ["PathTwist", "S8"],
-            ["PathTwistBegin", "S8"],
-            ["PathRadiusOffset", "S8"],
-            ["PathTaperX", "S8"],
-            ["PathTaperY", "S8"],
-            ["PathRevolutions", "U8"],
-            ["PathSkew", "S8"],
-            ["ProfileBegin", "U16"],
-            ["ProfileEnd", "U16"],
-            ["ProfileHollow", "U16"],
-            ["TextureEntry", "Variable2"],
-            ["TextureAnim", "Variable1"],
-            ["NameValue", "Variable2"],
-            ["Data", "Variable2"],
-            ["Text", "Variable1"],
-            ["TextColor", "Fixed"],
-            ["MediaURL", "Variable1"],
-            ["PSBlock", "Variable1"],
-            ["ExtraParams", "Variable1"],
-            ["Sound", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["Gain", "F32"],
-            ["Flags", "U8"],
-            ["Radius", "F32"],
-            ["JointType", "U8"],
-            ["JointPivot", "LLVector3"],
-            ["JointAxisOrAnchor", "LLVector3"]
+            ("ID", "U32"),
+            ("State", "U8"),
+            ("FullID", "LLUUID"),
+            ("CRC", "U32"),
+            ("PCode", "U8"),
+            ("Material", "U8"),
+            ("ClickAction", "U8"),
+            ("Scale", "LLVector3"),
+            ("ObjectData", "Variable1"),
+            ("ParentID", "U32"),
+            ("UpdateFlags", "U32"),
+            ("PathCurve", "U8"),
+            ("ProfileCurve", "U8"),
+            ("PathBegin", "U16"),
+            ("PathEnd", "U16"),
+            ("PathScaleX", "U8"),
+            ("PathScaleY", "U8"),
+            ("PathShearX", "U8"),
+            ("PathShearY", "U8"),
+            ("PathTwist", "S8"),
+            ("PathTwistBegin", "S8"),
+            ("PathRadiusOffset", "S8"),
+            ("PathTaperX", "S8"),
+            ("PathTaperY", "S8"),
+            ("PathRevolutions", "U8"),
+            ("PathSkew", "S8"),
+            ("ProfileBegin", "U16"),
+            ("ProfileEnd", "U16"),
+            ("ProfileHollow", "U16"),
+            ("TextureEntry", "Variable2"),
+            ("TextureAnim", "Variable1"),
+            ("NameValue", "Variable2"),
+            ("Data", "Variable2"),
+            ("Text", "Variable1"),
+            ("TextColor", "Color4U"),
+            ("MediaURL", "Variable1"),
+            ("PSBlock", "Variable1"),
+            ("ExtraParams", "Variable1"),
+            ("Sound", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("Gain", "F32"),
+            ("Flags", "U8"),
+            ("Radius", "F32"),
+            ("JointType", "U8"),
+            ("JointPivot", "LLVector3"),
+            ("JointAxisOrAnchor", "LLVector3")
         ]
     }
 registerMessage(ObjectUpdate)
@@ -4073,12 +4073,12 @@ class ObjectUpdateCompressed(message.baseMessage):
     ]
     structure = {
         "RegionData": [
-            ["RegionHandle", "U64"],
-            ["TimeDilation", "U16"]
+            ("RegionHandle", "U64"),
+            ("TimeDilation", "U16")
         ],
         "ObjectData": [
-            ["UpdateFlags", "U32"],
-            ["Data", "Variable2"]
+            ("UpdateFlags", "U32"),
+            ("Data", "Variable2")
         ]
     }
 registerMessage(ObjectUpdateCompressed)
@@ -4095,13 +4095,13 @@ class ObjectUpdateCached(message.baseMessage):
     ]
     structure = {
         "RegionData": [
-            ["RegionHandle", "U64"],
-            ["TimeDilation", "U16"]
+            ("RegionHandle", "U64"),
+            ("TimeDilation", "U16")
         ],
         "ObjectData": [
-            ["ID", "U32"],
-            ["CRC", "U32"],
-            ["UpdateFlags", "U32"]
+            ("ID", "U32"),
+            ("CRC", "U32"),
+            ("UpdateFlags", "U32")
         ]
     }
 registerMessage(ObjectUpdateCached)
@@ -4118,12 +4118,12 @@ class ImprovedTerseObjectUpdate(message.baseMessage):
     ]
     structure = {
         "RegionData": [
-            ["RegionHandle", "U64"],
-            ["TimeDilation", "U16"]
+            ("RegionHandle", "U64"),
+            ("TimeDilation", "U16")
         ],
         "ObjectData": [
-            ["Data", "Variable1"],
-            ["TextureEntry", "Variable2"]
+            ("Data", "Variable1"),
+            ("TextureEntry", "Variable2")
         ]
     }
 registerMessage(ImprovedTerseObjectUpdate)
@@ -4139,7 +4139,7 @@ class KillObject(message.baseMessage):
     ]
     structure = {
         "ObjectData": [
-            ["ID", "U32"]
+            ("ID", "U32")
         ]
     }
 registerMessage(KillObject)
@@ -4157,18 +4157,18 @@ class CrossedRegion(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "RegionData": [
-            ["SimIP", "IPADDR"],
-            ["SimPort", "IPPORT"],
-            ["RegionHandle", "U64"],
-            ["SeedCapability", "Variable2"]
+            ("SimIP", "IPADDR"),
+            ("SimPort", "IPPORT"),
+            ("RegionHandle", "U64"),
+            ("SeedCapability", "Variable2")
         ],
         "Info": [
-            ["Position", "LLVector3"],
-            ["LookAt", "LLVector3"]
+            ("Position", "LLVector3"),
+            ("LookAt", "LLVector3")
         ]
     }
 registerMessage(CrossedRegion)
@@ -4184,12 +4184,12 @@ class SimulatorViewerTimeMessage(message.baseMessage):
     ]
     structure = {
         "TimeInfo": [
-            ["UsecSinceStart", "U64"],
-            ["SecPerDay", "U32"],
-            ["SecPerYear", "U32"],
-            ["SunDirection", "LLVector3"],
-            ["SunPhase", "F32"],
-            ["SunAngVelocity", "LLVector3"]
+            ("UsecSinceStart", "U64"),
+            ("SecPerDay", "U32"),
+            ("SecPerYear", "U32"),
+            ("SunDirection", "LLVector3"),
+            ("SunPhase", "F32"),
+            ("SunAngVelocity", "LLVector3")
         ]
     }
 registerMessage(SimulatorViewerTimeMessage)
@@ -4205,9 +4205,9 @@ class EnableSimulator(message.baseMessage):
     ]
     structure = {
         "SimulatorInfo": [
-            ["Handle", "U64"],
-            ["IP", "IPADDR"],
-            ["Port", "IPPORT"]
+            ("Handle", "U64"),
+            ("IP", "IPADDR"),
+            ("Port", "IPPORT")
         ]
     }
 registerMessage(EnableSimulator)
@@ -4237,8 +4237,8 @@ class ConfirmEnableSimulator(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ]
     }
 registerMessage(ConfirmEnableSimulator)
@@ -4254,11 +4254,11 @@ class TransferRequest(message.baseMessage):
     ]
     structure = {
         "TransferInfo": [
-            ["TransferID", "LLUUID"],
-            ["ChannelType", "S32"],
-            ["SourceType", "S32"],
-            ["Priority", "F32"],
-            ["Params", "Variable2"]
+            ("TransferID", "LLUUID"),
+            ("ChannelType", "S32"),
+            ("SourceType", "S32"),
+            ("Priority", "F32"),
+            ("Params", "Variable2")
         ]
     }
 registerMessage(TransferRequest)
@@ -4274,12 +4274,12 @@ class TransferInfo(message.baseMessage):
     ]
     structure = {
         "TransferInfo": [
-            ["TransferID", "LLUUID"],
-            ["ChannelType", "S32"],
-            ["TargetType", "S32"],
-            ["Status", "S32"],
-            ["Size", "S32"],
-            ["Params", "Variable2"]
+            ("TransferID", "LLUUID"),
+            ("ChannelType", "S32"),
+            ("TargetType", "S32"),
+            ("Status", "S32"),
+            ("Size", "S32"),
+            ("Params", "Variable2")
         ]
     }
 registerMessage(TransferInfo)
@@ -4295,11 +4295,11 @@ class TransferPacket(message.baseMessage):
     ]
     structure = {
         "TransferData": [
-            ["TransferID", "LLUUID"],
-            ["ChannelType", "S32"],
-            ["Packet", "S32"],
-            ["Status", "S32"],
-            ["Data", "Variable2"]
+            ("TransferID", "LLUUID"),
+            ("ChannelType", "S32"),
+            ("Packet", "S32"),
+            ("Status", "S32"),
+            ("Data", "Variable2")
         ]
     }
 registerMessage(TransferPacket)
@@ -4315,8 +4315,8 @@ class TransferAbort(message.baseMessage):
     ]
     structure = {
         "TransferInfo": [
-            ["TransferID", "LLUUID"],
-            ["ChannelType", "S32"]
+            ("TransferID", "LLUUID"),
+            ("ChannelType", "S32")
         ]
     }
 registerMessage(TransferAbort)
@@ -4332,13 +4332,13 @@ class RequestXfer(message.baseMessage):
     ]
     structure = {
         "XferID": [
-            ["ID", "U64"],
-            ["Filename", "Variable1"],
-            ["FilePath", "U8"],
-            ["DeleteOnCompletion", "BOOL"],
-            ["UseBigPackets", "BOOL"],
-            ["VFileID", "LLUUID"],
-            ["VFileType", "S16"]
+            ("ID", "U64"),
+            ("Filename", "Variable1"),
+            ("FilePath", "U8"),
+            ("DeleteOnCompletion", "BOOL"),
+            ("UseBigPackets", "BOOL"),
+            ("VFileID", "LLUUID"),
+            ("VFileType", "S16")
         ]
     }
 registerMessage(RequestXfer)
@@ -4355,11 +4355,11 @@ class SendXferPacket(message.baseMessage):
     ]
     structure = {
         "XferID": [
-            ["ID", "U64"],
-            ["Packet", "U32"]
+            ("ID", "U64"),
+            ("Packet", "U32")
         ],
         "DataPacket": [
-            ["Data", "Variable2"]
+            ("Data", "Variable2")
         ]
     }
 registerMessage(SendXferPacket)
@@ -4375,8 +4375,8 @@ class ConfirmXferPacket(message.baseMessage):
     ]
     structure = {
         "XferID": [
-            ["ID", "U64"],
-            ["Packet", "U32"]
+            ("ID", "U64"),
+            ("Packet", "U32")
         ]
     }
 registerMessage(ConfirmXferPacket)
@@ -4392,8 +4392,8 @@ class AbortXfer(message.baseMessage):
     ]
     structure = {
         "XferID": [
-            ["ID", "U64"],
-            ["Result", "S32"]
+            ("ID", "U64"),
+            ("Result", "S32")
         ]
     }
 registerMessage(AbortXfer)
@@ -4412,17 +4412,17 @@ class AvatarAnimation(message.baseMessage):
     ]
     structure = {
         "Sender": [
-            ["ID", "LLUUID"]
+            ("ID", "LLUUID")
         ],
         "AnimationList": [
-            ["AnimID", "LLUUID"],
-            ["AnimSequenceID", "S32"]
+            ("AnimID", "LLUUID"),
+            ("AnimSequenceID", "S32")
         ],
         "AnimationSourceList": [
-            ["ObjectID", "LLUUID"]
+            ("ObjectID", "LLUUID")
         ],
         "PhysicalAvatarEventList": [
-            ["TypeData", "Variable1"]
+            ("TypeData", "Variable1")
         ]
     }
 registerMessage(AvatarAnimation)
@@ -4442,22 +4442,22 @@ class AvatarAppearance(message.baseMessage):
     ]
     structure = {
         "Sender": [
-            ["ID", "LLUUID"],
-            ["IsTrial", "BOOL"]
+            ("ID", "LLUUID"),
+            ("IsTrial", "BOOL")
         ],
         "ObjectData": [
-            ["TextureEntry", "Variable2"]
+            ("TextureEntry", "Variable2")
         ],
         "VisualParam": [
-            ["ParamValue", "U8"]
+            ("ParamValue", "U8")
         ],
         "AppearanceData": [
-            ["AppearanceVersion", "U8"],
-            ["CofVersion", "S32"],
-            ["Flags", "U32"]
+            ("AppearanceVersion", "U8"),
+            ("CofVersion", "S32"),
+            ("Flags", "U32")
         ],
         "AppearanceHover": [
-            ["HoverHeight", "LLVector3"]
+            ("HoverHeight", "LLVector3")
         ]
     }
 registerMessage(AvatarAppearance)
@@ -4474,15 +4474,15 @@ class AvatarSitResponse(message.baseMessage):
     ]
     structure = {
         "SitObject": [
-            ["ID", "LLUUID"]
+            ("ID", "LLUUID")
         ],
         "SitTransform": [
-            ["AutoPilot", "BOOL"],
-            ["SitPosition", "LLVector3"],
-            ["SitRotation", "LLQuaternion"],
-            ["CameraEyeOffset", "LLVector3"],
-            ["CameraAtOffset", "LLVector3"],
-            ["ForceMouselook", "BOOL"]
+            ("AutoPilot", "BOOL"),
+            ("SitPosition", "LLVector3"),
+            ("SitRotation", "LLQuaternion"),
+            ("CameraEyeOffset", "LLVector3"),
+            ("CameraAtOffset", "LLVector3"),
+            ("ForceMouselook", "BOOL")
         ]
     }
 registerMessage(AvatarSitResponse)
@@ -4499,11 +4499,11 @@ class SetFollowCamProperties(message.baseMessage):
     ]
     structure = {
         "ObjectData": [
-            ["ObjectID", "LLUUID"]
+            ("ObjectID", "LLUUID")
         ],
         "CameraProperty": [
-            ["Type", "S32"],
-            ["Value", "F32"]
+            ("Type", "S32"),
+            ("Value", "F32")
         ]
     }
 registerMessage(SetFollowCamProperties)
@@ -4519,7 +4519,7 @@ class ClearFollowCamProperties(message.baseMessage):
     ]
     structure = {
         "ObjectData": [
-            ["ObjectID", "LLUUID"]
+            ("ObjectID", "LLUUID")
         ]
     }
 registerMessage(ClearFollowCamProperties)
@@ -4535,7 +4535,7 @@ class CameraConstraint(message.baseMessage):
     ]
     structure = {
         "CameraCollidePlane": [
-            ["Plane", "LLVector4"]
+            ("Plane", "LLVector4")
         ]
     }
 registerMessage(CameraConstraint)
@@ -4551,33 +4551,33 @@ class ObjectProperties(message.baseMessage):
     ]
     structure = {
         "ObjectData": [
-            ["ObjectID", "LLUUID"],
-            ["CreatorID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["CreationDate", "U64"],
-            ["BaseMask", "U32"],
-            ["OwnerMask", "U32"],
-            ["GroupMask", "U32"],
-            ["EveryoneMask", "U32"],
-            ["NextOwnerMask", "U32"],
-            ["OwnershipCost", "S32"],
-            ["SaleType", "U8"],
-            ["SalePrice", "S32"],
-            ["AggregatePerms", "U8"],
-            ["AggregatePermTextures", "U8"],
-            ["AggregatePermTexturesOwner", "U8"],
-            ["Category", "U32"],
-            ["InventorySerial", "S16"],
-            ["ItemID", "LLUUID"],
-            ["FolderID", "LLUUID"],
-            ["FromTaskID", "LLUUID"],
-            ["LastOwnerID", "LLUUID"],
-            ["Name", "Variable1"],
-            ["Description", "Variable1"],
-            ["TouchName", "Variable1"],
-            ["SitName", "Variable1"],
-            ["TextureID", "Variable1"]
+            ("ObjectID", "LLUUID"),
+            ("CreatorID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("CreationDate", "U64"),
+            ("BaseMask", "U32"),
+            ("OwnerMask", "U32"),
+            ("GroupMask", "U32"),
+            ("EveryoneMask", "U32"),
+            ("NextOwnerMask", "U32"),
+            ("OwnershipCost", "S32"),
+            ("SaleType", "U8"),
+            ("SalePrice", "S32"),
+            ("AggregatePerms", "U8"),
+            ("AggregatePermTextures", "U8"),
+            ("AggregatePermTexturesOwner", "U8"),
+            ("Category", "U32"),
+            ("InventorySerial", "S16"),
+            ("ItemID", "LLUUID"),
+            ("FolderID", "LLUUID"),
+            ("FromTaskID", "LLUUID"),
+            ("LastOwnerID", "LLUUID"),
+            ("Name", "Variable1"),
+            ("Description", "Variable1"),
+            ("TouchName", "Variable1"),
+            ("SitName", "Variable1"),
+            ("TextureID", "Variable1")
         ]
     }
 registerMessage(ObjectProperties)
@@ -4593,22 +4593,22 @@ class ObjectPropertiesFamily(message.baseMessage):
     ]
     structure = {
         "ObjectData": [
-            ["RequestFlags", "U32"],
-            ["ObjectID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["BaseMask", "U32"],
-            ["OwnerMask", "U32"],
-            ["GroupMask", "U32"],
-            ["EveryoneMask", "U32"],
-            ["NextOwnerMask", "U32"],
-            ["OwnershipCost", "S32"],
-            ["SaleType", "U8"],
-            ["SalePrice", "S32"],
-            ["Category", "U32"],
-            ["LastOwnerID", "LLUUID"],
-            ["Name", "Variable1"],
-            ["Description", "Variable1"]
+            ("RequestFlags", "U32"),
+            ("ObjectID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("BaseMask", "U32"),
+            ("OwnerMask", "U32"),
+            ("GroupMask", "U32"),
+            ("EveryoneMask", "U32"),
+            ("NextOwnerMask", "U32"),
+            ("OwnershipCost", "S32"),
+            ("SaleType", "U8"),
+            ("SalePrice", "S32"),
+            ("Category", "U32"),
+            ("LastOwnerID", "LLUUID"),
+            ("Name", "Variable1"),
+            ("Description", "Variable1")
         ]
     }
 registerMessage(ObjectPropertiesFamily)
@@ -4624,7 +4624,7 @@ class RequestPayPrice(message.baseMessage):
     ]
     structure = {
         "ObjectData": [
-            ["ObjectID", "LLUUID"]
+            ("ObjectID", "LLUUID")
         ]
     }
 registerMessage(RequestPayPrice)
@@ -4641,11 +4641,11 @@ class PayPriceReply(message.baseMessage):
     ]
     structure = {
         "ObjectData": [
-            ["ObjectID", "LLUUID"],
-            ["DefaultPayPrice", "S32"]
+            ("ObjectID", "LLUUID"),
+            ("DefaultPayPrice", "S32")
         ],
         "ButtonData": [
-            ["PayButton", "S32"]
+            ("PayButton", "S32")
         ]
     }
 registerMessage(PayPriceReply)
@@ -4662,13 +4662,13 @@ class KickUser(message.baseMessage):
     ]
     structure = {
         "TargetBlock": [
-            ["TargetIP", "IPADDR"],
-            ["TargetPort", "IPPORT"]
+            ("TargetIP", "IPADDR"),
+            ("TargetPort", "IPPORT")
         ],
         "UserInfo": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["Reason", "Variable2"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("Reason", "Variable2")
         ]
     }
 registerMessage(KickUser)
@@ -4684,8 +4684,8 @@ class KickUserAck(message.baseMessage):
     ]
     structure = {
         "UserInfo": [
-            ["SessionID", "LLUUID"],
-            ["Flags", "U32"]
+            ("SessionID", "LLUUID"),
+            ("Flags", "U32")
         ]
     }
 registerMessage(KickUserAck)
@@ -4701,11 +4701,11 @@ class GodKickUser(message.baseMessage):
     ]
     structure = {
         "UserInfo": [
-            ["GodID", "LLUUID"],
-            ["GodSessionID", "LLUUID"],
-            ["AgentID", "LLUUID"],
-            ["KickFlags", "U32"],
-            ["Reason", "Variable2"]
+            ("GodID", "LLUUID"),
+            ("GodSessionID", "LLUUID"),
+            ("AgentID", "LLUUID"),
+            ("KickFlags", "U32"),
+            ("Reason", "Variable2")
         ]
     }
 registerMessage(GodKickUser)
@@ -4721,7 +4721,7 @@ class SystemKickUser(message.baseMessage):
     ]
     structure = {
         "AgentInfo": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ]
     }
 registerMessage(SystemKickUser)
@@ -4738,12 +4738,12 @@ class EjectUser(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["TargetID", "LLUUID"],
-            ["Flags", "U32"]
+            ("TargetID", "LLUUID"),
+            ("Flags", "U32")
         ]
     }
 registerMessage(EjectUser)
@@ -4760,12 +4760,12 @@ class FreezeUser(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["TargetID", "LLUUID"],
-            ["Flags", "U32"]
+            ("TargetID", "LLUUID"),
+            ("Flags", "U32")
         ]
     }
 registerMessage(FreezeUser)
@@ -4781,9 +4781,9 @@ class AvatarPropertiesRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["AvatarID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("AvatarID", "LLUUID")
         ]
     }
 registerMessage(AvatarPropertiesRequest)
@@ -4799,10 +4799,10 @@ class AvatarPropertiesRequestBackend(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["AvatarID", "LLUUID"],
-            ["GodLevel", "U8"],
-            ["WebProfilesDisabled", "BOOL"]
+            ("AgentID", "LLUUID"),
+            ("AvatarID", "LLUUID"),
+            ("GodLevel", "U8"),
+            ("WebProfilesDisabled", "BOOL")
         ]
     }
 registerMessage(AvatarPropertiesRequestBackend)
@@ -4819,19 +4819,19 @@ class AvatarPropertiesReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["AvatarID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("AvatarID", "LLUUID")
         ],
         "PropertiesData": [
-            ["ImageID", "LLUUID"],
-            ["FLImageID", "LLUUID"],
-            ["PartnerID", "LLUUID"],
-            ["AboutText", "Variable2"],
-            ["FLAboutText", "Variable1"],
-            ["BornOn", "Variable1"],
-            ["ProfileURL", "Variable1"],
-            ["CharterMember", "Variable1"],
-            ["Flags", "U32"]
+            ("ImageID", "LLUUID"),
+            ("FLImageID", "LLUUID"),
+            ("PartnerID", "LLUUID"),
+            ("AboutText", "Variable2"),
+            ("FLAboutText", "Variable1"),
+            ("BornOn", "Variable1"),
+            ("ProfileURL", "Variable1"),
+            ("CharterMember", "Variable1"),
+            ("Flags", "U32")
         ]
     }
 registerMessage(AvatarPropertiesReply)
@@ -4848,15 +4848,15 @@ class AvatarInterestsReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["AvatarID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("AvatarID", "LLUUID")
         ],
         "PropertiesData": [
-            ["WantToMask", "U32"],
-            ["WantToText", "Variable1"],
-            ["SkillsMask", "U32"],
-            ["SkillsText", "Variable1"],
-            ["LanguagesText", "Variable1"]
+            ("WantToMask", "U32"),
+            ("WantToText", "Variable1"),
+            ("SkillsMask", "U32"),
+            ("SkillsText", "Variable1"),
+            ("LanguagesText", "Variable1")
         ]
     }
 registerMessage(AvatarInterestsReply)
@@ -4874,19 +4874,19 @@ class AvatarGroupsReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["AvatarID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("AvatarID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupPowers", "U64"],
-            ["AcceptNotices", "BOOL"],
-            ["GroupTitle", "Variable1"],
-            ["GroupID", "LLUUID"],
-            ["GroupName", "Variable1"],
-            ["GroupInsigniaID", "LLUUID"]
+            ("GroupPowers", "U64"),
+            ("AcceptNotices", "BOOL"),
+            ("GroupTitle", "Variable1"),
+            ("GroupID", "LLUUID"),
+            ("GroupName", "Variable1"),
+            ("GroupInsigniaID", "LLUUID")
         ],
         "NewGroupData": [
-            ["ListInProfile", "BOOL"]
+            ("ListInProfile", "BOOL")
         ]
     }
 registerMessage(AvatarGroupsReply)
@@ -4903,17 +4903,17 @@ class AvatarPropertiesUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "PropertiesData": [
-            ["ImageID", "LLUUID"],
-            ["FLImageID", "LLUUID"],
-            ["AboutText", "Variable2"],
-            ["FLAboutText", "Variable1"],
-            ["AllowPublish", "BOOL"],
-            ["MaturePublish", "BOOL"],
-            ["ProfileURL", "Variable1"]
+            ("ImageID", "LLUUID"),
+            ("FLImageID", "LLUUID"),
+            ("AboutText", "Variable2"),
+            ("FLAboutText", "Variable1"),
+            ("AllowPublish", "BOOL"),
+            ("MaturePublish", "BOOL"),
+            ("ProfileURL", "Variable1")
         ]
     }
 registerMessage(AvatarPropertiesUpdate)
@@ -4930,15 +4930,15 @@ class AvatarInterestsUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "PropertiesData": [
-            ["WantToMask", "U32"],
-            ["WantToText", "Variable1"],
-            ["SkillsMask", "U32"],
-            ["SkillsText", "Variable1"],
-            ["LanguagesText", "Variable1"]
+            ("WantToMask", "U32"),
+            ("WantToText", "Variable1"),
+            ("SkillsMask", "U32"),
+            ("SkillsText", "Variable1"),
+            ("LanguagesText", "Variable1")
         ]
     }
 registerMessage(AvatarInterestsUpdate)
@@ -4955,11 +4955,11 @@ class AvatarNotesReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "Data": [
-            ["TargetID", "LLUUID"],
-            ["Notes", "Variable2"]
+            ("TargetID", "LLUUID"),
+            ("Notes", "Variable2")
         ]
     }
 registerMessage(AvatarNotesReply)
@@ -4976,12 +4976,12 @@ class AvatarNotesUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["TargetID", "LLUUID"],
-            ["Notes", "Variable2"]
+            ("TargetID", "LLUUID"),
+            ("Notes", "Variable2")
         ]
     }
 registerMessage(AvatarNotesUpdate)
@@ -4998,12 +4998,12 @@ class AvatarPicksReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["TargetID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("TargetID", "LLUUID")
         ],
         "Data": [
-            ["PickID", "LLUUID"],
-            ["PickName", "Variable1"]
+            ("PickID", "LLUUID"),
+            ("PickName", "Variable1")
         ]
     }
 registerMessage(AvatarPicksReply)
@@ -5020,11 +5020,11 @@ class EventInfoRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "EventData": [
-            ["EventID", "U32"]
+            ("EventID", "U32")
         ]
     }
 registerMessage(EventInfoRequest)
@@ -5041,22 +5041,22 @@ class EventInfoReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "EventData": [
-            ["EventID", "U32"],
-            ["Creator", "Variable1"],
-            ["Name", "Variable1"],
-            ["Category", "Variable1"],
-            ["Desc", "Variable2"],
-            ["Date", "Variable1"],
-            ["DateUTC", "U32"],
-            ["Duration", "U32"],
-            ["Cover", "U32"],
-            ["Amount", "U32"],
-            ["SimName", "Variable1"],
-            ["GlobalPos", "LLVector3d"],
-            ["EventFlags", "U32"]
+            ("EventID", "U32"),
+            ("Creator", "Variable1"),
+            ("Name", "Variable1"),
+            ("Category", "Variable1"),
+            ("Desc", "Variable2"),
+            ("Date", "Variable1"),
+            ("DateUTC", "U32"),
+            ("Duration", "U32"),
+            ("Cover", "U32"),
+            ("Amount", "U32"),
+            ("SimName", "Variable1"),
+            ("GlobalPos", "LLVector3d"),
+            ("EventFlags", "U32")
         ]
     }
 registerMessage(EventInfoReply)
@@ -5073,11 +5073,11 @@ class EventNotificationAddRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "EventData": [
-            ["EventID", "U32"]
+            ("EventID", "U32")
         ]
     }
 registerMessage(EventNotificationAddRequest)
@@ -5094,11 +5094,11 @@ class EventNotificationRemoveRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "EventData": [
-            ["EventID", "U32"]
+            ("EventID", "U32")
         ]
     }
 registerMessage(EventNotificationRemoveRequest)
@@ -5116,17 +5116,17 @@ class EventGodDelete(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "EventData": [
-            ["EventID", "U32"]
+            ("EventID", "U32")
         ],
         "QueryData": [
-            ["QueryID", "LLUUID"],
-            ["QueryText", "Variable1"],
-            ["QueryFlags", "U32"],
-            ["QueryStart", "S32"]
+            ("QueryID", "LLUUID"),
+            ("QueryText", "Variable1"),
+            ("QueryFlags", "U32"),
+            ("QueryStart", "S32")
         ]
     }
 registerMessage(EventGodDelete)
@@ -5143,22 +5143,22 @@ class PickInfoReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "Data": [
-            ["PickID", "LLUUID"],
-            ["CreatorID", "LLUUID"],
-            ["TopPick", "BOOL"],
-            ["ParcelID", "LLUUID"],
-            ["Name", "Variable1"],
-            ["Desc", "Variable2"],
-            ["SnapshotID", "LLUUID"],
-            ["User", "Variable1"],
-            ["OriginalName", "Variable1"],
-            ["SimName", "Variable1"],
-            ["PosGlobal", "LLVector3d"],
-            ["SortOrder", "S32"],
-            ["Enabled", "BOOL"]
+            ("PickID", "LLUUID"),
+            ("CreatorID", "LLUUID"),
+            ("TopPick", "BOOL"),
+            ("ParcelID", "LLUUID"),
+            ("Name", "Variable1"),
+            ("Desc", "Variable2"),
+            ("SnapshotID", "LLUUID"),
+            ("User", "Variable1"),
+            ("OriginalName", "Variable1"),
+            ("SimName", "Variable1"),
+            ("PosGlobal", "LLVector3d"),
+            ("SortOrder", "S32"),
+            ("Enabled", "BOOL")
         ]
     }
 registerMessage(PickInfoReply)
@@ -5175,20 +5175,20 @@ class PickInfoUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["PickID", "LLUUID"],
-            ["CreatorID", "LLUUID"],
-            ["TopPick", "BOOL"],
-            ["ParcelID", "LLUUID"],
-            ["Name", "Variable1"],
-            ["Desc", "Variable2"],
-            ["SnapshotID", "LLUUID"],
-            ["PosGlobal", "LLVector3d"],
-            ["SortOrder", "S32"],
-            ["Enabled", "BOOL"]
+            ("PickID", "LLUUID"),
+            ("CreatorID", "LLUUID"),
+            ("TopPick", "BOOL"),
+            ("ParcelID", "LLUUID"),
+            ("Name", "Variable1"),
+            ("Desc", "Variable2"),
+            ("SnapshotID", "LLUUID"),
+            ("PosGlobal", "LLVector3d"),
+            ("SortOrder", "S32"),
+            ("Enabled", "BOOL")
         ]
     }
 registerMessage(PickInfoUpdate)
@@ -5205,11 +5205,11 @@ class PickDelete(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["PickID", "LLUUID"]
+            ("PickID", "LLUUID")
         ]
     }
 registerMessage(PickDelete)
@@ -5226,12 +5226,12 @@ class PickGodDelete(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["PickID", "LLUUID"],
-            ["QueryID", "LLUUID"]
+            ("PickID", "LLUUID"),
+            ("QueryID", "LLUUID")
         ]
     }
 registerMessage(PickGodDelete)
@@ -5248,14 +5248,14 @@ class ScriptQuestion(message.baseMessage):
     ]
     structure = {
         "Data": [
-            ["TaskID", "LLUUID"],
-            ["ItemID", "LLUUID"],
-            ["ObjectName", "Variable1"],
-            ["ObjectOwner", "Variable1"],
-            ["Questions", "S32"]
+            ("TaskID", "LLUUID"),
+            ("ItemID", "LLUUID"),
+            ("ObjectName", "Variable1"),
+            ("ObjectOwner", "Variable1"),
+            ("Questions", "S32")
         ],
         "Experience": [
-            ["ExperienceID", "LLUUID"]
+            ("ExperienceID", "LLUUID")
         ]
     }
 registerMessage(ScriptQuestion)
@@ -5271,9 +5271,9 @@ class ScriptControlChange(message.baseMessage):
     ]
     structure = {
         "Data": [
-            ["TakeControls", "BOOL"],
-            ["Controls", "U32"],
-            ["PassToAgent", "BOOL"]
+            ("TakeControls", "BOOL"),
+            ("Controls", "U32"),
+            ("PassToAgent", "BOOL")
         ]
     }
 registerMessage(ScriptControlChange)
@@ -5291,19 +5291,19 @@ class ScriptDialog(message.baseMessage):
     ]
     structure = {
         "Data": [
-            ["ObjectID", "LLUUID"],
-            ["FirstName", "Variable1"],
-            ["LastName", "Variable1"],
-            ["ObjectName", "Variable1"],
-            ["Message", "Variable2"],
-            ["ChatChannel", "S32"],
-            ["ImageID", "LLUUID"]
+            ("ObjectID", "LLUUID"),
+            ("FirstName", "Variable1"),
+            ("LastName", "Variable1"),
+            ("ObjectName", "Variable1"),
+            ("Message", "Variable2"),
+            ("ChatChannel", "S32"),
+            ("ImageID", "LLUUID")
         ],
         "Buttons": [
-            ["ButtonLabel", "Variable1"]
+            ("ButtonLabel", "Variable1")
         ],
         "OwnerData": [
-            ["OwnerID", "LLUUID"]
+            ("OwnerID", "LLUUID")
         ]
     }
 registerMessage(ScriptDialog)
@@ -5320,14 +5320,14 @@ class ScriptDialogReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["ObjectID", "LLUUID"],
-            ["ChatChannel", "S32"],
-            ["ButtonIndex", "S32"],
-            ["ButtonLabel", "Variable1"]
+            ("ObjectID", "LLUUID"),
+            ("ChatChannel", "S32"),
+            ("ButtonIndex", "S32"),
+            ("ButtonLabel", "Variable1")
         ]
     }
 registerMessage(ScriptDialogReply)
@@ -5343,8 +5343,8 @@ class ForceScriptControlRelease(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ]
     }
 registerMessage(ForceScriptControlRelease)
@@ -5361,12 +5361,12 @@ class RevokePermissions(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["ObjectID", "LLUUID"],
-            ["ObjectPermissions", "U32"]
+            ("ObjectID", "LLUUID"),
+            ("ObjectPermissions", "U32")
         ]
     }
 registerMessage(RevokePermissions)
@@ -5382,12 +5382,12 @@ class LoadURL(message.baseMessage):
     ]
     structure = {
         "Data": [
-            ["ObjectName", "Variable1"],
-            ["ObjectID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["OwnerIsGroup", "BOOL"],
-            ["Message", "Variable1"],
-            ["URL", "Variable1"]
+            ("ObjectName", "Variable1"),
+            ("ObjectID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("OwnerIsGroup", "BOOL"),
+            ("Message", "Variable1"),
+            ("URL", "Variable1")
         ]
     }
 registerMessage(LoadURL)
@@ -5403,10 +5403,10 @@ class ScriptTeleportRequest(message.baseMessage):
     ]
     structure = {
         "Data": [
-            ["ObjectName", "Variable1"],
-            ["SimName", "Variable1"],
-            ["SimPosition", "LLVector3"],
-            ["LookAt", "LLVector3"]
+            ("ObjectName", "Variable1"),
+            ("SimName", "Variable1"),
+            ("SimPosition", "LLVector3"),
+            ("LookAt", "LLVector3")
         ]
     }
 registerMessage(ScriptTeleportRequest)
@@ -5422,8 +5422,8 @@ class ParcelOverlay(message.baseMessage):
     ]
     structure = {
         "ParcelData": [
-            ["SequenceID", "S32"],
-            ["Data", "Variable2"]
+            ("SequenceID", "S32"),
+            ("Data", "Variable2")
         ]
     }
 registerMessage(ParcelOverlay)
@@ -5440,16 +5440,16 @@ class ParcelPropertiesRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ParcelData": [
-            ["SequenceID", "S32"],
-            ["West", "F32"],
-            ["South", "F32"],
-            ["East", "F32"],
-            ["North", "F32"],
-            ["SnapSelection", "BOOL"]
+            ("SequenceID", "S32"),
+            ("West", "F32"),
+            ("South", "F32"),
+            ("East", "F32"),
+            ("North", "F32"),
+            ("SnapSelection", "BOOL")
         ]
     }
 registerMessage(ParcelPropertiesRequest)
@@ -5466,12 +5466,12 @@ class ParcelPropertiesRequestByID(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ParcelData": [
-            ["SequenceID", "S32"],
-            ["LocalID", "S32"]
+            ("SequenceID", "S32"),
+            ("LocalID", "S32")
         ]
     }
 registerMessage(ParcelPropertiesRequestByID)
@@ -5488,58 +5488,58 @@ class ParcelProperties(message.baseMessage):
     ]
     structure = {
         "ParcelData": [
-            ["RequestResult", "S32"],
-            ["SequenceID", "S32"],
-            ["SnapSelection", "BOOL"],
-            ["SelfCount", "S32"],
-            ["OtherCount", "S32"],
-            ["PublicCount", "S32"],
-            ["LocalID", "S32"],
-            ["OwnerID", "LLUUID"],
-            ["IsGroupOwned", "BOOL"],
-            ["AuctionID", "U32"],
-            ["ClaimDate", "S32"],
-            ["ClaimPrice", "S32"],
-            ["RentPrice", "S32"],
-            ["AABBMin", "LLVector3"],
-            ["AABBMax", "LLVector3"],
-            ["Bitmap", "Variable2"],
-            ["Area", "S32"],
-            ["Status", "U8"],
-            ["SimWideMaxPrims", "S32"],
-            ["SimWideTotalPrims", "S32"],
-            ["MaxPrims", "S32"],
-            ["TotalPrims", "S32"],
-            ["OwnerPrims", "S32"],
-            ["GroupPrims", "S32"],
-            ["OtherPrims", "S32"],
-            ["SelectedPrims", "S32"],
-            ["ParcelPrimBonus", "F32"],
-            ["OtherCleanTime", "S32"],
-            ["ParcelFlags", "U32"],
-            ["SalePrice", "S32"],
-            ["Name", "Variable1"],
-            ["Desc", "Variable1"],
-            ["MusicURL", "Variable1"],
-            ["MediaURL", "Variable1"],
-            ["MediaID", "LLUUID"],
-            ["MediaAutoScale", "U8"],
-            ["GroupID", "LLUUID"],
-            ["PassPrice", "S32"],
-            ["PassHours", "F32"],
-            ["Category", "U8"],
-            ["AuthBuyerID", "LLUUID"],
-            ["SnapshotID", "LLUUID"],
-            ["UserLocation", "LLVector3"],
-            ["UserLookAt", "LLVector3"],
-            ["LandingType", "U8"],
-            ["RegionPushOverride", "BOOL"],
-            ["RegionDenyAnonymous", "BOOL"],
-            ["RegionDenyIdentified", "BOOL"],
-            ["RegionDenyTransacted", "BOOL"]
+            ("RequestResult", "S32"),
+            ("SequenceID", "S32"),
+            ("SnapSelection", "BOOL"),
+            ("SelfCount", "S32"),
+            ("OtherCount", "S32"),
+            ("PublicCount", "S32"),
+            ("LocalID", "S32"),
+            ("OwnerID", "LLUUID"),
+            ("IsGroupOwned", "BOOL"),
+            ("AuctionID", "U32"),
+            ("ClaimDate", "S32"),
+            ("ClaimPrice", "S32"),
+            ("RentPrice", "S32"),
+            ("AABBMin", "LLVector3"),
+            ("AABBMax", "LLVector3"),
+            ("Bitmap", "Variable2"),
+            ("Area", "S32"),
+            ("Status", "U8"),
+            ("SimWideMaxPrims", "S32"),
+            ("SimWideTotalPrims", "S32"),
+            ("MaxPrims", "S32"),
+            ("TotalPrims", "S32"),
+            ("OwnerPrims", "S32"),
+            ("GroupPrims", "S32"),
+            ("OtherPrims", "S32"),
+            ("SelectedPrims", "S32"),
+            ("ParcelPrimBonus", "F32"),
+            ("OtherCleanTime", "S32"),
+            ("ParcelFlags", "U32"),
+            ("SalePrice", "S32"),
+            ("Name", "Variable1"),
+            ("Desc", "Variable1"),
+            ("MusicURL", "Variable1"),
+            ("MediaURL", "Variable1"),
+            ("MediaID", "LLUUID"),
+            ("MediaAutoScale", "U8"),
+            ("GroupID", "LLUUID"),
+            ("PassPrice", "S32"),
+            ("PassHours", "F32"),
+            ("Category", "U8"),
+            ("AuthBuyerID", "LLUUID"),
+            ("SnapshotID", "LLUUID"),
+            ("UserLocation", "LLVector3"),
+            ("UserLookAt", "LLVector3"),
+            ("LandingType", "U8"),
+            ("RegionPushOverride", "BOOL"),
+            ("RegionDenyAnonymous", "BOOL"),
+            ("RegionDenyIdentified", "BOOL"),
+            ("RegionDenyTransacted", "BOOL")
         ],
         "AgeVerificationBlock": [
-            ["RegionDenyAgeUnverified", "BOOL"]
+            ("RegionDenyAgeUnverified", "BOOL")
         ]
     }
 registerMessage(ParcelProperties)
@@ -5556,29 +5556,29 @@ class ParcelPropertiesUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ParcelData": [
-            ["LocalID", "S32"],
-            ["Flags", "U32"],
-            ["ParcelFlags", "U32"],
-            ["SalePrice", "S32"],
-            ["Name", "Variable1"],
-            ["Desc", "Variable1"],
-            ["MusicURL", "Variable1"],
-            ["MediaURL", "Variable1"],
-            ["MediaID", "LLUUID"],
-            ["MediaAutoScale", "U8"],
-            ["GroupID", "LLUUID"],
-            ["PassPrice", "S32"],
-            ["PassHours", "F32"],
-            ["Category", "U8"],
-            ["AuthBuyerID", "LLUUID"],
-            ["SnapshotID", "LLUUID"],
-            ["UserLocation", "LLVector3"],
-            ["UserLookAt", "LLVector3"],
-            ["LandingType", "U8"]
+            ("LocalID", "S32"),
+            ("Flags", "U32"),
+            ("ParcelFlags", "U32"),
+            ("SalePrice", "S32"),
+            ("Name", "Variable1"),
+            ("Desc", "Variable1"),
+            ("MusicURL", "Variable1"),
+            ("MediaURL", "Variable1"),
+            ("MediaID", "LLUUID"),
+            ("MediaAutoScale", "U8"),
+            ("GroupID", "LLUUID"),
+            ("PassPrice", "S32"),
+            ("PassHours", "F32"),
+            ("Category", "U8"),
+            ("AuthBuyerID", "LLUUID"),
+            ("SnapshotID", "LLUUID"),
+            ("UserLocation", "LLVector3"),
+            ("UserLookAt", "LLVector3"),
+            ("LandingType", "U8")
         ]
     }
 registerMessage(ParcelPropertiesUpdate)
@@ -5597,18 +5597,18 @@ class ParcelReturnObjects(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ParcelData": [
-            ["LocalID", "S32"],
-            ["ReturnType", "U32"]
+            ("LocalID", "S32"),
+            ("ReturnType", "U32")
         ],
         "TaskIDs": [
-            ["TaskID", "LLUUID"]
+            ("TaskID", "LLUUID")
         ],
         "OwnerIDs": [
-            ["OwnerID", "LLUUID"]
+            ("OwnerID", "LLUUID")
         ]
     }
 registerMessage(ParcelReturnObjects)
@@ -5625,12 +5625,12 @@ class ParcelSetOtherCleanTime(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ParcelData": [
-            ["LocalID", "S32"],
-            ["OtherCleanTime", "S32"]
+            ("LocalID", "S32"),
+            ("OtherCleanTime", "S32")
         ]
     }
 registerMessage(ParcelSetOtherCleanTime)
@@ -5649,18 +5649,18 @@ class ParcelDisableObjects(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ParcelData": [
-            ["LocalID", "S32"],
-            ["ReturnType", "U32"]
+            ("LocalID", "S32"),
+            ("ReturnType", "U32")
         ],
         "TaskIDs": [
-            ["TaskID", "LLUUID"]
+            ("TaskID", "LLUUID")
         ],
         "OwnerIDs": [
-            ["OwnerID", "LLUUID"]
+            ("OwnerID", "LLUUID")
         ]
     }
 registerMessage(ParcelDisableObjects)
@@ -5678,15 +5678,15 @@ class ParcelSelectObjects(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ParcelData": [
-            ["LocalID", "S32"],
-            ["ReturnType", "U32"]
+            ("LocalID", "S32"),
+            ("ReturnType", "U32")
         ],
         "ReturnIDs": [
-            ["ReturnID", "LLUUID"]
+            ("ReturnID", "LLUUID")
         ]
     }
 registerMessage(ParcelSelectObjects)
@@ -5702,8 +5702,8 @@ class EstateCovenantRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ]
     }
 registerMessage(EstateCovenantRequest)
@@ -5719,10 +5719,10 @@ class EstateCovenantReply(message.baseMessage):
     ]
     structure = {
         "Data": [
-            ["CovenantID", "LLUUID"],
-            ["CovenantTimestamp", "U32"],
-            ["EstateName", "Variable1"],
-            ["EstateOwnerID", "LLUUID"]
+            ("CovenantID", "LLUUID"),
+            ("CovenantTimestamp", "U32"),
+            ("EstateName", "Variable1"),
+            ("EstateOwnerID", "LLUUID")
         ]
     }
 registerMessage(EstateCovenantReply)
@@ -5739,10 +5739,10 @@ class ForceObjectSelect(message.baseMessage):
     ]
     structure = {
         "Header": [
-            ["ResetList", "BOOL"]
+            ("ResetList", "BOOL")
         ],
         "Data": [
-            ["LocalID", "U32"]
+            ("LocalID", "U32")
         ]
     }
 registerMessage(ForceObjectSelect)
@@ -5759,11 +5759,11 @@ class ParcelBuyPass(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ParcelData": [
-            ["LocalID", "S32"]
+            ("LocalID", "S32")
         ]
     }
 registerMessage(ParcelBuyPass)
@@ -5780,12 +5780,12 @@ class ParcelDeedToGroup(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["GroupID", "LLUUID"],
-            ["LocalID", "S32"]
+            ("GroupID", "LLUUID"),
+            ("LocalID", "S32")
         ]
     }
 registerMessage(ParcelDeedToGroup)
@@ -5802,11 +5802,11 @@ class ParcelReclaim(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["LocalID", "S32"]
+            ("LocalID", "S32")
         ]
     }
 registerMessage(ParcelReclaim)
@@ -5824,19 +5824,19 @@ class ParcelClaim(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["GroupID", "LLUUID"],
-            ["IsGroupOwned", "BOOL"],
-            ["Final", "BOOL"]
+            ("GroupID", "LLUUID"),
+            ("IsGroupOwned", "BOOL"),
+            ("Final", "BOOL")
         ],
         "ParcelData": [
-            ["West", "F32"],
-            ["South", "F32"],
-            ["East", "F32"],
-            ["North", "F32"]
+            ("West", "F32"),
+            ("South", "F32"),
+            ("East", "F32"),
+            ("North", "F32")
         ]
     }
 registerMessage(ParcelClaim)
@@ -5853,14 +5853,14 @@ class ParcelJoin(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ParcelData": [
-            ["West", "F32"],
-            ["South", "F32"],
-            ["East", "F32"],
-            ["North", "F32"]
+            ("West", "F32"),
+            ("South", "F32"),
+            ("East", "F32"),
+            ("North", "F32")
         ]
     }
 registerMessage(ParcelJoin)
@@ -5877,14 +5877,14 @@ class ParcelDivide(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ParcelData": [
-            ["West", "F32"],
-            ["South", "F32"],
-            ["East", "F32"],
-            ["North", "F32"]
+            ("West", "F32"),
+            ("South", "F32"),
+            ("East", "F32"),
+            ("North", "F32")
         ]
     }
 registerMessage(ParcelDivide)
@@ -5901,11 +5901,11 @@ class ParcelRelease(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["LocalID", "S32"]
+            ("LocalID", "S32")
         ]
     }
 registerMessage(ParcelRelease)
@@ -5923,19 +5923,19 @@ class ParcelBuy(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["GroupID", "LLUUID"],
-            ["IsGroupOwned", "BOOL"],
-            ["RemoveContribution", "BOOL"],
-            ["LocalID", "S32"],
-            ["Final", "BOOL"]
+            ("GroupID", "LLUUID"),
+            ("IsGroupOwned", "BOOL"),
+            ("RemoveContribution", "BOOL"),
+            ("LocalID", "S32"),
+            ("Final", "BOOL")
         ],
         "ParcelData": [
-            ["Price", "S32"],
-            ["Area", "S32"]
+            ("Price", "S32"),
+            ("Area", "S32")
         ]
     }
 registerMessage(ParcelBuy)
@@ -5952,12 +5952,12 @@ class ParcelGodForceOwner(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["OwnerID", "LLUUID"],
-            ["LocalID", "S32"]
+            ("OwnerID", "LLUUID"),
+            ("LocalID", "S32")
         ]
     }
 registerMessage(ParcelGodForceOwner)
@@ -5974,13 +5974,13 @@ class ParcelAccessListRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["SequenceID", "S32"],
-            ["Flags", "U32"],
-            ["LocalID", "S32"]
+            ("SequenceID", "S32"),
+            ("Flags", "U32"),
+            ("LocalID", "S32")
         ]
     }
 registerMessage(ParcelAccessListRequest)
@@ -5997,15 +5997,15 @@ class ParcelAccessListReply(message.baseMessage):
     ]
     structure = {
         "Data": [
-            ["AgentID", "LLUUID"],
-            ["SequenceID", "S32"],
-            ["Flags", "U32"],
-            ["LocalID", "S32"]
+            ("AgentID", "LLUUID"),
+            ("SequenceID", "S32"),
+            ("Flags", "U32"),
+            ("LocalID", "S32")
         ],
         "List": [
-            ["ID", "LLUUID"],
-            ["Time", "S32"],
-            ["Flags", "U32"]
+            ("ID", "LLUUID"),
+            ("Time", "S32"),
+            ("Flags", "U32")
         ]
     }
 registerMessage(ParcelAccessListReply)
@@ -6023,20 +6023,20 @@ class ParcelAccessListUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["Flags", "U32"],
-            ["LocalID", "S32"],
-            ["TransactionID", "LLUUID"],
-            ["SequenceID", "S32"],
-            ["Sections", "S32"]
+            ("Flags", "U32"),
+            ("LocalID", "S32"),
+            ("TransactionID", "LLUUID"),
+            ("SequenceID", "S32"),
+            ("Sections", "S32")
         ],
         "List": [
-            ["ID", "LLUUID"],
-            ["Time", "S32"],
-            ["Flags", "U32"]
+            ("ID", "LLUUID"),
+            ("Time", "S32"),
+            ("Flags", "U32")
         ]
     }
 registerMessage(ParcelAccessListUpdate)
@@ -6053,12 +6053,12 @@ class ParcelDwellRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["LocalID", "S32"],
-            ["ParcelID", "LLUUID"]
+            ("LocalID", "S32"),
+            ("ParcelID", "LLUUID")
         ]
     }
 registerMessage(ParcelDwellRequest)
@@ -6075,12 +6075,12 @@ class ParcelDwellReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "Data": [
-            ["LocalID", "S32"],
-            ["ParcelID", "LLUUID"],
-            ["Dwell", "F32"]
+            ("LocalID", "S32"),
+            ("ParcelID", "LLUUID"),
+            ("Dwell", "F32")
         ]
     }
 registerMessage(ParcelDwellReply)
@@ -6097,22 +6097,22 @@ class RequestParcelTransfer(message.baseMessage):
     ]
     structure = {
         "Data": [
-            ["TransactionID", "LLUUID"],
-            ["TransactionTime", "U32"],
-            ["SourceID", "LLUUID"],
-            ["DestID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["Flags", "U8"],
-            ["TransactionType", "S32"],
-            ["Amount", "S32"],
-            ["BillableArea", "S32"],
-            ["ActualArea", "S32"],
-            ["Final", "BOOL"]
+            ("TransactionID", "LLUUID"),
+            ("TransactionTime", "U32"),
+            ("SourceID", "LLUUID"),
+            ("DestID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("Flags", "U8"),
+            ("TransactionType", "S32"),
+            ("Amount", "S32"),
+            ("BillableArea", "S32"),
+            ("ActualArea", "S32"),
+            ("Final", "BOOL")
         ],
         "RegionData": [
-            ["RegionID", "LLUUID"],
-            ["GridX", "U32"],
-            ["GridY", "U32"]
+            ("RegionID", "LLUUID"),
+            ("GridX", "U32"),
+            ("GridY", "U32")
         ]
     }
 registerMessage(RequestParcelTransfer)
@@ -6128,27 +6128,27 @@ class UpdateParcel(message.baseMessage):
     ]
     structure = {
         "ParcelData": [
-            ["ParcelID", "LLUUID"],
-            ["RegionHandle", "U64"],
-            ["OwnerID", "LLUUID"],
-            ["GroupOwned", "BOOL"],
-            ["Status", "U8"],
-            ["Name", "Variable1"],
-            ["Description", "Variable1"],
-            ["MusicURL", "Variable1"],
-            ["RegionX", "F32"],
-            ["RegionY", "F32"],
-            ["ActualArea", "S32"],
-            ["BillableArea", "S32"],
-            ["ShowDir", "BOOL"],
-            ["IsForSale", "BOOL"],
-            ["Category", "U8"],
-            ["SnapshotID", "LLUUID"],
-            ["UserLocation", "LLVector3"],
-            ["SalePrice", "S32"],
-            ["AuthorizedBuyerID", "LLUUID"],
-            ["AllowPublish", "BOOL"],
-            ["MaturePublish", "BOOL"]
+            ("ParcelID", "LLUUID"),
+            ("RegionHandle", "U64"),
+            ("OwnerID", "LLUUID"),
+            ("GroupOwned", "BOOL"),
+            ("Status", "U8"),
+            ("Name", "Variable1"),
+            ("Description", "Variable1"),
+            ("MusicURL", "Variable1"),
+            ("RegionX", "F32"),
+            ("RegionY", "F32"),
+            ("ActualArea", "S32"),
+            ("BillableArea", "S32"),
+            ("ShowDir", "BOOL"),
+            ("IsForSale", "BOOL"),
+            ("Category", "U8"),
+            ("SnapshotID", "LLUUID"),
+            ("UserLocation", "LLVector3"),
+            ("SalePrice", "S32"),
+            ("AuthorizedBuyerID", "LLUUID"),
+            ("AllowPublish", "BOOL"),
+            ("MaturePublish", "BOOL")
         ]
     }
 registerMessage(UpdateParcel)
@@ -6164,7 +6164,7 @@ class RemoveParcel(message.baseMessage):
     ]
     structure = {
         "ParcelData": [
-            ["ParcelID", "LLUUID"]
+            ("ParcelID", "LLUUID")
         ]
     }
 registerMessage(RemoveParcel)
@@ -6181,10 +6181,10 @@ class MergeParcel(message.baseMessage):
     ]
     structure = {
         "MasterParcelData": [
-            ["MasterID", "LLUUID"]
+            ("MasterID", "LLUUID")
         ],
         "SlaveParcelData": [
-            ["SlaveID", "LLUUID"]
+            ("SlaveID", "LLUUID")
         ]
     }
 registerMessage(MergeParcel)
@@ -6202,18 +6202,18 @@ class LogParcelChanges(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "RegionData": [
-            ["RegionHandle", "U64"]
+            ("RegionHandle", "U64")
         ],
         "ParcelData": [
-            ["ParcelID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["IsOwnerGroup", "BOOL"],
-            ["ActualArea", "S32"],
-            ["Action", "S8"],
-            ["TransactionID", "LLUUID"]
+            ("ParcelID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("IsOwnerGroup", "BOOL"),
+            ("ActualArea", "S32"),
+            ("Action", "S8"),
+            ("TransactionID", "LLUUID")
         ]
     }
 registerMessage(LogParcelChanges)
@@ -6229,7 +6229,7 @@ class CheckParcelSales(message.baseMessage):
     ]
     structure = {
         "RegionData": [
-            ["RegionHandle", "U64"]
+            ("RegionHandle", "U64")
         ]
     }
 registerMessage(CheckParcelSales)
@@ -6245,8 +6245,8 @@ class ParcelSales(message.baseMessage):
     ]
     structure = {
         "ParcelData": [
-            ["ParcelID", "LLUUID"],
-            ["BuyerID", "LLUUID"]
+            ("ParcelID", "LLUUID"),
+            ("BuyerID", "LLUUID")
         ]
     }
 registerMessage(ParcelSales)
@@ -6263,11 +6263,11 @@ class ParcelGodMarkAsContent(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ParcelData": [
-            ["LocalID", "S32"]
+            ("LocalID", "S32")
         ]
     }
 registerMessage(ParcelGodMarkAsContent)
@@ -6284,12 +6284,12 @@ class ViewerStartAuction(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ParcelData": [
-            ["LocalID", "S32"],
-            ["SnapshotID", "LLUUID"]
+            ("LocalID", "S32"),
+            ("SnapshotID", "LLUUID")
         ]
     }
 registerMessage(ViewerStartAuction)
@@ -6306,12 +6306,12 @@ class StartAuction(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "ParcelData": [
-            ["ParcelID", "LLUUID"],
-            ["SnapshotID", "LLUUID"],
-            ["Name", "Variable1"]
+            ("ParcelID", "LLUUID"),
+            ("SnapshotID", "LLUUID"),
+            ("Name", "Variable1")
         ]
     }
 registerMessage(StartAuction)
@@ -6327,8 +6327,8 @@ class ConfirmAuctionStart(message.baseMessage):
     ]
     structure = {
         "AuctionData": [
-            ["ParcelID", "LLUUID"],
-            ["AuctionID", "U32"]
+            ("ParcelID", "LLUUID"),
+            ("AuctionID", "U32")
         ]
     }
 registerMessage(ConfirmAuctionStart)
@@ -6344,7 +6344,7 @@ class CompleteAuction(message.baseMessage):
     ]
     structure = {
         "ParcelData": [
-            ["ParcelID", "LLUUID"]
+            ("ParcelID", "LLUUID")
         ]
     }
 registerMessage(CompleteAuction)
@@ -6360,7 +6360,7 @@ class CancelAuction(message.baseMessage):
     ]
     structure = {
         "ParcelData": [
-            ["ParcelID", "LLUUID"]
+            ("ParcelID", "LLUUID")
         ]
     }
 registerMessage(CancelAuction)
@@ -6376,7 +6376,7 @@ class CheckParcelAuctions(message.baseMessage):
     ]
     structure = {
         "RegionData": [
-            ["RegionHandle", "U64"]
+            ("RegionHandle", "U64")
         ]
     }
 registerMessage(CheckParcelAuctions)
@@ -6392,8 +6392,8 @@ class ParcelAuctions(message.baseMessage):
     ]
     structure = {
         "ParcelData": [
-            ["ParcelID", "LLUUID"],
-            ["WinnerID", "LLUUID"]
+            ("ParcelID", "LLUUID"),
+            ("WinnerID", "LLUUID")
         ]
     }
 registerMessage(ParcelAuctions)
@@ -6409,7 +6409,7 @@ class UUIDNameRequest(message.baseMessage):
     ]
     structure = {
         "UUIDNameBlock": [
-            ["ID", "LLUUID"]
+            ("ID", "LLUUID")
         ]
     }
 registerMessage(UUIDNameRequest)
@@ -6425,9 +6425,9 @@ class UUIDNameReply(message.baseMessage):
     ]
     structure = {
         "UUIDNameBlock": [
-            ["ID", "LLUUID"],
-            ["FirstName", "Variable1"],
-            ["LastName", "Variable1"]
+            ("ID", "LLUUID"),
+            ("FirstName", "Variable1"),
+            ("LastName", "Variable1")
         ]
     }
 registerMessage(UUIDNameReply)
@@ -6443,7 +6443,7 @@ class UUIDGroupNameRequest(message.baseMessage):
     ]
     structure = {
         "UUIDNameBlock": [
-            ["ID", "LLUUID"]
+            ("ID", "LLUUID")
         ]
     }
 registerMessage(UUIDGroupNameRequest)
@@ -6459,8 +6459,8 @@ class UUIDGroupNameReply(message.baseMessage):
     ]
     structure = {
         "UUIDNameBlock": [
-            ["ID", "LLUUID"],
-            ["GroupName", "Variable1"]
+            ("ID", "LLUUID"),
+            ("GroupName", "Variable1")
         ]
     }
 registerMessage(UUIDGroupNameReply)
@@ -6476,16 +6476,16 @@ class ChatPass(message.baseMessage):
     ]
     structure = {
         "ChatData": [
-            ["Channel", "S32"],
-            ["Position", "LLVector3"],
-            ["ID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["Name", "Variable1"],
-            ["SourceType", "U8"],
-            ["Type", "U8"],
-            ["Radius", "F32"],
-            ["SimAccess", "U8"],
-            ["Message", "Variable2"]
+            ("Channel", "S32"),
+            ("Position", "LLVector3"),
+            ("ID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("Name", "Variable1"),
+            ("SourceType", "U8"),
+            ("Type", "U8"),
+            ("Radius", "F32"),
+            ("SimAccess", "U8"),
+            ("Message", "Variable2")
         ]
     }
 registerMessage(ChatPass)
@@ -6501,9 +6501,9 @@ class EdgeDataPacket(message.baseMessage):
     ]
     structure = {
         "EdgeData": [
-            ["LayerType", "U8"],
-            ["Direction", "U8"],
-            ["LayerData", "Variable2"]
+            ("LayerType", "U8"),
+            ("Direction", "U8"),
+            ("LayerData", "Variable2")
         ]
     }
 registerMessage(EdgeDataPacket)
@@ -6519,8 +6519,8 @@ class SimStatus(message.baseMessage):
     ]
     structure = {
         "SimStatus": [
-            ["CanAcceptAgents", "BOOL"],
-            ["CanAcceptTasks", "BOOL"]
+            ("CanAcceptAgents", "BOOL"),
+            ("CanAcceptTasks", "BOOL")
         ]
     }
 registerMessage(SimStatus)
@@ -6543,57 +6543,57 @@ class ChildAgentUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["RegionHandle", "U64"],
-            ["ViewerCircuitCode", "U32"],
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["AgentPos", "LLVector3"],
-            ["AgentVel", "LLVector3"],
-            ["Center", "LLVector3"],
-            ["Size", "LLVector3"],
-            ["AtAxis", "LLVector3"],
-            ["LeftAxis", "LLVector3"],
-            ["UpAxis", "LLVector3"],
-            ["ChangedGrid", "BOOL"],
-            ["Far", "F32"],
-            ["Aspect", "F32"],
-            ["Throttles", "Variable1"],
-            ["LocomotionState", "U32"],
-            ["HeadRotation", "LLQuaternion"],
-            ["BodyRotation", "LLQuaternion"],
-            ["ControlFlags", "U32"],
-            ["EnergyLevel", "F32"],
-            ["GodLevel", "U8"],
-            ["AlwaysRun", "BOOL"],
-            ["PreyAgent", "LLUUID"],
-            ["AgentAccess", "U8"],
-            ["AgentTextures", "Variable2"],
-            ["ActiveGroupID", "LLUUID"]
+            ("RegionHandle", "U64"),
+            ("ViewerCircuitCode", "U32"),
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("AgentPos", "LLVector3"),
+            ("AgentVel", "LLVector3"),
+            ("Center", "LLVector3"),
+            ("Size", "LLVector3"),
+            ("AtAxis", "LLVector3"),
+            ("LeftAxis", "LLVector3"),
+            ("UpAxis", "LLVector3"),
+            ("ChangedGrid", "BOOL"),
+            ("Far", "F32"),
+            ("Aspect", "F32"),
+            ("Throttles", "Variable1"),
+            ("LocomotionState", "U32"),
+            ("HeadRotation", "LLQuaternion"),
+            ("BodyRotation", "LLQuaternion"),
+            ("ControlFlags", "U32"),
+            ("EnergyLevel", "F32"),
+            ("GodLevel", "U8"),
+            ("AlwaysRun", "BOOL"),
+            ("PreyAgent", "LLUUID"),
+            ("AgentAccess", "U8"),
+            ("AgentTextures", "Variable2"),
+            ("ActiveGroupID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupID", "LLUUID"],
-            ["GroupPowers", "U64"],
-            ["AcceptNotices", "BOOL"]
+            ("GroupID", "LLUUID"),
+            ("GroupPowers", "U64"),
+            ("AcceptNotices", "BOOL")
         ],
         "AnimationData": [
-            ["Animation", "LLUUID"],
-            ["ObjectID", "LLUUID"]
+            ("Animation", "LLUUID"),
+            ("ObjectID", "LLUUID")
         ],
         "GranterBlock": [
-            ["GranterID", "LLUUID"]
+            ("GranterID", "LLUUID")
         ],
         "NVPairData": [
-            ["NVPairs", "Variable2"]
+            ("NVPairs", "Variable2")
         ],
         "VisualParam": [
-            ["ParamValue", "U8"]
+            ("ParamValue", "U8")
         ],
         "AgentAccess": [
-            ["AgentLegacyAccess", "U8"],
-            ["AgentMaxAccess", "U8"]
+            ("AgentLegacyAccess", "U8"),
+            ("AgentMaxAccess", "U8")
         ],
         "AgentInfo": [
-            ["Flags", "U32"]
+            ("Flags", "U32")
         ]
     }
 registerMessage(ChildAgentUpdate)
@@ -6609,10 +6609,10 @@ class ChildAgentAlive(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["RegionHandle", "U64"],
-            ["ViewerCircuitCode", "U32"],
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("RegionHandle", "U64"),
+            ("ViewerCircuitCode", "U32"),
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ]
     }
 registerMessage(ChildAgentAlive)
@@ -6628,18 +6628,18 @@ class ChildAgentPositionUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["RegionHandle", "U64"],
-            ["ViewerCircuitCode", "U32"],
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["AgentPos", "LLVector3"],
-            ["AgentVel", "LLVector3"],
-            ["Center", "LLVector3"],
-            ["Size", "LLVector3"],
-            ["AtAxis", "LLVector3"],
-            ["LeftAxis", "LLVector3"],
-            ["UpAxis", "LLVector3"],
-            ["ChangedGrid", "BOOL"]
+            ("RegionHandle", "U64"),
+            ("ViewerCircuitCode", "U32"),
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("AgentPos", "LLVector3"),
+            ("AgentVel", "LLVector3"),
+            ("Center", "LLVector3"),
+            ("Size", "LLVector3"),
+            ("AtAxis", "LLVector3"),
+            ("LeftAxis", "LLVector3"),
+            ("UpAxis", "LLVector3"),
+            ("ChangedGrid", "BOOL")
         ]
     }
 registerMessage(ChildAgentPositionUpdate)
@@ -6655,8 +6655,8 @@ class ChildAgentDying(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ]
     }
 registerMessage(ChildAgentDying)
@@ -6672,8 +6672,8 @@ class ChildAgentUnknown(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ]
     }
 registerMessage(ChildAgentUnknown)
@@ -6689,8 +6689,8 @@ class AtomicPassObject(message.baseMessage):
     ]
     structure = {
         "TaskData": [
-            ["TaskID", "LLUUID"],
-            ["AttachmentNeedsSave", "BOOL"]
+            ("TaskID", "LLUUID"),
+            ("AttachmentNeedsSave", "BOOL")
         ]
     }
 registerMessage(AtomicPassObject)
@@ -6706,7 +6706,7 @@ class KillChildAgents(message.baseMessage):
     ]
     structure = {
         "IDBlock": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ]
     }
 registerMessage(KillChildAgents)
@@ -6722,8 +6722,8 @@ class GetScriptRunning(message.baseMessage):
     ]
     structure = {
         "Script": [
-            ["ObjectID", "LLUUID"],
-            ["ItemID", "LLUUID"]
+            ("ObjectID", "LLUUID"),
+            ("ItemID", "LLUUID")
         ]
     }
 registerMessage(GetScriptRunning)
@@ -6739,9 +6739,9 @@ class ScriptRunningReply(message.baseMessage):
     ]
     structure = {
         "Script": [
-            ["ObjectID", "LLUUID"],
-            ["ItemID", "LLUUID"],
-            ["Running", "BOOL"]
+            ("ObjectID", "LLUUID"),
+            ("ItemID", "LLUUID"),
+            ("Running", "BOOL")
         ]
     }
 registerMessage(ScriptRunningReply)
@@ -6758,13 +6758,13 @@ class SetScriptRunning(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Script": [
-            ["ObjectID", "LLUUID"],
-            ["ItemID", "LLUUID"],
-            ["Running", "BOOL"]
+            ("ObjectID", "LLUUID"),
+            ("ItemID", "LLUUID"),
+            ("Running", "BOOL")
         ]
     }
 registerMessage(SetScriptRunning)
@@ -6781,12 +6781,12 @@ class ScriptReset(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Script": [
-            ["ObjectID", "LLUUID"],
-            ["ItemID", "LLUUID"]
+            ("ObjectID", "LLUUID"),
+            ("ItemID", "LLUUID")
         ]
     }
 registerMessage(ScriptReset)
@@ -6802,17 +6802,17 @@ class ScriptSensorRequest(message.baseMessage):
     ]
     structure = {
         "Requester": [
-            ["SourceID", "LLUUID"],
-            ["RequestID", "LLUUID"],
-            ["SearchID", "LLUUID"],
-            ["SearchPos", "LLVector3"],
-            ["SearchDir", "LLQuaternion"],
-            ["SearchName", "Variable1"],
-            ["Type", "S32"],
-            ["Range", "F32"],
-            ["Arc", "F32"],
-            ["RegionHandle", "U64"],
-            ["SearchRegions", "U8"]
+            ("SourceID", "LLUUID"),
+            ("RequestID", "LLUUID"),
+            ("SearchID", "LLUUID"),
+            ("SearchPos", "LLVector3"),
+            ("SearchDir", "LLQuaternion"),
+            ("SearchName", "Variable1"),
+            ("Type", "S32"),
+            ("Range", "F32"),
+            ("Arc", "F32"),
+            ("RegionHandle", "U64"),
+            ("SearchRegions", "U8")
         ]
     }
 registerMessage(ScriptSensorRequest)
@@ -6829,18 +6829,18 @@ class ScriptSensorReply(message.baseMessage):
     ]
     structure = {
         "Requester": [
-            ["SourceID", "LLUUID"]
+            ("SourceID", "LLUUID")
         ],
         "SensedData": [
-            ["ObjectID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["Position", "LLVector3"],
-            ["Velocity", "LLVector3"],
-            ["Rotation", "LLQuaternion"],
-            ["Name", "Variable1"],
-            ["Type", "S32"],
-            ["Range", "F32"]
+            ("ObjectID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("Position", "LLVector3"),
+            ("Velocity", "LLVector3"),
+            ("Rotation", "LLQuaternion"),
+            ("Name", "Variable1"),
+            ("Type", "S32"),
+            ("Range", "F32")
         ]
     }
 registerMessage(ScriptSensorReply)
@@ -6856,9 +6856,9 @@ class CompleteAgentMovement(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["CircuitCode", "U32"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("CircuitCode", "U32")
         ]
     }
 registerMessage(CompleteAgentMovement)
@@ -6876,17 +6876,17 @@ class AgentMovementComplete(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["Position", "LLVector3"],
-            ["LookAt", "LLVector3"],
-            ["RegionHandle", "U64"],
-            ["Timestamp", "U32"]
+            ("Position", "LLVector3"),
+            ("LookAt", "LLVector3"),
+            ("RegionHandle", "U64"),
+            ("Timestamp", "U32")
         ],
         "SimData": [
-            ["ChannelVersion", "Variable2"]
+            ("ChannelVersion", "Variable2")
         ]
     }
 registerMessage(AgentMovementComplete)
@@ -6902,10 +6902,10 @@ class DataServerLogout(message.baseMessage):
     ]
     structure = {
         "UserData": [
-            ["AgentID", "LLUUID"],
-            ["ViewerIP", "IPADDR"],
-            ["Disconnect", "BOOL"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("ViewerIP", "IPADDR"),
+            ("Disconnect", "BOOL"),
+            ("SessionID", "LLUUID")
         ]
     }
 registerMessage(DataServerLogout)
@@ -6921,8 +6921,8 @@ class LogoutRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ]
     }
 registerMessage(LogoutRequest)
@@ -6939,11 +6939,11 @@ class LogoutReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "InventoryData": [
-            ["ItemID", "LLUUID"]
+            ("ItemID", "LLUUID")
         ]
     }
 registerMessage(LogoutReply)
@@ -6960,22 +6960,22 @@ class ImprovedInstantMessage(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "MessageBlock": [
-            ["FromGroup", "BOOL"],
-            ["ToAgentID", "LLUUID"],
-            ["ParentEstateID", "U32"],
-            ["RegionID", "LLUUID"],
-            ["Position", "LLVector3"],
-            ["Offline", "U8"],
-            ["Dialog", "U8"],
-            ["ID", "LLUUID"],
-            ["Timestamp", "U32"],
-            ["FromAgentName", "Variable1"],
-            ["Message", "Variable2"],
-            ["BinaryBucket", "Variable2"]
+            ("FromGroup", "BOOL"),
+            ("ToAgentID", "LLUUID"),
+            ("ParentEstateID", "U32"),
+            ("RegionID", "LLUUID"),
+            ("Position", "LLVector3"),
+            ("Offline", "U8"),
+            ("Dialog", "U8"),
+            ("ID", "LLUUID"),
+            ("Timestamp", "U32"),
+            ("FromAgentName", "Variable1"),
+            ("Message", "Variable2"),
+            ("BinaryBucket", "Variable2")
         ]
     }
 registerMessage(ImprovedInstantMessage)
@@ -6991,8 +6991,8 @@ class RetrieveInstantMessages(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ]
     }
 registerMessage(RetrieveInstantMessages)
@@ -7009,13 +7009,13 @@ class FindAgent(message.baseMessage):
     ]
     structure = {
         "AgentBlock": [
-            ["Hunter", "LLUUID"],
-            ["Prey", "LLUUID"],
-            ["SpaceIP", "IPADDR"]
+            ("Hunter", "LLUUID"),
+            ("Prey", "LLUUID"),
+            ("SpaceIP", "IPADDR")
         ],
         "LocationBlock": [
-            ["GlobalX", "F64"],
-            ["GlobalY", "F64"]
+            ("GlobalX", "F64"),
+            ("GlobalY", "F64")
         ]
     }
 registerMessage(FindAgent)
@@ -7032,12 +7032,12 @@ class RequestGodlikePowers(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "RequestBlock": [
-            ["Godlike", "BOOL"],
-            ["Token", "LLUUID"]
+            ("Godlike", "BOOL"),
+            ("Token", "LLUUID")
         ]
     }
 registerMessage(RequestGodlikePowers)
@@ -7054,12 +7054,12 @@ class GrantGodlikePowers(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "GrantData": [
-            ["GodLevel", "U8"],
-            ["Token", "LLUUID"]
+            ("GodLevel", "U8"),
+            ("Token", "LLUUID")
         ]
     }
 registerMessage(GrantGodlikePowers)
@@ -7077,16 +7077,16 @@ class GodlikeMessage(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["TransactionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("TransactionID", "LLUUID")
         ],
         "MethodData": [
-            ["Method", "Variable1"],
-            ["Invoice", "LLUUID"]
+            ("Method", "Variable1"),
+            ("Invoice", "LLUUID")
         ],
         "ParamList": [
-            ["Parameter", "Variable1"]
+            ("Parameter", "Variable1")
         ]
     }
 registerMessage(GodlikeMessage)
@@ -7104,16 +7104,16 @@ class EstateOwnerMessage(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["TransactionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("TransactionID", "LLUUID")
         ],
         "MethodData": [
-            ["Method", "Variable1"],
-            ["Invoice", "LLUUID"]
+            ("Method", "Variable1"),
+            ("Invoice", "LLUUID")
         ],
         "ParamList": [
-            ["Parameter", "Variable1"]
+            ("Parameter", "Variable1")
         ]
     }
 registerMessage(EstateOwnerMessage)
@@ -7131,16 +7131,16 @@ class GenericMessage(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["TransactionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("TransactionID", "LLUUID")
         ],
         "MethodData": [
-            ["Method", "Variable1"],
-            ["Invoice", "LLUUID"]
+            ("Method", "Variable1"),
+            ("Invoice", "LLUUID")
         ],
         "ParamList": [
-            ["Parameter", "Variable1"]
+            ("Parameter", "Variable1")
         ]
     }
 registerMessage(GenericMessage)
@@ -7157,11 +7157,11 @@ class MuteListRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "MuteData": [
-            ["MuteCRC", "U32"]
+            ("MuteCRC", "U32")
         ]
     }
 registerMessage(MuteListRequest)
@@ -7178,14 +7178,14 @@ class UpdateMuteListEntry(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "MuteData": [
-            ["MuteID", "LLUUID"],
-            ["MuteName", "Variable1"],
-            ["MuteType", "S32"],
-            ["MuteFlags", "U32"]
+            ("MuteID", "LLUUID"),
+            ("MuteName", "Variable1"),
+            ("MuteType", "S32"),
+            ("MuteFlags", "U32")
         ]
     }
 registerMessage(UpdateMuteListEntry)
@@ -7202,12 +7202,12 @@ class RemoveMuteListEntry(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "MuteData": [
-            ["MuteID", "LLUUID"],
-            ["MuteName", "Variable1"]
+            ("MuteID", "LLUUID"),
+            ("MuteName", "Variable1")
         ]
     }
 registerMessage(RemoveMuteListEntry)
@@ -7225,16 +7225,16 @@ class CopyInventoryFromNotecard(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "NotecardData": [
-            ["NotecardItemID", "LLUUID"],
-            ["ObjectID", "LLUUID"]
+            ("NotecardItemID", "LLUUID"),
+            ("ObjectID", "LLUUID")
         ],
         "InventoryData": [
-            ["ItemID", "LLUUID"],
-            ["FolderID", "LLUUID"]
+            ("ItemID", "LLUUID"),
+            ("FolderID", "LLUUID")
         ]
     }
 registerMessage(CopyInventoryFromNotecard)
@@ -7251,33 +7251,33 @@ class UpdateInventoryItem(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["TransactionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("TransactionID", "LLUUID")
         ],
         "InventoryData": [
-            ["ItemID", "LLUUID"],
-            ["FolderID", "LLUUID"],
-            ["CallbackID", "U32"],
-            ["CreatorID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["BaseMask", "U32"],
-            ["OwnerMask", "U32"],
-            ["GroupMask", "U32"],
-            ["EveryoneMask", "U32"],
-            ["NextOwnerMask", "U32"],
-            ["GroupOwned", "BOOL"],
-            ["TransactionID", "LLUUID"],
-            ["Type", "S8"],
-            ["InvType", "S8"],
-            ["Flags", "U32"],
-            ["SaleType", "U8"],
-            ["SalePrice", "S32"],
-            ["Name", "Variable1"],
-            ["Description", "Variable1"],
-            ["CreationDate", "S32"],
-            ["CRC", "U32"]
+            ("ItemID", "LLUUID"),
+            ("FolderID", "LLUUID"),
+            ("CallbackID", "U32"),
+            ("CreatorID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("BaseMask", "U32"),
+            ("OwnerMask", "U32"),
+            ("GroupMask", "U32"),
+            ("EveryoneMask", "U32"),
+            ("NextOwnerMask", "U32"),
+            ("GroupOwned", "BOOL"),
+            ("TransactionID", "LLUUID"),
+            ("Type", "S8"),
+            ("InvType", "S8"),
+            ("Flags", "U32"),
+            ("SaleType", "U8"),
+            ("SalePrice", "S32"),
+            ("Name", "Variable1"),
+            ("Description", "Variable1"),
+            ("CreationDate", "S32"),
+            ("CRC", "U32")
         ]
     }
 registerMessage(UpdateInventoryItem)
@@ -7294,33 +7294,33 @@ class UpdateCreateInventoryItem(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SimApproved", "BOOL"],
-            ["TransactionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SimApproved", "BOOL"),
+            ("TransactionID", "LLUUID")
         ],
         "InventoryData": [
-            ["ItemID", "LLUUID"],
-            ["FolderID", "LLUUID"],
-            ["CallbackID", "U32"],
-            ["CreatorID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["BaseMask", "U32"],
-            ["OwnerMask", "U32"],
-            ["GroupMask", "U32"],
-            ["EveryoneMask", "U32"],
-            ["NextOwnerMask", "U32"],
-            ["GroupOwned", "BOOL"],
-            ["AssetID", "LLUUID"],
-            ["Type", "S8"],
-            ["InvType", "S8"],
-            ["Flags", "U32"],
-            ["SaleType", "U8"],
-            ["SalePrice", "S32"],
-            ["Name", "Variable1"],
-            ["Description", "Variable1"],
-            ["CreationDate", "S32"],
-            ["CRC", "U32"]
+            ("ItemID", "LLUUID"),
+            ("FolderID", "LLUUID"),
+            ("CallbackID", "U32"),
+            ("CreatorID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("BaseMask", "U32"),
+            ("OwnerMask", "U32"),
+            ("GroupMask", "U32"),
+            ("EveryoneMask", "U32"),
+            ("NextOwnerMask", "U32"),
+            ("GroupOwned", "BOOL"),
+            ("AssetID", "LLUUID"),
+            ("Type", "S8"),
+            ("InvType", "S8"),
+            ("Flags", "U32"),
+            ("SaleType", "U8"),
+            ("SalePrice", "S32"),
+            ("Name", "Variable1"),
+            ("Description", "Variable1"),
+            ("CreationDate", "S32"),
+            ("CRC", "U32")
         ]
     }
 registerMessage(UpdateCreateInventoryItem)
@@ -7337,14 +7337,14 @@ class MoveInventoryItem(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["Stamp", "BOOL"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("Stamp", "BOOL")
         ],
         "InventoryData": [
-            ["ItemID", "LLUUID"],
-            ["FolderID", "LLUUID"],
-            ["NewName", "Variable1"]
+            ("ItemID", "LLUUID"),
+            ("FolderID", "LLUUID"),
+            ("NewName", "Variable1")
         ]
     }
 registerMessage(MoveInventoryItem)
@@ -7361,15 +7361,15 @@ class CopyInventoryItem(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "InventoryData": [
-            ["CallbackID", "U32"],
-            ["OldAgentID", "LLUUID"],
-            ["OldItemID", "LLUUID"],
-            ["NewFolderID", "LLUUID"],
-            ["NewName", "Variable1"]
+            ("CallbackID", "U32"),
+            ("OldAgentID", "LLUUID"),
+            ("OldItemID", "LLUUID"),
+            ("NewFolderID", "LLUUID"),
+            ("NewName", "Variable1")
         ]
     }
 registerMessage(CopyInventoryItem)
@@ -7386,11 +7386,11 @@ class RemoveInventoryItem(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "InventoryData": [
-            ["ItemID", "LLUUID"]
+            ("ItemID", "LLUUID")
         ]
     }
 registerMessage(RemoveInventoryItem)
@@ -7407,12 +7407,12 @@ class ChangeInventoryItemFlags(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "InventoryData": [
-            ["ItemID", "LLUUID"],
-            ["Flags", "U32"]
+            ("ItemID", "LLUUID"),
+            ("Flags", "U32")
         ]
     }
 registerMessage(ChangeInventoryItemFlags)
@@ -7429,11 +7429,11 @@ class SaveAssetIntoInventory(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "InventoryData": [
-            ["ItemID", "LLUUID"],
-            ["NewAssetID", "LLUUID"]
+            ("ItemID", "LLUUID"),
+            ("NewAssetID", "LLUUID")
         ]
     }
 registerMessage(SaveAssetIntoInventory)
@@ -7450,14 +7450,14 @@ class CreateInventoryFolder(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "FolderData": [
-            ["FolderID", "LLUUID"],
-            ["ParentID", "LLUUID"],
-            ["Type", "S8"],
-            ["Name", "Variable1"]
+            ("FolderID", "LLUUID"),
+            ("ParentID", "LLUUID"),
+            ("Type", "S8"),
+            ("Name", "Variable1")
         ]
     }
 registerMessage(CreateInventoryFolder)
@@ -7474,14 +7474,14 @@ class UpdateInventoryFolder(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "FolderData": [
-            ["FolderID", "LLUUID"],
-            ["ParentID", "LLUUID"],
-            ["Type", "S8"],
-            ["Name", "Variable1"]
+            ("FolderID", "LLUUID"),
+            ("ParentID", "LLUUID"),
+            ("Type", "S8"),
+            ("Name", "Variable1")
         ]
     }
 registerMessage(UpdateInventoryFolder)
@@ -7498,13 +7498,13 @@ class MoveInventoryFolder(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["Stamp", "BOOL"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("Stamp", "BOOL")
         ],
         "InventoryData": [
-            ["FolderID", "LLUUID"],
-            ["ParentID", "LLUUID"]
+            ("FolderID", "LLUUID"),
+            ("ParentID", "LLUUID")
         ]
     }
 registerMessage(MoveInventoryFolder)
@@ -7521,11 +7521,11 @@ class RemoveInventoryFolder(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "FolderData": [
-            ["FolderID", "LLUUID"]
+            ("FolderID", "LLUUID")
         ]
     }
 registerMessage(RemoveInventoryFolder)
@@ -7542,15 +7542,15 @@ class FetchInventoryDescendents(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "InventoryData": [
-            ["FolderID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["SortOrder", "S32"],
-            ["FetchFolders", "BOOL"],
-            ["FetchItems", "BOOL"]
+            ("FolderID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("SortOrder", "S32"),
+            ("FetchFolders", "BOOL"),
+            ("FetchItems", "BOOL")
         ]
     }
 registerMessage(FetchInventoryDescendents)
@@ -7568,40 +7568,40 @@ class InventoryDescendents(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["FolderID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["Version", "S32"],
-            ["Descendents", "S32"]
+            ("AgentID", "LLUUID"),
+            ("FolderID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("Version", "S32"),
+            ("Descendents", "S32")
         ],
         "FolderData": [
-            ["FolderID", "LLUUID"],
-            ["ParentID", "LLUUID"],
-            ["Type", "S8"],
-            ["Name", "Variable1"]
+            ("FolderID", "LLUUID"),
+            ("ParentID", "LLUUID"),
+            ("Type", "S8"),
+            ("Name", "Variable1")
         ],
         "ItemData": [
-            ["ItemID", "LLUUID"],
-            ["FolderID", "LLUUID"],
-            ["CreatorID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["BaseMask", "U32"],
-            ["OwnerMask", "U32"],
-            ["GroupMask", "U32"],
-            ["EveryoneMask", "U32"],
-            ["NextOwnerMask", "U32"],
-            ["GroupOwned", "BOOL"],
-            ["AssetID", "LLUUID"],
-            ["Type", "S8"],
-            ["InvType", "S8"],
-            ["Flags", "U32"],
-            ["SaleType", "U8"],
-            ["SalePrice", "S32"],
-            ["Name", "Variable1"],
-            ["Description", "Variable1"],
-            ["CreationDate", "S32"],
-            ["CRC", "U32"]
+            ("ItemID", "LLUUID"),
+            ("FolderID", "LLUUID"),
+            ("CreatorID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("BaseMask", "U32"),
+            ("OwnerMask", "U32"),
+            ("GroupMask", "U32"),
+            ("EveryoneMask", "U32"),
+            ("NextOwnerMask", "U32"),
+            ("GroupOwned", "BOOL"),
+            ("AssetID", "LLUUID"),
+            ("Type", "S8"),
+            ("InvType", "S8"),
+            ("Flags", "U32"),
+            ("SaleType", "U8"),
+            ("SalePrice", "S32"),
+            ("Name", "Variable1"),
+            ("Description", "Variable1"),
+            ("CreationDate", "S32"),
+            ("CRC", "U32")
         ]
     }
 registerMessage(InventoryDescendents)
@@ -7618,12 +7618,12 @@ class FetchInventory(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "InventoryData": [
-            ["OwnerID", "LLUUID"],
-            ["ItemID", "LLUUID"]
+            ("OwnerID", "LLUUID"),
+            ("ItemID", "LLUUID")
         ]
     }
 registerMessage(FetchInventory)
@@ -7640,30 +7640,30 @@ class FetchInventoryReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "InventoryData": [
-            ["ItemID", "LLUUID"],
-            ["FolderID", "LLUUID"],
-            ["CreatorID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["BaseMask", "U32"],
-            ["OwnerMask", "U32"],
-            ["GroupMask", "U32"],
-            ["EveryoneMask", "U32"],
-            ["NextOwnerMask", "U32"],
-            ["GroupOwned", "BOOL"],
-            ["AssetID", "LLUUID"],
-            ["Type", "S8"],
-            ["InvType", "S8"],
-            ["Flags", "U32"],
-            ["SaleType", "U8"],
-            ["SalePrice", "S32"],
-            ["Name", "Variable1"],
-            ["Description", "Variable1"],
-            ["CreationDate", "S32"],
-            ["CRC", "U32"]
+            ("ItemID", "LLUUID"),
+            ("FolderID", "LLUUID"),
+            ("CreatorID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("BaseMask", "U32"),
+            ("OwnerMask", "U32"),
+            ("GroupMask", "U32"),
+            ("EveryoneMask", "U32"),
+            ("NextOwnerMask", "U32"),
+            ("GroupOwned", "BOOL"),
+            ("AssetID", "LLUUID"),
+            ("Type", "S8"),
+            ("InvType", "S8"),
+            ("Flags", "U32"),
+            ("SaleType", "U8"),
+            ("SalePrice", "S32"),
+            ("Name", "Variable1"),
+            ("Description", "Variable1"),
+            ("CreationDate", "S32"),
+            ("CRC", "U32")
         ]
     }
 registerMessage(FetchInventoryReply)
@@ -7681,38 +7681,38 @@ class BulkUpdateInventory(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["TransactionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("TransactionID", "LLUUID")
         ],
         "FolderData": [
-            ["FolderID", "LLUUID"],
-            ["ParentID", "LLUUID"],
-            ["Type", "S8"],
-            ["Name", "Variable1"]
+            ("FolderID", "LLUUID"),
+            ("ParentID", "LLUUID"),
+            ("Type", "S8"),
+            ("Name", "Variable1")
         ],
         "ItemData": [
-            ["ItemID", "LLUUID"],
-            ["CallbackID", "U32"],
-            ["FolderID", "LLUUID"],
-            ["CreatorID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["BaseMask", "U32"],
-            ["OwnerMask", "U32"],
-            ["GroupMask", "U32"],
-            ["EveryoneMask", "U32"],
-            ["NextOwnerMask", "U32"],
-            ["GroupOwned", "BOOL"],
-            ["AssetID", "LLUUID"],
-            ["Type", "S8"],
-            ["InvType", "S8"],
-            ["Flags", "U32"],
-            ["SaleType", "U8"],
-            ["SalePrice", "S32"],
-            ["Name", "Variable1"],
-            ["Description", "Variable1"],
-            ["CreationDate", "S32"],
-            ["CRC", "U32"]
+            ("ItemID", "LLUUID"),
+            ("CallbackID", "U32"),
+            ("FolderID", "LLUUID"),
+            ("CreatorID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("BaseMask", "U32"),
+            ("OwnerMask", "U32"),
+            ("GroupMask", "U32"),
+            ("EveryoneMask", "U32"),
+            ("NextOwnerMask", "U32"),
+            ("GroupOwned", "BOOL"),
+            ("AssetID", "LLUUID"),
+            ("Type", "S8"),
+            ("InvType", "S8"),
+            ("Flags", "U32"),
+            ("SaleType", "U8"),
+            ("SalePrice", "S32"),
+            ("Name", "Variable1"),
+            ("Description", "Variable1"),
+            ("CreationDate", "S32"),
+            ("CRC", "U32")
         ]
     }
 registerMessage(BulkUpdateInventory)
@@ -7728,10 +7728,10 @@ class RequestInventoryAsset(message.baseMessage):
     ]
     structure = {
         "QueryData": [
-            ["QueryID", "LLUUID"],
-            ["AgentID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["ItemID", "LLUUID"]
+            ("QueryID", "LLUUID"),
+            ("AgentID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("ItemID", "LLUUID")
         ]
     }
 registerMessage(RequestInventoryAsset)
@@ -7747,9 +7747,9 @@ class InventoryAssetResponse(message.baseMessage):
     ]
     structure = {
         "QueryData": [
-            ["QueryID", "LLUUID"],
-            ["AssetID", "LLUUID"],
-            ["IsReadable", "BOOL"]
+            ("QueryID", "LLUUID"),
+            ("AssetID", "LLUUID"),
+            ("IsReadable", "BOOL")
         ]
     }
 registerMessage(InventoryAssetResponse)
@@ -7767,14 +7767,14 @@ class RemoveInventoryObjects(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "FolderData": [
-            ["FolderID", "LLUUID"]
+            ("FolderID", "LLUUID")
         ],
         "ItemData": [
-            ["ItemID", "LLUUID"]
+            ("ItemID", "LLUUID")
         ]
     }
 registerMessage(RemoveInventoryObjects)
@@ -7791,11 +7791,11 @@ class PurgeInventoryDescendents(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "InventoryData": [
-            ["FolderID", "LLUUID"]
+            ("FolderID", "LLUUID")
         ]
     }
 registerMessage(PurgeInventoryDescendents)
@@ -7813,35 +7813,35 @@ class UpdateTaskInventory(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "UpdateData": [
-            ["LocalID", "U32"],
-            ["Key", "U8"]
+            ("LocalID", "U32"),
+            ("Key", "U8")
         ],
         "InventoryData": [
-            ["ItemID", "LLUUID"],
-            ["FolderID", "LLUUID"],
-            ["CreatorID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["BaseMask", "U32"],
-            ["OwnerMask", "U32"],
-            ["GroupMask", "U32"],
-            ["EveryoneMask", "U32"],
-            ["NextOwnerMask", "U32"],
-            ["GroupOwned", "BOOL"],
-            ["TransactionID", "LLUUID"],
-            ["Type", "S8"],
-            ["InvType", "S8"],
-            ["Flags", "U32"],
-            ["SaleType", "U8"],
-            ["SalePrice", "S32"],
-            ["Name", "Variable1"],
-            ["Description", "Variable1"],
-            ["CreationDate", "S32"],
-            ["CRC", "U32"]
+            ("ItemID", "LLUUID"),
+            ("FolderID", "LLUUID"),
+            ("CreatorID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("BaseMask", "U32"),
+            ("OwnerMask", "U32"),
+            ("GroupMask", "U32"),
+            ("EveryoneMask", "U32"),
+            ("NextOwnerMask", "U32"),
+            ("GroupOwned", "BOOL"),
+            ("TransactionID", "LLUUID"),
+            ("Type", "S8"),
+            ("InvType", "S8"),
+            ("Flags", "U32"),
+            ("SaleType", "U8"),
+            ("SalePrice", "S32"),
+            ("Name", "Variable1"),
+            ("Description", "Variable1"),
+            ("CreationDate", "S32"),
+            ("CRC", "U32")
         ]
     }
 registerMessage(UpdateTaskInventory)
@@ -7858,12 +7858,12 @@ class RemoveTaskInventory(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "InventoryData": [
-            ["LocalID", "U32"],
-            ["ItemID", "LLUUID"]
+            ("LocalID", "U32"),
+            ("ItemID", "LLUUID")
         ]
     }
 registerMessage(RemoveTaskInventory)
@@ -7880,13 +7880,13 @@ class MoveTaskInventory(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["FolderID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("FolderID", "LLUUID")
         ],
         "InventoryData": [
-            ["LocalID", "U32"],
-            ["ItemID", "LLUUID"]
+            ("LocalID", "U32"),
+            ("ItemID", "LLUUID")
         ]
     }
 registerMessage(MoveTaskInventory)
@@ -7903,11 +7903,11 @@ class RequestTaskInventory(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "InventoryData": [
-            ["LocalID", "U32"]
+            ("LocalID", "U32")
         ]
     }
 registerMessage(RequestTaskInventory)
@@ -7923,9 +7923,9 @@ class ReplyTaskInventory(message.baseMessage):
     ]
     structure = {
         "InventoryData": [
-            ["TaskID", "LLUUID"],
-            ["Serial", "S16"],
-            ["Filename", "Variable1"]
+            ("TaskID", "LLUUID"),
+            ("Serial", "S16"),
+            ("Filename", "Variable1")
         ]
     }
 registerMessage(ReplyTaskInventory)
@@ -7943,19 +7943,19 @@ class DeRezObject(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "AgentBlock": [
-            ["GroupID", "LLUUID"],
-            ["Destination", "U8"],
-            ["DestinationID", "LLUUID"],
-            ["TransactionID", "LLUUID"],
-            ["PacketCount", "U8"],
-            ["PacketNumber", "U8"]
+            ("GroupID", "LLUUID"),
+            ("Destination", "U8"),
+            ("DestinationID", "LLUUID"),
+            ("TransactionID", "LLUUID"),
+            ("PacketCount", "U8"),
+            ("PacketNumber", "U8")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"]
+            ("ObjectLocalID", "U32")
         ]
     }
 registerMessage(DeRezObject)
@@ -7971,8 +7971,8 @@ class DeRezAck(message.baseMessage):
     ]
     structure = {
         "TransactionData": [
-            ["TransactionID", "LLUUID"],
-            ["Success", "BOOL"]
+            ("TransactionID", "LLUUID"),
+            ("Success", "BOOL")
         ]
     }
 registerMessage(DeRezAck)
@@ -7990,46 +7990,46 @@ class RezObject(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "RezData": [
-            ["FromTaskID", "LLUUID"],
-            ["BypassRaycast", "U8"],
-            ["RayStart", "LLVector3"],
-            ["RayEnd", "LLVector3"],
-            ["RayTargetID", "LLUUID"],
-            ["RayEndIsIntersection", "BOOL"],
-            ["RezSelected", "BOOL"],
-            ["RemoveItem", "BOOL"],
-            ["ItemFlags", "U32"],
-            ["GroupMask", "U32"],
-            ["EveryoneMask", "U32"],
-            ["NextOwnerMask", "U32"]
+            ("FromTaskID", "LLUUID"),
+            ("BypassRaycast", "U8"),
+            ("RayStart", "LLVector3"),
+            ("RayEnd", "LLVector3"),
+            ("RayTargetID", "LLUUID"),
+            ("RayEndIsIntersection", "BOOL"),
+            ("RezSelected", "BOOL"),
+            ("RemoveItem", "BOOL"),
+            ("ItemFlags", "U32"),
+            ("GroupMask", "U32"),
+            ("EveryoneMask", "U32"),
+            ("NextOwnerMask", "U32")
         ],
         "InventoryData": [
-            ["ItemID", "LLUUID"],
-            ["FolderID", "LLUUID"],
-            ["CreatorID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["BaseMask", "U32"],
-            ["OwnerMask", "U32"],
-            ["GroupMask", "U32"],
-            ["EveryoneMask", "U32"],
-            ["NextOwnerMask", "U32"],
-            ["GroupOwned", "BOOL"],
-            ["TransactionID", "LLUUID"],
-            ["Type", "S8"],
-            ["InvType", "S8"],
-            ["Flags", "U32"],
-            ["SaleType", "U8"],
-            ["SalePrice", "S32"],
-            ["Name", "Variable1"],
-            ["Description", "Variable1"],
-            ["CreationDate", "S32"],
-            ["CRC", "U32"]
+            ("ItemID", "LLUUID"),
+            ("FolderID", "LLUUID"),
+            ("CreatorID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("BaseMask", "U32"),
+            ("OwnerMask", "U32"),
+            ("GroupMask", "U32"),
+            ("EveryoneMask", "U32"),
+            ("NextOwnerMask", "U32"),
+            ("GroupOwned", "BOOL"),
+            ("TransactionID", "LLUUID"),
+            ("Type", "S8"),
+            ("InvType", "S8"),
+            ("Flags", "U32"),
+            ("SaleType", "U8"),
+            ("SalePrice", "S32"),
+            ("Name", "Variable1"),
+            ("Description", "Variable1"),
+            ("CreationDate", "S32"),
+            ("CRC", "U32")
         ]
     }
 registerMessage(RezObject)
@@ -8048,30 +8048,30 @@ class RezObjectFromNotecard(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "RezData": [
-            ["FromTaskID", "LLUUID"],
-            ["BypassRaycast", "U8"],
-            ["RayStart", "LLVector3"],
-            ["RayEnd", "LLVector3"],
-            ["RayTargetID", "LLUUID"],
-            ["RayEndIsIntersection", "BOOL"],
-            ["RezSelected", "BOOL"],
-            ["RemoveItem", "BOOL"],
-            ["ItemFlags", "U32"],
-            ["GroupMask", "U32"],
-            ["EveryoneMask", "U32"],
-            ["NextOwnerMask", "U32"]
+            ("FromTaskID", "LLUUID"),
+            ("BypassRaycast", "U8"),
+            ("RayStart", "LLVector3"),
+            ("RayEnd", "LLVector3"),
+            ("RayTargetID", "LLUUID"),
+            ("RayEndIsIntersection", "BOOL"),
+            ("RezSelected", "BOOL"),
+            ("RemoveItem", "BOOL"),
+            ("ItemFlags", "U32"),
+            ("GroupMask", "U32"),
+            ("EveryoneMask", "U32"),
+            ("NextOwnerMask", "U32")
         ],
         "NotecardData": [
-            ["NotecardItemID", "LLUUID"],
-            ["ObjectID", "LLUUID"]
+            ("NotecardItemID", "LLUUID"),
+            ("ObjectID", "LLUUID")
         ],
         "InventoryData": [
-            ["ItemID", "LLUUID"]
+            ("ItemID", "LLUUID")
         ]
     }
 registerMessage(RezObjectFromNotecard)
@@ -8088,13 +8088,13 @@ class TransferInventory(message.baseMessage):
     ]
     structure = {
         "InfoBlock": [
-            ["SourceID", "LLUUID"],
-            ["DestID", "LLUUID"],
-            ["TransactionID", "LLUUID"]
+            ("SourceID", "LLUUID"),
+            ("DestID", "LLUUID"),
+            ("TransactionID", "LLUUID")
         ],
         "InventoryBlock": [
-            ["InventoryID", "LLUUID"],
-            ["Type", "S8"]
+            ("InventoryID", "LLUUID"),
+            ("Type", "S8")
         ]
     }
 registerMessage(TransferInventory)
@@ -8110,8 +8110,8 @@ class TransferInventoryAck(message.baseMessage):
     ]
     structure = {
         "InfoBlock": [
-            ["TransactionID", "LLUUID"],
-            ["InventoryID", "LLUUID"]
+            ("TransactionID", "LLUUID"),
+            ("InventoryID", "LLUUID")
         ]
     }
 registerMessage(TransferInventoryAck)
@@ -8129,14 +8129,14 @@ class AcceptFriendship(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "TransactionBlock": [
-            ["TransactionID", "LLUUID"]
+            ("TransactionID", "LLUUID")
         ],
         "FolderData": [
-            ["FolderID", "LLUUID"]
+            ("FolderID", "LLUUID")
         ]
     }
 registerMessage(AcceptFriendship)
@@ -8153,11 +8153,11 @@ class DeclineFriendship(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "TransactionBlock": [
-            ["TransactionID", "LLUUID"]
+            ("TransactionID", "LLUUID")
         ]
     }
 registerMessage(DeclineFriendship)
@@ -8173,8 +8173,8 @@ class FormFriendship(message.baseMessage):
     ]
     structure = {
         "AgentBlock": [
-            ["SourceID", "LLUUID"],
-            ["DestID", "LLUUID"]
+            ("SourceID", "LLUUID"),
+            ("DestID", "LLUUID")
         ]
     }
 registerMessage(FormFriendship)
@@ -8191,11 +8191,11 @@ class TerminateFriendship(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ExBlock": [
-            ["OtherID", "LLUUID"]
+            ("OtherID", "LLUUID")
         ]
     }
 registerMessage(TerminateFriendship)
@@ -8212,12 +8212,12 @@ class OfferCallingCard(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "AgentBlock": [
-            ["DestID", "LLUUID"],
-            ["TransactionID", "LLUUID"]
+            ("DestID", "LLUUID"),
+            ("TransactionID", "LLUUID")
         ]
     }
 registerMessage(OfferCallingCard)
@@ -8235,14 +8235,14 @@ class AcceptCallingCard(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "TransactionBlock": [
-            ["TransactionID", "LLUUID"]
+            ("TransactionID", "LLUUID")
         ],
         "FolderData": [
-            ["FolderID", "LLUUID"]
+            ("FolderID", "LLUUID")
         ]
     }
 registerMessage(AcceptCallingCard)
@@ -8259,11 +8259,11 @@ class DeclineCallingCard(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "TransactionBlock": [
-            ["TransactionID", "LLUUID"]
+            ("TransactionID", "LLUUID")
         ]
     }
 registerMessage(DeclineCallingCard)
@@ -8281,36 +8281,36 @@ class RezScript(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "UpdateBlock": [
-            ["ObjectLocalID", "U32"],
-            ["Enabled", "BOOL"]
+            ("ObjectLocalID", "U32"),
+            ("Enabled", "BOOL")
         ],
         "InventoryBlock": [
-            ["ItemID", "LLUUID"],
-            ["FolderID", "LLUUID"],
-            ["CreatorID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["BaseMask", "U32"],
-            ["OwnerMask", "U32"],
-            ["GroupMask", "U32"],
-            ["EveryoneMask", "U32"],
-            ["NextOwnerMask", "U32"],
-            ["GroupOwned", "BOOL"],
-            ["TransactionID", "LLUUID"],
-            ["Type", "S8"],
-            ["InvType", "S8"],
-            ["Flags", "U32"],
-            ["SaleType", "U8"],
-            ["SalePrice", "S32"],
-            ["Name", "Variable1"],
-            ["Description", "Variable1"],
-            ["CreationDate", "S32"],
-            ["CRC", "U32"]
+            ("ItemID", "LLUUID"),
+            ("FolderID", "LLUUID"),
+            ("CreatorID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("BaseMask", "U32"),
+            ("OwnerMask", "U32"),
+            ("GroupMask", "U32"),
+            ("EveryoneMask", "U32"),
+            ("NextOwnerMask", "U32"),
+            ("GroupOwned", "BOOL"),
+            ("TransactionID", "LLUUID"),
+            ("Type", "S8"),
+            ("InvType", "S8"),
+            ("Flags", "U32"),
+            ("SaleType", "U8"),
+            ("SalePrice", "S32"),
+            ("Name", "Variable1"),
+            ("Description", "Variable1"),
+            ("CreationDate", "S32"),
+            ("CRC", "U32")
         ]
     }
 registerMessage(RezScript)
@@ -8327,19 +8327,19 @@ class CreateInventoryItem(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "InventoryBlock": [
-            ["CallbackID", "U32"],
-            ["FolderID", "LLUUID"],
-            ["TransactionID", "LLUUID"],
-            ["NextOwnerMask", "U32"],
-            ["Type", "S8"],
-            ["InvType", "S8"],
-            ["WearableType", "U8"],
-            ["Name", "Variable1"],
-            ["Description", "Variable1"]
+            ("CallbackID", "U32"),
+            ("FolderID", "LLUUID"),
+            ("TransactionID", "LLUUID"),
+            ("NextOwnerMask", "U32"),
+            ("Type", "S8"),
+            ("InvType", "S8"),
+            ("WearableType", "U8"),
+            ("Name", "Variable1"),
+            ("Description", "Variable1")
         ]
     }
 registerMessage(CreateInventoryItem)
@@ -8357,15 +8357,15 @@ class CreateLandmarkForEvent(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "EventData": [
-            ["EventID", "U32"]
+            ("EventID", "U32")
         ],
         "InventoryBlock": [
-            ["FolderID", "LLUUID"],
-            ["Name", "Variable1"]
+            ("FolderID", "LLUUID"),
+            ("Name", "Variable1")
         ]
     }
 registerMessage(CreateLandmarkForEvent)
@@ -8382,10 +8382,10 @@ class EventLocationRequest(message.baseMessage):
     ]
     structure = {
         "QueryData": [
-            ["QueryID", "LLUUID"]
+            ("QueryID", "LLUUID")
         ],
         "EventData": [
-            ["EventID", "U32"]
+            ("EventID", "U32")
         ]
     }
 registerMessage(EventLocationRequest)
@@ -8402,12 +8402,12 @@ class EventLocationReply(message.baseMessage):
     ]
     structure = {
         "QueryData": [
-            ["QueryID", "LLUUID"]
+            ("QueryID", "LLUUID")
         ],
         "EventData": [
-            ["Success", "BOOL"],
-            ["RegionID", "LLUUID"],
-            ["RegionPos", "LLVector3"]
+            ("Success", "BOOL"),
+            ("RegionID", "LLUUID"),
+            ("RegionPos", "LLVector3")
         ]
     }
 registerMessage(EventLocationReply)
@@ -8423,7 +8423,7 @@ class RegionHandleRequest(message.baseMessage):
     ]
     structure = {
         "RequestBlock": [
-            ["RegionID", "LLUUID"]
+            ("RegionID", "LLUUID")
         ]
     }
 registerMessage(RegionHandleRequest)
@@ -8439,8 +8439,8 @@ class RegionIDAndHandleReply(message.baseMessage):
     ]
     structure = {
         "ReplyBlock": [
-            ["RegionID", "LLUUID"],
-            ["RegionHandle", "U64"]
+            ("RegionID", "LLUUID"),
+            ("RegionHandle", "U64")
         ]
     }
 registerMessage(RegionIDAndHandleReply)
@@ -8457,18 +8457,18 @@ class MoneyTransferRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "MoneyData": [
-            ["SourceID", "LLUUID"],
-            ["DestID", "LLUUID"],
-            ["Flags", "U8"],
-            ["Amount", "S32"],
-            ["AggregatePermNextOwner", "U8"],
-            ["AggregatePermInventory", "U8"],
-            ["TransactionType", "S32"],
-            ["Description", "Variable1"]
+            ("SourceID", "LLUUID"),
+            ("DestID", "LLUUID"),
+            ("Flags", "U8"),
+            ("Amount", "S32"),
+            ("AggregatePermNextOwner", "U8"),
+            ("AggregatePermInventory", "U8"),
+            ("TransactionType", "S32"),
+            ("Description", "Variable1")
         ]
     }
 registerMessage(MoneyTransferRequest)
@@ -8484,19 +8484,19 @@ class MoneyTransferBackend(message.baseMessage):
     ]
     structure = {
         "MoneyData": [
-            ["TransactionID", "LLUUID"],
-            ["TransactionTime", "U32"],
-            ["SourceID", "LLUUID"],
-            ["DestID", "LLUUID"],
-            ["Flags", "U8"],
-            ["Amount", "S32"],
-            ["AggregatePermNextOwner", "U8"],
-            ["AggregatePermInventory", "U8"],
-            ["TransactionType", "S32"],
-            ["RegionID", "LLUUID"],
-            ["GridX", "U32"],
-            ["GridY", "U32"],
-            ["Description", "Variable1"]
+            ("TransactionID", "LLUUID"),
+            ("TransactionTime", "U32"),
+            ("SourceID", "LLUUID"),
+            ("DestID", "LLUUID"),
+            ("Flags", "U8"),
+            ("Amount", "S32"),
+            ("AggregatePermNextOwner", "U8"),
+            ("AggregatePermInventory", "U8"),
+            ("TransactionType", "S32"),
+            ("RegionID", "LLUUID"),
+            ("GridX", "U32"),
+            ("GridY", "U32"),
+            ("Description", "Variable1")
         ]
     }
 registerMessage(MoneyTransferBackend)
@@ -8513,11 +8513,11 @@ class MoneyBalanceRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "MoneyData": [
-            ["TransactionID", "LLUUID"]
+            ("TransactionID", "LLUUID")
         ]
     }
 registerMessage(MoneyBalanceRequest)
@@ -8534,22 +8534,22 @@ class MoneyBalanceReply(message.baseMessage):
     ]
     structure = {
         "MoneyData": [
-            ["AgentID", "LLUUID"],
-            ["TransactionID", "LLUUID"],
-            ["TransactionSuccess", "BOOL"],
-            ["MoneyBalance", "S32"],
-            ["SquareMetersCredit", "S32"],
-            ["SquareMetersCommitted", "S32"],
-            ["Description", "Variable1"]
+            ("AgentID", "LLUUID"),
+            ("TransactionID", "LLUUID"),
+            ("TransactionSuccess", "BOOL"),
+            ("MoneyBalance", "S32"),
+            ("SquareMetersCredit", "S32"),
+            ("SquareMetersCommitted", "S32"),
+            ("Description", "Variable1")
         ],
         "TransactionInfo": [
-            ["TransactionType", "S32"],
-            ["SourceID", "LLUUID"],
-            ["IsSourceGroup", "BOOL"],
-            ["DestID", "LLUUID"],
-            ["IsDestGroup", "BOOL"],
-            ["Amount", "S32"],
-            ["ItemDescription", "Variable1"]
+            ("TransactionType", "S32"),
+            ("SourceID", "LLUUID"),
+            ("IsSourceGroup", "BOOL"),
+            ("DestID", "LLUUID"),
+            ("IsDestGroup", "BOOL"),
+            ("Amount", "S32"),
+            ("ItemDescription", "Variable1")
         ]
     }
 registerMessage(MoneyBalanceReply)
@@ -8567,26 +8567,26 @@ class RoutedMoneyBalanceReply(message.baseMessage):
     ]
     structure = {
         "TargetBlock": [
-            ["TargetIP", "IPADDR"],
-            ["TargetPort", "IPPORT"]
+            ("TargetIP", "IPADDR"),
+            ("TargetPort", "IPPORT")
         ],
         "MoneyData": [
-            ["AgentID", "LLUUID"],
-            ["TransactionID", "LLUUID"],
-            ["TransactionSuccess", "BOOL"],
-            ["MoneyBalance", "S32"],
-            ["SquareMetersCredit", "S32"],
-            ["SquareMetersCommitted", "S32"],
-            ["Description", "Variable1"]
+            ("AgentID", "LLUUID"),
+            ("TransactionID", "LLUUID"),
+            ("TransactionSuccess", "BOOL"),
+            ("MoneyBalance", "S32"),
+            ("SquareMetersCredit", "S32"),
+            ("SquareMetersCommitted", "S32"),
+            ("Description", "Variable1")
         ],
         "TransactionInfo": [
-            ["TransactionType", "S32"],
-            ["SourceID", "LLUUID"],
-            ["IsSourceGroup", "BOOL"],
-            ["DestID", "LLUUID"],
-            ["IsDestGroup", "BOOL"],
-            ["Amount", "S32"],
-            ["ItemDescription", "Variable1"]
+            ("TransactionType", "S32"),
+            ("SourceID", "LLUUID"),
+            ("IsSourceGroup", "BOOL"),
+            ("DestID", "LLUUID"),
+            ("IsDestGroup", "BOOL"),
+            ("Amount", "S32"),
+            ("ItemDescription", "Variable1")
         ]
     }
 registerMessage(RoutedMoneyBalanceReply)
@@ -8603,14 +8603,14 @@ class ActivateGestures(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["Flags", "U32"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("Flags", "U32")
         ],
         "Data": [
-            ["ItemID", "LLUUID"],
-            ["AssetID", "LLUUID"],
-            ["GestureFlags", "U32"]
+            ("ItemID", "LLUUID"),
+            ("AssetID", "LLUUID"),
+            ("GestureFlags", "U32")
         ]
     }
 registerMessage(ActivateGestures)
@@ -8627,13 +8627,13 @@ class DeactivateGestures(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["Flags", "U32"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("Flags", "U32")
         ],
         "Data": [
-            ["ItemID", "LLUUID"],
-            ["GestureFlags", "U32"]
+            ("ItemID", "LLUUID"),
+            ("GestureFlags", "U32")
         ]
     }
 registerMessage(DeactivateGestures)
@@ -8649,8 +8649,8 @@ class MuteListUpdate(message.baseMessage):
     ]
     structure = {
         "MuteData": [
-            ["AgentID", "LLUUID"],
-            ["Filename", "Variable1"]
+            ("AgentID", "LLUUID"),
+            ("Filename", "Variable1")
         ]
     }
 registerMessage(MuteListUpdate)
@@ -8666,7 +8666,7 @@ class UseCachedMuteList(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ]
     }
 registerMessage(UseCachedMuteList)
@@ -8683,12 +8683,12 @@ class GrantUserRights(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Rights": [
-            ["AgentRelated", "LLUUID"],
-            ["RelatedRights", "S32"]
+            ("AgentRelated", "LLUUID"),
+            ("RelatedRights", "S32")
         ]
     }
 registerMessage(GrantUserRights)
@@ -8705,11 +8705,11 @@ class ChangeUserRights(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "Rights": [
-            ["AgentRelated", "LLUUID"],
-            ["RelatedRights", "S32"]
+            ("AgentRelated", "LLUUID"),
+            ("RelatedRights", "S32")
         ]
     }
 registerMessage(ChangeUserRights)
@@ -8725,7 +8725,7 @@ class OnlineNotification(message.baseMessage):
     ]
     structure = {
         "AgentBlock": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ]
     }
 registerMessage(OnlineNotification)
@@ -8741,7 +8741,7 @@ class OfflineNotification(message.baseMessage):
     ]
     structure = {
         "AgentBlock": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ]
     }
 registerMessage(OfflineNotification)
@@ -8758,14 +8758,14 @@ class SetStartLocationRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "StartLocationData": [
-            ["SimName", "Variable1"],
-            ["LocationID", "U32"],
-            ["LocationPos", "LLVector3"],
-            ["LocationLookAt", "LLVector3"]
+            ("SimName", "Variable1"),
+            ("LocationID", "U32"),
+            ("LocationPos", "LLVector3"),
+            ("LocationLookAt", "LLVector3")
         ]
     }
 registerMessage(SetStartLocationRequest)
@@ -8781,12 +8781,12 @@ class SetStartLocation(message.baseMessage):
     ]
     structure = {
         "StartLocationData": [
-            ["AgentID", "LLUUID"],
-            ["RegionID", "LLUUID"],
-            ["LocationID", "U32"],
-            ["RegionHandle", "U64"],
-            ["LocationPos", "LLVector3"],
-            ["LocationLookAt", "LLVector3"]
+            ("AgentID", "LLUUID"),
+            ("RegionID", "LLUUID"),
+            ("LocationID", "U32"),
+            ("RegionHandle", "U64"),
+            ("LocationPos", "LLVector3"),
+            ("LocationLookAt", "LLVector3")
         ]
     }
 registerMessage(SetStartLocation)
@@ -8802,7 +8802,7 @@ class NetTest(message.baseMessage):
     ]
     structure = {
         "NetBlock": [
-            ["Port", "IPPORT"]
+            ("Port", "IPPORT")
         ]
     }
 registerMessage(NetTest)
@@ -8818,7 +8818,7 @@ class SetCPURatio(message.baseMessage):
     ]
     structure = {
         "Data": [
-            ["Ratio", "U8"]
+            ("Ratio", "U8")
         ]
     }
 registerMessage(SetCPURatio)
@@ -8835,11 +8835,11 @@ class SimCrashed(message.baseMessage):
     ]
     structure = {
         "Data": [
-            ["RegionX", "U32"],
-            ["RegionY", "U32"]
+            ("RegionX", "U32"),
+            ("RegionY", "U32")
         ],
         "Users": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ]
     }
 registerMessage(SimCrashed)
@@ -8856,10 +8856,10 @@ class NameValuePair(message.baseMessage):
     ]
     structure = {
         "TaskData": [
-            ["ID", "LLUUID"]
+            ("ID", "LLUUID")
         ],
         "NameValueData": [
-            ["NVPair", "Variable2"]
+            ("NVPair", "Variable2")
         ]
     }
 registerMessage(NameValuePair)
@@ -8876,10 +8876,10 @@ class RemoveNameValuePair(message.baseMessage):
     ]
     structure = {
         "TaskData": [
-            ["ID", "LLUUID"]
+            ("ID", "LLUUID")
         ],
         "NameValueData": [
-            ["NVPair", "Variable2"]
+            ("NVPair", "Variable2")
         ]
     }
 registerMessage(RemoveNameValuePair)
@@ -8898,38 +8898,38 @@ class UpdateAttachment(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "AttachmentBlock": [
-            ["AttachmentPoint", "U8"]
+            ("AttachmentPoint", "U8")
         ],
         "OperationData": [
-            ["AddItem", "BOOL"],
-            ["UseExistingAsset", "BOOL"]
+            ("AddItem", "BOOL"),
+            ("UseExistingAsset", "BOOL")
         ],
         "InventoryData": [
-            ["ItemID", "LLUUID"],
-            ["FolderID", "LLUUID"],
-            ["CreatorID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["BaseMask", "U32"],
-            ["OwnerMask", "U32"],
-            ["GroupMask", "U32"],
-            ["EveryoneMask", "U32"],
-            ["NextOwnerMask", "U32"],
-            ["GroupOwned", "BOOL"],
-            ["AssetID", "LLUUID"],
-            ["Type", "S8"],
-            ["InvType", "S8"],
-            ["Flags", "U32"],
-            ["SaleType", "U8"],
-            ["SalePrice", "S32"],
-            ["Name", "Variable1"],
-            ["Description", "Variable1"],
-            ["CreationDate", "S32"],
-            ["CRC", "U32"]
+            ("ItemID", "LLUUID"),
+            ("FolderID", "LLUUID"),
+            ("CreatorID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("BaseMask", "U32"),
+            ("OwnerMask", "U32"),
+            ("GroupMask", "U32"),
+            ("EveryoneMask", "U32"),
+            ("NextOwnerMask", "U32"),
+            ("GroupOwned", "BOOL"),
+            ("AssetID", "LLUUID"),
+            ("Type", "S8"),
+            ("InvType", "S8"),
+            ("Flags", "U32"),
+            ("SaleType", "U8"),
+            ("SalePrice", "S32"),
+            ("Name", "Variable1"),
+            ("Description", "Variable1"),
+            ("CreationDate", "S32"),
+            ("CRC", "U32")
         ]
     }
 registerMessage(UpdateAttachment)
@@ -8946,12 +8946,12 @@ class RemoveAttachment(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "AttachmentBlock": [
-            ["AttachmentPoint", "U8"],
-            ["ItemID", "LLUUID"]
+            ("AttachmentPoint", "U8"),
+            ("ItemID", "LLUUID")
         ]
     }
 registerMessage(RemoveAttachment)
@@ -8967,13 +8967,13 @@ class SoundTrigger(message.baseMessage):
     ]
     structure = {
         "SoundData": [
-            ["SoundID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["ObjectID", "LLUUID"],
-            ["ParentID", "LLUUID"],
-            ["Handle", "U64"],
-            ["Position", "LLVector3"],
-            ["Gain", "F32"]
+            ("SoundID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("ObjectID", "LLUUID"),
+            ("ParentID", "LLUUID"),
+            ("Handle", "U64"),
+            ("Position", "LLVector3"),
+            ("Gain", "F32")
         ]
     }
 registerMessage(SoundTrigger)
@@ -8989,11 +8989,11 @@ class AttachedSound(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ["SoundID", "LLUUID"],
-            ["ObjectID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["Gain", "F32"],
-            ["Flags", "U8"]
+            ("SoundID", "LLUUID"),
+            ("ObjectID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("Gain", "F32"),
+            ("Flags", "U8")
         ]
     }
 registerMessage(AttachedSound)
@@ -9009,8 +9009,8 @@ class AttachedSoundGainChange(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ["ObjectID", "LLUUID"],
-            ["Gain", "F32"]
+            ("ObjectID", "LLUUID"),
+            ("Gain", "F32")
         ]
     }
 registerMessage(AttachedSoundGainChange)
@@ -9026,9 +9026,9 @@ class PreloadSound(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ["ObjectID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["SoundID", "LLUUID"]
+            ("ObjectID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("SoundID", "LLUUID")
         ]
     }
 registerMessage(PreloadSound)
@@ -9044,11 +9044,11 @@ class AssetUploadRequest(message.baseMessage):
     ]
     structure = {
         "AssetBlock": [
-            ["TransactionID", "LLUUID"],
-            ["Type", "S8"],
-            ["Tempfile", "BOOL"],
-            ["StoreLocal", "BOOL"],
-            ["AssetData", "Variable2"]
+            ("TransactionID", "LLUUID"),
+            ("Type", "S8"),
+            ("Tempfile", "BOOL"),
+            ("StoreLocal", "BOOL"),
+            ("AssetData", "Variable2")
         ]
     }
 registerMessage(AssetUploadRequest)
@@ -9064,9 +9064,9 @@ class AssetUploadComplete(message.baseMessage):
     ]
     structure = {
         "AssetBlock": [
-            ["UUID", "LLUUID"],
-            ["Type", "S8"],
-            ["Success", "BOOL"]
+            ("UUID", "LLUUID"),
+            ("Type", "S8"),
+            ("Success", "BOOL")
         ]
     }
 registerMessage(AssetUploadComplete)
@@ -9082,9 +9082,9 @@ class EmailMessageRequest(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ["ObjectID", "LLUUID"],
-            ["FromAddress", "Variable1"],
-            ["Subject", "Variable1"]
+            ("ObjectID", "LLUUID"),
+            ("FromAddress", "Variable1"),
+            ("Subject", "Variable1")
         ]
     }
 registerMessage(EmailMessageRequest)
@@ -9100,13 +9100,13 @@ class EmailMessageReply(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ["ObjectID", "LLUUID"],
-            ["More", "U32"],
-            ["Time", "U32"],
-            ["FromAddress", "Variable1"],
-            ["Subject", "Variable1"],
-            ["Data", "Variable2"],
-            ["MailFilter", "Variable1"]
+            ("ObjectID", "LLUUID"),
+            ("More", "U32"),
+            ("Time", "U32"),
+            ("FromAddress", "Variable1"),
+            ("Subject", "Variable1"),
+            ("Data", "Variable2"),
+            ("MailFilter", "Variable1")
         ]
     }
 registerMessage(EmailMessageReply)
@@ -9122,10 +9122,10 @@ class InternalScriptMail(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ["From", "Variable1"],
-            ["To", "LLUUID"],
-            ["Subject", "Variable1"],
-            ["Body", "Variable2"]
+            ("From", "Variable1"),
+            ("To", "LLUUID"),
+            ("Subject", "Variable1"),
+            ("Body", "Variable2")
         ]
     }
 registerMessage(InternalScriptMail)
@@ -9141,9 +9141,9 @@ class ScriptDataRequest(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ["Hash", "U64"],
-            ["RequestType", "S8"],
-            ["Request", "Variable2"]
+            ("Hash", "U64"),
+            ("RequestType", "S8"),
+            ("Request", "Variable2")
         ]
     }
 registerMessage(ScriptDataRequest)
@@ -9159,8 +9159,8 @@ class ScriptDataReply(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ["Hash", "U64"],
-            ["Reply", "Variable2"]
+            ("Hash", "U64"),
+            ("Reply", "Variable2")
         ]
     }
 registerMessage(ScriptDataReply)
@@ -9177,18 +9177,18 @@ class CreateGroupRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "GroupData": [
-            ["Name", "Variable1"],
-            ["Charter", "Variable2"],
-            ["ShowInList", "BOOL"],
-            ["InsigniaID", "LLUUID"],
-            ["MembershipFee", "S32"],
-            ["OpenEnrollment", "BOOL"],
-            ["AllowPublish", "BOOL"],
-            ["MaturePublish", "BOOL"]
+            ("Name", "Variable1"),
+            ("Charter", "Variable2"),
+            ("ShowInList", "BOOL"),
+            ("InsigniaID", "LLUUID"),
+            ("MembershipFee", "S32"),
+            ("OpenEnrollment", "BOOL"),
+            ("AllowPublish", "BOOL"),
+            ("MaturePublish", "BOOL")
         ]
     }
 registerMessage(CreateGroupRequest)
@@ -9205,12 +9205,12 @@ class CreateGroupReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "ReplyData": [
-            ["GroupID", "LLUUID"],
-            ["Success", "BOOL"],
-            ["Message", "Variable1"]
+            ("GroupID", "LLUUID"),
+            ("Success", "BOOL"),
+            ("Message", "Variable1")
         ]
     }
 registerMessage(CreateGroupReply)
@@ -9227,18 +9227,18 @@ class UpdateGroupInfo(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupID", "LLUUID"],
-            ["Charter", "Variable2"],
-            ["ShowInList", "BOOL"],
-            ["InsigniaID", "LLUUID"],
-            ["MembershipFee", "S32"],
-            ["OpenEnrollment", "BOOL"],
-            ["AllowPublish", "BOOL"],
-            ["MaturePublish", "BOOL"]
+            ("GroupID", "LLUUID"),
+            ("Charter", "Variable2"),
+            ("ShowInList", "BOOL"),
+            ("InsigniaID", "LLUUID"),
+            ("MembershipFee", "S32"),
+            ("OpenEnrollment", "BOOL"),
+            ("AllowPublish", "BOOL"),
+            ("MaturePublish", "BOOL")
         ]
     }
 registerMessage(UpdateGroupInfo)
@@ -9255,14 +9255,14 @@ class GroupRoleChanges(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "RoleChange": [
-            ["RoleID", "LLUUID"],
-            ["MemberID", "LLUUID"],
-            ["Change", "U32"]
+            ("RoleID", "LLUUID"),
+            ("MemberID", "LLUUID"),
+            ("Change", "U32")
         ]
     }
 registerMessage(GroupRoleChanges)
@@ -9279,11 +9279,11 @@ class JoinGroupRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupID", "LLUUID"]
+            ("GroupID", "LLUUID")
         ]
     }
 registerMessage(JoinGroupRequest)
@@ -9300,11 +9300,11 @@ class JoinGroupReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupID", "LLUUID"],
-            ["Success", "BOOL"]
+            ("GroupID", "LLUUID"),
+            ("Success", "BOOL")
         ]
     }
 registerMessage(JoinGroupReply)
@@ -9322,14 +9322,14 @@ class EjectGroupMemberRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupID", "LLUUID"]
+            ("GroupID", "LLUUID")
         ],
         "EjectData": [
-            ["EjecteeID", "LLUUID"]
+            ("EjecteeID", "LLUUID")
         ]
     }
 registerMessage(EjectGroupMemberRequest)
@@ -9347,13 +9347,13 @@ class EjectGroupMemberReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupID", "LLUUID"]
+            ("GroupID", "LLUUID")
         ],
         "EjectData": [
-            ["Success", "BOOL"]
+            ("Success", "BOOL")
         ]
     }
 registerMessage(EjectGroupMemberReply)
@@ -9370,11 +9370,11 @@ class LeaveGroupRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupID", "LLUUID"]
+            ("GroupID", "LLUUID")
         ]
     }
 registerMessage(LeaveGroupRequest)
@@ -9391,11 +9391,11 @@ class LeaveGroupReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupID", "LLUUID"],
-            ["Success", "BOOL"]
+            ("GroupID", "LLUUID"),
+            ("Success", "BOOL")
         ]
     }
 registerMessage(LeaveGroupReply)
@@ -9413,15 +9413,15 @@ class InviteGroupRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupID", "LLUUID"]
+            ("GroupID", "LLUUID")
         ],
         "InviteData": [
-            ["InviteeID", "LLUUID"],
-            ["RoleID", "LLUUID"]
+            ("InviteeID", "LLUUID"),
+            ("RoleID", "LLUUID")
         ]
     }
 registerMessage(InviteGroupRequest)
@@ -9437,11 +9437,11 @@ class InviteGroupResponse(message.baseMessage):
     ]
     structure = {
         "InviteData": [
-            ["AgentID", "LLUUID"],
-            ["InviteeID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["RoleID", "LLUUID"],
-            ["MembershipFee", "S32"]
+            ("AgentID", "LLUUID"),
+            ("InviteeID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("RoleID", "LLUUID"),
+            ("MembershipFee", "S32")
         ]
     }
 registerMessage(InviteGroupResponse)
@@ -9458,11 +9458,11 @@ class GroupProfileRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupID", "LLUUID"]
+            ("GroupID", "LLUUID")
         ]
     }
 registerMessage(GroupProfileRequest)
@@ -9479,25 +9479,25 @@ class GroupProfileReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupID", "LLUUID"],
-            ["Name", "Variable1"],
-            ["Charter", "Variable2"],
-            ["ShowInList", "BOOL"],
-            ["MemberTitle", "Variable1"],
-            ["PowersMask", "U64"],
-            ["InsigniaID", "LLUUID"],
-            ["FounderID", "LLUUID"],
-            ["MembershipFee", "S32"],
-            ["OpenEnrollment", "BOOL"],
-            ["Money", "S32"],
-            ["GroupMembershipCount", "S32"],
-            ["GroupRolesCount", "S32"],
-            ["AllowPublish", "BOOL"],
-            ["MaturePublish", "BOOL"],
-            ["OwnerRole", "LLUUID"]
+            ("GroupID", "LLUUID"),
+            ("Name", "Variable1"),
+            ("Charter", "Variable2"),
+            ("ShowInList", "BOOL"),
+            ("MemberTitle", "Variable1"),
+            ("PowersMask", "U64"),
+            ("InsigniaID", "LLUUID"),
+            ("FounderID", "LLUUID"),
+            ("MembershipFee", "S32"),
+            ("OpenEnrollment", "BOOL"),
+            ("Money", "S32"),
+            ("GroupMembershipCount", "S32"),
+            ("GroupRolesCount", "S32"),
+            ("AllowPublish", "BOOL"),
+            ("MaturePublish", "BOOL"),
+            ("OwnerRole", "LLUUID")
         ]
     }
 registerMessage(GroupProfileReply)
@@ -9514,14 +9514,14 @@ class GroupAccountSummaryRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "MoneyData": [
-            ["RequestID", "LLUUID"],
-            ["IntervalDays", "S32"],
-            ["CurrentInterval", "S32"]
+            ("RequestID", "LLUUID"),
+            ("IntervalDays", "S32"),
+            ("CurrentInterval", "S32")
         ]
     }
 registerMessage(GroupAccountSummaryRequest)
@@ -9538,30 +9538,30 @@ class GroupAccountSummaryReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "MoneyData": [
-            ["RequestID", "LLUUID"],
-            ["IntervalDays", "S32"],
-            ["CurrentInterval", "S32"],
-            ["StartDate", "Variable1"],
-            ["Balance", "S32"],
-            ["TotalCredits", "S32"],
-            ["TotalDebits", "S32"],
-            ["ObjectTaxCurrent", "S32"],
-            ["LightTaxCurrent", "S32"],
-            ["LandTaxCurrent", "S32"],
-            ["GroupTaxCurrent", "S32"],
-            ["ParcelDirFeeCurrent", "S32"],
-            ["ObjectTaxEstimate", "S32"],
-            ["LightTaxEstimate", "S32"],
-            ["LandTaxEstimate", "S32"],
-            ["GroupTaxEstimate", "S32"],
-            ["ParcelDirFeeEstimate", "S32"],
-            ["NonExemptMembers", "S32"],
-            ["LastTaxDate", "Variable1"],
-            ["TaxDate", "Variable1"]
+            ("RequestID", "LLUUID"),
+            ("IntervalDays", "S32"),
+            ("CurrentInterval", "S32"),
+            ("StartDate", "Variable1"),
+            ("Balance", "S32"),
+            ("TotalCredits", "S32"),
+            ("TotalDebits", "S32"),
+            ("ObjectTaxCurrent", "S32"),
+            ("LightTaxCurrent", "S32"),
+            ("LandTaxCurrent", "S32"),
+            ("GroupTaxCurrent", "S32"),
+            ("ParcelDirFeeCurrent", "S32"),
+            ("ObjectTaxEstimate", "S32"),
+            ("LightTaxEstimate", "S32"),
+            ("LandTaxEstimate", "S32"),
+            ("GroupTaxEstimate", "S32"),
+            ("ParcelDirFeeEstimate", "S32"),
+            ("NonExemptMembers", "S32"),
+            ("LastTaxDate", "Variable1"),
+            ("TaxDate", "Variable1")
         ]
     }
 registerMessage(GroupAccountSummaryReply)
@@ -9578,14 +9578,14 @@ class GroupAccountDetailsRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "MoneyData": [
-            ["RequestID", "LLUUID"],
-            ["IntervalDays", "S32"],
-            ["CurrentInterval", "S32"]
+            ("RequestID", "LLUUID"),
+            ("IntervalDays", "S32"),
+            ("CurrentInterval", "S32")
         ]
     }
 registerMessage(GroupAccountDetailsRequest)
@@ -9603,18 +9603,18 @@ class GroupAccountDetailsReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "MoneyData": [
-            ["RequestID", "LLUUID"],
-            ["IntervalDays", "S32"],
-            ["CurrentInterval", "S32"],
-            ["StartDate", "Variable1"]
+            ("RequestID", "LLUUID"),
+            ("IntervalDays", "S32"),
+            ("CurrentInterval", "S32"),
+            ("StartDate", "Variable1")
         ],
         "HistoryData": [
-            ["Description", "Variable1"],
-            ["Amount", "S32"]
+            ("Description", "Variable1"),
+            ("Amount", "S32")
         ]
     }
 registerMessage(GroupAccountDetailsReply)
@@ -9631,14 +9631,14 @@ class GroupAccountTransactionsRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "MoneyData": [
-            ["RequestID", "LLUUID"],
-            ["IntervalDays", "S32"],
-            ["CurrentInterval", "S32"]
+            ("RequestID", "LLUUID"),
+            ("IntervalDays", "S32"),
+            ("CurrentInterval", "S32")
         ]
     }
 registerMessage(GroupAccountTransactionsRequest)
@@ -9656,21 +9656,21 @@ class GroupAccountTransactionsReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "MoneyData": [
-            ["RequestID", "LLUUID"],
-            ["IntervalDays", "S32"],
-            ["CurrentInterval", "S32"],
-            ["StartDate", "Variable1"]
+            ("RequestID", "LLUUID"),
+            ("IntervalDays", "S32"),
+            ("CurrentInterval", "S32"),
+            ("StartDate", "Variable1")
         ],
         "HistoryData": [
-            ["Time", "Variable1"],
-            ["User", "Variable1"],
-            ["Type", "S32"],
-            ["Item", "Variable1"],
-            ["Amount", "S32"]
+            ("Time", "Variable1"),
+            ("User", "Variable1"),
+            ("Type", "S32"),
+            ("Item", "Variable1"),
+            ("Amount", "S32")
         ]
     }
 registerMessage(GroupAccountTransactionsReply)
@@ -9688,14 +9688,14 @@ class GroupActiveProposalsRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupID", "LLUUID"]
+            ("GroupID", "LLUUID")
         ],
         "TransactionData": [
-            ["TransactionID", "LLUUID"]
+            ("TransactionID", "LLUUID")
         ]
     }
 registerMessage(GroupActiveProposalsRequest)
@@ -9713,24 +9713,24 @@ class GroupActiveProposalItemReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "TransactionData": [
-            ["TransactionID", "LLUUID"],
-            ["TotalNumItems", "U32"]
+            ("TransactionID", "LLUUID"),
+            ("TotalNumItems", "U32")
         ],
         "ProposalData": [
-            ["VoteID", "LLUUID"],
-            ["VoteInitiator", "LLUUID"],
-            ["TerseDateID", "Variable1"],
-            ["StartDateTime", "Variable1"],
-            ["EndDateTime", "Variable1"],
-            ["AlreadyVoted", "BOOL"],
-            ["VoteCast", "Variable1"],
-            ["Majority", "F32"],
-            ["Quorum", "S32"],
-            ["ProposalText", "Variable1"]
+            ("VoteID", "LLUUID"),
+            ("VoteInitiator", "LLUUID"),
+            ("TerseDateID", "Variable1"),
+            ("StartDateTime", "Variable1"),
+            ("EndDateTime", "Variable1"),
+            ("AlreadyVoted", "BOOL"),
+            ("VoteCast", "Variable1"),
+            ("Majority", "F32"),
+            ("Quorum", "S32"),
+            ("ProposalText", "Variable1")
         ]
     }
 registerMessage(GroupActiveProposalItemReply)
@@ -9748,14 +9748,14 @@ class GroupVoteHistoryRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupID", "LLUUID"]
+            ("GroupID", "LLUUID")
         ],
         "TransactionData": [
-            ["TransactionID", "LLUUID"]
+            ("TransactionID", "LLUUID")
         ]
     }
 registerMessage(GroupVoteHistoryRequest)
@@ -9774,29 +9774,29 @@ class GroupVoteHistoryItemReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "TransactionData": [
-            ["TransactionID", "LLUUID"],
-            ["TotalNumItems", "U32"]
+            ("TransactionID", "LLUUID"),
+            ("TotalNumItems", "U32")
         ],
         "HistoryItemData": [
-            ["VoteID", "LLUUID"],
-            ["TerseDateID", "Variable1"],
-            ["StartDateTime", "Variable1"],
-            ["EndDateTime", "Variable1"],
-            ["VoteInitiator", "LLUUID"],
-            ["VoteType", "Variable1"],
-            ["VoteResult", "Variable1"],
-            ["Majority", "F32"],
-            ["Quorum", "S32"],
-            ["ProposalText", "Variable2"]
+            ("VoteID", "LLUUID"),
+            ("TerseDateID", "Variable1"),
+            ("StartDateTime", "Variable1"),
+            ("EndDateTime", "Variable1"),
+            ("VoteInitiator", "LLUUID"),
+            ("VoteType", "Variable1"),
+            ("VoteResult", "Variable1"),
+            ("Majority", "F32"),
+            ("Quorum", "S32"),
+            ("ProposalText", "Variable2")
         ],
         "VoteItem": [
-            ["CandidateID", "LLUUID"],
-            ["VoteCast", "Variable1"],
-            ["NumVotes", "S32"]
+            ("CandidateID", "LLUUID"),
+            ("VoteCast", "Variable1"),
+            ("NumVotes", "S32")
         ]
     }
 registerMessage(GroupVoteHistoryItemReply)
@@ -9813,15 +9813,15 @@ class StartGroupProposal(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ProposalData": [
-            ["GroupID", "LLUUID"],
-            ["Quorum", "S32"],
-            ["Majority", "F32"],
-            ["Duration", "S32"],
-            ["ProposalText", "Variable1"]
+            ("GroupID", "LLUUID"),
+            ("Quorum", "S32"),
+            ("Majority", "F32"),
+            ("Duration", "S32"),
+            ("ProposalText", "Variable1")
         ]
     }
 registerMessage(StartGroupProposal)
@@ -9838,13 +9838,13 @@ class GroupProposalBallot(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ProposalData": [
-            ["ProposalID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["VoteCast", "Variable1"]
+            ("ProposalID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("VoteCast", "Variable1")
         ]
     }
 registerMessage(GroupProposalBallot)
@@ -9875,12 +9875,12 @@ class GroupMembersRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupID", "LLUUID"],
-            ["RequestID", "LLUUID"]
+            ("GroupID", "LLUUID"),
+            ("RequestID", "LLUUID")
         ]
     }
 registerMessage(GroupMembersRequest)
@@ -9898,20 +9898,20 @@ class GroupMembersReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupID", "LLUUID"],
-            ["RequestID", "LLUUID"],
-            ["MemberCount", "S32"]
+            ("GroupID", "LLUUID"),
+            ("RequestID", "LLUUID"),
+            ("MemberCount", "S32")
         ],
         "MemberData": [
-            ["AgentID", "LLUUID"],
-            ["Contribution", "S32"],
-            ["OnlineStatus", "Variable1"],
-            ["AgentPowers", "U64"],
-            ["Title", "Variable1"],
-            ["IsOwner", "BOOL"]
+            ("AgentID", "LLUUID"),
+            ("Contribution", "S32"),
+            ("OnlineStatus", "Variable1"),
+            ("AgentPowers", "U64"),
+            ("Title", "Variable1"),
+            ("IsOwner", "BOOL")
         ]
     }
 registerMessage(GroupMembersReply)
@@ -9927,9 +9927,9 @@ class ActivateGroup(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ]
     }
 registerMessage(ActivateGroup)
@@ -9946,12 +9946,12 @@ class SetGroupContribution(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["GroupID", "LLUUID"],
-            ["Contribution", "S32"]
+            ("GroupID", "LLUUID"),
+            ("Contribution", "S32")
         ]
     }
 registerMessage(SetGroupContribution)
@@ -9969,15 +9969,15 @@ class SetGroupAcceptNotices(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Data": [
-            ["GroupID", "LLUUID"],
-            ["AcceptNotices", "BOOL"]
+            ("GroupID", "LLUUID"),
+            ("AcceptNotices", "BOOL")
         ],
         "NewData": [
-            ["ListInProfile", "BOOL"]
+            ("ListInProfile", "BOOL")
         ]
     }
 registerMessage(SetGroupAcceptNotices)
@@ -9994,12 +9994,12 @@ class GroupRoleDataRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupID", "LLUUID"],
-            ["RequestID", "LLUUID"]
+            ("GroupID", "LLUUID"),
+            ("RequestID", "LLUUID")
         ]
     }
 registerMessage(GroupRoleDataRequest)
@@ -10017,20 +10017,20 @@ class GroupRoleDataReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupID", "LLUUID"],
-            ["RequestID", "LLUUID"],
-            ["RoleCount", "S32"]
+            ("GroupID", "LLUUID"),
+            ("RequestID", "LLUUID"),
+            ("RoleCount", "S32")
         ],
         "RoleData": [
-            ["RoleID", "LLUUID"],
-            ["Name", "Variable1"],
-            ["Title", "Variable1"],
-            ["Description", "Variable1"],
-            ["Powers", "U64"],
-            ["Members", "U32"]
+            ("RoleID", "LLUUID"),
+            ("Name", "Variable1"),
+            ("Title", "Variable1"),
+            ("Description", "Variable1"),
+            ("Powers", "U64"),
+            ("Members", "U32")
         ]
     }
 registerMessage(GroupRoleDataReply)
@@ -10047,12 +10047,12 @@ class GroupRoleMembersRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupID", "LLUUID"],
-            ["RequestID", "LLUUID"]
+            ("GroupID", "LLUUID"),
+            ("RequestID", "LLUUID")
         ]
     }
 registerMessage(GroupRoleMembersRequest)
@@ -10069,14 +10069,14 @@ class GroupRoleMembersReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["RequestID", "LLUUID"],
-            ["TotalPairs", "U32"]
+            ("AgentID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("RequestID", "LLUUID"),
+            ("TotalPairs", "U32")
         ],
         "MemberData": [
-            ["RoleID", "LLUUID"],
-            ["MemberID", "LLUUID"]
+            ("RoleID", "LLUUID"),
+            ("MemberID", "LLUUID")
         ]
     }
 registerMessage(GroupRoleMembersReply)
@@ -10092,10 +10092,10 @@ class GroupTitlesRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["RequestID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("RequestID", "LLUUID")
         ]
     }
 registerMessage(GroupTitlesRequest)
@@ -10112,14 +10112,14 @@ class GroupTitlesReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["RequestID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("RequestID", "LLUUID")
         ],
         "GroupData": [
-            ["Title", "Variable1"],
-            ["RoleID", "LLUUID"],
-            ["Selected", "BOOL"]
+            ("Title", "Variable1"),
+            ("RoleID", "LLUUID"),
+            ("Selected", "BOOL")
         ]
     }
 registerMessage(GroupTitlesReply)
@@ -10135,10 +10135,10 @@ class GroupTitleUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["TitleRoleID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("TitleRoleID", "LLUUID")
         ]
     }
 registerMessage(GroupTitleUpdate)
@@ -10155,17 +10155,17 @@ class GroupRoleUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ],
         "RoleData": [
-            ["RoleID", "LLUUID"],
-            ["Name", "Variable1"],
-            ["Description", "Variable1"],
-            ["Title", "Variable1"],
-            ["Powers", "U64"],
-            ["UpdateType", "U8"]
+            ("RoleID", "LLUUID"),
+            ("Name", "Variable1"),
+            ("Description", "Variable1"),
+            ("Title", "Variable1"),
+            ("Powers", "U64"),
+            ("UpdateType", "U8")
         ]
     }
 registerMessage(GroupRoleUpdate)
@@ -10181,8 +10181,8 @@ class LiveHelpGroupRequest(message.baseMessage):
     ]
     structure = {
         "RequestData": [
-            ["RequestID", "LLUUID"],
-            ["AgentID", "LLUUID"]
+            ("RequestID", "LLUUID"),
+            ("AgentID", "LLUUID")
         ]
     }
 registerMessage(LiveHelpGroupRequest)
@@ -10198,9 +10198,9 @@ class LiveHelpGroupReply(message.baseMessage):
     ]
     structure = {
         "ReplyData": [
-            ["RequestID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["Selection", "Variable1"]
+            ("RequestID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("Selection", "Variable1")
         ]
     }
 registerMessage(LiveHelpGroupReply)
@@ -10216,8 +10216,8 @@ class AgentWearablesRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ]
     }
 registerMessage(AgentWearablesRequest)
@@ -10234,14 +10234,14 @@ class AgentWearablesUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["SerialNum", "U32"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("SerialNum", "U32")
         ],
         "WearableData": [
-            ["ItemID", "LLUUID"],
-            ["AssetID", "LLUUID"],
-            ["WearableType", "U8"]
+            ("ItemID", "LLUUID"),
+            ("AssetID", "LLUUID"),
+            ("WearableType", "U8")
         ]
     }
 registerMessage(AgentWearablesUpdate)
@@ -10258,12 +10258,12 @@ class AgentIsNowWearing(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "WearableData": [
-            ["ItemID", "LLUUID"],
-            ["WearableType", "U8"]
+            ("ItemID", "LLUUID"),
+            ("WearableType", "U8")
         ]
     }
 registerMessage(AgentIsNowWearing)
@@ -10280,13 +10280,13 @@ class AgentCachedTexture(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["SerialNum", "S32"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("SerialNum", "S32")
         ],
         "WearableData": [
-            ["ID", "LLUUID"],
-            ["TextureIndex", "U8"]
+            ("ID", "LLUUID"),
+            ("TextureIndex", "U8")
         ]
     }
 registerMessage(AgentCachedTexture)
@@ -10303,14 +10303,14 @@ class AgentCachedTextureResponse(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["SerialNum", "S32"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("SerialNum", "S32")
         ],
         "WearableData": [
-            ["TextureID", "LLUUID"],
-            ["TextureIndex", "U8"],
-            ["HostName", "Variable1"]
+            ("TextureID", "LLUUID"),
+            ("TextureIndex", "U8"),
+            ("HostName", "Variable1")
         ]
     }
 registerMessage(AgentCachedTextureResponse)
@@ -10326,8 +10326,8 @@ class AgentDataUpdateRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ]
     }
 registerMessage(AgentDataUpdateRequest)
@@ -10343,13 +10343,13 @@ class AgentDataUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["FirstName", "Variable1"],
-            ["LastName", "Variable1"],
-            ["GroupTitle", "Variable1"],
-            ["ActiveGroupID", "LLUUID"],
-            ["GroupPowers", "U64"],
-            ["GroupName", "Variable1"]
+            ("AgentID", "LLUUID"),
+            ("FirstName", "Variable1"),
+            ("LastName", "Variable1"),
+            ("GroupTitle", "Variable1"),
+            ("ActiveGroupID", "LLUUID"),
+            ("GroupPowers", "U64"),
+            ("GroupName", "Variable1")
         ]
     }
 registerMessage(AgentDataUpdate)
@@ -10365,10 +10365,10 @@ class GroupDataUpdate(message.baseMessage):
     ]
     structure = {
         "AgentGroupData": [
-            ["AgentID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["AgentPowers", "U64"],
-            ["GroupTitle", "Variable1"]
+            ("AgentID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("AgentPowers", "U64"),
+            ("GroupTitle", "Variable1")
         ]
     }
 registerMessage(GroupDataUpdate)
@@ -10385,15 +10385,15 @@ class AgentGroupDataUpdate(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "GroupData": [
-            ["GroupID", "LLUUID"],
-            ["GroupPowers", "U64"],
-            ["AcceptNotices", "BOOL"],
-            ["GroupInsigniaID", "LLUUID"],
-            ["Contribution", "S32"],
-            ["GroupName", "Variable1"]
+            ("GroupID", "LLUUID"),
+            ("GroupPowers", "U64"),
+            ("AcceptNotices", "BOOL"),
+            ("GroupInsigniaID", "LLUUID"),
+            ("Contribution", "S32"),
+            ("GroupName", "Variable1")
         ]
     }
 registerMessage(AgentGroupDataUpdate)
@@ -10409,8 +10409,8 @@ class AgentDropGroup(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["GroupID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("GroupID", "LLUUID")
         ]
     }
 registerMessage(AgentDropGroup)
@@ -10426,12 +10426,12 @@ class LogTextMessage(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ["FromAgentId", "LLUUID"],
-            ["ToAgentId", "LLUUID"],
-            ["GlobalX", "F64"],
-            ["GlobalY", "F64"],
-            ["Time", "U32"],
-            ["Message", "Variable2"]
+            ("FromAgentId", "LLUUID"),
+            ("ToAgentId", "LLUUID"),
+            ("GlobalX", "F64"),
+            ("GlobalY", "F64"),
+            ("Time", "U32"),
+            ("Message", "Variable2")
         ]
     }
 registerMessage(LogTextMessage)
@@ -10448,16 +10448,16 @@ class ViewerEffect(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "Effect": [
-            ["ID", "LLUUID"],
-            ["AgentID", "LLUUID"],
-            ["Type", "U8"],
-            ["Duration", "F32"],
-            ["Color", "Fixed"],
-            ["TypeData", "Variable1"]
+            ("ID", "LLUUID"),
+            ("AgentID", "LLUUID"),
+            ("Type", "U8"),
+            ("Duration", "F32"),
+            ("Color", "Color4U"),
+            ("TypeData", "Variable1")
         ]
     }
 registerMessage(ViewerEffect)
@@ -10473,8 +10473,8 @@ class CreateTrustedCircuit(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ["EndPointID", "LLUUID"],
-            ["Digest", "Fixed"]
+            ("EndPointID", "LLUUID"),
+            ("Digest", "LLUUID")
         ]
     }
 registerMessage(CreateTrustedCircuit)
@@ -10490,7 +10490,7 @@ class DenyTrustedCircuit(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ["EndPointID", "LLUUID"]
+            ("EndPointID", "LLUUID")
         ]
     }
 registerMessage(DenyTrustedCircuit)
@@ -10521,19 +10521,19 @@ class RezSingleAttachmentFromInv(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ItemID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["AttachmentPt", "U8"],
-            ["ItemFlags", "U32"],
-            ["GroupMask", "U32"],
-            ["EveryoneMask", "U32"],
-            ["NextOwnerMask", "U32"],
-            ["Name", "Variable1"],
-            ["Description", "Variable1"]
+            ("ItemID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("AttachmentPt", "U8"),
+            ("ItemFlags", "U32"),
+            ("GroupMask", "U32"),
+            ("EveryoneMask", "U32"),
+            ("NextOwnerMask", "U32"),
+            ("Name", "Variable1"),
+            ("Description", "Variable1")
         ]
     }
 registerMessage(RezSingleAttachmentFromInv)
@@ -10551,24 +10551,24 @@ class RezMultipleAttachmentsFromInv(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "HeaderData": [
-            ["CompoundMsgID", "LLUUID"],
-            ["TotalObjects", "U8"],
-            ["FirstDetachAll", "BOOL"]
+            ("CompoundMsgID", "LLUUID"),
+            ("TotalObjects", "U8"),
+            ("FirstDetachAll", "BOOL")
         ],
         "ObjectData": [
-            ["ItemID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["AttachmentPt", "U8"],
-            ["ItemFlags", "U32"],
-            ["GroupMask", "U32"],
-            ["EveryoneMask", "U32"],
-            ["NextOwnerMask", "U32"],
-            ["Name", "Variable1"],
-            ["Description", "Variable1"]
+            ("ItemID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("AttachmentPt", "U8"),
+            ("ItemFlags", "U32"),
+            ("GroupMask", "U32"),
+            ("EveryoneMask", "U32"),
+            ("NextOwnerMask", "U32"),
+            ("Name", "Variable1"),
+            ("Description", "Variable1")
         ]
     }
 registerMessage(RezMultipleAttachmentsFromInv)
@@ -10584,8 +10584,8 @@ class DetachAttachmentIntoInv(message.baseMessage):
     ]
     structure = {
         "ObjectData": [
-            ["AgentID", "LLUUID"],
-            ["ItemID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("ItemID", "LLUUID")
         ]
     }
 registerMessage(DetachAttachmentIntoInv)
@@ -10603,15 +10603,15 @@ class CreateNewOutfitAttachments(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "HeaderData": [
-            ["NewFolderID", "LLUUID"]
+            ("NewFolderID", "LLUUID")
         ],
         "ObjectData": [
-            ["OldItemID", "LLUUID"],
-            ["OldFolderID", "LLUUID"]
+            ("OldItemID", "LLUUID"),
+            ("OldFolderID", "LLUUID")
         ]
     }
 registerMessage(CreateNewOutfitAttachments)
@@ -10627,8 +10627,8 @@ class UserInfoRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ]
     }
 registerMessage(UserInfoRequest)
@@ -10645,12 +10645,12 @@ class UserInfoReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "UserData": [
-            ["IMViaEMail", "BOOL"],
-            ["DirectoryVisibility", "Variable1"],
-            ["EMail", "Variable2"]
+            ("IMViaEMail", "BOOL"),
+            ("DirectoryVisibility", "Variable1"),
+            ("EMail", "Variable2")
         ]
     }
 registerMessage(UserInfoReply)
@@ -10667,12 +10667,12 @@ class UpdateUserInfo(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "UserData": [
-            ["IMViaEMail", "BOOL"],
-            ["DirectoryVisibility", "Variable1"]
+            ("IMViaEMail", "BOOL"),
+            ("DirectoryVisibility", "Variable1")
         ]
     }
 registerMessage(UpdateUserInfo)
@@ -10688,8 +10688,8 @@ class ParcelRename(message.baseMessage):
     ]
     structure = {
         "ParcelData": [
-            ["ParcelID", "LLUUID"],
-            ["NewName", "Variable1"]
+            ("ParcelID", "LLUUID"),
+            ("NewName", "Variable1")
         ]
     }
 registerMessage(ParcelRename)
@@ -10706,11 +10706,11 @@ class InitiateDownload(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "FileData": [
-            ["SimFilename", "Variable1"],
-            ["ViewerFilename", "Variable1"]
+            ("SimFilename", "Variable1"),
+            ("ViewerFilename", "Variable1")
         ]
     }
 registerMessage(InitiateDownload)
@@ -10727,12 +10727,12 @@ class SystemMessage(message.baseMessage):
     ]
     structure = {
         "MethodData": [
-            ["Method", "Variable1"],
-            ["Invoice", "LLUUID"],
-            ["Digest", "Fixed"]
+            ("Method", "Variable1"),
+            ("Invoice", "LLUUID"),
+            ("Digest", "LLUUID")
         ],
         "ParamList": [
-            ["Parameter", "Variable1"]
+            ("Parameter", "Variable1")
         ]
     }
 registerMessage(SystemMessage)
@@ -10748,11 +10748,11 @@ class MapLayerRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["Flags", "U32"],
-            ["EstateID", "U32"],
-            ["Godlike", "BOOL"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("Flags", "U32"),
+            ("EstateID", "U32"),
+            ("Godlike", "BOOL")
         ]
     }
 registerMessage(MapLayerRequest)
@@ -10769,15 +10769,15 @@ class MapLayerReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["Flags", "U32"]
+            ("AgentID", "LLUUID"),
+            ("Flags", "U32")
         ],
         "LayerData": [
-            ["Left", "U32"],
-            ["Right", "U32"],
-            ["Top", "U32"],
-            ["Bottom", "U32"],
-            ["ImageID", "LLUUID"]
+            ("Left", "U32"),
+            ("Right", "U32"),
+            ("Top", "U32"),
+            ("Bottom", "U32"),
+            ("ImageID", "LLUUID")
         ]
     }
 registerMessage(MapLayerReply)
@@ -10794,17 +10794,17 @@ class MapBlockRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["Flags", "U32"],
-            ["EstateID", "U32"],
-            ["Godlike", "BOOL"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("Flags", "U32"),
+            ("EstateID", "U32"),
+            ("Godlike", "BOOL")
         ],
         "PositionData": [
-            ["MinX", "U16"],
-            ["MaxX", "U16"],
-            ["MinY", "U16"],
-            ["MaxY", "U16"]
+            ("MinX", "U16"),
+            ("MaxX", "U16"),
+            ("MinY", "U16"),
+            ("MaxY", "U16")
         ]
     }
 registerMessage(MapBlockRequest)
@@ -10821,14 +10821,14 @@ class MapNameRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["Flags", "U32"],
-            ["EstateID", "U32"],
-            ["Godlike", "BOOL"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("Flags", "U32"),
+            ("EstateID", "U32"),
+            ("Godlike", "BOOL")
         ],
         "NameData": [
-            ["Name", "Variable1"]
+            ("Name", "Variable1")
         ]
     }
 registerMessage(MapNameRequest)
@@ -10845,18 +10845,18 @@ class MapBlockReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["Flags", "U32"]
+            ("AgentID", "LLUUID"),
+            ("Flags", "U32")
         ],
         "Data": [
-            ["X", "U16"],
-            ["Y", "U16"],
-            ["Name", "Variable1"],
-            ["Access", "U8"],
-            ["RegionFlags", "U32"],
-            ["WaterHeight", "U8"],
-            ["Agents", "U8"],
-            ["MapImageID", "LLUUID"]
+            ("X", "U16"),
+            ("Y", "U16"),
+            ("Name", "Variable1"),
+            ("Access", "U8"),
+            ("RegionFlags", "U32"),
+            ("WaterHeight", "U8"),
+            ("Agents", "U8"),
+            ("MapImageID", "LLUUID")
         ]
     }
 registerMessage(MapBlockReply)
@@ -10873,15 +10873,15 @@ class MapItemRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["Flags", "U32"],
-            ["EstateID", "U32"],
-            ["Godlike", "BOOL"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("Flags", "U32"),
+            ("EstateID", "U32"),
+            ("Godlike", "BOOL")
         ],
         "RequestData": [
-            ["ItemType", "U32"],
-            ["RegionHandle", "U64"]
+            ("ItemType", "U32"),
+            ("RegionHandle", "U64")
         ]
     }
 registerMessage(MapItemRequest)
@@ -10899,19 +10899,19 @@ class MapItemReply(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["Flags", "U32"]
+            ("AgentID", "LLUUID"),
+            ("Flags", "U32")
         ],
         "RequestData": [
-            ["ItemType", "U32"]
+            ("ItemType", "U32")
         ],
         "Data": [
-            ["X", "U32"],
-            ["Y", "U32"],
-            ["ID", "LLUUID"],
-            ["Extra", "S32"],
-            ["Extra2", "S32"],
-            ["Name", "Variable1"]
+            ("X", "U32"),
+            ("Y", "U32"),
+            ("ID", "LLUUID"),
+            ("Extra", "S32"),
+            ("Extra2", "S32"),
+            ("Name", "Variable1")
         ]
     }
 registerMessage(MapItemReply)
@@ -10927,17 +10927,17 @@ class SendPostcard(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"],
-            ["AssetID", "LLUUID"],
-            ["PosGlobal", "LLVector3d"],
-            ["To", "Variable1"],
-            ["From", "Variable1"],
-            ["Name", "Variable1"],
-            ["Subject", "Variable1"],
-            ["Msg", "Variable2"],
-            ["AllowPublish", "BOOL"],
-            ["MaturePublish", "BOOL"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID"),
+            ("AssetID", "LLUUID"),
+            ("PosGlobal", "LLVector3d"),
+            ("To", "Variable1"),
+            ("From", "Variable1"),
+            ("Name", "Variable1"),
+            ("Subject", "Variable1"),
+            ("Msg", "Variable2"),
+            ("AllowPublish", "BOOL"),
+            ("MaturePublish", "BOOL")
         ]
     }
 registerMessage(SendPostcard)
@@ -10953,10 +10953,10 @@ class RpcChannelRequest(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ["GridX", "U32"],
-            ["GridY", "U32"],
-            ["TaskID", "LLUUID"],
-            ["ItemID", "LLUUID"]
+            ("GridX", "U32"),
+            ("GridY", "U32"),
+            ("TaskID", "LLUUID"),
+            ("ItemID", "LLUUID")
         ]
     }
 registerMessage(RpcChannelRequest)
@@ -10972,9 +10972,9 @@ class RpcChannelReply(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ["TaskID", "LLUUID"],
-            ["ItemID", "LLUUID"],
-            ["ChannelID", "LLUUID"]
+            ("TaskID", "LLUUID"),
+            ("ItemID", "LLUUID"),
+            ("ChannelID", "LLUUID")
         ]
     }
 registerMessage(RpcChannelReply)
@@ -10991,15 +10991,15 @@ class RpcScriptRequestInbound(message.baseMessage):
     ]
     structure = {
         "TargetBlock": [
-            ["GridX", "U32"],
-            ["GridY", "U32"]
+            ("GridX", "U32"),
+            ("GridY", "U32")
         ],
         "DataBlock": [
-            ["TaskID", "LLUUID"],
-            ["ItemID", "LLUUID"],
-            ["ChannelID", "LLUUID"],
-            ["IntValue", "U32"],
-            ["StringValue", "Variable2"]
+            ("TaskID", "LLUUID"),
+            ("ItemID", "LLUUID"),
+            ("ChannelID", "LLUUID"),
+            ("IntValue", "U32"),
+            ("StringValue", "Variable2")
         ]
     }
 registerMessage(RpcScriptRequestInbound)
@@ -11015,13 +11015,13 @@ class RpcScriptRequestInboundForward(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ["RPCServerIP", "IPADDR"],
-            ["RPCServerPort", "IPPORT"],
-            ["TaskID", "LLUUID"],
-            ["ItemID", "LLUUID"],
-            ["ChannelID", "LLUUID"],
-            ["IntValue", "U32"],
-            ["StringValue", "Variable2"]
+            ("RPCServerIP", "IPADDR"),
+            ("RPCServerPort", "IPPORT"),
+            ("TaskID", "LLUUID"),
+            ("ItemID", "LLUUID"),
+            ("ChannelID", "LLUUID"),
+            ("IntValue", "U32"),
+            ("StringValue", "Variable2")
         ]
     }
 registerMessage(RpcScriptRequestInboundForward)
@@ -11037,11 +11037,11 @@ class RpcScriptReplyInbound(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ["TaskID", "LLUUID"],
-            ["ItemID", "LLUUID"],
-            ["ChannelID", "LLUUID"],
-            ["IntValue", "U32"],
-            ["StringValue", "Variable2"]
+            ("TaskID", "LLUUID"),
+            ("ItemID", "LLUUID"),
+            ("ChannelID", "LLUUID"),
+            ("IntValue", "U32"),
+            ("StringValue", "Variable2")
         ]
     }
 registerMessage(RpcScriptReplyInbound)
@@ -11057,10 +11057,10 @@ class ScriptMailRegistration(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ["TargetIP", "Variable1"],
-            ["TargetPort", "IPPORT"],
-            ["TaskID", "LLUUID"],
-            ["Flags", "U32"]
+            ("TargetIP", "Variable1"),
+            ("TargetPort", "IPPORT"),
+            ("TaskID", "LLUUID"),
+            ("Flags", "U32")
         ]
     }
 registerMessage(ScriptMailRegistration)
@@ -11076,9 +11076,9 @@ class ParcelMediaCommandMessage(message.baseMessage):
     ]
     structure = {
         "CommandBlock": [
-            ["Flags", "U32"],
-            ["Command", "U32"],
-            ["Time", "F32"]
+            ("Flags", "U32"),
+            ("Command", "U32"),
+            ("Time", "F32")
         ]
     }
 registerMessage(ParcelMediaCommandMessage)
@@ -11095,16 +11095,16 @@ class ParcelMediaUpdate(message.baseMessage):
     ]
     structure = {
         "DataBlock": [
-            ["MediaURL", "Variable1"],
-            ["MediaID", "LLUUID"],
-            ["MediaAutoScale", "U8"]
+            ("MediaURL", "Variable1"),
+            ("MediaID", "LLUUID"),
+            ("MediaAutoScale", "U8")
         ],
         "DataBlockExtended": [
-            ["MediaType", "Variable1"],
-            ["MediaDesc", "Variable1"],
-            ["MediaWidth", "S32"],
-            ["MediaHeight", "S32"],
-            ["MediaLoop", "U8"]
+            ("MediaType", "Variable1"),
+            ("MediaDesc", "Variable1"),
+            ("MediaWidth", "S32"),
+            ("MediaHeight", "S32"),
+            ("MediaLoop", "U8")
         ]
     }
 registerMessage(ParcelMediaUpdate)
@@ -11121,14 +11121,14 @@ class LandStatRequest(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "RequestData": [
-            ["ReportType", "U32"],
-            ["RequestFlags", "U32"],
-            ["Filter", "Variable1"],
-            ["ParcelLocalID", "S32"]
+            ("ReportType", "U32"),
+            ("RequestFlags", "U32"),
+            ("Filter", "Variable1"),
+            ("ParcelLocalID", "S32")
         ]
     }
 registerMessage(LandStatRequest)
@@ -11145,19 +11145,19 @@ class LandStatReply(message.baseMessage):
     ]
     structure = {
         "RequestData": [
-            ["ReportType", "U32"],
-            ["RequestFlags", "U32"],
-            ["TotalObjectCount", "U32"]
+            ("ReportType", "U32"),
+            ("RequestFlags", "U32"),
+            ("TotalObjectCount", "U32")
         ],
         "ReportData": [
-            ["TaskLocalID", "U32"],
-            ["TaskID", "LLUUID"],
-            ["LocationX", "F32"],
-            ["LocationY", "F32"],
-            ["LocationZ", "F32"],
-            ["Score", "F32"],
-            ["TaskName", "Variable1"],
-            ["OwnerName", "Variable1"]
+            ("TaskLocalID", "U32"),
+            ("TaskID", "LLUUID"),
+            ("LocationX", "F32"),
+            ("LocationY", "F32"),
+            ("LocationZ", "F32"),
+            ("Score", "F32"),
+            ("TaskName", "Variable1"),
+            ("OwnerName", "Variable1")
         ]
     }
 registerMessage(LandStatReply)
@@ -11174,15 +11174,15 @@ class Error(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"]
+            ("AgentID", "LLUUID")
         ],
         "Data": [
-            ["Code", "S32"],
-            ["Token", "Variable1"],
-            ["ID", "LLUUID"],
-            ["System", "Variable1"],
-            ["Message", "Variable2"],
-            ["Data", "Variable2"]
+            ("Code", "S32"),
+            ("Token", "Variable1"),
+            ("ID", "LLUUID"),
+            ("System", "Variable1"),
+            ("Message", "Variable2"),
+            ("Data", "Variable2")
         ]
     }
 registerMessage(Error)
@@ -11199,12 +11199,12 @@ class ObjectIncludeInSearch(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "ObjectData": [
-            ["ObjectLocalID", "U32"],
-            ["IncludeInSearch", "BOOL"]
+            ("ObjectLocalID", "U32"),
+            ("IncludeInSearch", "BOOL")
         ]
     }
 registerMessage(ObjectIncludeInSearch)
@@ -11221,31 +11221,31 @@ class RezRestoreToWorld(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "InventoryData": [
-            ["ItemID", "LLUUID"],
-            ["FolderID", "LLUUID"],
-            ["CreatorID", "LLUUID"],
-            ["OwnerID", "LLUUID"],
-            ["GroupID", "LLUUID"],
-            ["BaseMask", "U32"],
-            ["OwnerMask", "U32"],
-            ["GroupMask", "U32"],
-            ["EveryoneMask", "U32"],
-            ["NextOwnerMask", "U32"],
-            ["GroupOwned", "BOOL"],
-            ["TransactionID", "LLUUID"],
-            ["Type", "S8"],
-            ["InvType", "S8"],
-            ["Flags", "U32"],
-            ["SaleType", "U8"],
-            ["SalePrice", "S32"],
-            ["Name", "Variable1"],
-            ["Description", "Variable1"],
-            ["CreationDate", "S32"],
-            ["CRC", "U32"]
+            ("ItemID", "LLUUID"),
+            ("FolderID", "LLUUID"),
+            ("CreatorID", "LLUUID"),
+            ("OwnerID", "LLUUID"),
+            ("GroupID", "LLUUID"),
+            ("BaseMask", "U32"),
+            ("OwnerMask", "U32"),
+            ("GroupMask", "U32"),
+            ("EveryoneMask", "U32"),
+            ("NextOwnerMask", "U32"),
+            ("GroupOwned", "BOOL"),
+            ("TransactionID", "LLUUID"),
+            ("Type", "S8"),
+            ("InvType", "S8"),
+            ("Flags", "U32"),
+            ("SaleType", "U8"),
+            ("SalePrice", "S32"),
+            ("Name", "Variable1"),
+            ("Description", "Variable1"),
+            ("CreationDate", "S32"),
+            ("CRC", "U32")
         ]
     }
 registerMessage(RezRestoreToWorld)
@@ -11262,18 +11262,18 @@ class LinkInventoryItem(message.baseMessage):
     ]
     structure = {
         "AgentData": [
-            ["AgentID", "LLUUID"],
-            ["SessionID", "LLUUID"]
+            ("AgentID", "LLUUID"),
+            ("SessionID", "LLUUID")
         ],
         "InventoryBlock": [
-            ["CallbackID", "U32"],
-            ["FolderID", "LLUUID"],
-            ["TransactionID", "LLUUID"],
-            ["OldItemID", "LLUUID"],
-            ["Type", "S8"],
-            ["InvType", "S8"],
-            ["Name", "Variable1"],
-            ["Description", "Variable1"]
+            ("CallbackID", "U32"),
+            ("FolderID", "LLUUID"),
+            ("TransactionID", "LLUUID"),
+            ("OldItemID", "LLUUID"),
+            ("Type", "S8"),
+            ("InvType", "S8"),
+            ("Name", "Variable1"),
+            ("Description", "Variable1")
         ]
     }
 registerMessage(LinkInventoryItem)
