@@ -1,5 +1,128 @@
 class constraints:
     constraints = {
+        #http://wiki.secondlife.com/wiki/SimStats
+        #Ratio of time passage in region to real time passage.
+        "LL_SIM_STAT_TIME_DILATION": 0,
+        #Number of timesteps taken per second, rolling scale. Perfect is 45.0
+        "LL_SIM_STAT_FPS": 1,
+        #Number of timesteps taken in the physics engine per second, rolling scale. Perfect is 45.0
+        "LL_SIM_STAT_PHYSFPS": 2,
+        #Number of updates sent for agent objects per second. Should be one for every main agent and child agent connected to the region.
+        "LL_SIM_STAT_AGENTUPS": 3,
+        #Number of milliseconds spent processing each frame(Sum of all others). Averaged over each second. Should ideally be below 25.0
+        "LL_SIM_STAT_FRAMEMS": 4,
+        #Number of milliseconds spent processing network messages or connections. Averaged over each second. Should ideally be below 5.0
+        "LL_SIM_STAT_NETMS": 5,
+        #Number of milliseconds spent doing "other" things. Averaged over each second. Should ideally be below 5.0
+        "LL_SIM_STAT_SIMOTHERMS": 6,
+        #Number of milliseconds spent inside the physics engine(Sum of physics times.) Averaged over each second. Should ideally be below 10.0
+        "LL_SIM_STAT_SIMPHYSICSMS": 7,
+        #Number of milliseconds spent calculating agent visibility, interest lists, status, and preparing physical entity. Averaged over each second. Should ideally be below 5.0
+        "LL_SIM_STAT_AGENTMS": 8,
+        #Number of milliseconds spent processing image data, separating discard levels, decoding images. Averaged over each second. Should ideally be below 3.0
+        "LL_SIM_STAT_IMAGESMS": 9,
+        #Number of milliseconds spent running scripts and updating script states. Averaged over each second. Should ideally be below 25.0
+        "LL_SIM_STAT_SCRIPTMS": 10,
+        #Number of prims(tasks) within the region, including temporary tasks.
+        "LL_SIM_STAT_NUMTASKS": 11,
+        #Number of prims(tasks) that are active(physical, have scripts, changing status, being stood on.)
+        "LL_SIM_STAT_NUMTASKSACTIVE": 12,
+        #Number of agents that are within the region
+        "LL_SIM_STAT_NUMAGENTMAIN": 13,
+        #Number of agents that are not located within the region but can see into it.(Looking into the region from another region.)
+        "LL_SIM_STAT_NUMAGENTCHILD": 14,
+        #Number of scripts that are loaded onto tasks and set to running within the region. Scripts no set to running do not count towards this value.
+        "LL_SIM_STAT_NUMSCRIPTSACTIVE": 15,
+        #Number of LSL virtual machine instructions executed within the last second.
+        "LL_SIM_STAT_LSLIPS": 16,
+        #Number of packets simulator received that were related to the region in the last second.
+        "LL_SIM_STAT_INPPS": 17,
+        #Number of packets sent by the region in the last second.
+        "LL_SIM_STAT_OUTPPS": 18,
+        #Number of asset download requests waiting for a response.
+        "LL_SIM_STAT_PENDING_DOWNLOADS": 19,
+        #Number of asset upload requests waiting for authorization, response or to complete transfer.
+        "LL_SIM_STAT_PENDING_UPLOADS": 20,
+        #Unknown. Number of locally stored assets trying to transfer to another sim?(Skin bakes.)
+        "LL_SIM_STAT_PENDING_LOCAL_UPLOADS": 23,
+        #Number of kilobytes of network messages that have yet to be acknowledged. Ideally below 1000.
+        "LL_SIM_STAT_TOTAL_UNACKED_BYTES": 24,
+        #Number of prims that are marked as pinned within the physics system. Usually 0.
+        "LL_SIM_STAT_PHYSICS_PINNED_TASKS": 25,
+        #Number of prims that have had their level of detail reduced to help alleviate physics load. Ideally 0.
+        "LL_SIM_STAT_PHYSICS_LOD_TASKS": 26,
+        #Number of milliseconds spent running the physics time step. Averaged over a second. Ideally should be below 15.0
+        "LL_SIM_STAT_SIMPHYSICSSTEPMS": 27,
+        #Number of milliseconds spent updating the physical shape of an object. Averaged over a second. Ideally should be below 3.0
+        "LL_SIM_STAT_SIMPHYSICSSHAPEMS": 28,
+        #Number of milliseconds spent inside the physics engine not updating shapes or running physics step. Averaged over a second. Ideally should be below 3.0
+        "LL_SIM_STAT_SIMPHYSICSOTHERMS": 29,
+        #Number of megabytes of RAM allocated on the simulator for physics.
+        "LL_SIM_STAT_SIMPHYSICSMEMORY": 30,
+        
+        #Damage system forced to on for entire region.
+        "REGION_FLAGS_ALLOW_DAMAGE": 0x01,
+        #If agents can create landmarks anywhere within the region.(Forced on)
+        "REGION_FLAGS_ALLOW_LANDMARK": 0x02,
+        #If agents can set their home location to anywhere within the region.(Forced on)
+        "REGION_FLAGS_ALLOW_SET_HOME": 0x04,
+        #If agents home location is set to the destination upon teleporting out of the region.
+        "REGION_FLAGS_RESET_HOME_ON_TELEPORT": 0x08,
+        #If the sun should not move with time.
+        "REGION_FLAGS_SUN_FIXED": 0x10,
+        #If taxes should not apply to this region.(Deprecated)
+        "REGION_FLAGS_TAX_FREE": 0x20,
+        #Land cannot be changed anywhere within the region. Trees and plants may still be placed.
+        "REGION_FLAGS_BLOCK_TERRAFORM": 0x40,
+        #Land cannot be released, sold, or bought within the entire region.
+        "REGION_FLAGS_BLOCK_LAND_RESELL": 0x80,
+        #Region is a sandbox and is wiped every 12 hours.(Appears deprecated.)
+        "REGION_FLAGS_SANDBOX": 0x100,
+        #Unknown: Related to the availability of an overview world map tile.(Think mainland images when zoomed out.)
+        "REGION_FLAGS_NULL_LAYER": 0x200,
+        #Unknown: Related to region debug flags. Possibly to skip processing of agent interaction with world.
+        "REGION_FLAGS_SKIP_AGENT_ACTION": 0x400,
+        #Region does not update agent prim interest lists. Internal debugging option.
+        "REGION_FLAGS_SKIP_UPDATE_INTEREST_LIST": 0x800,
+        #Makes all objects phantom and or pins them in place, does not affect agents.
+        "REGION_FLAGS_SKIP_COLLISIONS": 0x1000,
+        #Region does not run scripts, affects whole region.
+        "REGION_FLAGS_SKIP_SCRIPTS": 0x2000,
+        #Region does not run physics timesteps. All objects are frozen, including agents.
+        "REGION_FLAGS_SKIP_PHYSICS": 0x4000,
+        #Region can be seen from other regions on world map. (Legacy world map option?)
+        "REGION_FLAGS_EXTERNALLY_VISIBLE": 0x8000,
+        #Region can be seen from mainland on world map. (Legacy world map option?)
+        "REGION_FLAGS_MAINLAND_VISIBLE": 0x10000,
+        #Agents not explicitly on the access list can visit the region.
+        "REGION_FLAGS_PUBLIC_ALLOWED": 0x20000,
+        #Traffic calculations are not run across entire region, overrides parcel settings.
+        "REGION_FLAGS_BLOCK_DWELL": 0x40000,
+        #Flight is disabled for the entire region, overrides parcel settings.
+        "REGION_FLAGS_BLOCK_FLY": 0x80000,
+        #If teleports are allowed to exactly locations, if not on, agent is routed to nearest telehub. Overrides parcel settings.
+        "REGION_FLAGS_ALLOW_DIRECT_TELEPORT": 0x100000,
+        #Region is not running scripts, persisted in database. Set on an estate level.
+        "REGION_FLAGS_ESTATE_SKIP_SCRIPTS": 0x200000,
+        #Restricts the usage of the LSL llPushObject function, applies to whole region.
+        "REGION_FLAGS_RESTRICT_PUSHOBJECT": 0x400000,
+        #Denys "hackers on steroids" with no payment info from entering the region.
+        "REGION_FLAGS_DENY_ANONYMOUS": 0x800000,
+        #Denys agents with payment info from entering the region.(Legacy removed option.)
+        "REGION_FLAGS_DENY_IDENTIFIED": 0x1000000,
+        #Denys agents with payment info that has been used from entering the region.(Legacy removed option.)
+        "REGION_FLAGS_DENY_TRANSACTED": 0x2000000,
+        #Parcels within the region may be joined or divided by anyone, not just estate owners/managers.
+        "REGION_FLAGS_ALLOW_PARCEL_CHANGES": 0x4000000,
+        #Abuse reports sent from within this region are sent to the estate owner defined email.
+        "REGION_FLAGS_ABUSE_EMAIL_TO_ESTATE_OWNER": 0x8000000,
+        #Voice can be enabled within the region.
+        "REGION_FLAGS_ALLOW_VOICE": 0x10000000,
+        #Removes the ability from parcel owners to set their parcels to show in search.
+        "REGION_FLAGS_BLOCK_PARCEL_SEARCH": 0x20000000,
+        #Denys agents who have not been age verified from entering the region.
+        "REGION_FLAGS_DENY_AGEUNVERIFIED": 0x40000000,
+
         #OpenMetaverse/AgentManager.cs
         #Placeholder for empty values, shouldn't ever see this
         "PERMISSION_NONE": 0,
