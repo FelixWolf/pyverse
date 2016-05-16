@@ -21,7 +21,7 @@ def login(firstname, lastname, password, mac=None, start="last", grid=grid_uri):
         verbose=False, use_datetime=True, 
         context=ssl._create_unverified_context()
     )
-    return proxy.login_to_simulator({
+    result = proxy.login_to_simulator({
         "first": firstname,
         "last": lastname,
         "passwd": "$1$"+hashlib.md5(password.encode("latin")).hexdigest(),
@@ -57,4 +57,7 @@ def login(firstname, lastname, password, mac=None, start="last", grid=grid_uri):
             #"tutorial_setting"
         ]
     })
+    if result["login"] != "true":
+        raise ConnectionError("Unable to log in:\n    %s"%(result["message"] if "message" in result else "Unknown error"))
+    return result
     

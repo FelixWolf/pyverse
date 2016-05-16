@@ -126,7 +126,7 @@ for message in a:
                 if type(x[0]) != str:
                     if x[0][1] == "Variable":
                         x[0][1] = x[0][1]+x[0][2]
-                    structures = structures + "            [\"%s\", \"%s\"],\n"%(x[0][0],x[0][1])
+                    structures = structures + "            (\"%s\", \"%s\"),\n"%(x[0][0],x[0][1])
             structures = structures[:-2]+"\n"
             structures = structures + "        ],\n"
         result = result + template%(messageName,messageName,id,frequency,"True" if trusted else "False","True" if zerocoded else "False",blocks,structures[:-2],messageName)
