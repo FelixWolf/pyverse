@@ -21,7 +21,7 @@ baseTypes = {
     "LLVector3d": llTypes.vector3d(),
     "LLVector4": llTypes.vector4(),
     "LLQuaternion": llTypes.quaternion(),
-    "LLUUID": llTypes.uuid(),
+    "LLUUID": llTypes.LLUUID(),
     "BOOL": False,
     "IPADDR": llTypes.IPAddr(),
     "IPPORT": llTypes.IPPort()
@@ -31,6 +31,7 @@ typeLengths = {
     "Fixed": 0,
     "Variable1": 0,
     "Variable2": 0,
+    "Color4U": 4,
     "U8": 1,
     "U16": 2,
     "U32": 4,
@@ -52,22 +53,23 @@ typeLengths = {
 }
 
 class baseMessage:
-    id = 0
-    freq = 0
+    name = "TestMessage"
+    id = 1
+    freq = 2
     trusted = False
-    zero_coded = False
+    zero_coded = True
     blocks = [
         ("TestBlock1", 1),
         ("NeighborBlock", 4)
     ]
     structure = {
         "TestBlock1": [
-            ["Test1", "U32"]
+            ("Test1", "U32")
         ],
         "NeighborBlock": [
-            ["Test0", "U32"],
-            ["Test1", "U32"],
-            ["Test2", "U32"]
+            ("Test0", "U32"),
+            ("Test1", "U32"),
+            ("Test2", "U32")
         ]
     }
     def __init__(self, data=None):
