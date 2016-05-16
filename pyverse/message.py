@@ -107,10 +107,10 @@ class baseMessage:
                     tlen = 0
                     if value[1] == "Variable":
                         if value[2] == 1:
-                            tlen = struct.unpack_from(">B", data, offset)[0]
+                            tlen = struct.unpack_from("<B", data, offset)[0]
                             offset = offset + 1
                         elif value[2] == 2:
-                            tlen = struct.unpack_from(">H", data, offset)[0]
+                            tlen = struct.unpack_from("<H", data, offset)[0]
                             offset = offset + 2
                     elif value[1] == "Fixed":
                         tlen = value[2]
@@ -129,10 +129,10 @@ class baseMessage:
                         tlen = 0
                         if value[1] == "Variable":
                             if value[2] == 1:
-                                tlen = struct.unpack_from(">B", data, offset)[0]
+                                tlen = struct.unpack_from("<B", data, offset)[0]
                                 offset = offset + 1
                             elif value[2] == 2:
-                                tlen = struct.unpack_from(">H", data, offset)[0]
+                                tlen = struct.unpack_from("<H", data, offset)[0]
                                 offset = offset + 2
                         elif value[1] == "Fixed":
                             tlen = value[2]
@@ -150,10 +150,10 @@ class baseMessage:
                         tlen = 0
                         if value[1] == "Variable":
                             if value[2] == 1:
-                                tlen = struct.unpack_from(">B", data, offset)[0]
+                                tlen = struct.unpack_from("<B", data, offset)[0]
                                 offset = offset + 1
                             elif value[2] == 2:
-                                tlen = struct.unpack_from(">H", data, offset)[0]
+                                tlen = struct.unpack_from("<H", data, offset)[0]
                                 offset = offset + 2
                         elif value[1] == "Fixed":
                             tlen = value[2]
