@@ -54,9 +54,9 @@ class variable:
             raise Exception("Type must be 1 or 2")
     
     def __bytes__(self):
-        if type == 1:
+        if self.type == 1:
             return struct.pack("<B", len(self.data)) + self.data
-        elif type == 2:
+        elif self.type == 2:
             return struct.pack("<H", len(self.data)) + self.data
         #Fall back and hope for the best
         return struct.pack("<B", len(self.data)) + self.data
@@ -159,7 +159,7 @@ class quaternion:
         self.z = z
     
     def __bytes__(self):
-        return struct.pack("<ffff", self.s, self.x, self.y, self.z)
+        return struct.pack("<fff", self.s, self.x, self.y)
     
     def __str__(self):
         return "<%f, %f, %f, %f>"%(self.s, self.x, self.y, self.z)
@@ -348,8 +348,8 @@ def llEncodeType(t, ty = None, vlen = None):
         tmp = struct.unpack("<ffff", t)
         return vector4(tmp[0],tmp[1],tmp[2],tmp[3])
     elif ty == "LLQuaternion":
-        tmp = struct.unpack("<ffff", t)
-        return vector4(tmp[0],tmp[1],tmp[2],tmp[3])
+        tmp = struct.unpack("<fff", t)
+        return vector3(tmp[0],tmp[1],tmp[2])
     elif ty == "IPAddr":
         tmp = struct.unpack("<BBBB", t)[0]
         return IPAddr(tmp[0],tmp[1],tmp[2],tmp[3])

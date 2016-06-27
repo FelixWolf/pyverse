@@ -3,6 +3,7 @@ from . import message
 import socket, time, random, struct
 from .llTypes import *
 from . import packet
+from . import errorHandler
 from .extensions.objectAccountant import objectAccountant
 from .extensions.simMonitor import simMonitor
 
@@ -21,6 +22,9 @@ class region:
     acks = []
     objects = None
     circuit_code = None
+    debug = False
+    controls = 0
+    controls_once = 0
     sim = {
         "name": "",
         "owner": "",
@@ -37,9 +41,12 @@ class region:
         "ProductSKU": "",
         "ProductName": ""
     }
-    def __init__(self, loginToken, host = "0.0.0.0", port = 0):
+    def __init__(self, loginToken, host = "0.0.0.0", port = 0, debug=False):
+        self.debug = debug
         if loginToken["login"] != "true":
-            raise ConnectionError("Unable to log into simulator:\n    %s"%(loginToken["message"] if "message" in loginToken else "Unknown error"))
+            raise ConnectionError("Unable to log into simulator:\n    %s"%(
+                loginToken["message"] if "message" in loginToken else "Unknown error"
+            ))
         self.loginToken = loginToken
         self.host = loginToken["sim_ip"]
         self.port = loginToken["sim_port"]
@@ -153,12 +160,18 @@ class region:
         if self.nextAck < ctime:
             self.sendAcks()
         if self.nextAgentUpdate < ctime:
-            self.agentUpdate()
-        
+            self.agentUpdate(controls=self.controls_once|self.controls)
+            self.controls_once = 0
+            
     def recv(self):
         try:
             blob = self.sock.recv(65507)
-            pck = packet.packet(bytes=blob)
+            try:
+                pck = packet.packet(data=blob)
+            except:
+                if self.debug:
+                    print(errorHandler.packetErrorTrace(blob))
+                pck = packet.packet(message = messages.TestMessage())
             if not hasattr(pck, "body"):
                 print("Missing body!:")
                 print(blob)
@@ -168,6 +181,7 @@ class region:
         except KeyboardInterrupt:
             #Gracefully exit
             self.logout()
+            
     
     def send(self, blob):
         if type(blob) is not packet.packet:
@@ -249,7 +263,7 @@ class region:
             self.send(myMessage)
             self.nextAck = time.time() + 1
     
-    def agentUpdate(self, controls = 0, cameraPos = vector3(128, 128, 0), state = 0, flags = 0, far = 1024, rate = 0.5):
+    def agentUpdate(self, controls = 0, cameraPos = vector3(128, 128, 0), state = 0, flags = 0, far = 1024, rate = 0.1):
         myMessage = messages.getMessageByName("AgentUpdate")
         myMessage.AgentData["AgentID"] = self.agent_id
         myMessage.AgentData["SessionID"] = self.session_id
@@ -265,13 +279,12 @@ class region:
         myMessage.AgentData["Flags"] = flags
         self.send(myMessage)
         self.nextAgentUpdate = time.time() + rate
-    
+
     def sendPing(self, pid):
         try:
             myMessage = messages.getMessageByName("CompletePingCheck")
             myMessage.PingID["PingID"] = pid
             self.send(myMessage)
-            self.lastAgentUpdate = time.time()
             return True
         except Exception as e:
             return e

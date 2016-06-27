@@ -141,3 +141,4 @@ class objectAccountant:
             for i in self.objectDB:
                 if self.objectDB[i]["desc"] == desc:
                     return self.objectDB[i]
+        return None

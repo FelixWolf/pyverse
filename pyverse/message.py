@@ -6,6 +6,7 @@ baseTypes = {
     "Null": llTypes.null(),
     "Fixed": llTypes.fixed(b""),
     "Variable": [
+        None,
         llTypes.variable(1, b""),
         llTypes.variable(2, b"")
     ],

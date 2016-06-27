@@ -1,5 +1,8 @@
-import sys, xmlrpc.client, hashlib, ssl
+import sys
+import xmlrpc.client
+import hashlib
 from uuid import getnode as get_mac
+
 def getMacAddress():
     mac = get_mac()
     return ':'.join(("%012X" % mac)[i:i+2] for i in range(0, 12, 2))
@@ -18,8 +21,8 @@ def login(firstname, lastname, password, mac=None, start="last", grid=grid_uri):
         mac = getMacAddress()
     proxy = xmlrpc.client.ServerProxy(
         grid,
-        verbose=False, use_datetime=True, 
-        context=ssl._create_unverified_context()
+        verbose=False,
+        use_datetime=True
     )
     result = proxy.login_to_simulator({
         "first": firstname,
