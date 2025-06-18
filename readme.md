@@ -1,3 +1,7 @@
+Development moved
+-----------------
+Please see https://github.com/FelixWolf/pymetaverse for a rewrite using async!
+
 Purpose
 ------
 The purpose this is to provide a simple python API to connect to Second Life.<br/>
